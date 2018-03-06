@@ -1,0 +1,297 @@
+page-home {
+
+	ion-toolbar {
+		transition: 0.5s;
+	}
+
+	.subHidden {
+		height: 0px;
+		transition: 0.5s;
+		padding: 0px;
+    	min-height: 0px;
+	}
+
+	ion-content.subHiddenMargin .scroll-content {
+		margin-top: 12vh !important;
+		transition: 0.5s !important;
+	}
+
+	.scroll-content {
+		transition: 0.5s !important;
+	}
+
+	.alerta-list {
+
+	}
+
+	.alerta-item-none {
+		.label {
+			padding-left: 10px;
+			border-left: 4px solid $osde_lightgreen;
+			margin: 20px 0px 40px 0px;
+			font-size: 18px;
+			color: $darkgray;
+		    margin-left: 35px;
+		    margin-right: 35px;
+		}
+		.img {
+			position: relative;
+			height: 30vh;
+			background: url('../assets/img/medico-0.png') center;
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+	}
+
+	.badge {
+		position: absolute;
+		display: flex;
+		align-items: center;
+    	justify-content: center;
+		bottom: 0; right: 15vw;
+		height: 50px; width: 50px;
+		background-color: $osde_lightgreen;
+		border-radius: 100%;
+		font-size: 25px;
+		font-weight: bold;
+		color: #eee;
+		&.small {
+			height: 25px; width: 25px;
+			bottom: 1vh; right: 0;
+			font-size: 10px;
+		}
+	}
+
+	.alerta-item-1 {
+		display: flex;
+		margin: 0 -16px 20px;
+		background-color: #eee;
+		.label {
+			padding: 20px;
+			font-size: 18px;
+		}
+		.img {
+			position: relative;
+		    width: 28vw;
+		    margin-left: 15px;
+			background: url('../assets/img/medico-1.png') center;
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+	}
+
+	.alerta-item-prearribo {
+		margin-bottom: 30px;
+		font-size: 18px;
+		.instructions {
+			text-transform: uppercase;
+			font-weight: bold;
+			color: $osde_cyan;
+		}
+		div:not(.title) {
+			padding-left: 15px;
+			padding-right: 15px;
+			margin-bottom: 5px;	
+		}
+	}
+
+	.alerta-item-visita {
+		max-height: 60vh;
+		margin-bottom: 20px;
+		position: relative;
+
+
+		.visita-estado {
+			margin-bottom: 5px;
+			padding: 5px 5px;
+			text-align: center;
+			font-size: 1.2em;
+			font-weight: bold;
+			color: $black;
+			&.estado-ok {
+				background-color: #f0f7df;
+				color: #94c91e;
+			}
+			&.estado-nok {
+				background-color: #fae0e1;
+				color: #d9212d;
+			}
+		}
+		
+
+		.visita-imagen {
+			height: 25vh;
+			background: url('../assets/img/medico.png') center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+
+		.visita-info {
+			max-height: 25vh;
+			display: flex;
+			justify-content: center;
+			border-bottom: 1px solid $gray;
+			padding: 10px 0;
+			color: $gray;
+			div {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				font-size: 1.2em;
+				width: 100%;
+				text-align: center;
+			}
+			.visita-info-profesional {
+				
+			}
+			.visita-info-nombre {
+				color: $osde_cyan;
+				font-size: 1.5em;
+				font-weight: bold;
+			}
+			.visita-info-especialidad {
+				font-weight: bold;
+			}
+			.visita-info-matricula {
+
+			}
+		}
+
+		.visita-hora {
+			height: 10vh;
+			display: flex;
+			border-bottom: 1px solid $lightgray;
+			& > div {
+				width: 33vw;
+			}
+			.visita-hora-reloj {
+				height: 10vh;
+				border-right: 1px solid $lightgray;
+				background: url('../assets/img/reloj.png') center;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-clip: content-box;
+				padding-bottom: 1px;
+			}
+			.visita-hora-label {
+				flex-basis: 34%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				div {
+					width: 60%;
+					text-align: center;
+					font-size: 1.1em;
+				}
+				.estado-ok {
+					color: $gray;
+				}
+				.estado-nok {
+					color: #e05650;
+				}
+			}
+			.visita-hora-tiempo {
+				flex-basis: 33%;
+				border-left: 1px solid $lightgray;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 2em;
+				font-weight: bold;
+				.estado-ok {
+					color: #2aa4c4;
+				}
+				.estado-nok {
+					color: #e05650;
+				}
+			}
+		}
+
+	}
+
+	.alerta-item-poll {
+		height: 70vh;
+		margin-bottom: 20px;
+		position: relative;
+
+		.poll-exit {
+			position: absolute;
+			top: 10px; right: 5vw;
+			width: 25px;
+			font-size: 2.5em;
+			color: #222;
+		}
+
+		.poll-img {
+			height: 20vh;
+			margin-bottom: 15px;
+			background-size: contain !important;
+			background-repeat: no-repeat !important;
+		}
+
+		&.start  .poll-img { background: url('../assets/img/poll-start.png') center; }
+		&.bad    .poll-img { background: url('../assets/img/poll-bad.png') center;	}
+		&.meh    .poll-img { background: url('../assets/img/poll-meh.png') center; }
+		&.good   .poll-img { background: url('../assets/img/poll-good.png') center; }
+		&.thanks .poll-img { 
+			height: 30vh;
+			margin-top: 20px;
+			background: url('../assets/img/poll-thanks.png') center;
+		}
+
+		.poll-actions {
+			height: 20vh;
+			text-align: center;
+			.poll-actions-label {
+				padding: 0px 20px;
+				font-size: 1.2em;
+				font-weight: 500;
+				color: $darkgray;
+				text-transform: uppercase;
+			}
+			.poll-actions-stars {
+				text-align: center;
+			}
+			.poll-actions-rate {
+				text-align: center;
+				font-size: 1.2em;
+				font-weight: 500;
+				color: $darkgray;
+			}
+			.rate-mal {
+				color: $rate-bad;
+			}
+		}
+
+		.star {
+			display: inline-block;
+			margin: 0 10px;
+			font-size: 3em;
+			[class*=outline] {
+				color: $gray !important;
+			}
+		}
+		&.bad    .star { color: $rate-bad }
+		&.meh .star { color: $rate-soso }
+		&.good   .star { color: $rate-good }
+
+		.poll-msg {
+			padding-left: 20px;
+			margin: 0px 20px;
+			border-left: 4px solid $osde_lightgreen;
+			font-size: 1.5em;
+			color: #435972;
+		}
+
+		.poll-comment {
+			height: 5em;
+			width: 100%;
+			color: #222;
+			margin: 10px 0;
+			padding: 10px;
+			border: 1px solid $black;
+		}
+
+	}
+
+}

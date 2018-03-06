@@ -1,0 +1,36 @@
+<ion-header [hidden]="show=='video'">
+
+  <ion-navbar>
+    <ion-title>videoconsulta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content [class.no-header]="show=='video'" [class.padding]="show!='video'">
+
+  <div *ngIf="show=='unavailable'" >
+    <h1>Esta video consulta ya ha finalizado</h1>
+    <h3>Muchas gracias por utilizar nuestro servicio.</h3>
+  </div>
+
+  <div *ngIf="show=='error'" >
+    <h3>No se pudo iniciar la sesión. Puede ser debido a problemas de conectividad, intentaremos recargarla.</h3>
+  </div>
+
+  <div [hidden]="show!='video'" class="videoconf" >
+
+    <div class="frame">
+      <div id="fullvideo"></div>
+      <div id="minivideo" class="flyer"></div>
+    </div>
+
+    <div class="controls">
+      <!-- <div class="hangup-btn" (click)="hangup()" ></div> -->
+      <div class="cam-btn" (click)="toggleCam()" [class.disabled]="!cam" ></div>
+      <div class="mic-btn" (click)="toggleMic()" [class.disabled]="!mic" ></div>
+    </div>
+
+  </div>
+
+</ion-content>

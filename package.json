@@ -1,0 +1,72 @@
+{
+  "name": "urg-movil",
+  "description": "Urgencias Móvil",
+  "version": "0.0.1",
+  "author": "Urgencias",
+  "homepage": "https://www.urg.com.ar",
+  "private": true,
+  "scripts": {
+    "clean": "ionic-app-scripts clean",
+    "build": "ionic-app-scripts build",
+    "lint": "ionic-app-scripts lint",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve",
+    "prod": "ionic build --prod",
+    "test": "cordova run android --device",
+    "dtest": "ionic build && cordova run android --device",
+    "ptest": "ionic build --prod && cordova run android --device",
+    "apk": "cp ./platforms/android/build/outputs/apk/android-debug.apk ./urg-movil-debug.apk",
+    "release": "bash make-apk.sh"
+  },
+  "dependencies": {
+    "@angular/common": "4.1.3",
+    "@angular/compiler": "4.1.3",
+    "@angular/compiler-cli": "4.1.3",
+    "@angular/core": "4.1.3",
+    "@angular/forms": "4.1.3",
+    "@angular/http": "4.1.3",
+    "@angular/platform-browser": "4.1.3",
+    "@angular/platform-browser-dynamic": "4.1.3",
+    "@ionic-native/android-full-screen": "^4.5.2",
+    "@ionic-native/core": "^4.2.0",
+    "@ionic-native/network": "^4.5.2",
+    "@ionic-native/onesignal": "^4.4.2",
+    "@ionic-native/splash-screen": "3.12.1",
+    "@ionic-native/status-bar": "3.12.1",
+    "@ionic/storage": "2.0.1",
+    "Cordova-Plugin-OpenTok": "git+https://github.com/opentok/cordova-plugin-opentok.git",
+    "cordova-android": "^6.3.0",
+    "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-network-information": "^1.3.4",
+    "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-plugin-statusbar": "^2.2.2",
+    "cordova-plugin-whitelist": "^1.3.1",
+    "gulp": "^3.9.1",
+    "ionic-angular": "3.6.1",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "ionicons": "3.0.0",
+    "onesignal-cordova-plugin": "^2.2.4",
+    "rxjs": "5.4.0",
+    "sw-toolbox": "3.6.0",
+    "zone.js": "0.8.12"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "2.1.4",
+    "typescript": "2.3.4"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "onesignal-cordova-plugin": {},
+      "cordova-plugin-network-information": {},
+      "com.tokbox.cordova.opentok": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
+}

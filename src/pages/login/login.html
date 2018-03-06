@@ -1,0 +1,46 @@
+<ion-header class="big">
+
+  <div class="logo"></div>
+  
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="login">
+
+    <ion-list class="form" [ngClass]="{'border':newMember}">
+      <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>
+      <ion-item>
+        <ion-label><ion-icon name="ios-person-outline" isActive="false"></ion-icon></ion-label>
+        <ion-input type="tel" minlength=8 maxlength=8
+          placeholder="{{ placeholder }}"
+          [(ngModel)]="dni"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button full icon-start class="continue urg-button-blue"
+      [disabled]="(!dni)"
+      (click)="getDeviceID(dni)">
+      {{ button_text }}
+    </button>
+
+<!-- 
+    <button ion-button full icon-start class="continue urg-button-lightgreen"
+      [ngClass]="{'shown': loading, 'hidden': !loading}">
+      <ion-spinner></ion-spinner>
+    </button>
+ -->
+
+    <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+      <button ion-button full icon-start class="callDoctor urg-button-lightgreen">
+        <ion-icon name="call"></ion-icon>
+        SOLICITAR MÉDICO
+      </button>
+    </a>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>{{version}}</ion-footer>

@@ -1,0 +1,123 @@
+page-register {
+
+  .labelNewMember {
+    font-size: 3.5vh !important;
+  }
+
+  .scroll-content {
+    margin-top: 35vh;
+  }
+
+  ion-list {
+
+    ion-list-header {
+      padding-left: 0px !important;
+      margin-bottom: 0 !important;
+      border-bottom: 0 !important;
+      border: 0 !important;
+      text-align: center;
+      ion-label {
+        font-size: 1.4em;
+        white-space: normal;
+        text-transform: uppercase;
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+      }
+    }
+    ion-item:last-child {
+      border-bottom: 0 !important;
+    }
+  }
+
+  ion-item {
+    border-left: 4px solid $osde_lightgreen !important;
+    margin: 10px !important;
+  }
+
+  .item-inner {
+    flex-direction: row-reverse;
+    border-bottom: 0 !important;
+  }
+
+  ion-radio {
+    height: 20px !important;
+    .radio-icon {
+      border: 1px solid black;
+      border-radius: 25px;
+      width: 20px !important;
+      height: 20px !important;
+    }
+    .radio-inner {
+      left: 4px !important;
+      top: 4px !important;
+    }
+  }
+
+  .img-ok {
+      height: 150px;
+      width: 150px;
+      margin: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: url('../assets/img/yeah.png') center;
+      background-size: contain;
+      background-repeat: no-repeat;
+  }
+
+  .img-error {
+      height: 150px;
+      width: 150px;
+      margin: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      background: url('../assets/img/ohno.png') center;
+      background-size: contain;
+      background-repeat: no-repeat;
+  }
+
+  .label-ok {
+    display: table;
+    padding-left: 10px;
+    border-left: 4px solid #bed600;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .label-error {
+    display: table;
+    padding-left: 10px;
+    border-left: 4px solid red;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  button {
+    margin-top: 15px !important;
+  }
+
+  .tycs {
+    display: flex;
+    padding: 10px;
+    .label {
+      color: $osde_cyan;
+      margin-left: 11vw;
+    }
+    .checkbox-icon {
+      width: 8vw !important;
+      height: 8vw !important;
+    }
+    .checkbox-inner {
+      top: 0.5vw !important;
+      left: 2.5vw !important;
+      height: 5vw !important;
+      width: 2vw !important;
+    }
+  }
+
+
+}

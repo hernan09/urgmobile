@@ -1,0 +1,112 @@
+<ion-header>
+
+	<ion-navbar hideBackButton>
+      <ion-buttons left>
+        <button left menuToggle="left" class="urgIcon">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        URG
+      </ion-title>
+      <ion-buttons right>
+        <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+          <button right class="urgIcon">
+            <ion-icon name="call"></ion-icon>
+          </button>
+        </a>
+    </ion-buttons>
+  </ion-navbar>
+
+	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+		<ion-title>Mis Datos</ion-title>
+	</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content [ngClass]="{'subHiddenMargin': !showSubHeader}">
+
+  <div class="dataCard datosSocio">
+    <div>
+      <div class="cardTitle">{{persona.nombre}} {{persona.apellido}}</div>
+    </div>
+    <div>
+      <div>Nro. de socio: {{persona.datosCredencial.nroasociado}}</div>
+    </div>
+    <div class="plan">
+      <div>Plan: {{persona.datosCredencial.plan}}</div>
+      <div>Convenio: {{persona.datosCredencial.convenio}}</div>
+    </div>
+  </div>
+
+  <div class="dataCard datosPersonales">
+    <div>
+      <div>DNI:</div>
+      <div>{{persona.dni}}</div>
+    </div>
+    <div *ngFor="let data of persona.datosPersonales">
+      <div>{{data.label}}:</div>
+      <div>{{data.valor}}</div>
+    </div>
+  </div>
+
+  <div class="dataCard datosMedicos" *ngIf="persona.antecedentes">
+    <div>
+      <div class="cardTitle">ANTECEDENTES MÉDICOS</div>
+    </div>
+    <div>
+      <div *ngFor="let a of persona.antecedentes">- {{a.antecedente}}</div>
+    </div>
+  </div>
+
+<!--
+  <div class="tarjeta">
+    <div class="tarjeta-spacer"></div>
+    <div class="tarjeta-label tarjeta-name">
+      <div *ngIf="persona.apellido">Apellido y nombre: {{persona.nombre}} {{persona.apellido}}</div>
+    </div>
+    <div class="tarjeta-label tarjeta-nro">
+      <div *ngIf="persona.datosCredencial.nroasociado">Nro de Asociado: {{persona.datosCredencial.nroasociado}}</div>
+    </div>
+    <div class="tarjeta-label tarjeta-dni">
+      <div *ngIf="persona.dni" class="tarjeta-dni-number">DNI: {{persona.dni}}</div>
+      <div *ngIf="persona.datosCredencial.convenio" class="tarjeta-convenio">Convenio: {{persona.datosCredencial.convenio}}</div>
+    </div>
+    <div class="tarjeta-label tarjeta-plan">
+      <div *ngIf="persona.datosCredencial.plan">Plan: {{persona.datosCredencial.plan}}</div>
+    </div>
+  </div>
+
+  <div *ngIf="persona.datosPersonales" class="card">
+      <div *ngFor="let data of persona.datosPersonales">
+        <ion-row>
+          <ion-col>{{data.label}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{data.valor}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+        </ion-row>
+      </div>
+  </div>
+
+  <div *ngIf="persona.antecedentes" class="card2">
+    <ion-row>
+      <ion-col>ANTECEDENTES MÉDICOS</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let a of persona.antecedentes">
+      <ion-col>- {{a.antecedente}}</ion-col>
+    </ion-row>
+  </div>
+-->
+
+  <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+    <button ion-button full icon-start class="urg-button-lightgreen">
+      <ion-icon name="call"></ion-icon>
+      Solicitar médico
+    </button>
+  </a>
+
+</ion-content>

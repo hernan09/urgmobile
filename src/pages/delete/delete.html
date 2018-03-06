@@ -1,0 +1,42 @@
+<ion-header>
+
+	<ion-navbar hideBackButton>
+      <ion-buttons left>
+        <button left menuToggle="left" class="urgIcon">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        URG
+      </ion-title>
+      <ion-buttons right>
+        <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+          <button right class="urgIcon">
+            <ion-icon name="call"></ion-icon>
+          </button>
+        </a>
+    </ion-buttons>
+  </ion-navbar>
+
+	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+		<ion-title>Eliminar socio</ion-title>
+	</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	
+	<ion-list>
+
+	  <ion-item class="deletePeople" *ngFor="let user of users">
+	    <ion-label><b>{{ user.nombre }}</b></ion-label>
+	    <ion-label>Nro. de socio: <b>{{ user.nroSocio }}</b></ion-label>
+	    <ion-checkbox item-right [(ngModel)]="user.delete"></ion-checkbox>
+	  </ion-item>
+
+	</ion-list>
+
+	<button ion-button full icon-start class="urg-button-blue" (click)="delete()">ELIMINAR</button>
+
+</ion-content>

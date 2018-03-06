@@ -1,0 +1,87 @@
+page-videoconsulta {
+
+  ion-content.no-header > div {
+    margin-top: 0 !important;
+  }
+  ion-content.padding {
+    padding: 16px;
+  }
+
+  .videoconf {
+    height: 100%;
+    background-color: $black;
+  }
+
+  .frame {
+    position: relative;
+    width: 100vw;
+    height: 90vh;
+  }
+
+  #fullvideo {
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1;
+  }
+
+  #minivideo {
+    position: absolute;
+    bottom: 0; right: 2px;
+    width: 25vh !important;
+    height: 20vh !important;
+    max-width: 250px;
+    max-height: 200px;
+    z-index: 10;
+  }
+
+  .controls {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 10vh;
+    padding: 1vh;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    
+    div {
+      display: inline-block;
+      position: relative;
+      height: 50px;
+      width: 50px;
+      padding: 5px;
+      border: 2px solid red;
+      border-radius: 100%;
+      cursor: pointer;
+      filter: invert(1);
+      transition: all 0.2s;
+    }
+    div.disabled {
+      filter: invert(1) opacity(0.5);
+    }
+    div:not(:last-child) {
+      margin-right: 5vw;
+    }
+    div:after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .hangup-btn {
+      border-width: 0;
+      background-color: $osde_cyan;
+    }
+    .hangup-btn:after {
+      background-image: url("../assets/img/hangup.png");
+    }
+    .cam-btn:after {
+      background-image: url("../assets/img/cam.png");
+    }
+    .mic-btn:after {
+      background-image: url("../assets/img/mic.png");
+    }
+  }
+
+}

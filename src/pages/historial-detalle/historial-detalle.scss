@@ -1,0 +1,88 @@
+page-historial-detalle {
+
+	ion-toolbar {
+		transition: 0.5s;
+	}
+
+	.subHidden {
+		height: 0px;
+		transition: 0.5s;
+		padding: 0px;
+    	min-height: 0px;
+	}
+
+	ion-content.subHiddenMargin .scroll-content {
+		margin-top: 12vh !important;
+		transition: 0.5s !important;
+	}
+
+	.scroll-content {
+		transition: 0.5s !important;
+	}
+
+	ion-navbar {
+		ion-title {
+			margin-right: 44px !important;
+		}
+	}
+
+	.dataCard {
+		margin: 25px;
+		div {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		& > div:not(:last-child) {
+			margin-bottom: 15px;
+		}
+	}
+
+	.datosMain {
+		border-left: 4px solid $osde_cyan;
+		margin-bottom: 30px;
+		font-size: 16px;
+		.doctor-title {
+			font-weight: bold;
+			color: #00aad2;
+		}
+	}
+
+	.datosDetail {
+		border-left: 4px solid $osde_lightgreen;
+	}
+
+	.noData {
+		font-size: 16px;
+	}
+
+	.info {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		margin-bottom: 5px;
+		font-size: 12px;
+	}
+
+	.info div:nth-child(1) {
+		flex-basis: 60%;
+	}
+
+	.info div:nth-child(2) {
+		flex-basis: 40%;
+		text-align: right;
+	}
+
+	ion-footer {
+		margin-top: 10px;
+		button {
+			width: 90% !important;
+		    margin: auto !important;
+		    margin-bottom: 1vh !important;
+		}
+	}
+
+	.footer-md::before {
+		height: 0px;
+	}
+
+}

@@ -1,0 +1,32 @@
+<ion-header>
+
+	<ion-navbar>
+    	<button left menuToggle="left" class="urgIcon">
+    		<ion-icon name="menu"></ion-icon>
+    	</button>
+	    <ion-title>
+	    	URG
+	    </ion-title>
+	    <button right menuToggle="right" class="urgIcon">
+	    	<ion-icon name="notifications"></ion-icon>
+	    	<ion-badge *ngIf="notificationsCounter">{{notificationsCounter}}</ion-badge>
+	    </button>
+	</ion-navbar>
+
+	<ion-toolbar>
+		<ion-title>Grupo Familiar</ion-title>
+	</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<div style="margin-top: 20px; text-align: center;">
+		<div class="familyCard" *ngFor="let fam of familia" (click)="goToData(fam.id)">
+			<img src="{{fam.imgSrc}}" style="width: 100px" />
+			<p>{{fam.apellido}}, {{fam.nombre}}</p>
+		</div>
+    </div>
+
+</ion-content>

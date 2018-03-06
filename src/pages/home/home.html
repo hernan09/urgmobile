@@ -1,0 +1,137 @@
+<ion-header>
+
+	<ion-navbar hideBackButton>
+	    <ion-buttons left>
+	    	<button left menuToggle="left" class="urgIcon">
+	    		<ion-icon name="menu"></ion-icon>
+	    	</button>
+	    </ion-buttons>
+	    <ion-title>
+	    	URG
+	    </ion-title>
+	    <ion-buttons right>
+	    	<a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+			    <button right class="urgIcon">
+			    	<ion-icon name="call"></ion-icon>
+			    </button>
+			</a>
+		</ion-buttons>
+	</ion-navbar>
+
+	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+		<ion-title>{{alertas[0].title}}</ion-title>
+	</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
+
+	<div *ngFor="let alerta of alertas" class="alerta-list">
+
+		<div *ngIf="alerta.step == 4" class="alerta-item-poll"
+			[ngClass]="{
+				'start': alerta.poll.rate === 0,
+				'bad': alerta.poll.rate === 1,
+				'meh': alerta.poll.rate === 2,
+				'good': alerta.poll.rate === 3,
+				'thanks': alerta.poll.thanks
+			}">
+			<ion-icon *ngIf="!alerta.poll.thanks" name="close" class="poll-exit" (click)="closePoll()"></ion-icon>
+
+			<div class="poll-img"></div>
+
+			<div *ngIf="!alerta.poll.thanks" class="poll-actions">
+				<div class="poll-actions-label">
+					{{alerta.poll.question}}
+				</div>
+				<div class="poll-actions-stars" >
+					<div class="star" *ngFor="let s of stars; let i = index">
+						<ion-icon [name]="s"
+						(click)="rate(i+1)"></ion-icon>
+					</div>
+				</div>
+				
+				<div *ngIf="alerta.poll.rate > 0"
+					class="poll-actions-rate"
+					[ngClass]="{'rate-mal': alerta.poll.rate === 1}">
+					<label>{{alerta.poll.label}}</label>
+					<textarea class="poll-comment" placeholder="Dejanos tu comentario" [(ngModel)]='alerta.poll.comment'></textarea>
+
+					<button ion-button full class="urg-button-blue"
+						(click)="sendPoll()">
+						Enviar
+					</button>
+				</div>
+			</div>
+
+			<div *ngIf="alerta.poll.thanks" class="poll-msg">
+				¡MUCHAS GRACIAS POR AYUDARNOS A MEJORAR!
+			</div>
+		</div>
+
+
+		<div *ngIf="alerta.step == 3" class="alerta-item-visita">
+			<div class="visita-estado" [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.status}}</div>
+			<div class="visita-imagen"></div>
+			<div class="visita-info">
+				<div>
+					<div class="visita-info-profesional">Profesional asignado</div>
+					<div class="visita-info-nombre" *ngIf="alerta.doctor.nombre">{{alerta.doctor.nombre}}</div>
+					<div class="visita-info-especialidad" *ngIf="alerta.doctor.especialidad">{{alerta.doctor.especialidad}}</div>
+					<div class="visita-info-matricula" *ngIf="alerta.doctor.matricula">Matrícula: {{alerta.doctor.matricula}}</div>
+				</div>
+			</div>
+			<div class="visita-hora">
+				<div class="visita-hora-reloj"></div>
+				<div class="visita-hora-label">
+					<div [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.label}}</div>
+				</div>
+				<div class="visita-hora-tiempo">
+					<div [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.hora}}</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div *ngIf="alerta.step == 2" class="alerta-item-prearribo">
+			<div>Mientras que arriba el médico, seguí estas recomendaciones:</div>
+			<div class="instructions">INSTRUCCIONES DE PREARRIBO</div>
+			<div>{{alerta.prearribo.condicion}}</div>
+			<div *ngFor="let consejo of alerta.prearribo.consejos">{{consejo}}</div>
+		</div>
+
+
+		<div *ngIf="alerta.step == 1" class="alerta-item-1">
+			<div class="img"><!--<div class="small badge">1</div>--></div>
+			<div class="label">
+				{{alerta.asignacion}}
+			</div>
+		</div>
+
+	</div>
+
+
+	<div *ngIf="alertas[0].step == 0" class="alerta-item-none">
+		<div class="img"><!--<div class="badge">0</div>--></div>
+		<div class="label">
+			No tenés ninguna solicitud pendiente de médico a domicilio
+		</div>
+	</div>
+
+
+	<a *ngIf="(alertas[0].step != 4) && (!videoconsulta)" href="tel:{{telefono}}"
+		(click)="nextPhoneNumber()">
+		<button ion-button full icon-start class="urg-button-lightgreen">
+			<ion-icon name="call"></ion-icon>
+			Solicitar médico
+		</button>
+	</a>
+
+	<button *ngIf="videoconsulta" ion-button full icon-start class="urg-button-blue"
+		(click)="initVideoconsulta()">
+		<ion-icon name="video"></ion-icon>
+		Comenzar Videoconsulta
+	</button>
+
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-header class="big">
+
+  <div class="logo"></div>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	  <ion-list *ngIf=p radio-group [(ngModel)]="p.respuesta">
+
+	    <ion-list-header>{{ p.texto }}</ion-list-header>
+
+	    <ion-item *ngFor="let o of p.opciones; let i = index">
+	      <ion-label>{{ o.texto }}</ion-label>
+	      <ion-radio [value]="o.valor" (click)="hasChosen = true"></ion-radio>
+	    </ion-item>
+        
+      <div *ngIf=last class="tycs" >
+        <ion-checkbox [(ngModel)]="tycs"></ion-checkbox>
+        <div class="label" (click)="goToTycs()" >Al registrarme declaro que leí y acepté los <strong>Términos y Condiciones de URG</strong>.</div>
+      </div>
+
+      <button (click)="next()" [disabled]="!hasChosen || (last && !tycs)"
+        ion-button full class="urg-button-blue" >
+        {{ last ? 'Finalizar' : 'Continuar' }}
+      </button>
+
+	  </ion-list>
+
+    <checker></checker>
+
+    <button *ngIf="show == 'retry'" (click)="retry()"
+      ion-button full icon-start class="urg-button-blue" >
+      Responder nuevamente
+    </button>
+
+    <a *ngIf="show == 'callus'" (click)="nextPhoneNumber()" href="tel:{{telefono}}" >
+      <button ion-button full icon-start class="urg-button-blue" >
+        <ion-icon name="call"></ion-icon>
+        Llamanos
+      </button>
+    </a>
+
+<!--
+    <ion-list *ngIf="show == 'resumen'">
+
+      <ion-list-header>CORROBORE SUS RESPUESTAS</ion-list-header>
+
+      <div *ngFor="let p of preguntas">        
+        <ion-item-divider>
+          {{ p.texto }}
+        </ion-item-divider>
+        <ion-item>
+          <ion-label>{{ getValor(p) }}</ion-label>
+        </ion-item>
+      </div>
+
+      <button ion-button class="urg-button-blue"
+        [ngClass]="{'shown': !loading, 'hidden': loading}"
+        (click)="cambiar()">CAMBIAR</button>
+
+      <button ion-button class="urg-button-blue"
+        [ngClass]="{'shown': !loading, 'hidden': loading}"
+        (click)="checkPreguntas()">OK</button>
+
+      <button ion-button class="urg-button-blue"
+        [ngClass]="{'shown': loading, 'hidden': !loading}">
+        <ion-spinner></ion-spinner>
+      </button>
+
+    </ion-list>
+-->
+
+</ion-content>

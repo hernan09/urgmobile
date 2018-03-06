@@ -1,0 +1,206 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+$osde_blue : #001ca8;
+$osde_darkblue : #002664;
+$osde_cyan : #00aad2;
+$osde_green : #009a3d;
+$osde_lightgreen : #bed600;
+$osde_white: #f6f6f7;
+
+$rate_good: #8EB821;
+$rate_soso: #EB981F;
+$rate_bad: #C23739;
+
+$white : #eee;
+$black : #222;
+$gray : #bbb;
+$darkgray : #888;
+$lightgray : #ddd;
+
+* {
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+ion-nav {
+	ion-header {
+		ion-navbar {
+			.toolbar-background { background-color: $osde_darkblue; }
+		}
+		ion-toolbar {
+			.toolbar-background { background-color: $osde_cyan;	}
+		}
+	}
+}
+
+ion-toolbar.toolbar-md {
+	min-height: 35px;
+}
+
+.userToolbar {
+	.toolbar-title-md {
+		font-size: 1.2em;
+	}
+}
+
+.userToolbar .toolbar-content {
+	display: flex;
+
+}
+
+.user-img {
+	font-size: 3.5em;
+    margin-left: 10px;
+}
+.user-name {
+    overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.userArrow {
+	font-size: 2.5em;
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+ion-menu .menu-inner {
+	color: $white !important;
+	background-color: $osde_darkblue !important;
+
+	label {
+		padding-left: 15px;
+	}
+
+	ion-toolbar {
+		padding: 0px;
+		.toolbar-title { color: inherit; }
+	}
+	ion-content {
+		color: inherit !important;
+		background-color: inherit !important;
+		.item {
+			border-bottom: 1px solid $lightgray;
+		}
+	}
+	ion-content .item, ion-footer .item {
+		color: inherit !important;
+		background-color: inherit;
+	}
+	ion-content button, ion-footer button {
+		color: inherit !important;
+		background-color: inherit;
+		font-size: 16px;
+		font-weight: 500;
+	}
+	ion-footer {
+		.item {
+			border-top: 1px solid $lightgray;
+		}
+	}
+	
+	.item-inner {
+		border-bottom: none !important;
+	}
+}
+
+
+ion-header.big {
+    .logo {
+		height: 15vh;
+		margin-top: 10vh;
+		background: url('../assets/img/logo.png') center;
+		background-size: contain;
+		background-repeat: no-repeat;
+    }
+    .label {
+		text-align: center;
+		font-size: 5vh;
+		color: $osde_blue;
+		letter-spacing: 5px;
+    }
+    & + ion-content .scroll-content {
+	    margin-top: 30vh !important;
+	    padding-bottom: 0 !important;
+	}
+	&:after {
+		content: none !important;
+	}
+}
+
+
+ion-badge {
+	position: absolute;
+	right: -2px;
+	top: -9px;
+	border-radius: 50% !important;
+	background-color: #f53e3e !important;
+}
+
+ion-input {
+	border-bottom: 1px solid $osde_cyan;
+}
+
+.list-md .item-input:last-child {
+	border-bottom: 0;
+	box-shadow: none !important;
+}
+
+
+.title {
+	padding: 0px !important;
+	text-align: center;
+}
+
+.scroll-content {
+	overflow-y: auto;
+}
+
+
+.urgIcon {
+	color: white !important;
+	font-size: 1.7em !important;
+	background-color: inherit;
+}
+
+
+[class*=urg-button] {
+	height: 45px !important;
+}
+.urg-button-blue       { background-color: $osde_blue; }
+.urg-button-lightgreen { background-color: $osde_lightgreen; }
+
+.hidden {
+	display: none;
+}
+
+.shown {
+	display: inline-block;
+}
+
+.familyCard {
+	width: 125px;
+	margin: 15px;
+	display: inline-block;
+	box-shadow: 0px 0px 15px #888888;
+	cursor: pointer;
+	padding-top: 5px;
+}

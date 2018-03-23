@@ -108,6 +108,12 @@ $check-color: $osde_lightgreen;
   }
 }
 
+@media (max-height: 567px) {
+  .errormark {
+    padding-bottom: 0em;
+  }
+}
+
 .urg-button-blue {
   margin: 40px 0px 20px 0px !important;
 }

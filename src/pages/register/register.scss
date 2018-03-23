@@ -105,7 +105,7 @@ page-register {
     padding: 10px;
     .label {
       color: $osde_cyan;
-      margin-left: 11vw;
+      margin-left: 10px;
     }
     .checkbox-icon {
       width: 8vw !important;
@@ -116,6 +116,14 @@ page-register {
       left: 2.5vw !important;
       height: 5vw !important;
       width: 2vw !important;
+    }
+  }
+
+  @media (max-height: 567px) {
+    .tycs {
+      .label {
+        margin-left: 40px;
+      }
     }
   }
 

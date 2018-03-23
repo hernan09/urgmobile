@@ -35,7 +35,7 @@ export class Utils {
     this.alert.present()
   }
   public hideAlert() {
-    this.alert.dismiss().catch(e=>{})
+    if (this.alert) this.alert.dismiss().catch(e=>{})
   }
 
 
@@ -51,7 +51,7 @@ export class Utils {
     this.toast.present()
   }
   public hideToast() {
-    this.toast.dismiss().catch(e=>{})
+    if (this.toast) this.toast.dismiss().catch(e=>{})
   }
 
 
@@ -65,7 +65,7 @@ export class Utils {
     this.loading.present()
   }
   public hideLoader() {
-    this.loading.dismiss().catch(e=>{})
+    if (this.loading) this.loading.dismiss().catch(e=>{})
   }
 
 

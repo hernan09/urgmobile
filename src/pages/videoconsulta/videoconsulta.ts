@@ -89,7 +89,7 @@ export class VideoConsultaPage {
     else {
       this.utils.showToast(Config.MSG.EXIT_VC, 1500)
       this.readyToExit = true
-      setTimeout(() => { this.readyToExit = false }, 1500)
+      setTimeout(_ => { this.readyToExit = false }, 1500)
     }
   }
 

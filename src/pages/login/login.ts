@@ -95,13 +95,13 @@ export class LoginPage {
         },
         error => {
           this.utils.hideLoader()
-          this.utils.showAlert('Error', ERROR_MSG[ error.status ] || Config.MSG.CONNECTION_ERROR)
+          this.utils.showAlert(Config.MSG.SORRY, ERROR_MSG[ error.status ] || Config.MSG.CONNECTION_ERROR)
         }
       )
     }
     else {
       this.utils.hideLoader()
-      if (this.newMember) return this.utils.showAlert('Error', Config.MSG.ADD_USER_ERROR)
+      if (this.newMember) return this.utils.showAlert(Config.MSG.SORRY, Config.MSG.ADD_USER_ERROR)
       this.authService.login(dni)
       this.navCtrl.setRoot(HomePage)
     }

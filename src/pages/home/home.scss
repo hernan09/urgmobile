@@ -124,6 +124,12 @@ page-home {
 			background: url('../assets/img/medico.png') center;
 			background-size: cover;
 			background-repeat: no-repeat;
+			&.img-nok {
+				background: url('../assets/img/medicator_demora.png') center no-repeat;
+				background-size: contain;
+				width: 65vw;
+				margin: auto;
+			}
 		}
 
 		.visita-info {
@@ -161,10 +167,8 @@ page-home {
 			height: 10vh;
 			display: flex;
 			border-bottom: 1px solid $lightgray;
-			& > div {
-				width: 33vw;
-			}
 			.visita-hora-reloj {
+				flex-basis: 30%;
 				height: 10vh;
 				border-right: 1px solid $lightgray;
 				background: url('../assets/img/reloj.png') center;
@@ -174,24 +178,21 @@ page-home {
 				padding-bottom: 1px;
 			}
 			.visita-hora-label {
-				flex-basis: 34%;
+				flex-basis: 40%;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				div {
-					width: 60%;
-					text-align: center;
-					font-size: 1.1em;
-				}
+				text-align: center;
+				font-size: 1.1em;
 				.estado-ok {
 					color: $gray;
 				}
 				.estado-nok {
-					color: #e05650;
+					color: $osde_red;
 				}
 			}
 			.visita-hora-tiempo {
-				flex-basis: 33%;
+				flex-basis: 30%;
 				border-left: 1px solid $lightgray;
 				display: flex;
 				justify-content: center;
@@ -202,7 +203,7 @@ page-home {
 					color: #2aa4c4;
 				}
 				.estado-nok {
-					color: #e05650;
+					color: $osde_red;
 				}
 			}
 		}
@@ -214,70 +215,68 @@ page-home {
 		margin-bottom: 20px;
 		position: relative;
 
+		.poll-question {
+			text-align: center;
+			padding: 15px 20px 20px 20px;
+			font-size: 1.3em;
+			font-weight: bold;
+			color: $darkgray;
+			text-transform: uppercase;
+		}
+
 		.poll-exit {
 			position: absolute;
-			top: 10px; right: 5vw;
-			width: 25px;
+			top: 0px; right: 0px;
 			font-size: 2.5em;
 			color: #222;
 		}
 
-		.poll-img {
-			height: 20vh;
-			margin-bottom: 15px;
-			background-size: contain !important;
-			background-repeat: no-repeat !important;
-		}
-
-		&.start  .poll-img { background: url('../assets/img/poll-start.png') center; }
-		&.bad    .poll-img { background: url('../assets/img/poll-bad.png') center;	}
-		&.meh    .poll-img { background: url('../assets/img/poll-meh.png') center; }
-		&.good   .poll-img { background: url('../assets/img/poll-good.png') center; }
-		&.thanks .poll-img { 
-			height: 30vh;
-			margin-top: 20px;
-			background: url('../assets/img/poll-thanks.png') center;
-		}
-
-		.poll-actions {
-			height: 20vh;
-			text-align: center;
-			.poll-actions-label {
-				padding: 0px 20px;
-				font-size: 1.2em;
-				font-weight: 500;
-				color: $darkgray;
+		.poll-option {
+			display: flex;
+			align-items: center;
+			height: 16vh;
+			border-bottom: 1px solid $gray;
+			div {
+				flex-basis: 50%;
+				font-size: 1.3em;
+				font-weight: bold;
 				text-transform: uppercase;
 			}
-			.poll-actions-stars {
-				text-align: center;
+			.poll-option-img {
+				height: 14vh;
+				width: 50%;
+    			margin: auto;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
 			}
-			.poll-actions-rate {
-				text-align: center;
-				font-size: 1.2em;
-				font-weight: 500;
-				color: $darkgray;
+			&.good {
+				color: $rate_good;
+				.poll-option-img {
+					background-image: url('../assets/img/poll-good.png');
+					background-position-y: -10px;
+				}
 			}
-			.rate-mal {
-				color: $rate-bad;
+			&.meh {
+				color: $rate_meh;
+				.poll-option-img { background-image: url('../assets/img/poll-meh.png'); }
+			}
+			&.bad  {
+				color: $rate_bad;
+				.poll-option-img {
+					background-image: url('../assets/img/poll-bad.png');
+					background-position-y: 10px;
+				}
+			}
+			&.selected {
+				background-color: #D4DDE4;
+				border-bottom: 0px;
 			}
 		}
-
-		.star {
-			display: inline-block;
-			margin: 0 10px;
-			font-size: 3em;
-			[class*=outline] {
-				color: $gray !important;
-			}
-		}
-		&.bad    .star { color: $rate-bad }
-		&.meh .star { color: $rate-soso }
-		&.good   .star { color: $rate-good }
 
 		.poll-msg {
-			padding-left: 20px;
-			margin: 0px 20px;
+			padding-left: 10px;
+			margin: 20px;
 			border-left: 4px solid $osde_lightgreen;
 			font-size: 1.5em;
 			color: #435972;
@@ -286,12 +285,21 @@ page-home {
 		.poll-comment {
 			height: 5em;
 			width: 100%;
-			color: #222;
+			color: $osde_darkblue;
+			font-weight: bold;
 			margin: 10px 0;
 			padding: 10px;
-			border: 1px solid $black;
+			border: 1px solid $gray;
 		}
 
 	}
+
+	.logo {
+		height: 15vh;
+		margin-top: 10vh;
+		background: url('../assets/img/logo.png') center;
+		background-size: contain;
+		background-repeat: no-repeat;
+    }
 
 }

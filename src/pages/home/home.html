@@ -29,22 +29,22 @@
 
 	<div *ngFor="let alerta of alertas" class="alerta-list">
 
-		<div *ngIf="alerta.step == 4" class="alerta-item-poll"
-			[ngClass]="{
-				'start': alerta.poll.rate === 0,
-				'bad': alerta.poll.rate === 1,
-				'meh': alerta.poll.rate === 2,
-				'good': alerta.poll.rate === 3,
-				'thanks': alerta.poll.thanks
-			}">
-			<ion-icon *ngIf="!alerta.poll.thanks" name="close" class="poll-exit" (click)="closePoll()"></ion-icon>
+		<div *ngIf="alerta.step == 4" class="alerta-item-poll">
 
-			<div class="poll-img"></div>
+			<div *ngIf="!alerta.poll.thanks" >
+				<ion-icon (click)="sayThanks()" name="close" class="poll-exit" ></ion-icon>
 
-			<div *ngIf="!alerta.poll.thanks" class="poll-actions">
-				<div class="poll-actions-label">
+				<div class="poll-question">
 					{{alerta.poll.question}}
 				</div>
+
+				<div *ngFor="let o of poll_options" (click)="rate(o.value)"
+					[ngClass]="{'selected': alerta.poll.rate == o.value}"
+					class="poll-option {{ o.class }}" >
+					<div><div class="poll-option-img"></div></div>
+					<div>{{ o.label }}</div>
+				</div>
+			<!--
 				<div class="poll-actions-stars" >
 					<div class="star" *ngFor="let s of stars; let i = index">
 						<ion-icon [name]="s"
@@ -56,24 +56,30 @@
 					class="poll-actions-rate"
 					[ngClass]="{'rate-mal': alerta.poll.rate === 1}">
 					<label>{{alerta.poll.label}}</label>
-					<textarea class="poll-comment" placeholder="Dejanos tu comentario" [(ngModel)]='alerta.poll.comment'></textarea>
-
-					<button ion-button full class="urg-button-blue"
-						(click)="sendPoll()">
-						Enviar
-					</button>
 				</div>
+			-->
+				<textarea class="poll-comment" placeholder="Dejanos tu comentario" [(ngModel)]='alerta.poll.comment'></textarea>
+
+				<button ion-button full class="urg-button-blue"
+					(click)="sendPoll()">
+					Enviar
+				</button>
+
 			</div>
 
-			<div *ngIf="alerta.poll.thanks" class="poll-msg">
-				¡MUCHAS GRACIAS POR AYUDARNOS A MEJORAR!
+			<div *ngIf="alerta.poll.thanks" >
+				<div class="logo"></div>
+				<div class="poll-msg">
+			    	<div *ngIf="answered">¡MUCHAS GRACIAS POR AYUDARNOS A MEJORAR!</div>
+			    	<div *ngIf="!answered">¡MUCHAS GRACIAS POR UTILIZAR NUESTROS SERVICIOS!</div>
+				</div>
 			</div>
 		</div>
 
 
 		<div *ngIf="alerta.step == 3" class="alerta-item-visita">
 			<div class="visita-estado" [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.status}}</div>
-			<div class="visita-imagen"></div>
+			<div class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>
 			<div class="visita-info">
 				<div>
 					<div class="visita-info-profesional">Profesional asignado</div>

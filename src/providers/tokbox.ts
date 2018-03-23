@@ -51,13 +51,15 @@ export class Tokbox {
 
     const session = OT.initSession(apiKey, sessionId)
 
-    const publisher = OT.initPublisher('minivideo',
+    const publisher = OT.initPublisher('local',
       {
         insertMode : 'append',
         style : this.styleProps,
         //resolution : '640x480',
         audioBitrate : 20000,
         fitMode : 'contain',
+        width : 640,
+        height : 480,
       },
       err => {
         if (err) return this.handleError(err, 'Init')
@@ -67,6 +69,7 @@ export class Tokbox {
     // Populate control handlers
     if (session && publisher) this.controlHandlers = {
       hangup : () => {
+        this.participants = []
         session.disconnect()
       },
       toggleCam : bool => {
@@ -78,23 +81,37 @@ export class Tokbox {
     }
 
     session
-    // Add participants
     .on('streamCreated', event => {
+      // Add participants
+      if (this.participants.length >= 2) {
+        console.warn('UI is full, ignoring new stream')
+        return
+      }
       const newguy = session.subscribe(event.stream,
-        this.participants.length ? 'minivideo' : 'fullvideo',
+        this.participants.length ? 'extra' : 'fullvideo', // DOM el id
         {
           insertMode: 'append',
           style: this.styleProps,
         }
       )
-      console.log('subscribed new stream', event.stream.id)
       this.participants.push(newguy)
+      console.info('Added participant:', newguy)
+      console.info('Remote participants:', this.participants)
     })
-    // Remove participants
     .on('streamDestroyed', event => {
-      console.log('diconnected')
+      // Remove participants
+      const deadguy = this.participants.find( p => p.streamId == event.stream.streamId )
+      this.participants = this.participants.filter(p => p.streamId != event.stream.streamId)
+      console.info('Removed participant:', deadguy)
+      console.info('Remote participants:', this.participants)
     })
-    // Connect to the session
+    .on('sessionConnected', event => {
+      console.log('Connected to session! :D')
+    })
+    .on('sessionDisconnected', event => {
+      console.log('Hasta la vista, baby')
+    })
+    // Connect to session
     .connect(token, err => {
       if (err) return this.handleError(err, 'Connect')
       console.log('session connected, publishing')

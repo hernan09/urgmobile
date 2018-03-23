@@ -33,15 +33,16 @@ export class DatosPage {
 	){
 		this.telefono = dataService.getPhoneNumber()
 		this.utils.showLoader()
-		dataService.getDatosSocio().subscribe(this.handleData.bind(this), this.handleData.bind(this))
+		dataService.getDatosSocio().subscribe(this.handleData.bind(this), this.handleError.bind(this))
 	}
 
 	handleData(data) {
 		if (data.length) data = data[0]
-		console.log('Mis Datos:', data)
+		//console.log('Mis Datos:', data)
 		this.persona = data
 		this.persona.datosCredencial = data.datosCredencial[0] // FIX por error del backend
 		this.persona.dni = this.utils.getActiveUser()
+		this.dataService.updateUsers()
 		this.utils.hideLoader()
 	}
 

@@ -8,12 +8,6 @@ import { Utils } from '../../providers/utils'
 import { VideoConsultaPage } from '../videoconsulta/videoconsulta'
 
 
-const RATING_LABELS = {
-	1 : 'MALA',
-	2 : 'REGULAR',
-	3 : '¡MUY BUENA!',
-}
-
 
 @Component({
   selector: 'page-home',
@@ -29,7 +23,14 @@ export class HomePage {
 	alertas :any
 	telefono :string
 	videoconsulta = false
-	stars
+	answered = false
+	
+	poll_options = [
+		{ value : 3, class : 'good', label : '¡MUY BUENA!' },
+		{ value : 2, class : 'meh', label : 'REGULAR' },
+		{ value : 1, class : 'bad', label : 'MALA' },
+	]
+
 
 	constructor (
 		private ref :ChangeDetectorRef,
@@ -42,7 +43,7 @@ export class HomePage {
 		this.alertas = notiService.getAlertas()
 		this.telefono = dataService.getPhoneNumber()
 		this.videoconsulta = !!utils.getItem('cid')
-		this.initStars()
+		//this.initStars()
 
 		notiService.alertasChange.subscribe(alertas => {
 			this.alertas = alertas
@@ -50,26 +51,36 @@ export class HomePage {
 			if (!this.ref['destroyed']) this.ref.detectChanges()
 		})
 
-		dataService.getTelefonos().subscribe(
+		setTimeout(_ => {
+			this.updateDatos()
+		}, 500)
+
+	}
+
+
+	updateDatos() {
+		this.dataService.getDatosSocio().subscribe(
 			data => {
-				this.telefono = dataService.getPhoneNumber()
+				this.dataService.updateUsers()
+				this.updateTelefono()
 			},
 			err => {
-				this.telefono = dataService.getPhoneNumber()
+				this.dataService.updateUsers()
+				this.updateTelefono()
 			}
 		)
+	}
 
-		dataService.getDatosSocio().subscribe(
+
+	updateTelefono() {
+		this.dataService.getTelefonos().subscribe(
 			data => {
-				dataService.updateUsers()
-				this.ref.detectChanges()
+				this.telefono = this.dataService.getPhoneNumber()
 			},
 			err => {
-				dataService.updateUsers()
-				this.ref.detectChanges()
+				this.telefono = this.dataService.getPhoneNumber()
 			}
 		)
-
 	}
 
 
@@ -114,23 +125,12 @@ export class HomePage {
 
 
 	rate(rating) {
-		const poll = this.alertas[0].poll
+		const poll = this.alertas.slice(-1)[0].poll
 		poll.rate = rating
-		poll.label = RATING_LABELS[rating]
-		this.stars = this.stars.map((el, i) => i < rating ? 'star' : 'star-outline')
+		//poll.label = RATING_LABELS[rating]
+		//this.stars = this.stars.map((el, i) => i < rating ? 'star' : 'star-outline')
 		this.ref.detectChanges()
 	}
-
-
-	closePoll() {
-		const poll = this.alertas.slice(-1)[0].poll
-		poll.rate = 0
-		poll.comment = ''
-		poll.thanks = false
-		this.initStars()
-		this.notiService.popAlerta()
-	}
-
 
 	sendPoll() {
 		this.utils.showLoader()
@@ -149,19 +149,34 @@ export class HomePage {
 			err => {
 				this.sayThanks()
 			})
+		this.answered = true
 	}
 
 
 	sayThanks() {
 		this.utils.hideLoader()
 		this.alertas.slice(-1)[0].poll.thanks = true
-		setTimeout(_ => this.closePoll(), 3 * 1000)
+		this.ref.detectChanges()
+		setTimeout(_ => this.closePoll(), 10 * 1000)
 	}
 
+
+	closePoll() {
+		const poll = this.alertas.slice(-1)[0].poll
+		poll.rate = 0
+		poll.comment = ''
+		poll.thanks = false
+		this.answered = false
+		//this.initStars()
+		this.notiService.popAlerta()
+		this.ref.detectChanges()
+	}
+
+	/*
 	initStars() {
 		this.stars = Array(Object.keys(RATING_LABELS).length).fill('star-outline')
 	}
-
+	*/
 
 	nextPhoneNumber() {
 		this.telefono = this.dataService.nextPhoneNumber()

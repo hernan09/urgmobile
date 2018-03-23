@@ -3,17 +3,13 @@ page-delete {
 	.deletePeople {
 		padding-bottom: 15px;
 		padding-top: 15px;
-		border-bottom: 1px solid $darkgray;
 		.input-wrapper {
 			flex-direction: column;
     		align-items: flex-start;
     		border-left: 4px solid #bed600;
     		padding-left: 15px;
+        max-width: 78vw;
 		}
-	}
-
-	.deletePeople:last-child {
-		border-bottom: 0;
 	}
 
     .checkbox-icon {

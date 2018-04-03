@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Solicitud de Video Consulta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div class="vc">
+
+        <ion-list class="form">
+
+          <div class="osde-label">APELLIDO</div>
+          <ion-item>           
+            <ion-input type="text"           
+              [(ngModel)]="lastname" [disabled]="true"></ion-input>
+          </ion-item> 
+          
+          <div class="osde-label">NOMBRE</div>
+          <ion-item>           
+            <ion-input type="text"             
+              [(ngModel)]="name" [disabled]="true"></ion-input>
+          </ion-item>  
+
+          <div class="osde-label">TELEFONO</div>
+          <ion-item>           
+            <ion-input type="tel"            
+              [(ngModel)]="tel" placeholder="Ingrese un número de telefono"></ion-input>
+          </ion-item> 
+
+          <div class="osde-label">SINTOMA</div>
+          <ion-item>
+              <ion-label>Seleccionar</ion-label>
+              <ion-select class="myCustomSelect" [(ngModel)]="symptom">
+                <ion-option *ngFor='let symptomOption of symptoms' [value]="symptomOption.id">{{symptomOption.value}}</ion-option>         
+              </ion-select>
+            </ion-item>
+
+        </ion-list>
+        
+          <button ion-button full icon-start class="urg-button-blue" [disabled]="!lastname || !name || !tel || !symptom"
+          (click)="sendVCRequest(lastname,name,tel,symptom)">
+            <ion-icon name="confirm"></ion-icon>
+            CONFIRMAR
+          </button>
+
+          <button ion-button full icon-start class="urg-button-lightgreen"  (click)="previusPage()">
+              VOLVER
+          </button>
+    
+      </div>
+
+</ion-content>

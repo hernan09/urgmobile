@@ -1,0 +1,41 @@
+<!--
+  Generated template for the SociosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Socios</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  
+  <ion-list radio-group [(ngModel)]="socioActual" >
+
+    <ion-list-header>Seleccione el Socio</ion-list-header>
+
+    <div>
+      <ion-item *ngFor="let opcionSocio of socios">
+        <ion-label>{{ opcionSocio.nombre }} {{opcionSocio.apellido}}</ion-label>
+        <ion-radio [value]="opcionSocio"></ion-radio>
+      </ion-item>
+    </div>
+
+  </ion-list>
+
+
+  <button ion-button full icon-start class="urg-button-blue" [disabled]="!socioActual" (click)="requestVCPage(socioActual)">
+    CONTINUAR    
+  </button>
+
+  <button ion-button full icon-start class="urg-button-lightgreen"  (click)="previusPage()">
+    VOLVER
+</button>
+  
+</ion-content>
+<ion-footer>{{version}}</ion-footer>

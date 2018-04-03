@@ -29,6 +29,8 @@ import { CredencialPage } from '../pages/credencial/credencial'
 import { FamiliaPage } from '../pages/familia/familia'
 import { DeletePage } from '../pages/delete/delete'
 import { VideoConsultaPage } from '../pages/videoconsulta/videoconsulta'
+import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
+
 
 // services
 import { AuthService } from '../providers/auth.service'
@@ -36,6 +38,7 @@ import { DataService } from '../providers/data.service'
 import { NotificationsService } from '../providers/notifications.service'
 import { Utils } from '../providers/utils'
 import { Tokbox } from '../providers/tokbox'
+import { SociosPage } from '../pages/socios/socios';
 
 
 @NgModule({
@@ -53,6 +56,8 @@ import { Tokbox } from '../providers/tokbox'
     FamiliaPage,
     DeletePage,
     VideoConsultaPage,
+    SociosPage,
+    SolicitudVcPage,
     CheckerComponent,
   ],
   
@@ -69,6 +74,8 @@ import { Tokbox } from '../providers/tokbox'
     FamiliaPage,
     DeletePage,
     VideoConsultaPage,
+    SociosPage,
+    SolicitudVcPage,
     CheckerComponent,
   ],
 

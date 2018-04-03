@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject'
 import { OneSignal } from '@ionic-native/onesignal'
 
 import { VideoConsultaPage } from '../pages/videoconsulta/videoconsulta'
+import {HomePage} from '../pages/home/home'
 
 import { DataService } from './data.service'
 import { Utils, DUMMY_NOTIS } from './utils'
@@ -66,35 +67,54 @@ export class NotificationsService {
 	init(navCtrl) {
 
 		this.oneSignal.startInit(
-	      //Config.OPTIONS.ONE_SIGNAL_APP_ID,
-		  //Config.OPTIONS.GOOGLE_PROJECT_NUMBER
-		  Config.OPTIONS.ONE_SIGNAL_APP_ID_TEST,
-	      Config.OPTIONS.GOOGLE_PROJECT_NUMBER_TEST
-	    )
+	     // Config.OPTIONS.ONE_SIGNAL_APP_ID,
+	      //Config.OPTIONS.GOOGLE_PROJECT_NUMBER
+		
+		//----- AMBIENTES DE DESA -----
+		Config.OPTIONS.ONE_SIGNAL_APP_ID_TEST,
+	    Config.OPTIONS.GOOGLE_PROJECT_NUMBER_TEST
 
+		)
 	    this.oneSignal.handleNotificationReceived().subscribe(notification => {
 	      // TODO: VALIDACIÓN DE DNI
 	      const noti = {
 	        title: notification.payload.body,
-	        data: notification.payload.additionalData
-	      }
+			data: notification.payload.additionalData,
+			androidNotificationId: notification.androidNotificationId
+		  }
+		  console.log('Id Alerta recibido: '+notification.androidNotificationId);
 	      console.log('Notification Received:', noti)
 	      this.newNotification(noti)
 	    })
 
 	    this.oneSignal.handleNotificationOpened().subscribe(data => {
-	      // TODO: VALIDACIÓN DE DNI
+		  // TODO: VALIDACIÓN DE DNI
+		  console.log('Open noti: '+ data.notification.androidNotificationId);
 	      const noti = {
 	        title: data.notification.payload.body,
-	        data: data.notification.payload.additionalData
-	      }
-	      console.log('Notification Opened')
+			data: data.notification.payload.additionalData,
+			androidNotificationId: data.notification.androidNotificationId
+		  }
+		 // console.log('Id Alerta abierto: '+data.notification.androidNotificationId);
+		 // console.log('Notification Opened')
+		 // console.log('isAppInFocus: '+data.notification.isAppInFocus);
+		 // console.log('shown: '+data.notification.shown);
+		 // console.log('displayType: '+data.notification.displayType);
+		 // console.log('lockScreenVisibility: '+data.notification.payload.lockScreenVisibility);
+		  //Validamos que la notificación fué recibida mientras la aplicación no estaba en 1er plano
+		  console.log('Antes de validar noti: '+ noti.androidNotificationId);
+		  if (!this.wasAlertDisplayed(noti)){
+			console.log('Agregando alerta en open: '+ noti.androidNotificationId);
+			  this.newNotification(noti)
+		  }
 	      const isVideoConsulta = noti.data.tipoAtencion == '1'
 	        && noti.data.contenido.indexOf('#') != -1
 	      if (isVideoConsulta) {
-	        const cid = noti.data.contenido.split('#')[1]
+			const cid = noti.data.contenido.split('#')[1]
+			console.log('cid: '+cid+' noti.data.dni '+ noti.data.dni)
 	        navCtrl.setRoot(VideoConsultaPage, { cid, dni : noti.data.dni })
-	      }
+		  }
+	
 	    })
 
 	    this.oneSignal.endInit()
@@ -134,7 +154,7 @@ export class NotificationsService {
 
 	private updateAlertas(notification) {
 		if (!notification) return
-		//console.log('Updating alertas:', notification)
+		console.log('Updating alertas:', notification.androidNotificationId)
 		let alerta = Object.assign({}, ALERTA)
 
 		if (notification.data.preguntas && notification.data.preguntas.length) {
@@ -145,6 +165,7 @@ export class NotificationsService {
 		}
 		else {
 			alerta.title = notification.title
+			alerta.androidNotificationId=notification.androidNotificationId;
 			switch (notification.data.tipoAtencion) {
 
 			case "1":
@@ -207,6 +228,16 @@ export class NotificationsService {
 	private removeStep(step) {
 		let i = this.alertas.findIndex(e => e.step === step)
 		if (i != -1) this.alertas.splice(i, 1)
+	}
+
+	private wasAlertDisplayed(noti){
+		let notId = noti.androidNotificationId;
+		let alertaAnt =  this.alertas.find(x => x.androidNotificationId == notId);
+		
+		if(alertaAnt){
+			return true;
+		}
+		return false;
 	}
 
 }

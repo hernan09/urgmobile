@@ -7,7 +7,7 @@ KEYSTORE_PATH="./urg.jks"
 KEY_ALIAS="urgkey"
 APK_NAME="urg-movil.apk"
 
-APK_PATH="./platforms/android/build/outputs/apk"
+APK_PATH="./platforms/android/build/outputs/apk/release"
 OUT_PATH="."
 
 UNSIGNED_APK="$APK_PATH/android-release-unsigned.apk"

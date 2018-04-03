@@ -24,6 +24,8 @@ export class HomePage {
 	telefono :string
 	videoconsulta = false
 	answered = false
+	cid=''
+	dni=''
 	
 	poll_options = [
 		{ value : 3, class : 'good', label : '¡MUY BUENA!' },
@@ -43,6 +45,9 @@ export class HomePage {
 		this.alertas = notiService.getAlertas()
 		this.telefono = dataService.getPhoneNumber()
 		this.videoconsulta = !!utils.getItem('cid')
+		this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
+		this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
+		
 		//this.initStars()
 
 		notiService.alertasChange.subscribe(alertas => {
@@ -59,16 +64,22 @@ export class HomePage {
 
 
 	updateDatos() {
-		this.dataService.getDatosSocio().subscribe(
-			data => {
-				this.dataService.updateUsers()
-				this.updateTelefono()
-			},
-			err => {
-				this.dataService.updateUsers()
-				this.updateTelefono()
-			}
-		)
+		//Si es videoconsulta no llamo al servicio de actualizar datos
+		if(this.videoconsulta){
+			this.initVideoconsulta(this.cid,this.dni);
+		}
+		else{
+			this.dataService.getDatosSocio().subscribe(
+				data => {
+					this.dataService.updateUsers()
+					this.updateTelefono()
+				},
+				err => {
+					this.dataService.updateUsers()
+					this.updateTelefono()
+				}
+			)
+		}	
 	}
 
 
@@ -183,8 +194,8 @@ export class HomePage {
 	}
 
 
-	initVideoconsulta() {
-		this.navCtrl.setRoot(VideoConsultaPage)
+	initVideoconsulta(cid,dni) {
+		this.navCtrl.setRoot(VideoConsultaPage, { cid, dni })
 	}
 
 }

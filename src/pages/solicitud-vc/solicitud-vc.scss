@@ -1,0 +1,66 @@
+page-solicitud-vc {
+        background-color: $osde_white;
+      
+        .scroll-content {
+          padding-right: 26px !important;
+          padding-left: 26px !important;
+        }
+      
+        .vc {
+          margin: auto;
+          max-width: 400px;
+        }
+      
+        .form {
+          margin-top: 40px;
+          ion-icon {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #008fbb;
+          }
+          &.border {
+            border-left: 3px solid $osde_cyan;
+          }
+        }
+      
+        .continue {
+          margin-top: 30px;
+        }
+      
+        .callDoctor {
+          margin-top: 30px;
+        }
+      
+        .osde-label {
+          padding-left: 16px;
+          padding-top: 10px;
+          font-size: 1.1em;
+          font-weight: 600;
+          color: $osde_cyan;
+        }
+      
+        ion-label {
+          color: #008fbb;
+        }
+      
+        ion-footer {
+          height: 6vh;
+          background: linear-gradient(110deg,
+            $osde_lightgreen 0%, $osde_lightgreen 10%,
+            $osde_blue 10%, $osde_blue 40%,
+            $osde_cyan 40%, $osde_cyan 100%
+          );
+        }
+
+        .myCustomSelect{
+          max-width: 100% !important;
+        }
+      
+        @media (max-height: 450px) {
+      
+          .form {
+            margin-top: 0;
+          }
+      
+        }  
+}

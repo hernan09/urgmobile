@@ -11,7 +11,8 @@ import { DatosPage } from '../pages/datos/datos'
 import { HistorialPage } from '../pages/historial/historial'
 import { CredencialPage } from '../pages/credencial/credencial'
 import { DeletePage } from '../pages/delete/delete'
-//import { VideoConsultaPage } from '../pages/videoconsulta/videoconsulta'
+import { SociosPage } from '../pages/socios/socios'
+import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 
 import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
@@ -24,7 +25,8 @@ import { Config } from '../app/config'
 export class MyApp {
 
   @ViewChild(Nav) nav :Nav
-
+  //lo añado solo para testo de la pagina
+  //rootPage :any = SolicitudVcPage
   rootPage :any = LoginPage
   pages = [
     {
@@ -49,18 +51,17 @@ export class MyApp {
       icon : 'ios-folder-outline',
     },
     {
+      page : SociosPage,
+      title : 'Solicitar Videoconsulta',
+      icon : 'call'
+    },    
+    {
       page : LoginPage,
       title : 'Agregar socio',
       icon : 'ios-add-outline',
       params : {newMember: true}
-    },
-    /*
-    {
-      page : VideoConsultaPage,
-      title : 'Video Consulta',
-      icon : 'ios-videocam-outline',
-    }
-    */
+    },    
+    
   ]
 
   activeUser = {

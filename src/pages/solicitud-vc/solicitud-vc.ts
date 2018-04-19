@@ -60,8 +60,7 @@ export class SolicitudVcPage {
       this.utils.showAlert( "Video Consulta",data.Mensaje);
       this.navCtrl.setRoot(HomePage)
     }
-    //momentaneamente hardcodeado porque siempre me responde que si
-    else this.utils.showAlert( "Video Consulta","Lo siento no se ha podido registrar la video consulta, verifique los datos ingresados");
+    else this.utils.showAlert( "Video Consulta",data.Mensaje);
   }
 
   previusPage(){

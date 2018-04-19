@@ -41,9 +41,9 @@ export class SociosPage {
       console.log(this.socioActual.dni);
       this.navCtrl.setRoot(SolicitudVcPage, { socio : this.socioActual}, {animate: true, direction: 'back'})
       
-    }   //momentaneamente hardcodeado porque siempre me responde que si
+    }   
     else {
-      this.utils.showAlert( "Video Consulta","El servicio de Video Consulta no se encuentra disponible. Comuníquese con 0810-333-3511");
+      this.utils.showAlert( "Video Consulta",responseValidateVC.Mensaje);
       this.navCtrl.setRoot(HomePage);
     }
   }

@@ -3,9 +3,9 @@ export class Config {
 	public static OPTIONS = {
 		SERVER : 'test',
 		EXPIRE_TIME : 30 * 24 * 60, // login expire time, in minutes
-		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds		
+		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds
 		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation)
-		
+
 		//----- AMBIENTES DE PROD -----
 		ONE_SIGNAL_APP_ID : '6222cb3a-8180-4242-971c-86a4baa23529',
 		GOOGLE_PROJECT_NUMBER : '367741538862',
@@ -14,13 +14,13 @@ export class Config {
 		ONE_SIGNAL_APP_ID_TEST : '99b9131f-cfa9-4b3a-ab12-2d0d459c9916',
 		GOOGLE_PROJECT_NUMBER_TEST : '981462568601',
 
-		VERSION_NUMBER : '1.0.5',
+		VERSION_NUMBER : '1.0.6',
 	}
 
 	static SERVERS = {
 		new : 'https://urgencias-producto.appspot.com/api',
 		old : 'https://easydocbackend.appspot.com',
-		test : 'https://easydoc-backend-test-dot-urgencias-producto.appspot.com/api',		
+		test : 'https://easydoc-backend-test-dot-urgencias-producto.appspot.com/api',
 	}
 
 	public static API = {
@@ -32,6 +32,9 @@ export class Config {
 		datosSocio: '/socio/datosSocio/',
 		historial: '/socio/atencion/',
 		responderEncuesta: '/encuesta/respuesta',
+		sintomas: '/sintoma/sintomas',
+		solicitarVC : '/vc/solicitar',
+		validarVC : '/vc/validar/'
 	}
 
 	public static SERVER_URL = getServerURL()
@@ -47,6 +50,7 @@ export class Config {
 		MIS_DATOS : 'misDatos',
 		TELEFONOS : 'telefonos',
 		ALERTAS : 'alertas',
+		SINTOMAS: 'sintomas',
 	}
 
 	public static MSG = {

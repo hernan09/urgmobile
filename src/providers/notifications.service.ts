@@ -60,7 +60,7 @@ export class NotificationsService {
 					: clearInterval(simulation)
 			}, SIM_DELAY * 1000)
 		}
-		
+
 	}
 
 
@@ -69,7 +69,7 @@ export class NotificationsService {
 		this.oneSignal.startInit(
 	     // Config.OPTIONS.ONE_SIGNAL_APP_ID,
 	      //Config.OPTIONS.GOOGLE_PROJECT_NUMBER
-		
+
 		//----- AMBIENTES DE DESA -----
 		Config.OPTIONS.ONE_SIGNAL_APP_ID_TEST,
 	    Config.OPTIONS.GOOGLE_PROJECT_NUMBER_TEST
@@ -107,14 +107,14 @@ export class NotificationsService {
 			console.log('Agregando alerta en open: '+ noti.androidNotificationId);
 			  this.newNotification(noti)
 		  }
-	      const isVideoConsulta = noti.data.tipoAtencion == '1'
-	        && noti.data.contenido.indexOf('#') != -1
+
+          const isVideoConsulta = noti.data.tipoAtencion == '6'
 	      if (isVideoConsulta) {
-			const cid = noti.data.contenido.split('#')[1]
+			const cid = noti.data.contenido
 			console.log('cid: '+cid+' noti.data.dni '+ noti.data.dni)
 	        navCtrl.setRoot(VideoConsultaPage, { cid, dni : noti.data.dni })
 		  }
-	
+
 	    })
 
 	    this.oneSignal.endInit()
@@ -233,7 +233,7 @@ export class NotificationsService {
 	private wasAlertDisplayed(noti){
 		let notId = noti.androidNotificationId;
 		let alertaAnt =  this.alertas.find(x => x.androidNotificationId == notId);
-		
+
 		if(alertaAnt){
 			return true;
 		}

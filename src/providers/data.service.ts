@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Http, Headers } from '@angular/http'
+import { Http, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
 import 'rxjs/Rx'
 import 'rxjs/add/operator/map'
@@ -111,6 +111,8 @@ export class DataService {
 
   handleMisDatos(dni, res) {
     const data = res.json()
+    //agrego dni dentro de mis datos
+    data.dni = dni;
     console.log('getDatosSocio Response:', data)
     this.saveMisDatos(data, dni)
     return data
@@ -151,6 +153,72 @@ export class DataService {
     console.log('getHistorial Response:', data)
     this.saveHistorial(data, dni)
     return data
+  }
+
+  public getSintomas(): Observable<any> {
+      let dni = this.utils.getActiveUser()
+
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.get(SERVER_URL + API.sintomas, options)
+          .map( this.handleSintomas.bind(this, dni) )
+          .catch(err => {
+              if (err.status === 401) {
+                  // Token might be expired, try to refresh token
+                  return this.auth().mergeMap(res => {
+                      if (res === true) {
+                          // Retry with new token
+                          return this.http.get(SERVER_URL + API.sintomas, options)
+                              .map( this.handleSintomas.bind(this, dni) )
+                              .catch( err => {
+                                  this.error('sintomas', err)
+                                  return this.restoreSintomas(dni) || []
+                              })
+                      }
+                      this.error('sintomas', err)
+                      return this.restoreSintomas(dni) || []
+                  })
+              }
+              this.error('sintomas', err)
+              return this.restoreSintomas(dni) || []
+          })
+  }
+
+  handleSintomas(dni, res){
+
+      let data = res.json();
+      console.log('getSintomas Response:', data);
+      this.saveSintomas(data, dni)
+      return data;
+      
+  }
+
+  public solicitarVC(data): Observable<any> {
+    console.log('solicitarVC Request: ', data)
+    return this.http.post(SERVER_URL + API.solicitarVC, data, { headers })
+      .map(res => {
+        const data = res.json()
+        console.log('solicitarVC Response: ', data)
+        return data
+      })
+      .catch(err => {
+        if (err.status === 401) {
+          // Token might be expired, try to refresh token
+          return this.auth().mergeMap(res => {
+            if (res === true) {
+              // Retry with new token
+              return this.http.post(SERVER_URL + API.solicitarVC, data, { headers })
+        	      .map(res => {
+                  const data = res.json()
+        	        console.log('solicitarVC Response: ', data)
+        	        return data
+        	      })
+            }
+            return Observable.throw(err)
+          })
+        }
+        return Observable.throw(err || 'Server error')
+  	  })
   }
 
 
@@ -202,6 +270,43 @@ export class DataService {
   }
 
 
+  public validarVC(dni): Observable<any> {
+    
+    console.log("validarVC Request URL:" +SERVER_URL + API.validarVC + dni)
+    
+    return this.http.get(SERVER_URL + API.validarVC + dni, {headers})
+      .map(res => {
+        const data = res.json()
+        console.log('validarVC devuelve: ', data)
+        return data
+      })
+      .catch(err => {
+        if (err.status === 401) {
+          // Token might be expired, try to refresh token
+          return this.auth().mergeMap(res => {
+            if (res === true) {
+              // Retry with new token
+              return this.http.get(SERVER_URL + API.validarVC + dni, { headers })
+        	      .map(res => {
+                  const data = res.json()
+        	        console.log('validate  VC Response: ', data)
+        	        return data
+        	      })
+            }
+            return Observable.throw(err)
+          })
+        }
+        return Observable.throw(err || 'Server error')
+  	  })
+  }
+
+
+  handleValidationVC(res) {
+    console.log('handleValidationVC')
+    let response = res.json()
+    return response
+  }
+
   // UTILS
 
   public restoreHistorial(dni?) {
@@ -235,6 +340,14 @@ export class DataService {
   public saveAlertas(data, dni?) {
     if (!data) return
     this.setLocalStorage(Config.KEY.ALERTAS, data, dni)
+  }
+
+  public restoreSintomas(dni?) {
+    return this.getLocalStorage(Config.KEY.SINTOMAS, dni)
+  }
+  public saveSintomas(data, dni?) {
+    if (!data) return
+    this.setLocalStorage(Config.KEY.SINTOMAS, data, dni)
   }
 
 

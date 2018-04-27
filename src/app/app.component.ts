@@ -54,14 +54,14 @@ export class MyApp {
       page : SociosPage,
       title : 'Solicitar Videoconsulta',
       icon : 'call'
-    },    
+    },
     {
       page : LoginPage,
       title : 'Agregar socio',
       icon : 'ios-add-outline',
       params : {newMember: true}
-    },    
-    
+    },
+
   ]
 
   activeUser = {
@@ -159,6 +159,7 @@ export class MyApp {
     this.utils.setActiveUser(null)
     this.utils.setItem(Config.KEY.EXPIRES, 0)
     this.nav.setRoot(LoginPage)
+    this.viewMembers = false;
   }
 
   toggleView() {
@@ -176,7 +177,7 @@ export class MyApp {
         this.ionicApp._overlayPortal.getActive()
 
       let activePage = this.nav.getActive().instance
-      
+
       if ('function' == typeof activePage.backButtonAction )
         activePage.backButtonAction()
       else if (activePortal) {

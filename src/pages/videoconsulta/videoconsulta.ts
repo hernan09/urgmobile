@@ -38,7 +38,7 @@ export class VideoConsultaPage {
     this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
 
     this.utils.setItem('cid', this.cid)
-    
+
     provider.VC = this
     this.checkCid()
   }

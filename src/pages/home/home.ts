@@ -26,7 +26,7 @@ export class HomePage {
 	answered = false
 	cid=''
 	dni=''
-	
+
 	poll_options = [
 		{ value : 3, class : 'good', label : '¡MUY BUENA!' },
 		{ value : 2, class : 'meh', label : 'REGULAR' },
@@ -47,7 +47,7 @@ export class HomePage {
 		this.videoconsulta = !!utils.getItem('cid')
 		this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
 		this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
-		
+
 		//this.initStars()
 
 		notiService.alertasChange.subscribe(alertas => {
@@ -79,7 +79,7 @@ export class HomePage {
 					this.updateTelefono()
 				}
 			)
-		}	
+		}
 	}
 
 

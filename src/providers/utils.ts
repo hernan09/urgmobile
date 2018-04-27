@@ -34,6 +34,35 @@ export class Utils {
 
     this.alert.present()
   }
+
+  public showVideoCallAlert(){
+      let alert = this.alertCtrl.create({
+          title: 'Video LLamada',
+          message: 'Nueva LLamada en Espera',
+          buttons: [
+              {
+                  text: 'Ignorar',
+                  handler: () => {
+                      console.log('Llamada Ignorada');
+                      alert.dismiss(false);
+                      return false;
+                  }
+              },
+              {
+                  text: 'Contestar',
+                  handler: () => {
+                      console.log('LLamada Contestada');
+                      alert.dismiss(true);
+                      return true;
+                  }
+              }
+          ]
+      });
+
+      return alert;
+  }
+
+
   public hideAlert() {
     if (this.alert) this.alert.dismiss().catch(e=>{})
   }
@@ -98,7 +127,15 @@ export class Utils {
     if (!dni || this.getTitular()) return
     this.setItem(Config.KEY.TITULAR, dni)
   }
- 
+
+  public getVisitante() {
+    return this.getItem(Config.KEY.VISITANTE)
+  }
+  public setVisitante(dni) {
+    if (!dni || this.getVisitante()) return
+    this.setItem(Config.KEY.VISITANTE, dni)
+  }
+
 
   public increaseNotificationsCounter() {
     this.notificationsCounter++

@@ -1,19 +1,19 @@
 <ion-header>
 
 	<ion-navbar hideBackButton>
-	    <ion-buttons left>
-	    	<button left menuToggle="left" class="urgIcon">
-	    		<ion-icon name="menu"></ion-icon>
-	    	</button>
-	    </ion-buttons>
-	    <ion-title>
-	    	URG
-	    </ion-title>
-	    <ion-buttons right>
-	    	<a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
-			    <button right class="urgIcon">
-			    	<ion-icon name="call"></ion-icon>
-			    </button>
+		<ion-buttons left>
+			<button left menuToggle="left" class="urgIcon">
+				<ion-icon name="menu"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-title>
+			URG
+		</ion-title>
+		<ion-buttons right>
+			<a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+				<button right class="urgIcon">
+					<ion-icon name="call"></ion-icon>
+				</button>
 			</a>
 		</ion-buttons>
 	</ion-navbar>
@@ -29,32 +29,42 @@
 
 	<ion-list>
 
-	        <ion-item class="visita" *ngFor="let visita of historial" (click)="goToDetail(visita)">
+		<ion-item class="visita" *ngFor="let visita of historial" (click)="goToDetail(visita)">
 
-		        <ion-row>
-		        	<div class="info">
-		        		<div>Nro. de caso: {{ visita.idAtencion }}</div>
-		        		<div>{{ visita.fecha }}</div>
-					</div>
-		        </ion-row>
+			<ion-row>
+				<div class="info">
+					<div>Nro. de caso: {{ visita.idAtencion }}</div>
+					<div>{{ visita.fecha }}</div>
+				</div>
+			</ion-row>
 
-		        <ion-row *ngIf="visita.prof">
-					<ion-col>{{ visita.prof }}</ion-col>
-		        </ion-row>
+			<ion-row *ngIf="visita.prof">
+				<ion-col>{{ visita.prof }}</ion-col>
+			</ion-row>
 
-		        <ion-row>
-					<ion-col>Diagnóstico: <b>{{ visita.diagnostico }}</b></ion-col>
-		        </ion-row>
+			<ion-row>
+				<ion-col>Diagnóstico:
+					<b>{{ visita.diagnostico }}</b>
+				</ion-col>
+			</ion-row>
 
-		        <ion-row>
-					<ion-col>Medicación: {{ visita.medicacion }}</ion-col>
-		        </ion-row>
+			<ion-row>
+				<ion-col>Medicación: {{ visita.medicacion }}</ion-col>
+			</ion-row>
 
-	        </ion-item>
+		</ion-item>
 
-    </ion-list>
+	</ion-list>
+
+	<ion-item *ngIf="!historial">
+		No tenemos atenciones realizadas
+	</ion-item>
+
 
 </ion-content>
+
+
+
 
 
 <ion-footer no-shadow>

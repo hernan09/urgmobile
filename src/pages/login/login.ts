@@ -66,8 +66,21 @@ export class LoginPage {
         if (!dni) return
         console.log('Getting device ID...')
         this.utils.showLoader()
-        this.login(dni)
-    }
+        try {
+            this.notiService.init(this.navCtrl)
+            .then(data => {
+                this.login(dni)
+            })
+            .catch(err => {
+                console.warn('Could not get device ID:', err)
+            this.login(dni)
+            })
+        }
+        catch(err) {
+            console.warn('Cordova not available.')
+            this.login(dni)
+            }
+        }
 
 
     login(dni) {

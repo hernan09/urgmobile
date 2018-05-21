@@ -18,12 +18,15 @@ export class CredencialPage {
 		datosPersonales: []
 	}
 
+	telefono
+
 	constructor (
 		public navCtrl :NavController,
 		public navParams :NavParams, 
 		public data :DataService,
 		public utils :Utils
 	) {
+		this.telefono = data.getPhoneNumber();
 		const dni = this.utils.getActiveUser()
 		data.getDatosSocio(dni).subscribe(
 			data => {
@@ -33,5 +36,10 @@ export class CredencialPage {
 			}
 		)
 	}
+
+	nextPhoneNumber() {
+		this.telefono = this.data.nextPhoneNumber();
+	}
+
 
 }

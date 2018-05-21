@@ -37,13 +37,12 @@ export class Utils {
 
   public showVideoCallAlert(){
       let alert = this.alertCtrl.create({
-          title: 'Video LLamada',
-          message: 'Nueva LLamada en Espera',
+          title: 'Video Consulta',
+          message: 'Nueva Video Consulta en Espera',
           buttons: [
               {
                   text: 'Ignorar',
                   handler: () => {
-                      console.log('Llamada Ignorada');
                       alert.dismiss(false);
                       return false;
                   }
@@ -51,7 +50,6 @@ export class Utils {
               {
                   text: 'Contestar',
                   handler: () => {
-                      console.log('LLamada Contestada');
                       alert.dismiss(true);
                       return true;
                   }
@@ -130,6 +128,10 @@ export class Utils {
 
   public getVisitante() {
     return this.getItem(Config.KEY.VISITANTE)
+  }
+
+  public getGuestUsers(){
+    return this.getItem(Config.KEY.GUESTUSERS)
   }
   public setVisitante(dni) {
     if (!dni || this.getVisitante()) return

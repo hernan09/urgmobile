@@ -31,7 +31,7 @@ export class HistorialPage {
 	) {
 		this.telefono = dataService.getPhoneNumber()
 		this.utils.showLoader()
-		dataService.getHistorial().subscribe(this.handleData.bind(this), this.handleData.bind(this))
+		dataService.getHistorial().subscribe(this.handleData.bind(this), this.handleError.bind(this))
 	}
 
 	handleData(data) {
@@ -39,6 +39,10 @@ export class HistorialPage {
 		if (data && data.length) this.historial = this.formatData(data)
 		else this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
 		this.utils.hideLoader()
+	}
+
+	handleError(err) {
+		this.handleData(this.dataService.restoreHistorial())
 	}
 
 	formatData(data){

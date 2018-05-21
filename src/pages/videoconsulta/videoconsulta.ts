@@ -11,7 +11,8 @@ import { Tokbox } from '../../providers/tokbox'
 
 
 const RELOAD_DELAY = 3
-const BLACKLIST_SERVER_URL = 'https://urg-rosario.herokuapp.com'
+//const BLACKLIST_SERVER_URL = 'https://urg-rosario.herokuapp.com'
+const BLACKLIST_SERVER_URL = 'https://videoconsulta-urg-server-dot-urgencias-producto.appspot.com'
 
 @Component({
   selector: 'page-videoconsulta',
@@ -34,6 +35,7 @@ export class VideoConsultaPage {
     private provider :Tokbox,
     private ref: ChangeDetectorRef
   ) {
+    this.utils.showLoader();
     this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
     this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
 

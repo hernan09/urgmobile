@@ -17,7 +17,6 @@ page-historial {
 	}
 
 	.scroll-content {
-		margin-bottom: 10vh !important;
 		transition: 0.5s !important;
 	}
 
@@ -52,15 +51,7 @@ page-historial {
 		flex-basis: 25%;
 		text-align: right;
 	}
-
-	ion-footer {
-		margin-top: 10px;
-		button {
-			width: 90% !important;
-		    margin: auto !important;
-		    margin-bottom: 1vh !important;
-		}
-	}
+	
 
 	.item-inner {
 		border-bottom: 0px !important;
@@ -74,8 +65,10 @@ page-historial {
 		border-bottom: 0px !important;
 	}
 
-	.footer-md::before {
-		height: 0px;
+	
+	.visita-height{
+		height: 100px;
+		font-size: 15px;
 	}
 
 }

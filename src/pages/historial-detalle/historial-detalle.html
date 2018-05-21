@@ -1,14 +1,21 @@
 <ion-header>
-
 	<ion-navbar>
 	    <ion-title>
 	    	URG
 	    </ion-title>
-	</ion-navbar>
+	<ion-buttons right>
+        <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+          <button right class="urgIcon">
+            <ion-icon name="call"></ion-icon>
+          </button>
+        </a>
+	</ion-buttons>
+</ion-navbar>
 
-	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
-		<ion-title>Detalle de atención</ion-title>
-	</ion-toolbar>
+<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+	<ion-title>Detalle de atención</ion-title>
+</ion-toolbar>
+
 
 </ion-header>
 
@@ -49,14 +56,12 @@
 </ion-content>
 
 
-<ion-footer no-shadow>
-
+<ion-footer id="homeFooter">
 	<a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
 		<button ion-button full icon-start class="urg-button-lightgreen">
 			<ion-icon name="call"></ion-icon>
-			SOLICITAR MÉDICO
+			Solicitar médico
 		</button>
 	</a>
-
 </ion-footer>
 

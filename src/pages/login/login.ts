@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, MenuController } from 'ionic-angular'
+import { Platform } from 'ionic-angular';
 
 import { RegisterPage } from '../register/register'
 import { HomePage } from '../home/home'
@@ -40,7 +41,8 @@ export class LoginPage {
         public dataService: DataService,
         public notiService: NotificationsService,
         public utils: Utils,
-        private menu: MenuController
+        private menu: MenuController,
+        public platform: Platform
     ) {
         this.telefono = this.dataService.getPhoneNumber()
         this.newMember = this.navParams.get('newMember')
@@ -48,6 +50,16 @@ export class LoginPage {
         if (authService.isAuthenticated() && !this.newMember) this.getDeviceID()
 
         this.placeholder = this.newMember ? 'DNI DEL SOCIO A AGREGAR' : 'TU DNI'
+
+        this.platform.ready().then(() => {
+            this.notiService.init(this.navCtrl).then( data =>{
+                console.log("Se inicia el servicio de OneSignal"); 
+            }).catch(err => {
+                console.warn('No se pudo conectar al Servicio de OneSignal', err)
+            
+            })
+        });       
+  
     }
 
 
@@ -82,7 +94,6 @@ export class LoginPage {
             }
         }
 
-
     login(dni) {
         if (this.authService.isNewUser(dni)) {
             const newMember = this.newMember
@@ -93,7 +104,11 @@ export class LoginPage {
                 },
                 error => {
                     this.utils.hideLoader()
-                    this.utils.showAlert(Config.MSG.SORRY, ERROR_MSG[error.status] || Config.MSG.CONNECTION_ERROR)
+                    console.log("ERROR ---> ", error)
+
+                    let serverMsj = JSON.parse(error._body).error
+                    this.utils.showAlert(Config.MSG.SORRY, serverMsj || Config.MSG.CONNECTION_ERROR)
+
                 }
             )
         }

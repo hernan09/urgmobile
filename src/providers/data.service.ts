@@ -26,7 +26,7 @@ export class DataService {
     telefonos = [
         {
             telefono: 'default',
-            detalle: '0810-010-1199'
+            detalle: '0810-333-3511'
         }
     ]
     indexTelefonos = 0
@@ -134,16 +134,22 @@ export class DataService {
                                 .map(this.handleHistorial.bind(this, dni))
                                 .catch(err => {
                                     this.error('historial', err)
-                                    return this.restoreHistorial(dni) || []
+                                    return [this.restoreHistorial(dni)] || []
                                 })
                         }
                         this.error('historial', err)
-                        return this.restoreHistorial(dni) || []
+                        return [this.restoreHistorial(dni)] || []
                     })
                 }
                 this.error('historial', err)
-                return this.restoreHistorial(dni) || []
+                return [this.restoreHistorial(dni)] || []
             })
+    }
+
+    public getHistorialNotifications(dni?){
+        dni = dni || this.utils.getActiveUser()
+        console.log('getHistorial Request:', dni)
+        this.restoreHistorial(dni)
     }
 
     handleHistorial(dni, res) {
@@ -418,11 +424,6 @@ export class DataService {
         console.log(`Saved [${prop}] in Local Storage`)
     }
 
-
-    // public restoreUsers() {
-    //   return this.utils.getItem(Config.KEY.USERS) || []
-    // }
-
     public restoreUsers() {
         return this.utils.getItem(Config.KEY.USERS) || []
     }
@@ -444,25 +445,6 @@ export class DataService {
         if (noupdate) return
         this.updateUsers(data)
     }
-
-    // public getUsersData(users?) {
-    //   users = users || this.restoreUsers()
-    //   const activeUser = this.utils.getActiveUser()
-    //   let data
-    //   const usersData = users.map(user => {
-    //     data = this.utils.getItem(user)
-    //     data = data && data.misDatos
-    //     if (!data) console.warn('Data for user [%s] is missing!', user)
-    //     return {
-    //       dni : user,
-    //       nombre : data && (data.nombre + ' ' + data.apellido),
-    //       nroSocio : data && data.datosCredencial[0].nroasociado,
-    //       delete : false,
-    //       active : user === activeUser
-    //     }
-    //   })
-    //   return usersData
-    // }
 
     public getUsersData(users?) {
 
@@ -521,15 +503,16 @@ export class DataService {
         this.saveGuestUsers(users, noupdate)
     }
 
-    public removeUsers(dnis) {
-        if (!dnis) return
-        const users = this.restoreUsers()
-        const removeActive = dnis.includes(this.utils.getActiveUser())
-        console.log('Removing users:', users.filter(dni => dnis.includes(dni)))
-        dnis.forEach(dni => this.utils.delItem(dni))
-        if (removeActive) this.app.logout()
-        // FIXME: here be bugs
-        this.saveUsers(users.filter(dni => !dnis.includes(dni)), removeActive)
+    public removeUsers(dniToRemove) {
+        if (!dniToRemove) return
+        var users
+        var removeActive
+
+        this.isTitular(dniToRemove) ? users = this.restoreUsers() : users = this.restoreGuestUsers()
+
+        removeActive = dniToRemove == this.utils.getActiveUser();
+        this.utils.delItem(dniToRemove)
+        this.isTitular(dniToRemove) ? this.saveUsers(users.filter(dni => dni != dniToRemove), removeActive) : this.saveGuestUsers(users.filter(dni => dni != dniToRemove), removeActive)
     }
 
 

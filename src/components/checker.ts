@@ -17,9 +17,7 @@ import { Component } from '@angular/core'
 	</div>
 
 	<div *ngIf="show == 'error'" class="loaderContainer">
-		<div class="circle-loader loaderError" [ngClass]="{'load-complete-error': showCheck}">
-			<div class="errormark" [ngClass]="{'showCheck': showCheck}">×</div>
-		</div>
+			<ion-icon  id="error-icon" name="ios-close-circle-outline" color="danger"></ion-icon>
 		<div *ngIf="msg" class="label-error">{{ msg }}</div>
 	</div>
 	`,

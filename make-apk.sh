@@ -4,7 +4,7 @@
 set -e
 
 KEYSTORE_PATH="./urg.jks"
-KEY_ALIAS="urgkey"
+KEY_ALIAS="urg"
 APK_NAME="urg-movil.apk"
 
 APK_PATH="./platforms/android/build/outputs/apk/release"

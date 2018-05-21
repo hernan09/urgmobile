@@ -7,17 +7,15 @@ import { Utils } from '../../providers/utils'
 
 import { VideoConsultaPage } from '../videoconsulta/videoconsulta'
 
-
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
 })
 export class HomePage {
 
-	@ViewChild(Content)
-	content: Content;
+	@ViewChild(Content) content: Content;
 	showSubHeader = true
+	showHomeIcon:boolean
 	scrollTopStart
 
 	alertas :any
@@ -33,7 +31,6 @@ export class HomePage {
 		{ value : 1, class : 'bad', label : 'MALA' },
 	]
 
-
 	constructor (
 		private ref :ChangeDetectorRef,
 		private navCtrl :NavController,
@@ -42,17 +39,17 @@ export class HomePage {
 		private dataService :DataService,
 		private utils :Utils
 	){
-		this.alertas = notiService.getAlertas()
+		this.alertas = notiService.getAlertas().filter(alerta => alerta.visible == true)
+		this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
+
 		this.telefono = dataService.getPhoneNumber()
 		this.videoconsulta = !!utils.getItem('cid')
 		this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
 		this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
 
-		//this.initStars()
-
 		notiService.alertasChange.subscribe(alertas => {
-			this.alertas = alertas
-			//console.log('Change detected in alertas:', this.alertas)
+			this.alertas = alertas.filter(alerta => alerta.visible == true)
+			this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 			if (!this.ref['destroyed']) this.ref.detectChanges()
 		})
 
@@ -97,7 +94,7 @@ export class HomePage {
 
 	ionViewDidLoad() {
 		this.content.ionScrollStart.subscribe((data)=>{
-			this.scrollTopStart = data.scrollTop
+			if(data) this.scrollTopStart = data.scrollTop;
 		})
 		this.content.ionScrollEnd.subscribe((data)=>{
 			let scrollDiff = data.scrollTop - this.scrollTopStart
@@ -129,20 +126,20 @@ export class HomePage {
 
 
 	ionViewWillEnter() {
-		this.alertas = this.notiService.getAlertas()
-		//console.log('Alertas:', this.alertas)
+		this.alertas = this.notiService.getAlertas().filter(alerta => alerta.visible == true)
+		this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 		this.ref.detectChanges()
+		this.content.scrollToTop(1000);
 	}
 
 
 	rate(rating) {
 		const poll = this.alertas.slice(-1)[0].poll
 		poll.rate = rating
-		//poll.label = RATING_LABELS[rating]
-		//this.stars = this.stars.map((el, i) => i < rating ? 'star' : 'star-outline')
 		this.ref.detectChanges()
 	}
 
+	
 	sendPoll() {
 		this.utils.showLoader()
 		const { question, rate, comment } = this.alertas.slice(-1)[0].poll
@@ -161,14 +158,28 @@ export class HomePage {
 				this.sayThanks()
 			})
 		this.answered = true
+
+		data.rate = 0;
+		data.comment = "";
 	}
 
 
 	sayThanks() {
 		this.utils.hideLoader()
-		this.alertas.slice(-1)[0].poll.thanks = true
+		this.alertas[0].poll.thanks = true
 		this.ref.detectChanges()
-		setTimeout(_ => this.closePoll(), 10 * 1000)
+        setTimeout(_ => {
+
+			this.notiService.hideNotifications();
+			this.showHomeIcon = true;
+			
+			const poll = this.alertas.slice(-1)[0].poll
+			poll.rate = 0
+			poll.comment = ''
+			this.ref.detectChanges()
+		}, 3000)
+
+		this.content.scrollToTop(1000);
 	}
 
 
@@ -178,16 +189,8 @@ export class HomePage {
 		poll.comment = ''
 		poll.thanks = false
 		this.answered = false
-		//this.initStars()
-		this.notiService.popAlerta()
 		this.ref.detectChanges()
 	}
-
-	/*
-	initStars() {
-		this.stars = Array(Object.keys(RATING_LABELS).length).fill('star-outline')
-	}
-	*/
 
 	nextPhoneNumber() {
 		this.telefono = this.dataService.nextPhoneNumber()

@@ -18,9 +18,11 @@ export class SociosPage {
     private socios: any[]
     private socioActual: any
     private sociosDNI: any
+    telefono;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, private dataService: DataService) {
         this.getSocios()
+        this.telefono = dataService.getPhoneNumber();
         if (this.navParams.get('socio')) {
             this.socioActual = this.getSociosByDni(this.navParams.get('socio'));
         }
@@ -32,6 +34,7 @@ export class SociosPage {
 
     requestVCPage(socio) {
         console.log('Entra en request VC')
+        this.utils.showLoader();
         this.dataService.validarVC(socio.dni).subscribe(this.validateVCResponse.bind(this));
     }
 
@@ -39,11 +42,12 @@ export class SociosPage {
     validateVCResponse(responseValidateVC) {
         //dependiendo la respuesta del servicio es el mensaje que muestro
         if (responseValidateVC.estadoVC == "Activo") {
-            console.log(this.socioActual.dni);
+            this.utils.hideLoader();
             this.navCtrl.setRoot(SolicitudVcPage, { socio: this.socioActual }, { animate: true, direction: 'back' })
 
         }
         else {
+            this.utils.hideLoader();
             this.utils.showAlert("Video Consulta", responseValidateVC.Mensaje);
             this.navCtrl.setRoot(HomePage);
         }
@@ -78,4 +82,8 @@ export class SociosPage {
     previusPage() {
         this.navCtrl.setRoot(HomePage);
     }
+
+    nextPhoneNumber() {
+		this.telefono = this.dataService.nextPhoneNumber();
+	}
 }

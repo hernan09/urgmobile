@@ -41,35 +41,4 @@
         Llamanos
       </button>
     </a>
-
-<!--
-    <ion-list *ngIf="show == 'resumen'">
-
-      <ion-list-header>CORROBORE SUS RESPUESTAS</ion-list-header>
-
-      <div *ngFor="let p of preguntas">        
-        <ion-item-divider>
-          {{ p.texto }}
-        </ion-item-divider>
-        <ion-item>
-          <ion-label>{{ getValor(p) }}</ion-label>
-        </ion-item>
-      </div>
-
-      <button ion-button class="urg-button-blue"
-        [ngClass]="{'shown': !loading, 'hidden': loading}"
-        (click)="cambiar()">CAMBIAR</button>
-
-      <button ion-button class="urg-button-blue"
-        [ngClass]="{'shown': !loading, 'hidden': loading}"
-        (click)="checkPreguntas()">OK</button>
-
-      <button ion-button class="urg-button-blue"
-        [ngClass]="{'shown': loading, 'hidden': !loading}">
-        <ion-spinner></ion-spinner>
-      </button>
-
-    </ion-list>
--->
-
 </ion-content>

@@ -117,7 +117,7 @@ ion-menu .menu-inner {
 			border-top: 1px solid $lightgray;
 		}
 	}
-	
+
 	.item-inner {
 		border-bottom: none !important;
 	}
@@ -188,6 +188,12 @@ ion-input {
 }
 .urg-button-blue       { background-color: $osde_blue; }
 .urg-button-lightgreen { background-color: $osde_lightgreen; }
+.urg-button-lightgreen-call {
+	background-color: $osde_lightgreen;
+	text-transform: none !important;
+	height: 25px !important;
+	margin-bottom: 15px !important;
+}
 
 .hidden {
 	display: none;

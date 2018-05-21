@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { ErrorHandler, NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
+import { Device } from '@ionic-native/device';
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 
@@ -89,6 +90,7 @@ import { SociosPage } from '../pages/socios/socios';
   bootstrap: [IonicApp],
 
   providers: [
+    Device,
     StatusBar,
     SplashScreen,
     OneSignal,

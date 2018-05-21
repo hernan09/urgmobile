@@ -94,6 +94,7 @@ page-register {
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 18px;
+    height: -1px;
   }
 
   button {
@@ -126,6 +127,11 @@ page-register {
       }
     }
   }
+
+  #error-icon {
+    font-size: 130px !important;
+    color: #e63535 !important;
+}
 
 
 }

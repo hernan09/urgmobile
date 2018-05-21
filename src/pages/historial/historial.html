@@ -19,7 +19,7 @@
 	</ion-navbar>
 
 	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
-		<ion-title>Historial de atención</ion-title>
+		<ion-title>Historial de Atención</ion-title>
 	</ion-toolbar>
 
 </ion-header>
@@ -54,26 +54,22 @@
 
 		</ion-item>
 
-	</ion-list>
+		<ion-item *ngIf="!historial" class="visita visita-height">
+				<div>
+				No tenemos atenciones realizadas
+				</div>
+			</ion-item>
 
-	<ion-item *ngIf="!historial">
-		No tenemos atenciones realizadas
-	</ion-item>
+	</ion-list>
 
 
 </ion-content>
 
-
-
-
-
-<ion-footer no-shadow>
-
+<ion-footer id="homeFooter">
 	<a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
 		<button ion-button full icon-start class="urg-button-lightgreen">
 			<ion-icon name="call"></ion-icon>
-			SOLICITAR MÉDICO
+			Solicitar médico
 		</button>
 	</a>
-
 </ion-footer>

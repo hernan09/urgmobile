@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
 
-const SERVER_BASE_URL = 'https://cdt-tokbox.herokuapp.com'
+//const SERVER_BASE_URL = 'https://cdt-tokbox.herokuapp.com'
+const SERVER_BASE_URL = 'https://tokbox-backend-urg-server-dot-urgencias-producto.appspot.com'
 
 declare var OT :any
 declare var Cordova :any

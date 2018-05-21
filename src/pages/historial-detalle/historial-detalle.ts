@@ -1,5 +1,6 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
 import { NavController, NavParams, Content } from 'ionic-angular'
+import { DataService } from '../../providers/data.service';
 
 @Component({
   selector: 'page-historial-detalle',
@@ -14,12 +15,15 @@ export class HistorialDetallePage {
 	scrollTopStart
 
 	visita
+	telefono
 
 	constructor (
 		private ref :ChangeDetectorRef,
 		public navCtrl: NavController,
-		public navParams: NavParams
+		public navParams: NavParams,
+		public dataService: DataService
 	) {
+		this.telefono = dataService.getPhoneNumber();
 		this.visita = this.navParams.get('visita')
 		console.log(this.visita.detalles[0].detalle)
 	}
@@ -54,6 +58,10 @@ export class HistorialDetallePage {
 			    this.scrollTopStart = data.scrollTop
 			}
 		})
+	}
+
+	nextPhoneNumber() {
+		this.telefono = this.dataService.nextPhoneNumber();
 	}
 
 }

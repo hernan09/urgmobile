@@ -1,57 +1,86 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Solicitud de Video Consulta</ion-title>
+  <ion-navbar hideBackButton>
+      <ion-buttons left>
+        <button left menuToggle="left" class="urgIcon">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        URG
+      </ion-title>
+      <ion-buttons right>
+        <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+          <button right class="urgIcon">
+            <ion-icon name="call"></ion-icon>
+          </button>
+        </a>
+    </ion-buttons>
   </ion-navbar>
+
+	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+		<ion-title>Video Consulta</ion-title>
+	</ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
-    <div class="vc">
+  <div class="vc">
 
-        <ion-list class="form">
+    <ion-list>
 
-          <div class="osde-label">APELLIDO</div>
-          <ion-item>
-            <ion-input type="text"
-              [(ngModel)]="lastname" [disabled]="true"></ion-input>
-          </ion-item>
+      <div class="osde-label">APELLIDO</div>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="lastname" [disabled]="true"></ion-input>
+      </ion-item>
 
-          <div class="osde-label">NOMBRE</div>
-          <ion-item>
-            <ion-input type="text"
-              [(ngModel)]="name" [disabled]="true"></ion-input>
-          </ion-item>
+      <div class="osde-label">NOMBRE</div>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="name" [disabled]="true"></ion-input>
+      </ion-item>
 
-          <div class="osde-label">TELEFONO</div>
-          <ion-item>
-            <ion-input type="tel"
-              [(ngModel)]="tel" placeholder="Ingrese un número de telefono"></ion-input>
-          </ion-item>
-
-          <div class="osde-label">SINTOMA</div>
-          <ion-item>
-              <ion-label [ngStyle]="{'color': selectTextColor}">{{showSelectText}}</ion-label>
-              <ion-select class="myCustomSelect" (ionChange)="onChangeSymptom($event)"
-                          okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom">
-                <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
-              </ion-select>
-            </ion-item>
-
-        </ion-list>
-
-          <button ion-button full icon-start class="urg-button-blue" [disabled]="!lastname || !name || !tel || !symptom"
-          (click)="sendVCRequest(lastname,name,tel,symptom)">
-            <ion-icon name="confirm"></ion-icon>
-            CONFIRMAR
-          </button>
-
-          <button ion-button full icon-start class="urg-button-lightgreen"  (click)="previusPage()">
-              VOLVER
-          </button>
-
+      <div class="osde-label">TELEFONO</div>
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-5>
+              <ion-item>
+                <ion-label class="primary">0</ion-label>
+                <ion-input type="tel" [(ngModel)]="prefijo" maxlength="4"></ion-input>
+              </ion-item>
+            </ion-col>            
+            <ion-col>
+              <ion-item>
+                <ion-label class="primary">15</ion-label>
+                <ion-input type="tel" [(ngModel)]="tel" maxlength="8"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </div>
+
+      <div class="osde-label">SINTOMA</div>
+      <ion-item>
+        <ion-label [ngStyle]="{'color': selectTextColor}">{{showSelectText}}</ion-label>
+        <ion-select class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom">
+          <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button full icon-start class="urg-button-blue" [disabled]="!lastname || !name || !tel || !prefijo || !symptom"
+      (click)="sendVCRequest()">
+      <ion-icon name="confirm"></ion-icon>
+      CONFIRMAR
+    </button>
+
+    <button ion-button full icon-start class="urg-button-lightgreen" (click)="previusPage()">
+      VOLVER
+    </button>
+
+  </div>
 
 </ion-content>

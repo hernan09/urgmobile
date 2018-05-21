@@ -24,6 +24,8 @@ import { Config } from '../app/config'
 })
 export class MyApp {
 
+  toast:any;
+
   @ViewChild(Nav) nav :Nav
   //lo añado solo para testo de la pagina
   //rootPage :any = SolicitudVcPage
@@ -36,7 +38,7 @@ export class MyApp {
     },
     {
       page : DatosPage,
-      title : 'Mis datos',
+      title : 'Mis Datos',
       icon : 'ios-person-outline',
     },
     {
@@ -47,13 +49,13 @@ export class MyApp {
     },
     {
       page : HistorialPage,
-      title : 'Historial de atención',
+      title : 'Historial de Atención',
       icon : 'ios-folder-outline',
     },
     {
       page : SociosPage,
-      title : 'Solicitar Videoconsulta',
-      icon : 'call'
+      title : 'Solicitar Video Consulta',
+      icon : 'videocam'
     },
     {
       page : LoginPage,
@@ -91,22 +93,21 @@ export class MyApp {
 
       splashScreen.hide()
 
-      /*
-      this.androidFullScreen.isImmersiveModeSupported()
-        .then(_ => this.androidFullScreen.immersiveMode())
-        .catch(err => console.log(err))
-      */
-
       this.initBackButtonAction()
 
       this.network.onDisconnect().subscribe(_ => {
-        this.utils.showToast(Config.MSG.DISCONNECTED, 0)
+        //si esta desconectado se muestra una unica vez
+        if(!this.disconnected){
+          this.toast = this.utils.showToast(Config.MSG.DISCONNECTED, 0)
         this.disconnected = true
+        }              
       })
 
       this.network.onConnect().subscribe(_ => {
+        //cuando se conecta oculto el toast anterior y muestro un nuevo toast de conexion restablecida.
+        this.toast = this.utils.hideToast();
         if (this.disconnected) {
-          this.utils.showToast(Config.MSG.RECONNECTED, 2000)
+          this.toast = this.utils.showToast(Config.MSG.RECONNECTED, 2000)
           this.disconnected = false
         }
         // We just got a connection but we need to wait briefly

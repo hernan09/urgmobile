@@ -14,7 +14,7 @@ export class Config {
 		ONE_SIGNAL_APP_ID_TEST : '99b9131f-cfa9-4b3a-ab12-2d0d459c9916',
 		GOOGLE_PROJECT_NUMBER_TEST : '981462568601',
 
-		VERSION_NUMBER : '1.0.7',
+		VERSION_NUMBER : '1.0.8',
 	}
 
 	static SERVERS = {

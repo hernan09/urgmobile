@@ -1,16 +1,29 @@
-<!--
-  Generated template for the SociosPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Socios</ion-title>
+  <ion-navbar hideBackButton>
+      <ion-buttons left>
+        <button left menuToggle="left" class="urgIcon">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        URG
+      </ion-title>
+      <ion-buttons right>
+        <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+          <button right class="urgIcon">
+            <ion-icon name="call"></ion-icon>
+          </button>
+        </a>
+    </ion-buttons>
   </ion-navbar>
 
+	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+		<ion-title>Video Consulta</ion-title>
+	</ion-toolbar>
+
 </ion-header>
+
 
 <ion-content padding>
 

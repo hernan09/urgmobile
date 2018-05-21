@@ -143,11 +143,6 @@ export class AuthService {
     this.utils.setItem(Config.KEY.EXPIRES, this.calcExpireTime());
   }
 
-  // public isNewUser(dni) {
-  //   const users = this.dataService.restoreUsers()
-  //   return users.indexOf(dni) === -1
-  // }
-
 
   public isNewUser(dni) {
     //detectamos si es visitante o no

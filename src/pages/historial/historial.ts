@@ -17,7 +17,7 @@ export class HistorialPage {
 	@ViewChild(Content)	content :Content
 	showSubHeader = true
 	scrollTopStart
-
+	historialIsEmpty;
 	historial
 
 	telefono
@@ -30,6 +30,7 @@ export class HistorialPage {
 		public utils :Utils
 	) {
 		this.telefono = dataService.getPhoneNumber()
+		this.historialIsEmpty = false;
 		this.utils.showLoader()
 		dataService.getHistorial().subscribe(this.handleData.bind(this), this.handleError.bind(this))
 	}
@@ -37,7 +38,10 @@ export class HistorialPage {
 	handleData(data) {
 		console.log('Historial:', data)
 		if (data && data.length) this.historial = this.formatData(data)
-		else this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
+		else{
+			this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
+			this.historialIsEmpty = true;			
+		}
 		this.utils.hideLoader()
 	}
 
@@ -50,7 +54,7 @@ export class HistorialPage {
 			let fecha = el.fecha.split('T')[0]
 			fecha = fecha.substring(8, 10) + '-' + fecha.substring(5, 7) + '-' + fecha.substring(0, 4)
 			return {...el, fecha}
-		})
+		})		
 	}
 
 	ionViewDidLoad() {

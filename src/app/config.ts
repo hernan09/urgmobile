@@ -3,8 +3,7 @@ export class Config {
 	public static OPTIONS = {
 		SERVER : 'test',
 		EXPIRE_TIME : 30 * 24 * 60, // login expire time, in minutes
-		//REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds
-		REQUEST_TIMEOUT : 100, // for some backend requests, in milliseconds
+		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds		
 		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation)
 
 		//----- AMBIENTES DE PROD -----

@@ -3,7 +3,8 @@ export class Config {
 	public static OPTIONS = {
 		SERVER : 'test',
 		EXPIRE_TIME : 30 * 24 * 60, // login expire time, in minutes
-		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds
+		//REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds
+		REQUEST_TIMEOUT : 100, // for some backend requests, in milliseconds
 		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation)
 
 		//----- AMBIENTES DE PROD -----
@@ -67,6 +68,7 @@ export class Config {
 		REGISTER_OK : 'Su registración ha sido realizada con éxito.',
 		REGISTER_ERROR_INCORRECT : 'La respuesta es incorrecta.',
 		REGISTER_ERROR_INCORRECT_2 : 'La respuesta es incorrecta. Comunicate con nosotros para habilitar la registración.',
+		TIMEOUT_ERROR: 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde o comunicate al 0800-444-3511',
 		ADD_USER_ERROR : 'El usuario ya se encuentra registrado',
 		CONNECTION_ERROR : 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde.',
 		ERROR : 'Lo sentimos, ha ocurrido un error.',

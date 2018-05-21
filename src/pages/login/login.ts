@@ -9,7 +9,6 @@ import { AuthService } from '../../providers/auth.service'
 import { DataService } from '../../providers/data.service'
 import { NotificationsService } from '../../providers/notifications.service'
 import { Utils } from '../../providers/utils'
-
 import { Config } from '../../app/config'
 
 
@@ -103,11 +102,12 @@ export class LoginPage {
                     this.navCtrl.setRoot(RegisterPage, { data, dni, newMember }, { animate: true, direction: 'back' })
                 },
                 error => {
-                    this.utils.hideLoader()
-                    console.log("ERROR ---> ", error)
-
-                    let serverMsj = JSON.parse(error._body).error
-                    this.utils.showAlert(Config.MSG.SORRY, serverMsj || Config.MSG.CONNECTION_ERROR)
+                    this.utils.hideLoader()                    
+                    console.log("ERROR ---> ", error)                   
+                    this.utils.showAlert("Lo sentimos", Config.MSG.TIMEOUT_ERROR);
+                    //momentaneamente no se estan utilizando
+                    //let serverMsj = JSON.parse(error._body).error
+                    //this.utils.showAlert(Config.MSG.SORRY, serverMsj || Config.MSG.CONNECTION_ERROR)
 
                 }
             )

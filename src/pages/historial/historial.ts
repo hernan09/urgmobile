@@ -37,24 +37,29 @@ export class HistorialPage {
 
 	handleData(data) {
 		console.log('Historial:', data)
-		if (data && data.length) this.historial = this.formatData(data)
+		if (data && data.length) this.historial = this.formatData(data, this.stopLoader())
 		else{
 			this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
 			this.historialIsEmpty = true;			
+			this.utils.hideLoader()
 		}
-		this.utils.hideLoader()
 	}
 
 	handleError(err) {
 		this.handleData(this.dataService.restoreHistorial())
 	}
 
-	formatData(data){
+	formatData(data, callback){
 		return data.map(el => {
 			let fecha = el.fecha.split('T')[0]
 			fecha = fecha.substring(8, 10) + '-' + fecha.substring(5, 7) + '-' + fecha.substring(0, 4)
 			return {...el, fecha}
 		})		
+	}
+
+	//se implemento para que el loader se oculte apenas mostramos la información en el front.
+	stopLoader(){
+		this.utils.hideLoader();
 	}
 
 	ionViewDidLoad() {

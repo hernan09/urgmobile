@@ -35,7 +35,7 @@
       Responder nuevamente
     </button>
 
-    <a *ngIf="show == 'callus'" (click)="nextPhoneNumber()" href="tel:{{telefono}}" >
+    <a *ngIf="show == 'callus'" (click)="getBlockUserPhoneNumber()" href="tel:{{telefono}}" >
       <button ion-button full icon-start class="urg-button-blue" >
         <ion-icon name="call"></ion-icon>
         Llamanos

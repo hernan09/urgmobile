@@ -1,3 +1,4 @@
+import { Config } from './../app/config';
 import { Injectable } from "@angular/core";
 import "rxjs/Rx";
 import "rxjs/add/operator/map";
@@ -10,7 +11,6 @@ import { HomePage } from "../pages/home/home";
 
 import { DataService } from "./data.service";
 import { Utils, DUMMY_NOTIS } from "./utils";
-import { Config } from "../app/config";
 import { LoginPage } from "../pages/login/login";
 
 const SIM_DELAY: number = Config.OPTIONS.NOTI_SIM_DELAY;
@@ -53,7 +53,6 @@ export class NotificationsService {
     private utils: Utils
   ) {
     if (SIM_DELAY) {
-      console.info("Simulando notificaciones...");
       const simulation = setInterval(() => {
         DUMMY_NOTIS.length
           ? this.newNotification(DUMMY_NOTIS.shift())
@@ -122,7 +121,6 @@ export class NotificationsService {
   private manageNotification(navCtrl, noti) {
     //Validamos que la notificación fué recibida mientras la aplicación no estaba en 1er plano
     if (!this.wasAlertDisplayed(noti)) {
-      console.log("Agregando alerta en open: " + noti.androidNotificationId);
       this.newNotification(noti);
 
       const isVideoConsulta = noti.data.tipoAtencion == "6";
@@ -139,16 +137,12 @@ export class NotificationsService {
 
   private openVideoCall(navCtrl, noti: any) {
     if (!this.doneVC && this.isVideoCall(noti.data.tipoAtencion)) {
+      //Hay un usuario activo
       if (this.utils.getActiveUser()) {
-        console.log("Hay un usuario activo");
-        let alert = this.utils.showOptionAlert(
-          "Video Consulta",
-          Config.MSG.VIDEO_CONSULTA,
-          "Constestar",
-          "Ignorar"
+        let alert = this.utils.showOptionAlert(Config.TITLE.VIDEO_CALL_TITLE,
+          Config.MSG.VIDEO_CALL, Config.ALERT_OPTIONS.CONTESTAR, Config.ALERT_OPTIONS.IGNORAR
         );
         alert.onDidDismiss(res => {
-          console.log("Yes/No", res);
           if (res != false) {
             const cid = noti.data.contenido;
             console.log("cid: " + cid + " noti.data.dni " + noti.data.dni);
@@ -157,11 +151,12 @@ export class NotificationsService {
         });
         alert.present();
       } else {
+        //No hay usuario activo, se envia al Login
         navCtrl.setRoot(LoginPage);
-        console.log("No hay usuario activo, se envia al Login");
+        
       }
     } else {
-      console.log("Esta video call ya fue realizada");
+      //la video call ya fue realizada
       this.doneVC = false;
     }
   }
@@ -177,7 +172,6 @@ export class NotificationsService {
   }
 
   popAlerta() {
-    console.log("Alertas:", this.alertas);
     this.alertas.length < 2
       ? (this.alertas = this.alertasEmpty.concat())
       : this.alertas.pop();

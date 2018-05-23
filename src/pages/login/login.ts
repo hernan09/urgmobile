@@ -69,7 +69,6 @@ export class LoginPage {
   getDeviceID(dni?) {
     dni = dni || this.utils.getActiveUser();
     if (!dni) return;
-    console.log("Getting device ID...");
     this.utils.showLoader();
     try {
       this.notiService
@@ -89,53 +88,22 @@ export class LoginPage {
 
   login(dni) {
     if (this.authService.isNewUser(dni)) {
-        //en caso de que exista titular, se avisa de la eliminacion del usuario anterior.
+        //En caso de que exista titular, se avisa de la eliminacion del usuario anterior.
       if (this.utils.getTitular() && !this.utils.getActiveUser()) {
         var titular = this.utils.getTitular();
         var message = Config.MSG.TITULAR_EXIST_INFO.replace("{}", titular);
-        let alert = this.utils.showOptionAlert("Atención", message, "Si", "No");
+        let alert = this.utils.showOptionAlert(Config.TITLE.WARNING_TITLE, message, Config.ALERT_OPTIONS.SI, Config.ALERT_OPTIONS.NO);
         alert.onDidDismiss(res => {
           if (res != false) {
-            const newMember = this.newMember;
-            this.authService.checkDNI({ dni }).subscribe(
-              data => {
-                this.utils.hideLoader();
-                this.navCtrl.setRoot(
-                  RegisterPage,
-                  { data, dni, newMember },
-                  { animate: true, direction: "back" }
-                );
-              },
-              error => {
-                this.utils.hideLoader();
-                console.log("ERROR ---> ", error);
-                this.utils.showAlert("Lo sentimos", Config.MSG.TIMEOUT_ERROR);               
-              }
-            );
+            //Si contesta correctamente continua
+            this.checkDNI(dni,this.newMember)
           } else {
             this.utils.hideLoader();
           }
         });
         alert.present();
-      }
-      //caso contrario continua normalmente.
-       else {
-        const newMember = this.newMember;
-        this.authService.checkDNI({ dni }).subscribe(
-          data => {
-            this.utils.hideLoader();
-            this.navCtrl.setRoot(
-              RegisterPage,
-              { data, dni, newMember },
-              { animate: true, direction: "back" }
-            );
-          },
-          error => {
-            this.utils.hideLoader();
-            console.log("ERROR ---> ", error);
-            this.utils.showAlert("Lo sentimos", Config.MSG.TIMEOUT_ERROR);
-          }
-        );
+      }else {//Si contesta correctamente continua
+        this.checkDNI(dni,this.newMember)
       }
     } else {
       this.utils.hideLoader();
@@ -147,6 +115,25 @@ export class LoginPage {
       this.authService.login(dni);
       this.navCtrl.setRoot(HomePage);
     }
+  }
+
+
+  checkDNI(dni,newMember){
+    this.authService.checkDNI({ dni }).subscribe(
+      data => {
+        this.utils.hideLoader();
+        this.navCtrl.setRoot(
+          RegisterPage,
+          { data, dni, newMember },
+          { animate: true, direction: "back" }
+        );
+      },
+      error => {
+        console.log('Error---->',error);
+        this.utils.hideLoader();
+       // this.utils.showAlert(Config.MSG.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
+      }
+    );
   }
 
   nextPhoneNumber() {

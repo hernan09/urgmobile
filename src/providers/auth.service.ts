@@ -32,12 +32,10 @@ export class AuthService {
   // SERVICE CALLS
 
   public checkDNI(data): Observable<any> {
-    console.log("checkDNI Request: ", data);
     return this.http
       .post(SERVER_URL + API.login, data, { headers })
       .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
       .map(res => {
-        console.log("checkDNI Response: ", res.json());
         return res.json().preguntas;
       })
       .catch(err => {
@@ -51,15 +49,20 @@ export class AuthService {
               .post(SERVER_URL + API.login, data, { headers })
               .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
               .map(res => {
-                console.log("checkDNI Response: ", res.json());
                 return res.json().preguntas;
               })
               .catch(err => {
                 return Observable.throw(err);
               });
           });
+        } else {
+          if (err.status === 502) {
+            //para que muestre el mensaje solicitado correctamente
+            this.utils.showAlert("Usuario Bloqueado", err.json().error);
+            return;
+          }
+          return Observable.throw(err);
         }
-        return Observable.throw(err);
       });
   }
 
@@ -117,14 +120,14 @@ export class AuthService {
     if (!dni) throw "Cannot login: missing dni!";
 
     const activeUser = this.utils.getActiveUser();
-    
+
     if (!activeUser && this.isNewUser(dni) && this.utils.getTitular()) {
       //primero borro todo y despues agrego al usuario nuevo
       this.dataService.removeAllUsers();
 
       this.utils.setActiveUser(dni);
       this.dataService.addUser(dni, true); // true = noupdate
-      this.utils.setTitular(dni);      
+      this.utils.setTitular(dni);
     } else {
       if (activeUser) {
         //se agrega un nuevo socio

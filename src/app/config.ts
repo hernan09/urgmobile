@@ -54,7 +54,23 @@ export class Config {
 		SINTOMAS: 'sintomas',		
 	}
 
+
+	public static TITLE = {
+		VIDEO_CALL_TITLE:'Video Consulta',
+		WARNING_TITLE:'Atención'
+	}
+
+
+	public static ALERT_OPTIONS = {
+		CONTESTAR:'Contestar',
+		IGNORAR:'Ignorar',
+		SI:'Si', 
+		NO:'No',
+	}
+
+
 	public static MSG = {
+
 		EXIT : 'Apretá otra vez para salir de URG Móvil.',
 		EXIT_VC : 'Apretá otra vez para salir de la video consulta.',
 		DISCONNECTED : 'Problemas con Internet. Revisá tu conexión para poder visualizar tus datos actualizados.',
@@ -64,14 +80,15 @@ export class Config {
 		LOGIN_ERROR_BLOCKED : 'Comunicate con nosotros para habilitar la registración.',
 		REGISTER_OK : 'Su registración ha sido realizada con éxito.',
 		REGISTER_ERROR_INCORRECT : 'La respuesta es incorrecta.',
-		REGISTER_ERROR_INCORRECT_2 : 'La respuesta es incorrecta. Comunicate con nosotros para habilitar la registración.',
+ 		REGISTER_ERROR_INCORRECT_2 : 'La respuesta es incorrecta. Comunicate con nosotros para habilitar la registración al {}.',
 		TIMEOUT_ERROR: 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde o comunicate al 0800-444-3511',
 		ADD_USER_ERROR : 'El usuario ya se encuentra registrado',
 		CONNECTION_ERROR : 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde.',
 		ERROR : 'Lo sentimos, ha ocurrido un error.',
 		SORRY : 'Lo sentimos',
 		TITULAR_EXIST_INFO: 'El DNI {} se encuentra registrado en esta aplicación. Si continúa con el proceso los datos relacionados con el mismo serán reemplazados. ¿Desea continuar?',
-		VIDEO_CONSULTA: 'Nueva Video Consulta en Espera',
+		VIDEO_CALL: 'Nueva Video Consulta en Espera',
+		WE_ARE_SORRY:"Lo sentimos"
 	}
 
 }

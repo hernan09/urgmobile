@@ -29,6 +29,12 @@ export class DataService {
             detalle: '0810-333-3511'
         }
     ]
+
+    blockedUserPhoneNumber   = {
+        description: 'block user',
+        number: '0800-444-3511'
+    }
+
     indexTelefonos = 0
 
     usersChange: Subject<any> = new Subject<any>()
@@ -437,7 +443,6 @@ export class DataService {
     
 
     public getUsersData(users?) {
-
         const activeUser = this.utils.getActiveUser()
 
         if (users) {
@@ -514,14 +519,15 @@ export class DataService {
         return tel && tel.detalle
     }
     public nextPhoneNumber() {
-        console.log('Switching phone number')
-        this.indexTelefonos++
-        if (this.indexTelefonos === this.telefonos.length) {
-            this.indexTelefonos = 0
-        }
+        this.indexTelefonos = 0
         return this.getPhoneNumber()
     }
 
+
+    public getBlockUserPhoneNumber() {
+        const tel = this.blockedUserPhoneNumber;
+        return tel && tel.number
+    }
     error(prop, err) {
         console.error('Could not get [' + prop + ']: ' + (err || 'Server error'))
     }

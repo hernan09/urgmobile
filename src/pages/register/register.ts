@@ -147,14 +147,14 @@ export class RegisterPage {
                     this.p = null
                     this.auth.answer(this.user.dni, false).subscribe(
                         data => {
-                            this.preguntas = this.formatQuestions(data)
-                            this.checker.showError(Config.MSG.REGISTER_ERROR_INCORRECT)
-                            this.show = 'retry'
+                            this.preguntas = this.formatQuestions(data);
+                            this.checker.showError(Config.MSG.REGISTER_ERROR_INCORRECT);
+                            this.show = 'retry';
                         },
                         err => {
-                            console.log(err)
-                            this.checker.showError(Config.MSG.REGISTER_ERROR_INCORRECT_2)
-                            this.show = 'callus'
+                            var userBloquedMsg = Config.MSG.REGISTER_ERROR_INCORRECT_2.replace('{}',this.data.blockedUserPhoneNumber.number);
+                            this.checker.showError(userBloquedMsg);
+                            this.show = 'callus';
                         }
                     )
                 }
@@ -180,9 +180,9 @@ export class RegisterPage {
             }
         })
     }
-
-    nextPhoneNumber() {
-        this.telefono = this.data.nextPhoneNumber()
+   
+    getBlockUserPhoneNumber(index:number){
+        this.telefono = this.data.getBlockUserPhoneNumber();
     }
 
 }

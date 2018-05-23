@@ -58,10 +58,7 @@ export class SociosPage {
 
         if (this.dataService.isTitular(activeUser)) {
             this.sociosDNI = this.dataService.restoreUsers();
-        }
-        else {
-            this.sociosDNI = this.dataService.restoreGuestUsers();
-        }
+        }       
 
         let usersData = [];
 

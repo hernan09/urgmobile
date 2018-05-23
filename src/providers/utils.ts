@@ -35,31 +35,30 @@ export class Utils {
     this.alert.present()
   }
 
-  public showVideoCallAlert(){
-      let alert = this.alertCtrl.create({
-          title: 'Video Consulta',
-          message: 'Nueva Video Consulta en Espera',
-          buttons: [
-              {
-                  text: 'Ignorar',
-                  handler: () => {
-                      alert.dismiss(false);
-                      return false;
-                  }
-              },
-              {
-                  text: 'Contestar',
-                  handler: () => {
-                      alert.dismiss(true);
-                      return true;
-                  }
-              }
-          ]
-      });
+  public showOptionAlert(title,message, opcionOk, opcionCancel){
+    let alert = this.alertCtrl.create({
+        title: title,
+        message: message,
+        buttons: [
+            {
+                text: opcionCancel,
+                handler: () => {
+                    alert.dismiss(false);
+                    return false;
+                }
+            },
+            {
+                text: opcionOk,
+                handler: () => {
+                    alert.dismiss(true);
+                    return true;
+                }
+            }
+        ]
+    });
 
-      return alert;
-  }
-
+    return alert;
+}
 
   public hideAlert() {
     if (this.alert) this.alert.dismiss().catch(e=>{})
@@ -122,20 +121,8 @@ export class Utils {
     return this.getItem(Config.KEY.TITULAR)
   }
   public setTitular(dni) {
-    if (!dni || this.getTitular()) return
+    if (!dni) return
     this.setItem(Config.KEY.TITULAR, dni)
-  }
-
-  public getVisitante() {
-    return this.getItem(Config.KEY.VISITANTE)
-  }
-
-  public getGuestUsers(){
-    return this.getItem(Config.KEY.GUESTUSERS)
-  }
-  public setVisitante(dni) {
-    if (!dni || this.getVisitante()) return
-    this.setItem(Config.KEY.VISITANTE, dni)
   }
 
 

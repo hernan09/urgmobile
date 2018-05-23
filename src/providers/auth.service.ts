@@ -117,48 +117,38 @@ export class AuthService {
     if (!dni) throw "Cannot login: missing dni!";
 
     const activeUser = this.utils.getActiveUser();
+    
+    if (!activeUser && this.isNewUser(dni) && this.utils.getTitular()) {
+      //primero borro todo y despues agrego al usuario nuevo
+      this.dataService.removeAllUsers();
 
-    if(activeUser){
-        if(this.dataService.isTitular(activeUser) && this.isNewUser(dni)){
-            this.dataService.addUser(dni, true);// true = noupdate
-        }
-        else if(this.isNewGuest(dni)){
-            this.dataService.addUserGuest(dni, false);// true = noupdate
+      this.utils.setActiveUser(dni);
+      this.dataService.addUser(dni, true); // true = noupdate
+      this.utils.setTitular(dni);      
+    } else {
+      if (activeUser) {
+        //se agrega un nuevo socio
+        if (this.dataService.isTitular(activeUser) && this.isNewUser(dni)) {
+          this.dataService.addUser(dni, true); // true = noupdate
         }
         this.utils.setActiveUser(dni);
-    }
-    else{
+      } else {
+        //caso primer ingreso
         this.utils.setActiveUser(dni);
 
-        if (this.isNewUser(dni) && !this.utils.getTitular()){
-          this.dataService.addUser(dni, true);// true = noupdate
+        if (this.isNewUser(dni) && !this.utils.getTitular()) {
+          this.dataService.addUser(dni, true); // true = noupdate
           this.utils.setTitular(dni);
         }
-        else if(this.isNewGuest(dni)){
-          this.dataService.addUserGuest(dni, false);// true = noupdate
-          this.utils.setVisitante(dni);
-        }
+      }
     }
 
     this.utils.setItem(Config.KEY.EXPIRES, this.calcExpireTime());
   }
 
-
   public isNewUser(dni) {
-    //detectamos si es visitante o no
     const users = this.dataService.restoreUsers();
     return users.indexOf(dni) === -1;
-  }
-
-  public isNewGuest(dni) {
-    if(!this.isNewUser(dni) &&  this.utils.getTitular()){
-      return false;
-    }
-    else{
-      const guestUsers = this.dataService.restoreGuestUsers();
-      return guestUsers.indexOf(dni) === -1;
-    }
-
   }
 
   calcExpireTime() {

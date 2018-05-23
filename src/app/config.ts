@@ -51,9 +51,7 @@ export class Config {
 		MIS_DATOS : 'misDatos',
 		TELEFONOS : 'telefonos',
 		ALERTAS : 'alertas',
-		SINTOMAS: 'sintomas',
-		VISITANTE : 'visitante',
-		GUESTUSERS : 'guestUsers',
+		SINTOMAS: 'sintomas',		
 	}
 
 	public static MSG = {
@@ -72,6 +70,8 @@ export class Config {
 		CONNECTION_ERROR : 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde.',
 		ERROR : 'Lo sentimos, ha ocurrido un error.',
 		SORRY : 'Lo sentimos',
+		TITULAR_EXIST_INFO: 'El DNI {} se encuentra registrado en esta aplicación. Si continúa con el proceso los datos relacionados con el mismo serán reemplazados. ¿Desea continuar?',
+		VIDEO_CONSULTA: 'Nueva Video Consulta en Espera',
 	}
 
 }

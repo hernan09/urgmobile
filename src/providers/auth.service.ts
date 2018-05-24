@@ -61,6 +61,11 @@ export class AuthService {
             this.utils.showAlert("Usuario Bloqueado", err.json().error);
             return;
           }
+          //error de timeout
+          if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {            
+            this.utils.showAlert("Lo sentimos", Config.MSG.TIMEOUT_ERROR);
+            return;
+          }
           return Observable.throw(err);
         }
       });

@@ -68,7 +68,15 @@ page-historial {
 	
 	.visita-height{
 		height: 100px;
-		font-size: 15px;
+		font-size: 15px;				
+	}
+
+	.visita-height .label{
+		white-space: normal;
+	}
+
+	.visita-height p{
+		color: black;
 	}
 
 }

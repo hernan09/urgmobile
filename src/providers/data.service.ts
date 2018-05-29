@@ -160,11 +160,12 @@ export class DataService {
 
     handleHistorial(dni, res) {
         let data = res.json()
-        data = data && data.historialAtencion
-        if (!data) throw 'Invalid data'
         console.log('getHistorial Response:', data)
-        this.saveHistorial(data, dni)
-        return data
+        if(data.historialAtencion){
+            this.saveHistorial(data, dni)
+        }
+        return data;       
+       
     }
 
     registrarDispositivo(idDevice, dni): Promise<any> {

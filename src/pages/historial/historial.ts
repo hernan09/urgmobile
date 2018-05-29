@@ -19,6 +19,7 @@ export class HistorialPage {
 	scrollTopStart
 	historialIsEmpty;
 	historial
+	historialMessage;
 
 	telefono
 
@@ -37,12 +38,23 @@ export class HistorialPage {
 
 	handleData(data) {
 		console.log('Historial:', data)
-		if (data && data.length) this.historial = this.formatData(data, this.stopLoader())
-		else{
+		if(data){			
+			if(data.historialAtencion){
+				this.historial = this.formatData(data.historialAtencion, this.stopLoader())
+			}
+			else{
 			this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
 			this.historialIsEmpty = true;			
+			this.historialMessage = data.mensaje;
 			this.utils.hideLoader()
+			}
 		}
+		else{
+			this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
+			this.historialIsEmpty = true;
+			console.log("Fallo el servicio");
+			this.utils.hideLoader()
+		}		
 	}
 
 	handleError(err) {

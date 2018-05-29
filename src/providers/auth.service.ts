@@ -57,12 +57,14 @@ export class AuthService {
           });
         } else {
           if (err.status === 502) {
-            //para que muestre el mensaje solicitado correctamente
-            this.utils.showAlert("Usuario Bloqueado", err.json().error);
+            //para que muestre el mensaje solicitado correctamente            
+            this.utils.showAlert("Error", err.json().error);
             return;
           }
-          //error de timeout
-          if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {            
+          else if(err.status === 409){
+            this.utils.showAlert("Error",err.json().mensaje);
+          }
+          else if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {            
             this.utils.showAlert("Lo sentimos", Config.MSG.TIMEOUT_ERROR);
             return;
           }

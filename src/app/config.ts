@@ -7,14 +7,14 @@ export class Config {
 		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation)
 
 		//----- AMBIENTES DE PROD -----
-		//ONE_SIGNAL_APP_ID : '6222cb3a-8180-4242-971c-86a4baa23529',
-		//GOOGLE_PROJECT_NUMBER : '367741538862',
+		// ONE_SIGNAL_APP_ID : '6222cb3a-8180-4242-971c-86a4baa23529',
+		// GOOGLE_PROJECT_NUMBER : '367741538862',
 
 		//----- AMBIENTES DE DESA -----
 		ONE_SIGNAL_APP_ID_TEST : '99b9131f-cfa9-4b3a-ab12-2d0d459c9916',
 		GOOGLE_PROJECT_NUMBER_TEST : '981462568601',
 
-		VERSION_NUMBER : '1.0.8',
+		VERSION_NUMBER : '1.0.9',
 	}
 
 	static SERVERS = {

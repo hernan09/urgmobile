@@ -80,7 +80,7 @@ export class Config {
 		LOGIN_ERROR_BLOCKED : 'Comunicate con nosotros para habilitar la registración.',
 		REGISTER_OK : 'Su registración ha sido realizada con éxito.',
 		REGISTER_ERROR_INCORRECT : 'La respuesta es incorrecta.',
- 		REGISTER_ERROR_INCORRECT_2 : 'La respuesta es incorrecta. Comunicate con nosotros para habilitar la registración al {}.',
+ 		REGISTER_ERROR_INCORRECT_2 : '. Comunicate con nosotros para habilitar la registración al {}.',
 		TIMEOUT_ERROR: 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde o comunicate al 0800-444-3511',
 		ADD_USER_ERROR : 'El usuario ya se encuentra registrado',
 		CONNECTION_ERROR : 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde.',

@@ -36,7 +36,7 @@ export class AuthService {
       .post(SERVER_URL + API.login, data, { headers })
       .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
       .map(res => {
-        return res.json().preguntas;
+        return res.json();
       })
       .catch(err => {
         if (err.status === 401) {
@@ -49,7 +49,7 @@ export class AuthService {
               .post(SERVER_URL + API.login, data, { headers })
               .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
               .map(res => {
-                return res.json().preguntas;
+                return res.json();
               })
               .catch(err => {
                 return Observable.throw(err);
@@ -81,7 +81,7 @@ export class AuthService {
       .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
       .map(res => {
         console.log("answer Response: ", res.json());
-        return res.json().preguntas;
+        return res.json();
       })
       .catch(err => {
         if (err.status === 401) {
@@ -95,7 +95,7 @@ export class AuthService {
               .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
               .map(res => {
                 console.log("answer Response: ", res.json());
-                return res.json().preguntas;
+                return res.json();
               });
           });
         }

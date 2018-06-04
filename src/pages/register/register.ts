@@ -28,7 +28,7 @@ export class RegisterPage {
     show: string = ''
     last: boolean = false
     hasChosen: boolean = false
-    tycs: boolean = false
+    tycs: boolean = false  
 
     telefono
 
@@ -60,7 +60,7 @@ export class RegisterPage {
     ionViewDidLoad() {
         this.reset()
         this.user.dni = this.navParams.get('dni')
-        const pregs = this.navParams.get('data')
+        const pregs = JSON.parse(this.navParams.get('data').questionList).preguntas;        
         if (pregs && pregs.length) {
             this.preguntas = this.formatQuestions(pregs)
             this.next()
@@ -146,14 +146,13 @@ export class RegisterPage {
                     console.log(err)
                     this.p = null
                     this.auth.answer(this.user.dni, false).subscribe(
-                        data => {
-                            this.preguntas = this.formatQuestions(data);
-                            this.checker.showError(Config.MSG.REGISTER_ERROR_INCORRECT);
+                        data => {                            
+                            this.preguntas = this.formatQuestions(JSON.parse(data.questionList).preguntas);                            
+                            this.checker.showError(data.answerWrong);
                             this.show = 'retry';
                         },
-                        err => {
-                            var userBloquedMsg = Config.MSG.REGISTER_ERROR_INCORRECT_2.replace('{}',this.data.blockedUserPhoneNumber.number);
-                            this.checker.showError(userBloquedMsg);
+                        err => {        
+                            this.checker.showError(err.text());                            
                             this.show = 'callus';
                         }
                     )

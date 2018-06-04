@@ -27,6 +27,10 @@ export class DataService {
         {
             telefono: 'default',
             detalle: '0810-333-3511'
+        },
+        {
+            telefono: '2',
+            detalle: '0810-444-3511'
         }
     ]
 
@@ -519,10 +523,23 @@ export class DataService {
         const tel = this.telefonos[this.indexTelefonos]
         return tel && tel.detalle
     }
+
+    /*
     public nextPhoneNumber() {
         this.indexTelefonos = 0
         return this.getPhoneNumber()
     }
+    */
+
+    public nextPhoneNumber() {
+        console.log('Switching phone number')
+        this.indexTelefonos++
+        if (this.indexTelefonos === this.telefonos.length) {
+          this.indexTelefonos = 0
+        }
+        return this.getPhoneNumber()
+      }
+    
 
 
     public getBlockUserPhoneNumber() {

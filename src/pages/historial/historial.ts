@@ -30,9 +30,9 @@ export class HistorialPage {
 		public dataService :DataService,
 		public utils :Utils
 	) {
+		this.fullHistorialData();
 		this.telefono = dataService.getPhoneNumber()
-		this.historialIsEmpty = false;
-		this.utils.showLoader()
+		this.historialIsEmpty = false;		
 		dataService.getHistorial().subscribe(this.handleData.bind(this), this.handleError.bind(this))
 	}
 
@@ -40,20 +40,19 @@ export class HistorialPage {
 		console.log('Historial:', data)
 		if(data){			
 			if(data.historialAtencion){
-				this.historial = this.formatData(data.historialAtencion, this.stopLoader())
+				this.historial = this.formatData(data.historialAtencion);
+				this.utils.hideLoader();
 			}
-			else{
-			this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
+			else{		
 			this.historialIsEmpty = true;			
 			this.historialMessage = data.mensaje;
-			this.utils.hideLoader()
+			this.utils.hideLoader();
 			}
 		}
-		else{
-			this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
+		else{			
 			this.historialIsEmpty = true;
 			console.log("Fallo el servicio");
-			this.utils.hideLoader()
+			this.utils.hideLoader();
 		}		
 	}
 
@@ -61,20 +60,15 @@ export class HistorialPage {
 		this.handleData(this.dataService.restoreHistorial())
 	}
 
-	formatData(data, callback){
+	formatData(data){
 		return data.map(el => {
 			let fecha = el.fecha.split('T')[0]
 			fecha = fecha.substring(8, 10) + '-' + fecha.substring(5, 7) + '-' + fecha.substring(0, 4)
 			return {...el, fecha}
 		})		
-	}
+	}	
 
-	//se implemento para que el loader se oculte apenas mostramos la información en el front.
-	stopLoader(){
-		this.utils.hideLoader();
-	}
-
-	ionViewDidLoad() {
+	ionViewDidLoad() {		
 		this.content.ionScrollStart.subscribe((data)=>{
 			this.scrollTopStart = data.scrollTop
 		})
@@ -104,7 +98,6 @@ export class HistorialPage {
 			    this.scrollTopStart = data.scrollTop
 			}
 		})
-
 	}
 
 	goToDetail(visita) {
@@ -113,6 +106,16 @@ export class HistorialPage {
 
 	nextPhoneNumber() {
 		this.telefono = this.dataService.nextPhoneNumber()
+	}
+
+	fullHistorialData(){		
+		let data = this.dataService.restoreHistorial(this.utils.getActiveUser());
+		if(data){
+			this.historial = this.formatData(data.historialAtencion);
+		}	
+		else{
+			this.utils.showLoader();
+		}
 	}
 
 }

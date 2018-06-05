@@ -85,7 +85,7 @@ export class Utils {
     this.loading = this.loadingCtrl.create({
       spinner : 'crescent',
       content : 'Por favor espere...',
-      dismissOnPageChange : true,
+      dismissOnPageChange : false,
     })
 
     this.loading.present()

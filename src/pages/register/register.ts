@@ -124,6 +124,7 @@ export class RegisterPage {
                                         .then(data => {
                                             this.checker.showOk(Config.MSG.REGISTER_OK)
                                             this.auth.login(this.user.dni)
+                                            this.data.getHistorial().subscribe();
                                             setTimeout(_ => this.navCtrl.setRoot(HomePage), 2000)
                                         })
                                         .catch(err => {

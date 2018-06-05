@@ -33,7 +33,7 @@ export class DataService {
             detalle: '0810-444-3511'
         }
     ]
-
+    
     blockedUserPhoneNumber   = {
         description: 'block user',
         number: '0800-444-3511'
@@ -48,7 +48,7 @@ export class DataService {
         private utils: Utils
     ) {
         this.auth().subscribe()
-        this.restoreTelefonos()
+        this.restoreTelefonos()        
     }
 
 
@@ -519,7 +519,7 @@ export class DataService {
     }
 
 
-    public getPhoneNumber() {
+    public getPhoneNumber() {        
         const tel = this.telefonos[this.indexTelefonos]
         return tel && tel.detalle
     }
@@ -532,15 +532,13 @@ export class DataService {
     */
 
     public nextPhoneNumber() {
-        console.log('Switching phone number')
+        console.log('Switching phone number')        
         this.indexTelefonos++
         if (this.indexTelefonos === this.telefonos.length) {
           this.indexTelefonos = 0
         }
         return this.getPhoneNumber()
       }
-    
-
 
     public getBlockUserPhoneNumber() {
         const tel = this.blockedUserPhoneNumber;

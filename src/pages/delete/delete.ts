@@ -49,22 +49,13 @@ export class DeletePage {
 				if(this.dataService.isTitular(user.dni)){
 					this.utils.setActiveUser(this.utils.getTitular())
 					this.dataService.removeUsers(user.dni)
-				}else{
-	
-					if(this.utils.getGuestUsers().length > 1){
-
-						this.dataService.removeUsers(user.dni)
-						if(user.dni == this.utils.getVisitante()){
-							this.utils.setVisitante(this.utils.getGuestUsers()[0])
-						}
-						this.utils.setActiveUser(this.utils.getGuestUsers()[0])
-					}
-					else{
+				}else{	
+					
 						this.dataService.removeUsers(user.dni)
 						this.utils.setActiveUser(null)
 						this.utils.setItem(Config.KEY.EXPIRES, 0)
 						this.navCtrl.setRoot(LoginPage)
-					}
+					
 				}
 			}
 			else{
@@ -73,15 +64,11 @@ export class DeletePage {
 
 		})
 		
-		if(this.utils.getGuestUsers().length == 0){
-			this.utils.setActiveUser(null)
-			this.utils.setItem(Config.KEY.EXPIRES, 0)
-			this.navCtrl.setRoot(LoginPage)
-		}
-		else{
+		
+		
 			this.utils.showToast(selected.length + ' usuario(s) eleminado(s)', 2000)
 			this.navCtrl.setRoot(HomePage)
-		}
+		
 	}
 
 }

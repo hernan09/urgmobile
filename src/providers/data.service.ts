@@ -27,8 +27,18 @@ export class DataService {
         {
             telefono: 'default',
             detalle: '0810-333-3511'
+        },
+        {
+            telefono: '2',
+            detalle: '0810-444-3511'
         }
     ]
+    
+    blockedUserPhoneNumber   = {
+        description: 'block user',
+        number: '0800-444-3511'
+    }
+
     indexTelefonos = 0
 
     usersChange: Subject<any> = new Subject<any>()
@@ -38,7 +48,7 @@ export class DataService {
         private utils: Utils
     ) {
         this.auth().subscribe()
-        this.restoreTelefonos()
+        this.restoreTelefonos()        
     }
 
 
@@ -154,11 +164,12 @@ export class DataService {
 
     handleHistorial(dni, res) {
         let data = res.json()
-        data = data && data.historialAtencion
-        if (!data) throw 'Invalid data'
         console.log('getHistorial Response:', data)
-        this.saveHistorial(data, dni)
-        return data
+        if(data.historialAtencion){
+            this.saveHistorial(data, dni)
+        }
+        return data;       
+       
     }
 
     registrarDispositivo(idDevice, dni): Promise<any> {
@@ -434,20 +445,9 @@ export class DataService {
         if (noupdate) return
         this.updateUsers(data)
     }
-
-    public restoreGuestUsers() {
-        return this.utils.getItem(Config.KEY.GUESTUSERS) || []
-    }
-
-    public saveGuestUsers(data, noupdate?) {
-        if (!data) return
-        this.utils.setItem(Config.KEY.GUESTUSERS, data)
-        if (noupdate) return
-        this.updateUsers(data)
-    }
+    
 
     public getUsersData(users?) {
-
         const activeUser = this.utils.getActiveUser()
 
         if (users) {
@@ -455,10 +455,7 @@ export class DataService {
         }
         else if (this.isTitular(activeUser)) {
             users = this.restoreUsers();
-        }
-        else {
-            users = this.restoreGuestUsers();
-        }
+        }       
 
         let data
         const usersData = users.map(user => {
@@ -495,40 +492,58 @@ export class DataService {
         this.saveUsers(users, noupdate)
     }
 
-
-    public addUserGuest(dni, noupdate?) {
-        if (!dni) return
-        const users = this.restoreGuestUsers()
-        users.push(dni)
-        this.saveGuestUsers(users, noupdate)
-    }
-
     public removeUsers(dniToRemove) {
         if (!dniToRemove) return
         var users
         var removeActive
 
-        this.isTitular(dniToRemove) ? users = this.restoreUsers() : users = this.restoreGuestUsers()
+        if(this.isTitular(dniToRemove)){
+            users = this.restoreUsers()
+        } 
 
         removeActive = dniToRemove == this.utils.getActiveUser();
         this.utils.delItem(dniToRemove)
-        this.isTitular(dniToRemove) ? this.saveUsers(users.filter(dni => dni != dniToRemove), removeActive) : this.saveGuestUsers(users.filter(dni => dni != dniToRemove), removeActive)
+        if(this.isTitular(dniToRemove)){
+            this.saveUsers(users.filter(dni => dni != dniToRemove), removeActive)
+        }        
+    }
+
+    public removeAllUsers(){
+        //elimino todas las keys
+        var users = this.restoreUsers();
+        for (let i = 0; i < users.length; i++) {
+            this.utils.delItem(users[i]);            
+        }
+        //vacio la lista de usuarios
+        this.saveUsers([],true);        
     }
 
 
-    public getPhoneNumber() {
+    public getPhoneNumber() {        
         const tel = this.telefonos[this.indexTelefonos]
         return tel && tel.detalle
     }
+
+    /*
     public nextPhoneNumber() {
-        console.log('Switching phone number')
-        this.indexTelefonos++
-        if (this.indexTelefonos === this.telefonos.length) {
-            this.indexTelefonos = 0
-        }
+        this.indexTelefonos = 0
         return this.getPhoneNumber()
     }
+    */
 
+    public nextPhoneNumber() {
+        console.log('Switching phone number')        
+        this.indexTelefonos++
+        if (this.indexTelefonos === this.telefonos.length) {
+          this.indexTelefonos = 0
+        }
+        return this.getPhoneNumber()
+      }
+
+    public getBlockUserPhoneNumber() {
+        const tel = this.blockedUserPhoneNumber;
+        return tel && tel.number
+    }
     error(prop, err) {
         console.error('Could not get [' + prop + ']: ' + (err || 'Server error'))
     }

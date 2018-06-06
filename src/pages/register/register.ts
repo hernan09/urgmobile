@@ -28,7 +28,7 @@ export class RegisterPage {
     show: string = ''
     last: boolean = false
     hasChosen: boolean = false
-    tycs: boolean = false
+    tycs: boolean = false  
 
     telefono
 
@@ -60,7 +60,7 @@ export class RegisterPage {
     ionViewDidLoad() {
         this.reset()
         this.user.dni = this.navParams.get('dni')
-        const pregs = this.navParams.get('data')
+        const pregs = JSON.parse(this.navParams.get('data').questionList).preguntas;        
         if (pregs && pregs.length) {
             this.preguntas = this.formatQuestions(pregs)
             this.next()
@@ -124,6 +124,7 @@ export class RegisterPage {
                                         .then(data => {
                                             this.checker.showOk(Config.MSG.REGISTER_OK)
                                             this.auth.login(this.user.dni)
+                                            this.data.getHistorial().subscribe();
                                             setTimeout(_ => this.navCtrl.setRoot(HomePage), 2000)
                                         })
                                         .catch(err => {
@@ -146,15 +147,14 @@ export class RegisterPage {
                     console.log(err)
                     this.p = null
                     this.auth.answer(this.user.dni, false).subscribe(
-                        data => {
-                            this.preguntas = this.formatQuestions(data)
-                            this.checker.showError(Config.MSG.REGISTER_ERROR_INCORRECT)
-                            this.show = 'retry'
+                        data => {                            
+                            this.preguntas = this.formatQuestions(JSON.parse(data.questionList).preguntas);                            
+                            this.checker.showError(data.answerWrong);
+                            this.show = 'retry';
                         },
-                        err => {
-                            console.log(err)
-                            this.checker.showError(Config.MSG.REGISTER_ERROR_INCORRECT_2)
-                            this.show = 'callus'
+                        err => {        
+                            this.checker.showError(err.text());                            
+                            this.show = 'callus';
                         }
                     )
                 }
@@ -180,9 +180,9 @@ export class RegisterPage {
             }
         })
     }
-
-    nextPhoneNumber() {
-        this.telefono = this.data.nextPhoneNumber()
+   
+    getBlockUserPhoneNumber(index:number){
+        this.telefono = this.data.getBlockUserPhoneNumber();
     }
 
 }

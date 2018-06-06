@@ -17,8 +17,9 @@ export class HistorialPage {
 	@ViewChild(Content)	content :Content
 	showSubHeader = true
 	scrollTopStart
-
+	historialIsEmpty;
 	historial
+	historialMessage;
 
 	telefono
 
@@ -29,16 +30,30 @@ export class HistorialPage {
 		public dataService :DataService,
 		public utils :Utils
 	) {
+		this.fullHistorialData();
 		this.telefono = dataService.getPhoneNumber()
-		this.utils.showLoader()
+		this.historialIsEmpty = false;		
 		dataService.getHistorial().subscribe(this.handleData.bind(this), this.handleError.bind(this))
 	}
 
 	handleData(data) {
 		console.log('Historial:', data)
-		if (data && data.length) this.historial = this.formatData(data)
-		else this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
-		this.utils.hideLoader()
+		if(data){			
+			if(data.historialAtencion){
+				this.historial = this.formatData(data.historialAtencion);
+				this.utils.hideLoader();
+			}
+			else{		
+			this.historialIsEmpty = true;			
+			this.historialMessage = data.mensaje;
+			this.utils.hideLoader();
+			}
+		}
+		else{			
+			this.historialIsEmpty = true;
+			console.log("Fallo el servicio");
+			this.utils.hideLoader();
+		}		
 	}
 
 	handleError(err) {
@@ -50,10 +65,10 @@ export class HistorialPage {
 			let fecha = el.fecha.split('T')[0]
 			fecha = fecha.substring(8, 10) + '-' + fecha.substring(5, 7) + '-' + fecha.substring(0, 4)
 			return {...el, fecha}
-		})
-	}
+		})		
+	}	
 
-	ionViewDidLoad() {
+	ionViewDidLoad() {		
 		this.content.ionScrollStart.subscribe((data)=>{
 			this.scrollTopStart = data.scrollTop
 		})
@@ -83,7 +98,6 @@ export class HistorialPage {
 			    this.scrollTopStart = data.scrollTop
 			}
 		})
-
 	}
 
 	goToDetail(visita) {
@@ -92,6 +106,16 @@ export class HistorialPage {
 
 	nextPhoneNumber() {
 		this.telefono = this.dataService.nextPhoneNumber()
+	}
+
+	fullHistorialData(){		
+		let data = this.dataService.restoreHistorial(this.utils.getActiveUser());
+		if(data){
+			this.historial = this.formatData(data.historialAtencion);
+		}	
+		else{
+			this.utils.showLoader();
+		}
 	}
 
 }

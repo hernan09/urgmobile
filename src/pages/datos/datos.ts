@@ -30,10 +30,10 @@ export class DatosPage {
 		public navParams :NavParams, 
 		public dataService :DataService,
 		public utils :Utils
-	){
-		this.telefono = dataService.getPhoneNumber()
-		this.utils.showLoader()
-		dataService.getDatosSocio().subscribe(this.handleData.bind(this), this.handleError.bind(this))
+	){		
+		this.fullPersonData();
+		this.telefono = dataService.getPhoneNumber();		
+		dataService.getDatosSocio().subscribe(this.handleData.bind(this), this.handleError.bind(this));
 	}
 
 	handleData(data) {
@@ -43,11 +43,12 @@ export class DatosPage {
 		this.persona.datosCredencial = data.datosCredencial[0] // FIX por error del backend
 		this.persona.dni = this.utils.getActiveUser()
 		this.dataService.updateUsers()
-		this.utils.hideLoader()
+		this.utils.hideLoader();
 	}
 
 	handleError(err) {
-		this.handleData(this.dataService.restoreMisDatos())
+		this.handleData(this.dataService.restoreMisDatos());
+		this.utils.hideLoader();
 	}
 
 	ionViewDidLoad() {
@@ -80,6 +81,20 @@ export class DatosPage {
 			    this.scrollTopStart = data.scrollTop
 			}
 		})
+	}
+
+	fullPersonData(){
+		let data = this.dataService.restoreMisDatos(this.utils.getActiveUser())
+		if(data){
+			this.persona = data
+		this.persona.datosCredencial = data.datosCredencial[0] // FIX por error del backend
+		this.persona.dni = this.utils.getActiveUser()
+		this.dataService.updateUsers();		
+		}
+		else{
+			this.utils.showLoader();
+		}
+		
 	}
 
 	nextPhoneNumber() {

@@ -32,13 +32,11 @@ export class AuthService {
   // SERVICE CALLS
 
   public checkDNI(data): Observable<any> {
-    console.log("checkDNI Request: ", data);
     return this.http
       .post(SERVER_URL + API.login, data, { headers })
       .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
       .map(res => {
-        console.log("checkDNI Response: ", res.json());
-        return res.json().preguntas;
+        return res.json();
       })
       .catch(err => {
         if (err.status === 401) {
@@ -51,15 +49,27 @@ export class AuthService {
               .post(SERVER_URL + API.login, data, { headers })
               .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
               .map(res => {
-                console.log("checkDNI Response: ", res.json());
-                return res.json().preguntas;
+                return res.json();
               })
               .catch(err => {
                 return Observable.throw(err);
               });
           });
+        } else {
+          if (err.status === 502) {
+            //para que muestre el mensaje solicitado correctamente            
+            this.utils.showAlert("Error", err.json().error);
+            return;
+          }
+          else if(err.status === 409){
+            this.utils.showAlert("Error",err.json().mensaje);
+          }
+          else if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {            
+            this.utils.showAlert("Lo sentimos", Config.MSG.TIMEOUT_ERROR);
+            return;
+          }
+          return Observable.throw(err);
         }
-        return Observable.throw(err);
       });
   }
 
@@ -71,7 +81,7 @@ export class AuthService {
       .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
       .map(res => {
         console.log("answer Response: ", res.json());
-        return res.json().preguntas;
+        return res.json();
       })
       .catch(err => {
         if (err.status === 401) {
@@ -85,7 +95,7 @@ export class AuthService {
               .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
               .map(res => {
                 console.log("answer Response: ", res.json());
-                return res.json().preguntas;
+                return res.json();
               });
           });
         }
@@ -118,47 +128,37 @@ export class AuthService {
 
     const activeUser = this.utils.getActiveUser();
 
-    if(activeUser){
-        if(this.dataService.isTitular(activeUser) && this.isNewUser(dni)){
-            this.dataService.addUser(dni, true);// true = noupdate
-        }
-        else if(this.isNewGuest(dni)){
-            this.dataService.addUserGuest(dni, false);// true = noupdate
+    if (!activeUser && this.isNewUser(dni) && this.utils.getTitular()) {
+      //primero borro todo y despues agrego al usuario nuevo
+      this.dataService.removeAllUsers();
+
+      this.utils.setActiveUser(dni);
+      this.dataService.addUser(dni, true); // true = noupdate
+      this.utils.setTitular(dni);
+    } else {
+      if (activeUser) {
+        //se agrega un nuevo socio
+        if (this.dataService.isTitular(activeUser) && this.isNewUser(dni)) {
+          this.dataService.addUser(dni, true); // true = noupdate
         }
         this.utils.setActiveUser(dni);
-    }
-    else{
+      } else {
+        //caso primer ingreso
         this.utils.setActiveUser(dni);
 
-        if (this.isNewUser(dni) && !this.utils.getTitular()){
-          this.dataService.addUser(dni, true);// true = noupdate
+        if (this.isNewUser(dni) && !this.utils.getTitular()) {
+          this.dataService.addUser(dni, true); // true = noupdate
           this.utils.setTitular(dni);
         }
-        else if(this.isNewGuest(dni)){
-          this.dataService.addUserGuest(dni, false);// true = noupdate
-          this.utils.setVisitante(dni);
-        }
+      }
     }
 
     this.utils.setItem(Config.KEY.EXPIRES, this.calcExpireTime());
   }
 
-
   public isNewUser(dni) {
-    //detectamos si es visitante o no
     const users = this.dataService.restoreUsers();
     return users.indexOf(dni) === -1;
-  }
-
-  public isNewGuest(dni) {
-    if(!this.isNewUser(dni) &&  this.utils.getTitular()){
-      return false;
-    }
-    else{
-      const guestUsers = this.dataService.restoreGuestUsers();
-      return guestUsers.indexOf(dni) === -1;
-    }
-
   }
 
   calcExpireTime() {

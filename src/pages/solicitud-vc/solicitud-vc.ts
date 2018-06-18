@@ -1,3 +1,5 @@
+import { ToastService } from './../../providers/toast.service';
+import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SociosPage } from '../socios/socios';
@@ -29,12 +31,17 @@ export class SolicitudVcPage {
     symptoms: any[];
     showSelectText: string;
     selectTextColor: string = '#EE4035';
+    selectOptions;
     telefono;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, private dataService: DataService, private device: Device) {   
+    constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
+        private dataService: DataService, private device: Device, private networkService: NetworkService, private toastService:ToastService) {   
         this.telefono = dataService.getPhoneNumber();
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))
         this.showSelectText = "Seleccionar";
+        this.selectOptions = {
+            cssClass:"hideHeader"
+        }
     }
 
     handleData(data) {
@@ -53,19 +60,25 @@ export class SolicitudVcPage {
     }
 
     sendVCRequest() {
-        if(this.checkTelLength()){
-        this.utils.showLoader();
-        console.log("deviceInfo:", this.device.version);
-        //llamo al servicio de solicitarVC de mi dataService
-        //let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom };
-        let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version };
-        console.log("response:", response);
-        this.dataService.solicitarVC(response).subscribe(this.VCResponse.bind(this));
+        if(this.networkService.isNetworkConnected()){
+            if(this.checkTelLength()){
+                this.utils.showLoader(false);
+                console.log("deviceInfo:", this.device.version);
+                //llamo al servicio de solicitarVC de mi dataService
+                //let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom };
+                let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version };
+                console.log("response:", response);
+                this.dataService.solicitarVC(response).subscribe(this.VCResponse.bind(this));
+                }
+                else{
+                    this.utils.showAlert("Número de telefono erroneo", "La suma del prefijo y el número de telefono debe ser de 10 caracteres");
+                    console.log("no suma 10 los caracteres del telefono")
+                }
         }
         else{
-            this.utils.showAlert("Número de telefono erroneo", "La suma del prefijo y el número de telefono debe ser de 10 caracteres");
-            console.log("no suma 10 los caracteres del telefono")
-        }
+            this.toastService.hideToast();
+            this.toastService.showToast(Config.MSG.DISCONNECTED,0);
+        }       
         
     }
 
@@ -101,6 +114,7 @@ export class SolicitudVcPage {
 
     nextPhoneNumber() {
 		this.telefono = this.dataService.nextPhoneNumber();
-	}
+    }   
+    
 
 }

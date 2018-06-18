@@ -1,3 +1,5 @@
+import { Config } from './../../app/config';
+import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms'
@@ -5,6 +7,7 @@ import { SolicitudVcPage } from '../solicitud-vc/solicitud-vc';
 import { DataService } from '../../providers/data.service';
 import { HomePage } from '../home/home';
 import { Utils } from '../../providers/utils'
+import { ToastService } from '../../providers/toast.service';
 
 
 
@@ -18,9 +21,10 @@ export class SociosPage {
     private socios: any[]
     private socioActual: any
     private sociosDNI: any
-    telefono;
+    telefono;    
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, private dataService: DataService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
+        private dataService: DataService, private networkService:NetworkService, private toastService:ToastService) {
         this.getSocios()
         this.telefono = dataService.getPhoneNumber();
         if (this.navParams.get('socio')) {
@@ -33,9 +37,16 @@ export class SociosPage {
     }
 
     requestVCPage(socio) {
-        console.log('Entra en request VC')
-        this.utils.showLoader();
-        this.dataService.validarVC(socio.dni).subscribe(this.validateVCResponse.bind(this));
+        if(this.networkService.isNetworkConnected()){
+            console.log('Entra en request VC')
+            this.utils.showLoader(false);        
+            this.dataService.validarVC(socio.dni).subscribe(this.validateVCResponse.bind(this));
+        }
+        else{
+            this.toastService.hideToast();
+            this.toastService.showToast(Config.MSG.DISCONNECTED,0);
+        }
+        
     }
 
 
@@ -51,6 +62,10 @@ export class SociosPage {
             this.utils.showAlert("Video Consulta", responseValidateVC.Mensaje);
             this.navCtrl.setRoot(HomePage);
         }
+    }
+
+    hideLoader(){
+        this.utils.hideLoader();
     }
 
     getSocios() {

@@ -1,3 +1,4 @@
+import { NetworkService } from './../../providers/network.service';
 import { Component, ViewChild } from '@angular/core'
 import { NavController, NavParams, MenuController } from 'ionic-angular'
 import { FormGroup, FormControl } from '@angular/forms'
@@ -13,6 +14,7 @@ import { DataService } from '../../providers/data.service'
 import { Utils } from '../../providers/utils'
 import { Config } from '../../app/config'
 import { NotificationsService } from '../../providers/notifications.service'
+import { ToastService } from '../../providers/toast.service';
 
 
 @Component({
@@ -28,7 +30,7 @@ export class RegisterPage {
     show: string = ''
     last: boolean = false
     hasChosen: boolean = false
-    tycs: boolean = false  
+    tycs: boolean = false
 
     telefono
 
@@ -41,7 +43,9 @@ export class RegisterPage {
         public data: DataService,
         public utils: Utils,
         public notiService: NotificationsService,
-        private menu: MenuController
+        private menu: MenuController,
+        private networkService : NetworkService,
+        private toastService: ToastService
     ) {
         this.telefono = data.getPhoneNumber()
         this.form = new FormGroup({
@@ -77,9 +81,9 @@ export class RegisterPage {
         else {
             this.p = this.preguntas[this.i++]
             this.last = this.i === this.preguntas.length
+            this.hasChosen = false
             //this.show = i > this.preguntas.length ? 'resumen' : ''
         }
-        this.hasChosen = false
     }
 
     reset() {
@@ -107,8 +111,9 @@ export class RegisterPage {
 
     checkPreguntas() {
         console.log('checkPreguntas:', this.preguntas)
-        this.checker.showChecking()
-        this.auth.checkPreguntas(this.preguntas)
+        if(this.networkService.isNetworkConnected()){
+            this.checker.showChecking()
+            this.auth.checkPreguntas(this.preguntas)
             .then(
                 ok => {
                     this.p = null
@@ -159,6 +164,13 @@ export class RegisterPage {
                     )
                 }
             )
+
+        }
+        else{
+            this.toastService.hideToast();
+            this.toastService.showToast(Config.MSG.DISCONNECTED,0);
+        }
+    
     }
 
     formatQuestions(questions) {

@@ -110,11 +110,11 @@ export class HistorialPage {
 
 	fullHistorialData(){		
 		let data = this.dataService.restoreHistorial(this.utils.getActiveUser());
-		if(data){
+		if(data.historialAtencion){
 			this.historial = this.formatData(data.historialAtencion);
 		}	
 		else{
-			this.utils.showLoader();
+			this.utils.showLoader(false);
 		}
 	}
 

@@ -92,7 +92,7 @@ export class DatosPage {
 		this.dataService.updateUsers();		
 		}
 		else{
-			this.utils.showLoader();
+			this.utils.showLoader(false);
 		}
 		
 	}

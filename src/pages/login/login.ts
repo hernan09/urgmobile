@@ -1,3 +1,6 @@
+import { Config } from './../../app/config';
+import { ToastService } from './../../providers/toast.service';
+import { NetworkService } from './../../providers/network.service';
 import { Component } from "@angular/core";
 import { NavController, NavParams, MenuController } from "ionic-angular";
 import { Platform } from "ionic-angular";
@@ -9,7 +12,6 @@ import { AuthService } from "../../providers/auth.service";
 import { DataService } from "../../providers/data.service";
 import { NotificationsService } from "../../providers/notifications.service";
 import { Utils } from "../../providers/utils";
-import { Config } from "../../app/config";
 
 const ERROR_MSG = {
   500: Config.MSG.LOGIN_ERROR_DNI,
@@ -37,7 +39,9 @@ export class LoginPage {
     public notiService: NotificationsService,
     public utils: Utils,
     private menu: MenuController,
-    public platform: Platform
+    public platform: Platform,
+    private networkService: NetworkService,
+    private toastService : ToastService,    
   ) {
     this.telefono = this.dataService.getPhoneNumber();
     this.newMember = this.navParams.get("newMember");
@@ -67,7 +71,8 @@ export class LoginPage {
   }
 
   getDeviceID(dni?) {
-    dni = dni || this.utils.getActiveUser();
+    if(this.networkService.isNetworkConnected()){
+      dni = dni || this.utils.getActiveUser();
     if (!dni) return;
     this.utils.showLoader();
     try {
@@ -84,6 +89,12 @@ export class LoginPage {
       console.warn("Cordova not available.");
       this.login(dni);
     }
+    }
+    else{
+      this.toastService.hideToast();
+      this.toastService.showToast(Config.MSG.DISCONNECTED,0);
+    }
+    
   }
 
   login(dni) {

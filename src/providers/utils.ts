@@ -8,8 +8,7 @@ import { Config } from '../app/config'
 @Injectable()
 export class Utils {
 
-  alert :any
-  toast :any
+  alert :any  
   loading :any
 
 	firstTimeNotificationsSent :boolean = true
@@ -63,29 +62,11 @@ export class Utils {
   public hideAlert() {
     if (this.alert) this.alert.dismiss().catch(e=>{})
   }
-
-
-  public showToast(message='Hola. Soy una tostadita :3', duration?, position?) {
-    this.toast = this.toastCtrl.create({
-      message,
-      duration,
-      position,
-      showCloseButton : duration === 0,
-      closeButtonText : 'Cerrar',
-    })
-
-    this.toast.present()
-  }
-  public hideToast() {
-    if (this.toast) this.toast.dismiss().catch(e=>{})
-  }
-
-
-  public showLoader() {
+  public showLoader(dismissOnPageChange?) {
     this.loading = this.loadingCtrl.create({
       spinner : 'crescent',
       content : 'Por favor espere...',
-      dismissOnPageChange : false,
+      dismissOnPageChange : dismissOnPageChange || true,
     })
 
     this.loading.present()

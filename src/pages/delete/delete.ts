@@ -1,3 +1,4 @@
+import { ToastService } from './../../providers/toast.service';
 import { Component, ChangeDetectorRef } from '@angular/core'
 import { NavController, NavParams } from 'ionic-angular'
 
@@ -22,7 +23,8 @@ export class DeletePage {
   		public navCtrl :NavController,
   		public navParams :NavParams,
   		private dataService :DataService,
-		public utils :Utils 
+		public utils :Utils,
+		private toastService : ToastService
   	){
   		this.users = this.exludeTitular( dataService.getUsersData() )
 
@@ -66,7 +68,7 @@ export class DeletePage {
 		
 		
 		
-			this.utils.showToast(selected.length + ' usuario(s) eleminado(s)', 2000)
+			this.toastService.showToast(selected.length + ' usuario(s) eleminado(s)', 2000)
 			this.navCtrl.setRoot(HomePage)
 		
 	}

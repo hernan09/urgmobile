@@ -63,8 +63,8 @@ export class NotificationsService {
 
   init(navCtrl) {
     this.oneSignal.startInit(
-      //Config.OPTIONS.ONE_SIGNAL_APP_ID,
-      //Config.OPTIONS.GOOGLE_PROJECT_NUMBER
+      // Config.OPTIONS.ONE_SIGNAL_APP_ID,
+      // Config.OPTIONS.GOOGLE_PROJECT_NUMBER
 
       //----- AMBIENTES DE DESA -----
       Config.OPTIONS.ONE_SIGNAL_APP_ID_TEST,

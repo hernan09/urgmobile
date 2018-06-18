@@ -1,3 +1,4 @@
+
 <ion-header>
 
   <ion-navbar hideBackButton>
@@ -61,15 +62,16 @@
         </ion-grid>
       </div>
 
+
       <div class="osde-label">SINTOMA</div>
       <ion-item>
         <ion-label [ngStyle]="{'color': selectTextColor}">{{showSelectText}}</ion-label>
-        <ion-select class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom">
-          <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
+        <ion-select [selectOptions]="selectOptions" id="symptomSelect" class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom">
+          <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>          
         </ion-select>
-      </ion-item>
-
+            </ion-item>           
     </ion-list>
+    
 
     <button ion-button full icon-start class="urg-button-blue" [disabled]="!lastname || !name || !tel || !prefijo || !symptom"
       (click)="sendVCRequest()">

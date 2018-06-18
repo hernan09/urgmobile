@@ -31,6 +31,7 @@ import { FamiliaPage } from '../pages/familia/familia'
 import { DeletePage } from '../pages/delete/delete'
 import { VideoConsultaPage } from '../pages/videoconsulta/videoconsulta'
 import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
+import { SociosPage } from '../pages/socios/socios';
 
 
 // services
@@ -39,7 +40,10 @@ import { DataService } from '../providers/data.service'
 import { NotificationsService } from '../providers/notifications.service'
 import { Utils } from '../providers/utils'
 import { Tokbox } from '../providers/tokbox'
-import { SociosPage } from '../pages/socios/socios';
+import { NetworkService } from './../providers/network.service';
+import { ToastService } from './../providers/toast.service';
+import { MinimizeService } from './../providers/minimize.service';
+
 
 
 @NgModule({
@@ -101,6 +105,9 @@ import { SociosPage } from '../pages/socios/socios';
     NotificationsService,
     Utils,
     Tokbox,
+    NetworkService,
+    ToastService,  
+    MinimizeService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 

@@ -165,9 +165,12 @@ export class DataService {
     handleHistorial(dni, res) {
         let data = res.json()
         console.log('getHistorial Response:', data)
-        if(data.historialAtencion){
+        if(data){
             this.saveHistorial(data, dni)
         }
+        // if(data.historialAtencion){
+        //     this.saveHistorial(data, dni)
+        // }
         return data;       
        
     }

@@ -66,26 +66,35 @@ page-solicitud-vc {
             margin-top: 0;
           }
 
-        }
+        }        
+      
+      .select-text{
+          white-space: inherit !important;
+      }
+      
+      .label-red{
+        color: rgb(238, 64, 53) !important;
+      }     
+      
+      
+      .item-inner
+      {
+        padding-right: 0px !important;
+        border-top: 0px !important;
+        border-left: 0px !important; 
+        border-right: 0px !important;
+        border-bottom: 0px !important;
+      }      
+      
 }
 
-.alert-radio-label{
-    white-space: inherit !important;
+.hideHeader .alert-head{
+  display:none !important;
 }
 
-.select-text{
-    white-space: inherit !important;
+.hideHeader .alert-radio-label{
+  white-space: inherit !important;
 }
-
-.label-red{
-  color: rgb(238, 64, 53) !important;
-}
-
-.item-inner
-{
-  padding-right: 0px !important;
-  border-top: 0px !important;
-  border-left: 0px !important; 
-  border-right: 0px !important;
-  border-bottom: 0px !important;
+.hideHeader .alert-radio-group{
+  max-height: 315px !important;
 }

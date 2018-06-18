@@ -7,6 +7,7 @@ import { HomePage } from '../home/home'
 import { Config } from '../../app/config'
 import { Utils } from '../../providers/utils'
 import { Tokbox } from '../../providers/tokbox'
+import { ToastService } from '../../providers/toast.service';
 
 
 
@@ -33,7 +34,8 @@ export class VideoConsultaPage {
     public utils :Utils,
     private http :Http,
     private provider :Tokbox,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private toastService : ToastService
   ) {
     this.utils.showLoader();
     this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
@@ -85,11 +87,11 @@ export class VideoConsultaPage {
 
   public backButtonAction() {
     if (this.readyToExit) {
-      this.utils.hideToast()
+      this.toastService.hideToast()
       this.hangup()
     }
     else {
-      this.utils.showToast(Config.MSG.EXIT_VC, 1500)
+      this.toastService.showToast(Config.MSG.EXIT_VC, 1500)
       this.readyToExit = true
       setTimeout(_ => { this.readyToExit = false }, 1500)
     }

@@ -52,7 +52,7 @@ export class CredencialPage {
 		this.persona.dni = credentialData.dni;		
 		}
 		else{
-			this.utils.showLoader();
+			this.utils.showLoader(false);
 		}
 		
 	}

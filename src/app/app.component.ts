@@ -17,14 +17,13 @@ import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
 import { Config } from '../app/config'
+import { ToastService } from '../providers/toast.service';
 
 
 @Component({
   templateUrl : 'app.html'
 })
-export class MyApp {
-
-  toast:any;
+export class MyApp {  
 
   @ViewChild(Nav) nav :Nav
   //lo añado solo para testo de la pagina
@@ -86,7 +85,8 @@ export class MyApp {
     private dataService: DataService,
     private ionicApp :IonicApp,
     private menuCtrl :MenuController,
-    private utils :Utils
+    private utils :Utils,
+    private toastService : ToastService
   ){
 
     platform.ready().then(_ => {
@@ -98,16 +98,16 @@ export class MyApp {
       this.network.onDisconnect().subscribe(_ => {
         //si esta desconectado se muestra una unica vez
         if(!this.disconnected){
-          this.toast = this.utils.showToast(Config.MSG.DISCONNECTED, 0)
+        this.toastService.showToast(Config.MSG.DISCONNECTED, 0)
         this.disconnected = true
         }              
       })
 
       this.network.onConnect().subscribe(_ => {
         //cuando se conecta oculto el toast anterior y muestro un nuevo toast de conexion restablecida.
-        this.toast = this.utils.hideToast();
+        this.toastService.hideToast();
         if (this.disconnected) {
-          this.toast = this.utils.showToast(Config.MSG.RECONNECTED, 2000)
+          this.toastService.showToast(Config.MSG.RECONNECTED, 2000)
           this.disconnected = false
         }
         // We just got a connection but we need to wait briefly
@@ -195,7 +195,7 @@ export class MyApp {
         if (whiteListPages.indexOf(activePage.constructor) < 0) {
           this.nav.setRoot(LoginPage)
         } else {
-          this.utils.showToast(Config.MSG.EXIT, 1500)
+          this.toastService.showToast(Config.MSG.EXIT, 1500)
           this.readyToExit = true
           setTimeout(() => { this.readyToExit = false }, 1500)
         }

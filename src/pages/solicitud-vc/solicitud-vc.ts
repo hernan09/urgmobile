@@ -1,41 +1,43 @@
+import { Config } from './../../app/config';
+import { AlertService } from './../../providers/alert.service';
+import { VideoConsultaPage } from './../videoconsulta/videoconsulta';
+import { Overlay } from './../../interfaces/overlay.interface';
 import { ToastService } from './../../providers/toast.service';
 import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SociosPage } from '../socios/socios';
 import { Utils } from '../../providers/utils'
-import { Config } from '../../app/config';
 import { HomePage } from '../home/home';
 import { DataService } from '../../providers/data.service'
 import { Device } from '@ionic-native/device';
+import { Select } from 'ionic-angular';
+import { ViewChild } from '@angular/core';
 
-/**
- * Generated class for the SolicitudVcPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
     selector: 'page-solicitud-vc',
     templateUrl: 'solicitud-vc.html',
 })
-export class SolicitudVcPage {
+export class SolicitudVcPage implements Overlay {
 
-    dni: string;
-    name: string;
-    lastname: string;
-    prefijo : number;
-    tel: number;
-    symptom: string;
-    symptoms: any[];
-    showSelectText: string;
-    selectTextColor: string = '#EE4035';
-    selectOptions;
-    telefono;
+    @ViewChild(Select) symptomSelect: Select;
+
+    private dni: string;
+    private name: string;
+    private lastname: string;
+    private prefijo : number;
+    private tel: number;
+    private symptom: string;
+    private symptoms: any[];
+    private showSelectText: string;
+    private selectTextColor: string = '#EE4035';
+    private selectOptions;
+    private telefono;    
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
-        private dataService: DataService, private device: Device, private networkService: NetworkService, private toastService:ToastService) {   
+        private dataService: DataService, private device: Device, private networkService: NetworkService, 
+        private toastService:ToastService, private alertService : AlertService) {   
         this.telefono = dataService.getPhoneNumber();
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))
         this.showSelectText = "Seleccionar";
@@ -47,7 +49,7 @@ export class SolicitudVcPage {
     handleData(data) {
         console.log('Sintomas:', data)
         if (data && data.length) this.symptoms = data
-        else this.utils.showAlert('Lo sentimos', Config.MSG.HISTORIAL_EMPTY)
+        else this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.HISTORIAL_EMPTY)
     }
 
     ionViewDidLoad() {
@@ -65,13 +67,12 @@ export class SolicitudVcPage {
                 this.utils.showLoader(false);
                 console.log("deviceInfo:", this.device.version);
                 //llamo al servicio de solicitarVC de mi dataService
-                //let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom };
                 let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version };
                 console.log("response:", response);
                 this.dataService.solicitarVC(response).subscribe(this.VCResponse.bind(this));
                 }
                 else{
-                    this.utils.showAlert("Número de telefono erroneo", "La suma del prefijo y el número de telefono debe ser de 10 caracteres");
+                    this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR);
                     console.log("no suma 10 los caracteres del telefono")
                 }
         }
@@ -86,12 +87,12 @@ export class SolicitudVcPage {
         //dependiendo la respuesta del servicio es el mensaje que muestro
         if (data.registroVC == "SI") {
             this.utils.hideLoader();
-            this.utils.showAlert("Video Consulta", data.Mensaje);
+            this.alertService.showAlert("Video Consulta", data.Mensaje);
             this.navCtrl.setRoot(HomePage)
         }
         else {
             this.utils.hideLoader();
-            this.utils.showAlert("Video Consulta", data.Mensaje);
+            this.alertService.showAlert("Video Consulta", data.Mensaje);
         }
     }
 
@@ -115,6 +116,11 @@ export class SolicitudVcPage {
     nextPhoneNumber() {
 		this.telefono = this.dataService.nextPhoneNumber();
     }   
+
+    closeAllOverlays(){
+        this.symptomSelect.close();         
+        this.alertService.hideAlert();     
+    }
     
 
 }

@@ -1,3 +1,4 @@
+import { AlertService } from '../../providers/alert.service';
 import { Config } from './../../app/config';
 import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
@@ -21,10 +22,11 @@ export class SociosPage {
     private socios: any[]
     private socioActual: any
     private sociosDNI: any
-    telefono;    
+    private telefono: any;    
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
-        private dataService: DataService, private networkService:NetworkService, private toastService:ToastService) {
+        private dataService: DataService, private networkService:NetworkService, 
+        private toastService:ToastService, private alertService : AlertService) {
         this.getSocios()
         this.telefono = dataService.getPhoneNumber();
         if (this.navParams.get('socio')) {
@@ -59,7 +61,7 @@ export class SociosPage {
         }
         else {
             this.utils.hideLoader();
-            this.utils.showAlert("Video Consulta", responseValidateVC.Mensaje);
+            this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, responseValidateVC.Mensaje);
             this.navCtrl.setRoot(HomePage);
         }
     }

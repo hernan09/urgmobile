@@ -48,10 +48,12 @@ export class HomePage {
 		this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
 
 		notiService.alertasChange.subscribe(alertas => {
+			console.log("Recibo alertas actualizadas");
 			this.alertas = alertas.filter(alerta => alerta.visible == true)
 			this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 			if (!this.ref['destroyed']) this.ref.detectChanges()
-		})
+		})		
+		this.alertas = notiService.getCurrentAlertas();
 
 		setTimeout(_ => {
 			this.updateDatos()

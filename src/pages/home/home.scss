@@ -105,8 +105,7 @@ page-home {
 		}
 	}
 
-	.alerta-item-visita {
-		max-height: 60vh;
+	.alerta-item-visita {		
 		margin-bottom: 20px;
 		position: relative;
 
@@ -140,6 +139,14 @@ page-home {
 				width: 65vw;
 				margin: auto;
 			}
+		}
+
+		.visita-imagen-medico {
+			height: 25vh;			
+			background-size: cover;
+			background-repeat: no-repeat;
+			display: block;
+    		margin: 0 auto;			
 		}
 
 		.visita-info {

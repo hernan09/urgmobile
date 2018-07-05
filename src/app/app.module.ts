@@ -43,6 +43,11 @@ import { Tokbox } from '../providers/tokbox'
 import { NetworkService } from './../providers/network.service';
 import { ToastService } from './../providers/toast.service';
 import { MinimizeService } from './../providers/minimize.service';
+import { ModalService } from '../providers/modal.service';
+import { AlertService } from './../providers/alert.service';
+import { ImageService } from './../providers/image.service';
+import { GroupedNotificationService } from './../providers/grouped.notificacion.service';
+import { AlertBuilder } from './../providers/builders/alert.builder';
 
 
 
@@ -108,6 +113,11 @@ import { MinimizeService } from './../providers/minimize.service';
     NetworkService,
     ToastService,  
     MinimizeService,
+    ModalService,
+    AlertService,
+    ImageService,
+    GroupedNotificationService,
+    AlertBuilder,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 

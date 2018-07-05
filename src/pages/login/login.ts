@@ -1,3 +1,5 @@
+import { Overlay } from './../../interfaces/overlay.interface';
+import { AlertService } from './../../providers/alert.service';
 import { Config } from './../../app/config';
 import { ToastService } from './../../providers/toast.service';
 import { NetworkService } from './../../providers/network.service';
@@ -22,7 +24,7 @@ const ERROR_MSG = {
   selector: "page-login",
   templateUrl: "login.html"
 })
-export class LoginPage {
+export class LoginPage implements Overlay {
   dni: number;
   telefono;
   newMember = false;
@@ -32,16 +34,17 @@ export class LoginPage {
   version = Config.OPTIONS.VERSION_NUMBER;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public authService: AuthService,
-    public dataService: DataService,
-    public notiService: NotificationsService,
-    public utils: Utils,
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private authService: AuthService,
+    private dataService: DataService,
+    private notiService: NotificationsService,
+    private utils: Utils,
     private menu: MenuController,
-    public platform: Platform,
+    private platform: Platform,
     private networkService: NetworkService,
-    private toastService : ToastService,    
+    private toastService : ToastService, 
+    private alertService : AlertService,   
   ) {
     this.telefono = this.dataService.getPhoneNumber();
     this.newMember = this.navParams.get("newMember");
@@ -103,7 +106,7 @@ export class LoginPage {
       if (this.utils.getTitular() && !this.utils.getActiveUser()) {
         var titular = this.utils.getTitular();
         var message = Config.MSG.TITULAR_EXIST_INFO.replace("{}", titular);
-        let alert = this.utils.showOptionAlert(Config.TITLE.WARNING_TITLE, message, Config.ALERT_OPTIONS.SI, Config.ALERT_OPTIONS.NO);
+        let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, message, Config.ALERT_OPTIONS.SI, Config.ALERT_OPTIONS.NO);
         alert.onDidDismiss(res => {
           if (res != false) {
             //Si contesta correctamente continua
@@ -119,7 +122,7 @@ export class LoginPage {
     } else {
       this.utils.hideLoader();
       if (this.newMember)
-        return this.utils.showAlert(
+        return this.alertService.showAlert(
           Config.MSG.SORRY,
           Config.MSG.ADD_USER_ERROR
         );
@@ -141,8 +144,7 @@ export class LoginPage {
       },
       error => {
         console.log('Error---->',error);
-        this.utils.hideLoader();
-       // this.utils.showAlert(Config.MSG.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
+        this.utils.hideLoader();      
       }
     );
   }
@@ -150,4 +152,10 @@ export class LoginPage {
   nextPhoneNumber() {
     this.telefono = this.dataService.nextPhoneNumber();
   }
+
+  closeAllOverlays(){
+    this.alertService.hideAlert();
+  }
+
+  
 }

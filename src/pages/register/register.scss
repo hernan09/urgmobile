@@ -104,8 +104,11 @@ page-register {
   .tycs {
     display: flex;
     padding: 10px;
+    .checkbox{
+      width: 50px;
+    }
     .label {
-      color: $osde_cyan;
+      color: $osde_cyan;      
       margin-left: 10px;
     }
     .checkbox-icon {
@@ -120,13 +123,25 @@ page-register {
     }
   }
 
-  @media (max-height: 567px) {
+
+  @media (min-width: 600px){
     .tycs {
-      .label {
-        margin-left: 40px;
+      .checkbox-icon {
+        width: 40px !important;
+        height: 40px !important;
       }
+      .label {
+      margin-top: 10px;
+      font-size: 17px;
+    }
+    .checkbox-inner {
+      left: 13px !important;
+      height: 25px !important;
+      width: 10px !important;
+    }
     }
   }
+ 
 
   #error-icon {
     font-size: 130px !important;

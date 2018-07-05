@@ -1,7 +1,11 @@
+import { GroupedNotificationService } from './grouped.notificacion.service';
+import { ImageService } from './image.service';
+import { AlertService } from './alert.service';
+import { ModalService } from './modal.service';
 import { Config } from './../app/config';
 import { Injectable } from "@angular/core";
-import "rxjs/Rx";
-import "rxjs/add/operator/map";
+import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import { Subject } from "rxjs/Subject";
 
 import { OneSignal } from "@ionic-native/onesignal";
@@ -12,6 +16,7 @@ import { HomePage } from "../pages/home/home";
 import { DataService } from "./data.service";
 import { Utils, DUMMY_NOTIS } from "./utils";
 import { LoginPage } from "../pages/login/login";
+import {Observable} from 'rxjs/Observable';
 
 const SIM_DELAY: number = Config.OPTIONS.NOTI_SIM_DELAY;
 
@@ -25,7 +30,8 @@ const ALERTA: any = {
   doctor: {
     nombre: "",
     matricula: null,
-    especialidad: ""
+    especialidad: "",
+    foto : "",
   },
   poll: {
     question: "",
@@ -47,10 +53,16 @@ export class NotificationsService {
 
   alertasChange: Subject<any> = new Subject<any>();
 
+  
+
   constructor(
     private oneSignal: OneSignal,
     private dataService: DataService,
-    private utils: Utils
+    private utils: Utils,
+    private modalService : ModalService,
+    private alertService : AlertService,
+    private imageService : ImageService,
+    private groupedNotificationService : GroupedNotificationService,
   ) {
     if (SIM_DELAY) {
       const simulation = setInterval(() => {
@@ -85,8 +97,9 @@ export class NotificationsService {
       console.log("Notification Received:", noti);
       this.newNotification(noti);
 
-      const isVideoConsulta = noti.data.tipoAtencion == "6";
-      if (isVideoConsulta) {
+      const isVideoConsulta = noti.data.tipoAtencion == "6";      
+        if (isVideoConsulta) {
+        this.modalService.closeAllOverlays(navCtrl);  
         this.openVideoCall(navCtrl, noti);
       }
     });
@@ -94,23 +107,25 @@ export class NotificationsService {
     this.oneSignal.handleNotificationOpened().subscribe(data => {
       console.log("Notification Opened:");
       if (data.notification.groupedNotifications) {
-        data.notification.groupedNotifications.forEach(newNoti => {
-          //Si las notificaciones vienen agrupadas la info esta en cada newNoti
-          const noti = {
-            title: newNoti.body,
-            data: newNoti.additionalData,
-            androidNotificationId: newNoti.notificationID
-          };
-          this.manageNotification(navCtrl, noti);
+        this.groupedNotificationService.addGroupedNotifications(data.notification.groupedNotifications).subscribe(alertasArray =>{
+          console.log("Lo que llega en el array: ", alertasArray);
+          for (let index = 0; index < alertasArray.length; index++) { 
+            let alertFilter = alertasArray.filter(alerta => alerta.order == index)  
+            console.log("Alert Filter: " , alertFilter);                  
+            this.addAlert(alertFilter[0]);
+          }
+            
         });
+      
       } else {
-        //Si las notificaciones vienen de a una la info esta enel payload
+        //Si las notificaciones vienen de a una la info esta en el payload
         const noti = {
           title: data.notification.payload.body,
           data: data.notification.payload.additionalData,
           androidNotificationId: data.notification.payload.notificationID
         };
-        this.manageNotification(navCtrl, noti);
+        
+        this.manageNotification(navCtrl, noti);//
       }
     });
 
@@ -139,7 +154,7 @@ export class NotificationsService {
     if (!this.doneVC && this.isVideoCall(noti.data.tipoAtencion)) {
       //Hay un usuario activo
       if (this.utils.getActiveUser()) {
-        let alert = this.utils.showOptionAlert(Config.TITLE.VIDEO_CALL_TITLE,
+        let alert = this.alertService.showOptionAlert(Config.TITLE.VIDEO_CALL_TITLE,
           Config.MSG.VIDEO_CALL, Config.ALERT_OPTIONS.CONTESTAR, Config.ALERT_OPTIONS.IGNORAR
         );
         alert.onDidDismiss(res => {
@@ -160,7 +175,9 @@ export class NotificationsService {
       this.doneVC = false;
     }
   }
-
+  getCurrentAlertas(){
+    return this.alertas;
+  }
   getAlertas() {
     return (this.alertas =
       this.dataService.restoreAlertas() || this.alertasEmpty.concat());
@@ -184,6 +201,26 @@ export class NotificationsService {
     this.alertasChange.next(this.alertas);
   }
 
+ public addAlert(alerta){
+  if(!alerta)
+  return;
+
+   if(alerta.step == 3){
+     this.removeStep(3);
+   }
+   if(alerta.step == 6){
+     this.hideNotifications();
+   }
+   if(alerta.setp == 5){
+    this.removeStep(5);
+   }
+   console.log("Insertando alerta: ", alerta);
+  this.alertas.unshift(alerta);
+  this.saveAlertas();
+  this.alertasChange.next(this.alertas);
+ }
+
+  /////////////////////////////////OLD
   private updateAlertas(notification) {
     if (!notification) return;
     console.log("Updating alertas:", notification.androidNotificationId);
@@ -196,8 +233,11 @@ export class NotificationsService {
       alerta.title = "Encuesta de satisfacción";
       alerta.poll.question = notification.data.preguntas[0];
       alerta.poll.thanks = false;
+      alerta.visible = true;
       this.hideNotifications();
+      console.log("Lista Alerta encuenta: " , this.alertas);
       this.alertas.unshift(alerta);
+      this.saveAlertas(notification.data.dni);
     } else {
       alerta.title = notification.title;
       alerta.androidNotificationId = notification.androidNotificationId;
@@ -205,48 +245,32 @@ export class NotificationsService {
         case "1":
           alerta.step = 1;
           alerta.asignacion = notification.data.contenido;
+          alerta.visible = true;
+          console.log("Lista Alerta tipo 1: " , this.alertas);
+          this.alertas.unshift(alerta);
+          this.saveAlertas(notification.data.dni);
           break;
 
         case "2":
           alerta.step = 2;
           alerta.prearribo.consejos = [notification.data.contenido];
+          alerta.visible = true;
+          console.log("Lista Alerta tipo 2: " , this.alertas);
+          this.alertas.unshift(alerta);
+          this.saveAlertas(notification.data.dni);
           break;
-
         case "3":
-          this.removeStep(3);
-          alerta.step = 3;
-          alerta.estado = {
-            status: "El médico está en camino",
-            label: "Horario estimado de arribo",
-            hora: notification.data.hora,
-            ok: true
-          };
+          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico está en camino","Horario estimado de arribo",notification.data.hora,true); 
           break;
-
         case "4":
-          this.removeStep(3);
-          alerta.step = 3;
-          alerta.estado = {
-            status: "El médico está demorado",
-            label: "Nuevo horario de arribo",
-            hora: notification.data.hora,
-            ok: false
-          };
+          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico está demorado","Nuevo horario de arribo",notification.data.hora,false);
           break;
-
         case "5":
-          this.removeStep(3);
-          alerta.step = 3;
-          alerta.estado = {
-            status: "El médico arribó al domicilio",
-            label: "Horario estimado de arribo",
-            hora: notification.data.hora,
-            ok: true
-          };
+          this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico arribó al domicilio","Horario estimado de arribo",notification.data.hora,true);
           break;
         case "6":
           this.removeStep(5);
-          alerta.step = 5;
+          alerta.step = 5;          
           alerta.estado = {
             status: "Video Consulta Activa",
             label: "Tenés una Video Consulta en Curso",
@@ -255,14 +279,14 @@ export class NotificationsService {
             dni: notification.data.dni,
             ok: true
           };
+          alerta.visible = true;
+          this.alertas.unshift(alerta);
+          this.saveAlertas(notification.data.dni);
           break;
       }
-
-      this.alertas.unshift(alerta);
     }
-
-    this.saveAlertas(notification.data.dni);
   }
+  ///////////////////////////////// END OLD
 
   private saveAlertas(dni?) {
     this.dataService.saveAlertas(this.alertas, dni);
@@ -299,5 +323,60 @@ export class NotificationsService {
       this.alertas.splice(20, 16);
     }
     this.saveAlertas();
+  }
+
+  private fillDoctorData(alerta,step,notification,nNombreMedico,alertaStatus,alertaLabel,alertaHora,alertaOk){
+    alerta.estado = {
+      status: alertaStatus,
+      label: alertaLabel,
+      hora: alertaHora,
+      ok: alertaOk
+    };
+    alerta.doctor = {
+      nombre:nNombreMedico,
+      matricula: notification.data.matriculaMedico,
+      especialidad: notification.data.especialidadMedico
+    }
+    alerta.step = step;
+    //alerta.doctor.nombre = nNombreMedico;
+    //alerta.doctor.matricula = notification.data.matriculaMedico;
+    //alerta.doctor.especialidad = notification.data.especialidadMedico; 
+    alerta = this.getDoctoPhoto(alerta,notification);                   
+
+  }
+
+  private getDoctoPhoto(alerta,notification){
+
+    if(notification.data.fotoMedico){
+      this.imageService.downloadImage(notification.data.fotoMedico).subscribe(data =>{
+        console.log("Alerta: ",alerta);
+        if(data != null){
+          alerta.doctor.foto = data;
+        }
+        else{
+          alerta.doctor.foto = "";
+        }        
+        this.removeStep(3);
+        alerta.visible = true;
+        console.log("Lista Alerta tipo doctor " + notification.data.tipoAtencion + ": " , this.alertas);
+        this.alertas.unshift(alerta);
+        this.saveAlertas(notification.data.dni);
+        this.alertasChange.next(this.alertas);
+        return alerta;
+      }, err => { console.error(err);
+        return alerta;
+      }
+      )
+    }
+    else{
+      this.removeStep(3);
+      alerta.doctor.foto = "";
+      alerta.visible = true;
+      console.log("Lista Alerta tipo doctor " + notification.data.tipoAtencion + ": " , this.alertas);
+      this.alertas.unshift(alerta);
+      this.saveAlertas(notification.data.dni);
+      this.alertasChange.next(this.alertas);
+    } 
+    return alerta;
   }
 }

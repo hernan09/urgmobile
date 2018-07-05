@@ -14,7 +14,7 @@ export class Config {
 		ONE_SIGNAL_APP_ID_TEST : '99b9131f-cfa9-4b3a-ab12-2d0d459c9916',
 		GOOGLE_PROJECT_NUMBER_TEST : '981462568601',
 
-		VERSION_NUMBER : '1.0.10.2',
+		VERSION_NUMBER : '1.0.11.6',
 	}
 
 	static SERVERS = {
@@ -57,7 +57,9 @@ export class Config {
 
 	public static TITLE = {
 		VIDEO_CALL_TITLE:'Video Consulta',
-		WARNING_TITLE:'Atención'
+		WARNING_TITLE:'Atención',
+		WE_ARE_SORRY : 'Lo sentimos',
+		WRONG_NUMBER : 'Número de telefono erroneo',
 	}
 
 
@@ -88,7 +90,7 @@ export class Config {
 		SORRY : 'Lo sentimos',
 		TITULAR_EXIST_INFO: 'El DNI {} se encuentra registrado en esta aplicación. Si continúa con el proceso los datos relacionados con el mismo serán reemplazados. ¿Desea continuar?',
 		VIDEO_CALL: 'Nueva Video Consulta en Espera',
-		WE_ARE_SORRY:"Lo sentimos"
+		WRONG_NUMBER_ERROR : 'La suma del prefijo y el número de telefono debe ser de 10 caracteres',		
 	}
 
 }

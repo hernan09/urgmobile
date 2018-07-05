@@ -30,9 +30,9 @@ export class HistorialPage {
 		public dataService :DataService,
 		public utils :Utils
 	) {
-		this.fullHistorialData();
-		this.telefono = dataService.getPhoneNumber()
 		this.historialIsEmpty = false;		
+		this.fillHistorialData();
+		this.telefono = dataService.getPhoneNumber()
 		dataService.getHistorial().subscribe(this.handleData.bind(this), this.handleError.bind(this))
 	}
 
@@ -108,10 +108,14 @@ export class HistorialPage {
 		this.telefono = this.dataService.nextPhoneNumber()
 	}
 
-	fullHistorialData(){		
+	fillHistorialData(){		
 		let data = this.dataService.restoreHistorial(this.utils.getActiveUser());
 		if(data.historialAtencion){
 			this.historial = this.formatData(data.historialAtencion);
+		}
+		else if(data.mensaje){
+			this.historialIsEmpty = true;			
+			this.historialMessage = data.mensaje;
 		}	
 		else{
 			this.utils.showLoader(false);

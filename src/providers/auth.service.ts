@@ -1,13 +1,15 @@
+import { AlertService } from './alert.service';
 import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import { Observable } from "rxjs";
-import "rxjs/Rx";
-import "rxjs/add/operator/map";
+import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 import { DataService } from "./data.service";
 import { Utils } from "./utils";
 
 import { Config } from "../app/config";
+
 
 const { API, SERVER_URL, authBody } = Config;
 const headers = new Headers({ "Content-Type": "application/json" });
@@ -24,7 +26,8 @@ export class AuthService {
   constructor(
     public http: Http,
     public dataService: DataService,
-    private utils: Utils
+    private utils: Utils,
+    private alertService : AlertService
   ) {
     this.auth().subscribe();
   }
@@ -58,14 +61,14 @@ export class AuthService {
         } else {
           if (err.status === 502) {
             //para que muestre el mensaje solicitado correctamente            
-            this.utils.showAlert("Error", err.json().error);
+            this.alertService.showAlert("Error", err.json().error);
             return;
           }
           else if(err.status === 409){
-            this.utils.showAlert("Error",err.json().mensaje);
+            this.alertService.showAlert("Error",err.json().mensaje);
           }
           else if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {            
-            this.utils.showAlert("Lo sentimos", Config.MSG.TIMEOUT_ERROR);
+            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
             return;
           }
           return Observable.throw(err);

@@ -79,10 +79,14 @@
 
 		<div *ngIf="alerta.step == 3 && alerta.visible" class="alerta-item-visita">
 			<div class="visita-estado" [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.status}}</div>
-			<div class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>
+			<div *ngIf="!alerta.doctor.foto"class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>	
+			<div *ngIf="alerta.doctor.foto">		
+			<img class="visita-imagen-medico" [src]="alerta.doctor.foto"><img>
+			<!-- <img class="visita-imagen-medico" src="https://storage.googleapis.com/urg-movil-storage/foto-medico-1.jpeg"><img>			 -->
+			</div>
 			<div class="visita-info">
 				<div>
-					<div class="visita-info-profesional">Profesional asignado</div>
+					<div class="visita-info-profesional">Médico asignado</div>
 					<div class="visita-info-nombre" *ngIf="alerta.doctor.nombre">{{alerta.doctor.nombre}}</div>
 					<div class="visita-info-especialidad" *ngIf="alerta.doctor.especialidad">{{alerta.doctor.especialidad}}</div>
 					<div class="visita-info-matricula" *ngIf="alerta.doctor.matricula">Matrícula: {{alerta.doctor.matricula}}</div>

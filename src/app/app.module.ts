@@ -1,3 +1,4 @@
+import { VideoConsultaService } from './../providers/video.consulta.service';
 import { BrowserModule } from '@angular/platform-browser'
 import { ErrorHandler, NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
@@ -37,6 +38,7 @@ import { SociosPage } from '../pages/socios/socios';
 // services
 import { AuthService } from '../providers/auth.service'
 import { DataService } from '../providers/data.service'
+import { LoginService } from "../providers/login.service";
 import { NotificationsService } from '../providers/notifications.service'
 import { Utils } from '../providers/utils'
 import { Tokbox } from '../providers/tokbox'
@@ -48,6 +50,7 @@ import { AlertService } from './../providers/alert.service';
 import { ImageService } from './../providers/image.service';
 import { GroupedNotificationService } from './../providers/grouped.notificacion.service';
 import { AlertBuilder } from './../providers/builders/alert.builder';
+
 
 
 
@@ -106,6 +109,7 @@ import { AlertBuilder } from './../providers/builders/alert.builder';
     Network,
     AndroidFullScreen,
     AuthService,
+    LoginService,
     DataService,
     NotificationsService,
     Utils,
@@ -118,6 +122,7 @@ import { AlertBuilder } from './../providers/builders/alert.builder';
     ImageService,
     GroupedNotificationService,
     AlertBuilder,
+    VideoConsultaService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 

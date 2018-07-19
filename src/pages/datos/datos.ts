@@ -31,8 +31,11 @@ export class DatosPage {
 		public dataService :DataService,
 		public utils :Utils
 	){		
+		//Busca Datos Afiliado en localStorage
 		this.fullPersonData();
 		this.telefono = dataService.getPhoneNumber();		
+		
+		//Busca Datos Afiliado en BK y luego actualiza localStorage
 		dataService.getDatosSocio().subscribe(this.handleData.bind(this), this.handleError.bind(this));
 	}
 

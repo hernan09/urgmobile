@@ -53,7 +53,7 @@ export class SociosPage {
 
 
     validateVCResponse(responseValidateVC) {
-        //dependiendo la respuesta del servicio es el mensaje que muestro
+        //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
         if (responseValidateVC.estadoVC == "Activo") {
             this.utils.hideLoader();
             this.navCtrl.setRoot(SolicitudVcPage, { socio: this.socioActual }, { animate: true, direction: 'back' })
@@ -62,6 +62,7 @@ export class SociosPage {
         else {
             this.utils.hideLoader();
             this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, responseValidateVC.Mensaje);
+            //Solo muestra ok y vuelve al home
             this.navCtrl.setRoot(HomePage);
         }
     }

@@ -1,21 +1,19 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core'
 import { Http, Headers, RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs'
 import 'rxjs/Rx'
 import 'rxjs/add/operator/map'
 import { Subject } from 'rxjs/Subject'
-
 import { Utils } from './utils'
-
 import { Config } from '../app/config'
 
 
-const { API, SERVER_URL, authBody } = Config
-const headers = new Headers({ 'Content-Type': 'application/json' })
+const { API, SERVER_URL, authBody } = Config;
 const authHeaders = new Headers({
     'Authorization': 'Bearer',
     'Content-Type': 'application/x-www-form-urlencoded'
-})
+});
 
 
 @Injectable()
@@ -23,7 +21,7 @@ export class DataService {
 
     app
 
-    telefonos = [
+    public telefonos = [
         {
             telefono: 'default',
             detalle: '0810-333-3511'
@@ -32,251 +30,251 @@ export class DataService {
             telefono: '2',
             detalle: '0810-444-3511'
         }
-    ]
-    
-    blockedUserPhoneNumber   = {
+    ];
+
+    blockedUserPhoneNumber = {
         description: 'block user',
         number: '0800-444-3511'
-    }
+    };
 
-    indexTelefonos = 0
+    private indexTelefonos = 0;
 
-    usersChange: Subject<any> = new Subject<any>()
+    public usersChange: Subject<any> = new Subject<any>();
 
     constructor(
         public http: Http,
-        private utils: Utils
+        private utils: Utils,
+        private authService: AuthService
     ) {
-        this.auth().subscribe()
-        this.restoreTelefonos()        
-    }
+        this.authService.auth().subscribe()
+        this.restoreTelefonos()
+    };
 
 
     // SERVICE CALLS
 
     public getTelefonos(dni?): Observable<any> {
         dni = dni || this.utils.getActiveUser()
-        console.log('getTelefonos Request:', dni)
+        console.log('BK: getTelefonos using dni:{}', dni);
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
         return this.http.post(SERVER_URL + API.telefonos, { dni }, { headers })
             .map(this.handleTelefonos.bind(this, dni))
             .catch(err => {
                 if (err.status === 401) {
+                    console.log('BK: Reintento getTelefonos x Token');
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => { // Use mergeMap instead of map
+                    return this.authService.auth().mergeMap(res => { // Use mergeMap instead of map
                         if (res === true) {
                             // Retry with new token
-                            return this.http.post(SERVER_URL + API.telefonos, { dni }, { headers })
-                                .map(this.handleTelefonos.bind(this, dni))
-                                .catch(err => {
-                                    this.restoreTelefonos(dni)
-                                    return Observable.throw(err || 'Server error')
-                                })
+                            return this.authService.retryPOST({ dni }, API.telefonos)
+                            .map(this.handleTelefonos.bind(this, dni))
+                            .catch(err => {return this.showTelefonosError(err,dni);})
                         }
-                        this.restoreTelefonos(dni)
-                        return Observable.throw(err)
+                        return this.showTelefonosError(err,dni);
                     })
                 }
-                this.restoreTelefonos(dni)
-                return Observable.throw(err || 'Server error')
+                return this.showTelefonosError(err,dni);
             })
     }
 
+
+    private showTelefonosError(err,dni):any{
+        this.restoreTelefonos(dni);
+        return this.throwObservableError(err);
+    }
+
     handleTelefonos(dni, res) {
-        let response = res.json()
-        console.log('getTelefonos Response:', response.telefonos)
+        let response = res.json();
+        console.log('BK: getTelefonos Response:{}',response);
         if (response.telefonos.length > 0) {
-            this.telefonos = response.telefonos
-            this.saveTelefonos(response.telefonos, dni)
+            this.telefonos = response.telefonos;
+            this.saveTelefonos(response.telefonos, dni);
         }
-        return response
+        return response;
     }
 
 
     public getDatosSocio(dni?): Observable<any> {
         dni = dni || this.utils.getActiveUser()
-        console.log('getDatosSocio Request:', dni)
+        console.log('BK: getDatosSocio Request:', dni)
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
         return this.http.post(SERVER_URL + API.datosSocio, { dni }, { headers })
             .map(this.handleMisDatos.bind(this, dni))
             .catch(err => {
                 if (err.status === 401) {
+
+                    console.log('BK: Reintento getDatosSocio x Token');
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => { // Use mergeMap instead of map
+                    return this.authService.auth().mergeMap(res => { // Use mergeMap instead of map
                         if (res === true) {
                             // Retry with new token
-                            return this.http.post(SERVER_URL + API.datosSocio, { dni }, { headers })
-                                .map(this.handleMisDatos.bind(this, dni))
-                                .catch(err => {
-                                    this.error('misDatos', err)
-                                    return [this.restoreMisDatos(dni)]
-                                })
+                            return this.authService.retryPOST({ dni }, API.datosSocio)
+                            .map(this.handleMisDatos.bind(this, dni))
+                            .catch(err => { return this.showMisDatosError(err,dni); })
                         }
-                        this.error('misDatos', err)
-                        return [this.restoreMisDatos(dni)]
+                        return this.showMisDatosError(err,dni); 
                     })
                 }
-                this.error('misDatos', err)
-                return [this.restoreMisDatos(dni)]
+                return this.showMisDatosError(err,dni); 
             })
     }
 
-    handleMisDatos(dni, res) {
-        const data = res.json()
+
+    private handleMisDatos(dni, res) {
+        const data = res.json();
         //agrego dni dentro de mis datos
-        data.dni = dni;
-        console.log('getDatosSocio Response:', data)
-        this.saveMisDatos(data, dni)
-        return data
+        data.dni = dni;;
+        console.log('getDatosSocio Response:', data);
+        this.saveMisDatos(data, dni);
+        return data;
     }
+    private showMisDatosError(err,dni):any{
+        this.error('misDatos', err);
+        return [this.restoreMisDatos(dni)];
+    }
+
+  
 
 
     public getHistorial(dni?): Observable<any> {
         dni = dni || this.utils.getActiveUser()
-        console.log('getHistorial Request:', dni)
+        console.log('BK: getHistorial Request:', dni);
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
         return this.http.post(SERVER_URL + API.historial, { dni }, { headers })
             .map(this.handleHistorial.bind(this, dni))
             .catch(err => {
                 if (err.status === 401) {
+                    console.log('BK: Reintento getHistorial x Token');
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => {
+                    return this.authService.auth().mergeMap(res => {
                         if (res === true) {
-                            // Retry with new token
-                            return this.http.post(SERVER_URL + API.historial, { dni }, { headers })
-                                .map(this.handleHistorial.bind(this, dni))
-                                .catch(err => {
-                                    this.error('historial', err)
-                                    return [this.restoreHistorial(dni)] || []
-                                })
+                            return this.authService.retryPOST({ dni }, API.historial)
+                                .map(this.handleHistorial.bind(dni,"this"))
+                                .catch(err => {return this.showHistorialError(err,dni);})
                         }
-                        this.error('historial', err)
-                        return [this.restoreHistorial(dni)] || []
+                        return this.showHistorialError(err,dni);
                     })
                 }
-                this.error('historial', err)
-                return [this.restoreHistorial(dni)] || []
+                return this.showHistorialError(err,dni);
             })
     }
 
-    public getHistorialNotifications(dni?){
+    private handleHistorial(dni, res) {
+        let data = res.json()
+        console.log('getHistorial Response:', data)
+        if (data) {
+            this.saveHistorial(data, dni)
+        }
+        return data;
+    }
+    private  showHistorialError(err,dni):any{
+        this.error('historial', err)
+        return [this.restoreHistorial(dni)] || []
+    }
+    public getHistorialNotifications(dni?) {
         dni = dni || this.utils.getActiveUser()
         console.log('getHistorial Request:', dni)
         this.restoreHistorial(dni)
     }
 
-    handleHistorial(dni, res) {
-        let data = res.json()
-        console.log('getHistorial Response:', data)
-        if(data){
-            this.saveHistorial(data, dni)
-        }
-        // if(data.historialAtencion){
-        //     this.saveHistorial(data, dni)
-        // }
-        return data;       
-       
-    }
 
-    registrarDispositivo(idDevice, dni): Promise<any> {
-        console.log('registrar Dispositivo en BD Request: ', idDevice);
+
+    public registrarDispositivo(idDevice, dni): Observable<Response> {
+
         const datos = { "dni": dni, "deviceId": idDevice };
-
-
-        let deviceRegisterPromise = new Promise((resolve, reject) => {
-
-            this.http.post(SERVER_URL + API.registroDispositivo, datos, { headers })
-            .toPromise()
-            .then(
-                res => { // Success
-                    console.log("Se Registro el Device Correctamente");
-                    resolve();
+        console.log("BK: registrar Dispositivo: {}, datos a registrar:{} ",idDevice, datos);
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
+        return this.http.post(SERVER_URL + API.registroDispositivo, datos, { headers })
+            .map(res => { // Success
+                console.log("Se Registro el Device Correctamente");
             })
             .catch(error => {
                 if (error.status === 401) {
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => {
+                    return this.authService.auth().mergeMap(res => {
                         if (res === true) {
-                            // Retry with new token
-                            return this.http.post(SERVER_URL + API.registroDispositivo, datos, { headers })
-                                .toPromise()
-                                .then(
-                                    res => { // Success
-                                        console.log("Se Registro el Device Correctamente");
-                                        resolve();
-                                })
-                                .catch(err => {
-                                    console.log("No Se Puede Registrar el Dispositivo");
-                                    reject();
-                                })
+                            return this.authService.retryPOST(datos, API.registroDispositivo)
+                            .map(res=> {console.log("Retry sucess in Registro Dispositivo ");})
+                            .catch(err => {return this.throwObservableError(err);})
                         }
-                        console.log("No Se Puede Registrar el Dispositivo");
-                        reject();
+                       return this.throwObservableError(error);
                     })
                 }
-                console.log("No Se Puede Registrar el Dispositivo");
-                reject();
-             });
-        });
-
-        return deviceRegisterPromise;
+                return this.throwObservableError(error);
+            });
     }
+
+    private throwObservableError(error){
+        console.log("throwObservableError: ",error);
+        return Observable.throw(error || 'Server error');
+    }
+
 
     public getSintomas(): Observable<any> {
         let dni = this.utils.getActiveUser()
-
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
         let options = new RequestOptions({ headers: headers });
-
+        console.log("BK: getSintomas");
         return this.http.get(SERVER_URL + API.sintomas, options)
             .map(this.handleSintomas.bind(this, dni))
             .catch(err => {
                 if (err.status === 401) {
+                    console.log("BK: reintento getSintomas");
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => {
+                    return this.authService.auth().mergeMap(res => {
                         if (res === true) {
                             // Retry with new token
-                            return this.http.get(SERVER_URL + API.sintomas, options)
-                                .map(this.handleSintomas.bind(this, dni))
-                                .catch(err => {
-                                    this.error('sintomas', err)
-                                    return this.restoreSintomas(dni) || []
-                                })
+                            return this.authService.retryGETService(API.sintomas,options)
+                            .map(res => {this.handleSintomas.bind(this, dni);})
+                            .catch(err => {return this.showSintomasError(err,dni);})
                         }
-                        this.error('sintomas', err)
-                        return this.restoreSintomas(dni) || []
+                        return this.showSintomasError(err,dni);
                     })
                 }
-                this.error('sintomas', err)
-                return this.restoreSintomas(dni) || []
-            })
+                return this.showSintomasError(err,dni);            })
     }
 
-    handleSintomas(dni, res) {
 
+    private handleSintomas(dni, res) {
         let data = res.json();
         console.log('getSintomas Response:', data);
         this.saveSintomas(data, dni)
         return data;
-
     }
+    private showSintomasError(err,dni){
+        this.error('sintomas', err)
+        return this.restoreSintomas(dni) || []
+    }
+    
+    
 
     public solicitarVC(data): Observable<any> {
-        console.log('solicitarVC Request: ', data)
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
         return this.http.post(SERVER_URL + API.solicitarVC, data, { headers })
             .map(res => {
                 const data = res.json()
-                console.log('solicitarVC Response: ', data)
+                console.log('BK: solicitarVC Response: ', data)
                 return data
             })
             .catch(err => {
                 if (err.status === 401) {
+                    console.log('BK: Reintento solicitarVC Response: ')
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => {
+                    return this.authService.auth().mergeMap(res => {
                         if (res === true) {
                             // Retry with new token
-                            return this.http.post(SERVER_URL + API.solicitarVC, data, { headers })
-                                .map(res => {
-                                    const data = res.json()
-                                    console.log('solicitarVC Response: ', data)
-                                    return data
-                                })
+                            return this.authService.retryPOST({ data }, API.solicitarVC)
+                            .map(res => {return this.getResponseData(res);})
+                            .catch(err => {
+                                this.error('Erro al solicitarVC', err);
+                                return Observable.throw(err)
+                            })
                         }
                         return Observable.throw(err)
                     })
@@ -287,75 +285,47 @@ export class DataService {
 
 
     public responderEncuesta(data): Observable<any> {
-        console.log('responderEncuesta Request: ', data)
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
         return this.http.post(SERVER_URL + API.responderEncuesta, data, { headers })
-            .map(res => {
-                const data = res.json()
-                console.log('responderEncuesta Response: ', data)
-                return data
-            })
+            .map(res => {return this.getResponseData(res);})
             .catch(err => {
                 if (err.status === 401) {
+                    console.log('BK: Reintento responderEncuesta Request: ', data)
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => {
+                    return this.authService.auth().mergeMap(res => {
                         if (res === true) {
-                            // Retry with new token
-                            return this.http.post(SERVER_URL + API.responderEncuesta, data, { headers })
-                                .map(res => {
-                                    const data = res.json()
-                                    console.log('responderEncuesta Response: ', data)
-                                    return data
-                                })
+
+                            return this.authService.retryPOST({ data }, API.responderEncuesta)
+                            .map(res => {return this.getResponseData(res);})
+                            .catch(err => {
+                                this.error('Erro al responder encuesta', err);
+                                return Observable.throw(err)
+                            })
                         }
                         return Observable.throw(err)
                     })
                 }
                 return Observable.throw(err || 'Server error')
-            })
-    }
-
-
-    private auth(): Observable<any> {
-        return this.http.post(SERVER_URL + API.auth, authBody, { headers: authHeaders })
-            .map(res => {
-                let token = res.json().accessToken
-                if (token) {
-                    headers.set('Authorization', `Bearer ${token}`)
-                    console.log('El token de seguridad se ha actualizado correctamente.')
-                }
-                else {
-                    console.log('El token de seguridad no se ha podido actualizar.')
-                }
-                return token
-            })
-            .catch(error => {
-                return Observable.throw(error || 'Server error')
             })
     }
 
 
     public validarVC(dni): Observable<any> {
-
-        console.log("validarVC Request URL:" + SERVER_URL + API.validarVC + dni)
-
+        console.log("validarVC Request : " + dni);
+        //Se obtiene el token actualizado según auth
+        let headers :Headers = this.authService.getActualHeaders();
         return this.http.get(SERVER_URL + API.validarVC + dni, { headers })
-            .map(res => {
-                const data = res.json()
-                console.log('validarVC devuelve: ', data)
-                return data
-            })
+            .map(res => {return this.getResponseData(res);})
             .catch(err => {
                 if (err.status === 401) {
+                    console.log('BK : Reintento validarVC devuelve: ')
                     // Token might be expired, try to refresh token
-                    return this.auth().mergeMap(res => {
+                    return this.authService.auth().mergeMap(res => {
                         if (res === true) {
-                            // Retry with new token
-                            return this.http.get(SERVER_URL + API.validarVC + dni, { headers })
-                                .map(res => {
-                                    const data = res.json()
-                                    console.log('validate  VC Response: ', data)
-                                    return data
-                                })
+                            this.authService.retryGETService(API.validarVC + dni, { headers })
+                                .map(res => { return this.getResponseData(res)})
+                                .catch(err => { return Observable.throw(err);})
                         }
                         return Observable.throw(err)
                     })
@@ -365,14 +335,19 @@ export class DataService {
     }
 
 
-    handleValidationVC(res) {
-        console.log('handleValidationVC')
+    //Obtiene la info dentro del response
+    private getResponseData(res):any{
+        const data = res.json();
+        console.log('Response Data: ', data);
+        return data;
+    }
+
+    private handleValidationVC(res) {
         let response = res.json()
         return response
     }
 
     // UTILS
-
     public restoreHistorial(dni?) {
         return this.getLocalStorage(Config.KEY.HISTORIAL, dni)
     }
@@ -414,6 +389,18 @@ export class DataService {
         this.setLocalStorage(Config.KEY.SINTOMAS, data, dni)
     }
 
+    public saveCID(data, dni?) {
+        if (!data) return
+        this.setLocalStorage(Config.KEY.CID, data, dni)
+    }
+    public restoreCID(dni?) {
+        return this.getLocalStorage(Config.KEY.CID, dni)
+      }
+
+      public getCID(dni){
+          return this.restoreCID(dni);
+      }
+
 
     public getLocalStorage(prop, dni?) {
         dni = dni || this.utils.getActiveUser()
@@ -448,7 +435,7 @@ export class DataService {
         if (noupdate) return
         this.updateUsers(data)
     }
-    
+
 
     public getUsersData(users?) {
         const activeUser = this.utils.getActiveUser()
@@ -458,7 +445,7 @@ export class DataService {
         }
         else if (this.isTitular(activeUser)) {
             users = this.restoreUsers();
-        }       
+        }
 
         let data
         const usersData = users.map(user => {
@@ -500,48 +487,42 @@ export class DataService {
         var users
         var removeActive
 
-        if(this.isTitular(dniToRemove)){
+        if (this.isTitular(dniToRemove)) {
             users = this.restoreUsers()
-        } 
+        }
 
         removeActive = dniToRemove == this.utils.getActiveUser();
         this.utils.delItem(dniToRemove)
-        if(this.isTitular(dniToRemove)){
+        if (this.isTitular(dniToRemove)) {
             this.saveUsers(users.filter(dni => dni != dniToRemove), removeActive)
-        }        
+        }
     }
 
-    public removeAllUsers(){
+    public removeAllUsers() {
         //elimino todas las keys
         var users = this.restoreUsers();
         for (let i = 0; i < users.length; i++) {
-            this.utils.delItem(users[i]);            
+            this.utils.delItem(users[i]);
         }
         //vacio la lista de usuarios
-        this.saveUsers([],true);        
+        this.saveUsers([], true);
     }
 
 
-    public getPhoneNumber() {        
+    public getPhoneNumber() {
         const tel = this.telefonos[this.indexTelefonos]
         return tel && tel.detalle
     }
 
-    /*
-    public nextPhoneNumber() {
-        this.indexTelefonos = 0
-        return this.getPhoneNumber()
-    }
-    */
 
     public nextPhoneNumber() {
-        console.log('Switching phone number')        
+        console.log('Switching phone number')
         this.indexTelefonos++
         if (this.indexTelefonos === this.telefonos.length) {
-          this.indexTelefonos = 0
+            this.indexTelefonos = 0
         }
         return this.getPhoneNumber()
-      }
+    }
 
     public getBlockUserPhoneNumber() {
         const tel = this.blockedUserPhoneNumber;

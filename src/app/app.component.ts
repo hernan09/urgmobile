@@ -26,8 +26,6 @@ import { ToastService } from '../providers/toast.service';
 export class MyApp {  
 
   @ViewChild(Nav) nav :Nav
-  //lo añado solo para testo de la pagina
-  //rootPage :any = SolicitudVcPage
   rootPage :any = LoginPage
   pages = [
     {
@@ -125,9 +123,14 @@ export class MyApp {
         if (!this.ref['destroyed']) this.ref.detectChanges()
       })
 
-      dataService.getTelefonos().subscribe()
+
+      //busca en Back los telefonos de URG
+      //DUDAS: no deberia guardarlos en localStorage???
+      dataService.getTelefonos().subscribe() 
 
       dataService.app = this
+
+      this.viewMembers = false;
 
     })
 
@@ -163,6 +166,10 @@ export class MyApp {
     this.viewMembers = false;
   }
 
+  public closeMenu(){
+    this.viewMembers = false;
+  }
+
   toggleView() {
     if (this.otherUsers.length) this.viewMembers = !this.viewMembers
   }
@@ -185,8 +192,10 @@ export class MyApp {
         activePortal.dismiss()
         activePortal.onDidDismiss(() => { })
       }
-      else if (this.menuCtrl.isOpen())
+      else if (this.menuCtrl.isOpen()){
         this.menuCtrl.close()
+        this.viewMembers = false;
+      }     
       else if (this.nav.canGoBack())
         this.nav.pop()
       else {

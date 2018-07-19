@@ -1,3 +1,4 @@
+import { $CARET } from '@angular/compiler/src/chars';
 import { AlertService } from './alert.service';
 import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
@@ -5,7 +6,6 @@ import { Observable } from "rxjs";
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { DataService } from "./data.service";
 import { Utils } from "./utils";
 
 import { Config } from "../app/config";
@@ -25,20 +25,73 @@ export class AuthService {
 
   constructor(
     public http: Http,
-    public dataService: DataService,
     private utils: Utils,
-    private alertService : AlertService
+    private alertService: AlertService
   ) {
-    this.auth().subscribe();
+
   }
 
   // SERVICE CALLS
 
+
+  public auth(): Observable<any> {
+    return this.http
+      .post(SERVER_URL + API.auth, authBody, { headers: authHeaders })
+      .map(res => {
+        console.log("BK: /auth");
+        let token = res.json().accessToken;
+        if (token) {
+          headers.set("Authorization", `Bearer ${token}`);
+          console.log("El token de seguridad se ha actualizado correctamente.");
+        } else {
+          console.log("El token de seguridad no se ha podido actualizar.");
+        }
+        return !!token;
+      })
+      .catch(err => {
+        return Observable.throw(err || "Server error");
+      });
+  }
+
+
+  public retryPOST(datos, api:String): Observable<Response> {
+    // Retry with new token
+    return this.http.post(SERVER_URL + api, datos, { headers })
+      .map(res => { // Success
+        console.log("Retry  Success in BK: {} Service. ", api);
+        return res;
+      })
+      .catch(err => {
+        console.log("Retry Error in BK: {} Service. ", api);
+        return Observable.throw(err);
+      })
+  }
+
+
+  public retryGETService(api:String, options:any): Observable<any> {
+    // Retry with new token
+    return this.http.get(SERVER_URL + api, options)
+    .map(res => {return res;})
+    .catch(err => {
+      return Observable.throw(err);
+    })
+  }
+
+
+
+  public getActualHeaders():Headers{
+    return headers;
+  }
+
+
+
   public checkDNI(data): Observable<any> {
+    console.log("Entra en auth.checkDNI")
     return this.http
       .post(SERVER_URL + API.login, data, { headers })
       .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
       .map(res => {
+        console.log("BK: /socio/login ")
         return res.json();
       })
       .catch(err => {
@@ -64,10 +117,10 @@ export class AuthService {
             this.alertService.showAlert("Error", err.json().error);
             return;
           }
-          else if(err.status === 409){
-            this.alertService.showAlert("Error",err.json().mensaje);
+          else if (err.status === 409) {
+            this.alertService.showAlert("Error", err.json().mensaje);
           }
-          else if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {            
+          else if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {
             this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
             return;
           }
@@ -83,7 +136,7 @@ export class AuthService {
       .post(SERVER_URL + endpoint, { dni }, { headers })
       .timeout(Config.OPTIONS.REQUEST_TIMEOUT)
       .map(res => {
-        console.log("answer Response: ", res.json());
+        console.log("BK: POST answer Response: ", res.json());
         return res.json();
       })
       .catch(err => {
@@ -106,67 +159,7 @@ export class AuthService {
       });
   }
 
-  private auth(): Observable<any> {
-    return this.http
-      .post(SERVER_URL + API.auth, authBody, { headers: authHeaders })
-      .map(res => {
-        const token = res.json().accessToken;
-        if (token) {
-          headers.set("Authorization", `Bearer ${token}`);
-          console.log("El token de seguridad se ha actualizado correctamente.");
-        } else {
-          console.log("El token de seguridad no se ha podido actualizar.");
-        }
-        return !!token;
-      })
-      .catch(err => {
-        return Observable.throw(err || "Server error");
-      });
-  }
 
-  // UTILS
-
-  public login(dni) {
-    if (!dni) throw "Cannot login: missing dni!";
-
-    const activeUser = this.utils.getActiveUser();
-
-    if (!activeUser && this.isNewUser(dni) && this.utils.getTitular()) {
-      //primero borro todo y despues agrego al usuario nuevo
-      this.dataService.removeAllUsers();
-
-      this.utils.setActiveUser(dni);
-      this.dataService.addUser(dni, true); // true = noupdate
-      this.utils.setTitular(dni);
-    } else {
-      if (activeUser) {
-        //se agrega un nuevo socio
-        if (this.dataService.isTitular(activeUser) && this.isNewUser(dni)) {
-          this.dataService.addUser(dni, true); // true = noupdate
-        }
-        this.utils.setActiveUser(dni);
-      } else {
-        //caso primer ingreso
-        this.utils.setActiveUser(dni);
-
-        if (this.isNewUser(dni) && !this.utils.getTitular()) {
-          this.dataService.addUser(dni, true); // true = noupdate
-          this.utils.setTitular(dni);
-        }
-      }
-    }
-
-    this.utils.setItem(Config.KEY.EXPIRES, this.calcExpireTime());
-  }
-
-  public isNewUser(dni) {
-    const users = this.dataService.restoreUsers();
-    return users.indexOf(dni) === -1;
-  }
-
-  calcExpireTime() {
-    return Date.now() + Config.OPTIONS.EXPIRE_TIME * 6000;
-  }
 
   public checkPreguntas(preguntas) {
     return new Promise((resolve, reject) => {

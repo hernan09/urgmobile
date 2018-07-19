@@ -11,14 +11,15 @@ import { Utils } from '../../providers/utils'
 })
 export class CredencialPage {
 
-	persona = {
+	public  persona = {
+		nombre:'',
+		apellido:'',
 		dni: '',
-		// antecedentes: [],
 		datosCredencial: {},
 		datosPersonales: []
 	}
 
-	telefono
+	public telefono
 
 	constructor (
 		public navCtrl :NavController,
@@ -26,9 +27,16 @@ export class CredencialPage {
 		public data :DataService,
 		public utils :Utils
 	) {
+		//Busca en localstorage datos credencial
 		this.fullCredentialData();
+		
+		
+		//Busca en localstorage phone numbers
 		this.telefono = data.getPhoneNumber();
+
 		const dni = this.utils.getActiveUser()
+		
+		//Busca en BK datos socio
 		data.getDatosSocio(dni).subscribe(
 			data => {
 				this.persona = data

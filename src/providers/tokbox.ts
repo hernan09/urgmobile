@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 
-
-//const SERVER_BASE_URL = 'https://cdt-tokbox.herokuapp.com'
-const SERVER_BASE_URL = 'https://tokbox-backend-urg-server-dot-urgencias-producto.appspot.com'
+const SERVER_BASE_URL = 'https://videoconsulta-backend-dot-urg-easydoc-205820.appspot.com/'
 
 declare var OT :any
 declare var Cordova :any
@@ -36,7 +34,7 @@ export class Tokbox {
 
   public getCredentials(params) {
     const { cid, isSafari } = params
-
+    console.log('BK: credenciales tok-box')
     this.http.post(SERVER_BASE_URL + '/room/' + cid, { isSafari } ).subscribe(
       res => {
         if (!res.ok) return this.handleError('Network response was not ok',  'Get credentials')

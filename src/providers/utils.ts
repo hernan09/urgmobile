@@ -67,6 +67,14 @@ export class Utils {
     this.setItem(Config.KEY.TITULAR, dni)
   }
 
+  public getCID() {
+    return this.getItem(Config.KEY.CID)
+  }
+  public setCID(cid) {
+    if (!cid) return
+    this.setItem(Config.KEY.CID, cid)
+  }
+
 
   public increaseNotificationsCounter() {
     this.notificationsCounter++

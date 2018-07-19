@@ -75,8 +75,8 @@ export class NotificationsService {
 
   init(navCtrl) {
     this.oneSignal.startInit(
-      // Config.OPTIONS.ONE_SIGNAL_APP_ID,
-      // Config.OPTIONS.GOOGLE_PROJECT_NUMBER
+      //Config.OPTIONS.ONE_SIGNAL_APP_ID,
+      //Config.OPTIONS.GOOGLE_PROJECT_NUMBER
 
       //----- AMBIENTES DE DESA -----
       Config.OPTIONS.ONE_SIGNAL_APP_ID_TEST,
@@ -135,7 +135,7 @@ export class NotificationsService {
 
   private manageNotification(navCtrl, noti) {
     //Validamos que la notificación fué recibida mientras la aplicación no estaba en 1er plano
-    if (!this.wasAlertDisplayed(noti)) {
+    if (!this.groupedNotificationService.wasAlertDisplayed(noti)) {
       this.newNotification(noti);
 
       const isVideoConsulta = noti.data.tipoAtencion == "6";
@@ -178,7 +178,7 @@ export class NotificationsService {
   getCurrentAlertas(){
     return this.alertas;
   }
-  getAlertas() {
+  public getAlertas() {
     return (this.alertas =
       this.dataService.restoreAlertas() || this.alertasEmpty.concat());
   }
@@ -297,16 +297,6 @@ export class NotificationsService {
     if (i != -1) this.alertas[i].visible = false;
   }
 
-  private wasAlertDisplayed(noti) {
-    let notId = noti.androidNotificationId;
-    let alertaAnt = this.alertas.find(x => x.androidNotificationId == notId);
-
-    if (alertaAnt) {
-      return true;
-    }
-    return false;
-  }
-
   private isVideoCall(tipoAlerta: String) {
     return tipoAlerta == "6";
   }
@@ -338,9 +328,6 @@ export class NotificationsService {
       especialidad: notification.data.especialidadMedico
     }
     alerta.step = step;
-    //alerta.doctor.nombre = nNombreMedico;
-    //alerta.doctor.matricula = notification.data.matriculaMedico;
-    //alerta.doctor.especialidad = notification.data.especialidadMedico; 
     alerta = this.getDoctoPhoto(alerta,notification);                   
 
   }

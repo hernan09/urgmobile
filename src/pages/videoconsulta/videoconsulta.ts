@@ -1,3 +1,4 @@
+import { DataService } from './../../providers/data.service';
 import { Component, ChangeDetectorRef } from '@angular/core'
 import { Http } from '@angular/http'
 import { NavController, NavParams } from 'ionic-angular'
@@ -13,7 +14,8 @@ import { ToastService } from '../../providers/toast.service';
 
 const RELOAD_DELAY = 3
 //const BLACKLIST_SERVER_URL = 'https://urg-rosario.herokuapp.com'
-const BLACKLIST_SERVER_URL = 'https://videoconsulta-urg-server-dot-urgencias-producto.appspot.com'
+//const BLACKLIST_SERVER_URL = 'https://videoconsulta-urg-server-dot-urgencias-producto.appspot.com'
+const BLACKLIST_SERVER_URL = 'https://videoconsulta-backend-dot-urg-easydoc-205820.appspot.com/'
 
 @Component({
   selector: 'page-videoconsulta',
@@ -27,6 +29,7 @@ export class VideoConsultaPage {
   mic = true
   cam = true
   private readyToExit = false
+  isBlocked = false;
 
   constructor(
     public navCtrl :NavController,
@@ -35,14 +38,14 @@ export class VideoConsultaPage {
     private http :Http,
     private provider :Tokbox,
     private ref: ChangeDetectorRef,
-    private toastService : ToastService
+    private toastService : ToastService,
+    private dataService : DataService,
   ) {
     this.utils.showLoader();
     this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
     this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
 
     this.utils.setItem('cid', this.cid)
-
     provider.VC = this
     this.checkCid()
   }
@@ -55,17 +58,25 @@ export class VideoConsultaPage {
         // if get succeeds, cid is blacklisted
         console.log('Conference is no longer available')
         this.show = 'unavailable'
-        this.utils.hideLoader()
+        this.utils.hideLoader()        
         setTimeout(this.exit, 2000)
       },
       err => {
         // if get yields a 404, cid is available
         // for any other error, allow access to conf anyway
+        this.dataService.saveCID(this.cid,this.dni);
         this.provider.getCredentials({ cid : this.cid, isSafari : 0 })
       }
     )
   }
 
+
+  private unavailableCId(){
+    // if get succeeds, cid is blacklisted
+    console.log('Conference is no longer available');
+    this.show = 'unavailable';
+    this.utils.hideLoader();
+  }
 
   blockCid() {
     return this.http.post(BLACKLIST_SERVER_URL + '/cid', { cid : parseInt(this.cid) } ).subscribe(
@@ -127,6 +138,20 @@ export class VideoConsultaPage {
     this.utils.delItem('cid')
     this.navCtrl.setRoot(HomePage)
   }
+
+  // public checkIfBlocked(isBlocked){
+  //   return this.http.get(BLACKLIST_SERVER_URL + '/cid/' + this.cid).subscribe(
+  //     data => {
+  //       // if get succeeds, cid is blacklisted
+  //       this.isBlocked = true;
+  //       isBlocked = this.isBlocked;
+  //     },
+  //     err => {
+  //       this.isBlocked = false;
+  //       isBlocked = this.isBlocked;
+  //     }
+  //   )}
+  
 
 
 }

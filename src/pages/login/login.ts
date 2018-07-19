@@ -1,3 +1,4 @@
+import { LoginService } from './../../providers/login.service';
 import { Overlay } from './../../interfaces/overlay.interface';
 import { AlertService } from './../../providers/alert.service';
 import { Config } from './../../app/config';
@@ -45,6 +46,7 @@ export class LoginPage implements Overlay {
     private networkService: NetworkService,
     private toastService : ToastService, 
     private alertService : AlertService,   
+    private loginService:LoginService,
   ) {
     this.telefono = this.dataService.getPhoneNumber();
     this.newMember = this.navParams.get("newMember");
@@ -101,22 +103,22 @@ export class LoginPage implements Overlay {
   }
 
   login(dni) {
-    if (this.authService.isNewUser(dni)) {
+    if (this.loginService.isNewUser(dni)) {
+      var titular = this.utils.getTitular();
         //En caso de que exista titular, se avisa de la eliminacion del usuario anterior.
-      if (this.utils.getTitular() && !this.utils.getActiveUser()) {
-        var titular = this.utils.getTitular();
+      if (titular && !this.utils.getActiveUser()) {
         var message = Config.MSG.TITULAR_EXIST_INFO.replace("{}", titular);
         let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, message, Config.ALERT_OPTIONS.SI, Config.ALERT_OPTIONS.NO);
         alert.onDidDismiss(res => {
           if (res != false) {
-            //Si contesta correctamente continua
+            //Si contesta que si al Reemplazar titular
             this.checkDNI(dni,this.newMember)
           } else {
             this.utils.hideLoader();
           }
         });
         alert.present();
-      }else {//Si contesta correctamente continua
+      }else {//No hay titular
         this.checkDNI(dni,this.newMember)
       }
     } else {
@@ -126,7 +128,7 @@ export class LoginPage implements Overlay {
           Config.MSG.SORRY,
           Config.MSG.ADD_USER_ERROR
         );
-      this.authService.login(dni);
+      this.loginService.login(dni);
       this.navCtrl.setRoot(HomePage);
     }
   }
@@ -135,6 +137,8 @@ export class LoginPage implements Overlay {
   checkDNI(dni,newMember){
     this.authService.checkDNI({ dni }).subscribe(
       data => {
+
+        console.log("C:Entra en logints.checkDNI")
         this.utils.hideLoader();
         this.navCtrl.setRoot(
           RegisterPage,

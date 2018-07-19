@@ -1,3 +1,4 @@
+import { VideoConsultaService } from './../../providers/video.consulta.service';
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
 import { NavController, NavParams, Content } from 'ionic-angular'
 
@@ -24,6 +25,7 @@ export class HomePage {
 	answered = false
 	cid=''
 	dni=''
+	isCIDBlocked = false;
 
 	poll_options = [
 		{ value : 3, class : 'good', label : '¡MUY BUENA!' },
@@ -37,7 +39,8 @@ export class HomePage {
 		private navParams :NavParams,
 		private notiService :NotificationsService,
 		private dataService :DataService,
-		private utils :Utils
+		private utils :Utils,
+		private videoConsultaService : VideoConsultaService,		
 	){
 		this.alertas = notiService.getAlertas().filter(alerta => alerta.visible == true)
 		this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
@@ -45,7 +48,7 @@ export class HomePage {
 		this.telefono = dataService.getPhoneNumber()
 		this.videoconsulta = !!utils.getItem('cid')
 		this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
-		this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
+		this.dni = navParams.get('dni') || utils.getItem('dni') || this.utils.getActiveUser();		
 
 		notiService.alertasChange.subscribe(alertas => {
 			console.log("Recibo alertas actualizadas");
@@ -55,14 +58,20 @@ export class HomePage {
 		})		
 		this.alertas = notiService.getCurrentAlertas();
 
-		setTimeout(_ => {
-			this.updateDatos()
-		}, 500)
-
+		setTimeout(_ => {			
+			this.updateDatos();
+		}, 500);
 	}
 
 
 	updateDatos() {
+		this.videoConsultaService.checkIfBlocked(this.dni).subscribe(data =>{
+			this.isCIDBlocked = data;
+			this.renderPage();
+		})
+	}
+
+	renderPage(){
 		//Si es videoconsulta no llamo al servicio de actualizar datos
 		if(this.videoconsulta){
 			this.initVideoconsulta(this.cid,this.dni);
@@ -83,6 +92,8 @@ export class HomePage {
 
 
 	updateTelefono() {
+
+		console.log("updateTelefono hace lo mismo en Ok que error???")
 		this.dataService.getTelefonos().subscribe(
 			data => {
 				this.telefono = this.dataService.getPhoneNumber()
@@ -125,15 +136,6 @@ export class HomePage {
 			}
 		})
 	}
-
-
-	ionViewWillEnter() {
-		this.alertas = this.notiService.getAlertas().filter(alerta => alerta.visible == true)
-		this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
-		this.ref.detectChanges()
-		this.content.scrollToTop(1000);
-	}
-
 
 	rate(rating) {
 		const poll = this.alertas.slice(-1)[0].poll
@@ -202,5 +204,4 @@ export class HomePage {
 	initVideoconsulta(cid,dni) {
 		this.navCtrl.setRoot(VideoConsultaPage, { cid, dni })
 	}
-
 }

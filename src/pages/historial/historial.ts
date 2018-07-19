@@ -112,6 +112,7 @@ export class HistorialPage {
 		let data = this.dataService.restoreHistorial(this.utils.getActiveUser());
 		if(data.historialAtencion){
 			this.historial = this.formatData(data.historialAtencion);
+			this.historialIsEmpty = false;		
 		}
 		else if(data.mensaje){
 			this.historialIsEmpty = true;			

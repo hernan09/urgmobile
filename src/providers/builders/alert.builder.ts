@@ -30,17 +30,18 @@ const ALERTA: any = {
 
 @Injectable()
 export class AlertBuilder {
-  alertaObservable: Subject<any>;
+
+  private alertaObservable: Subject<any>;
 
   public constructor(private imageService: ImageService) {
     this.alertaObservable = new Subject<any>();
   }
 
-  public getAlertaObservable():Observable<any>{
-      return this.alertaObservable;
+  public getAlertaObservable(): Observable<any> {
+    return this.alertaObservable;
   }
 
-  public createNewAlerta(notification){
+  public createNewAlerta(notification) {
     console.log("Entra a createNewAlerta: ", notification);
 
     if (!notification) return;
@@ -132,7 +133,7 @@ export class AlertBuilder {
           setTimeout(_ => this.alertaObservable.next(alerta), 1000);
           break;
       }
-    }   
+    }
   }
 
   private fillDoctorData(
@@ -147,7 +148,7 @@ export class AlertBuilder {
   ): Observable<any> {
     console.log("Entra a fillDoctorData: ", alerta);
     let alertaObs: Subject<any> = new Subject<any>();
-    
+
     alerta.step = step;
 
     alerta.estado = {

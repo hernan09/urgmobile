@@ -35,7 +35,7 @@
 			<div class="label">
 				{{alerta.estado.label}}
 				<button ion-button icon-left class="urg-button-lightgreen-call"
-					(click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)">
+					(click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)" [disabled]="isCIDBlocked">
 					<ion-icon name="ion-ios-videocam"></ion-icon>
 					Ingresar
 				</button>

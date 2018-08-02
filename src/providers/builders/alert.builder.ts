@@ -47,7 +47,7 @@ export class AlertBuilder {
     if (!notification) return;
 
     console.log("Updating alertas:", notification.androidNotificationId);
-    let alerta = Object.assign({}, ALERTA);
+    let alerta = JSON.parse(JSON.stringify(ALERTA));
     alerta.title = notification.title;
     alerta.androidNotificationId = notification.androidNotificationId;
     alerta.order = notification.order;

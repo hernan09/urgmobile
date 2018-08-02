@@ -1,3 +1,5 @@
+import { Config } from './config';
+import { AlertService } from './../providers/alert.service';
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
 import { Platform, Nav, MenuController, IonicApp } from 'ionic-angular'
 import { StatusBar } from '@ionic-native/status-bar'
@@ -16,7 +18,6 @@ import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 
 import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
-import { Config } from '../app/config'
 import { ToastService } from '../providers/toast.service';
 
 
@@ -84,7 +85,8 @@ export class MyApp {
     private ionicApp :IonicApp,
     private menuCtrl :MenuController,
     private utils :Utils,
-    private toastService : ToastService
+    private toastService : ToastService,
+    private alertService : AlertService
   ){
 
     platform.ready().then(_ => {
@@ -126,7 +128,7 @@ export class MyApp {
 
       //busca en Back los telefonos de URG
       //DUDAS: no deberia guardarlos en localStorage???
-      dataService.getTelefonos().subscribe() 
+      dataService.getTelefonos().subscribe(); 
 
       dataService.app = this
 
@@ -136,12 +138,44 @@ export class MyApp {
 
   }
 
-  goToPage(page, params?, force?) {
-    if (!page) return
-    let activePage = this.nav.getActive().instance
-    if (activePage.constructor == page && !force) return
-    this.nav.push(page, params)
+private goToPage(page, params?, force?) {
+    if (!page) return;
+    if ( page.pageName && page.pageName == "SociosPage" ){
+      console.log(">>> Entra en Page: "+ page.pageName);
+      this.isVCAvailable(page, params);
+    }else{  
+      this.navigatePage(page, params, force);
+    }
   }
+
+
+private isVCAvailable(page,params){
+  this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
+    res=>{
+          console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
+          if(res.estadoVC =="Inactivo"){
+            let message = res.Mensaje;
+            let alert = this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+            this.navigatePage(HomePage, params, false);
+          }else{
+            this.navigatePage(page, params, false);
+    }},
+    err=>{
+          console.log('Erro al validateAvailableVC:', err);
+          let message = Config.MSG.SOLICITUD_VC_ERROR;
+          let alert = this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+          this.navigatePage(HomePage, params, false);
+    })
+  }
+
+
+  private navigatePage(page, params?, force?){
+    let activePage = this.nav.getActive().instance;
+    if (activePage.constructor == page && !force) return;
+    this.nav.push(page, params);
+
+  }
+
 
   goAddMember() {
     this.nav.push(LoginPage, {newMember: true})

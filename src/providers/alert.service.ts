@@ -24,6 +24,7 @@ export class AlertService {
         let alert = this.alertCtrl.create({
             title: title,
             message: message,
+            enableBackdropDismiss:false,
             buttons: [
                 {
                     text: opcionCancel,

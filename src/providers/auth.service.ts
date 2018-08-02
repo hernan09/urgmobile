@@ -32,8 +32,6 @@ export class AuthService {
   }
 
   // SERVICE CALLS
-
-
   public auth(): Observable<any> {
     return this.http
       .post(SERVER_URL + API.auth, authBody, { headers: authHeaders })

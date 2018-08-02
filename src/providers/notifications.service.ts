@@ -38,7 +38,8 @@ const ALERTA: any = {
     rate: 0,
     label: "",
     comment: "",
-    thanks: false
+    thanks: false,
+    idAttention:""
   }
 };
 
@@ -78,9 +79,14 @@ export class NotificationsService {
       //Config.OPTIONS.ONE_SIGNAL_APP_ID,
       //Config.OPTIONS.GOOGLE_PROJECT_NUMBER
 
+      //----- AMBIENTES DE PREPROD -----
+      //Config.OPTIONS.ONE_SIGNAL_APP_ID_PREPROD,
+      //Config.OPTIONS.GOOGLE_PROJECT_NUMBER__PREPROD
+
       //----- AMBIENTES DE DESA -----
       Config.OPTIONS.ONE_SIGNAL_APP_ID_TEST,
       Config.OPTIONS.GOOGLE_PROJECT_NUMBER_TEST
+
     );
 
     this.oneSignal.inFocusDisplaying(
@@ -124,7 +130,6 @@ export class NotificationsService {
           data: data.notification.payload.additionalData,
           androidNotificationId: data.notification.payload.notificationID
         };
-        
         this.manageNotification(navCtrl, noti);//
       }
     });
@@ -136,11 +141,11 @@ export class NotificationsService {
   private manageNotification(navCtrl, noti) {
     //Validamos que la notificación fué recibida mientras la aplicación no estaba en 1er plano
     if (!this.groupedNotificationService.wasAlertDisplayed(noti)) {
-      this.newNotification(noti);
-
-      const isVideoConsulta = noti.data.tipoAtencion == "6";
-      if (isVideoConsulta) {
-        this.openVideoCall(navCtrl, noti);
+        this.newNotification(noti);
+        console.log(">>>> Se creo la nueva alerta");
+        const isVideoConsulta = noti.data.tipoAtencion == "6";
+        if (isVideoConsulta) {
+          this.openVideoCall(navCtrl, noti);
       }
     }
 
@@ -224,7 +229,7 @@ export class NotificationsService {
   private updateAlertas(notification) {
     if (!notification) return;
     console.log("Updating alertas:", notification.androidNotificationId);
-    let alerta = Object.assign({}, ALERTA);
+    let alerta = JSON.parse(JSON.stringify(ALERTA));
     alerta.visible = true;
 
     if (notification.data.preguntas && notification.data.preguntas.length) {
@@ -232,6 +237,7 @@ export class NotificationsService {
       alerta.androidNotificationId = notification.androidNotificationId;
       alerta.title = "Encuesta de satisfacción";
       alerta.poll.question = notification.data.preguntas[0];
+      alerta.poll.idAttention = notification.data.idAtencion;
       alerta.poll.thanks = false;
       alerta.visible = true;
       this.hideNotifications();

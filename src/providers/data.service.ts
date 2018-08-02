@@ -1,7 +1,10 @@
+import { Observable } from 'rxjs';
+import { HomePage } from './../pages/home/home';
+import { NavController } from 'ionic-angular';
+import { AlertService } from './alert.service';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core'
-import { Http, Headers, RequestOptions } from '@angular/http'
-import { Observable } from 'rxjs'
+import {RequestOptions, Request, RequestMethod, Http, Headers} from '@angular/http';
 import 'rxjs/Rx'
 import 'rxjs/add/operator/map'
 import { Subject } from 'rxjs/Subject'
@@ -44,7 +47,9 @@ export class DataService {
     constructor(
         public http: Http,
         private utils: Utils,
-        private authService: AuthService
+        private authService: AuthService,
+        private alertService : AlertService,
+    
     ) {
         this.authService.auth().subscribe()
         this.restoreTelefonos()
@@ -86,7 +91,6 @@ export class DataService {
 
     handleTelefonos(dni, res) {
         let response = res.json();
-        console.log('BK: getTelefonos Response:{}',response);
         if (response.telefonos.length > 0) {
             this.telefonos = response.telefonos;
             this.saveTelefonos(response.telefonos, dni);
@@ -256,6 +260,8 @@ export class DataService {
     public solicitarVC(data): Observable<any> {
         //Se obtiene el token actualizado según auth
         let headers :Headers = this.authService.getActualHeaders();
+
+        console.log('BK: solicitarVC con parametros: ',data);
         return this.http.post(SERVER_URL + API.solicitarVC, data, { headers })
             .map(res => {
                 const data = res.json()
@@ -264,15 +270,17 @@ export class DataService {
             })
             .catch(err => {
                 if (err.status === 401) {
-                    console.log('BK: Reintento solicitarVC Response: ')
                     // Token might be expired, try to refresh token
                     return this.authService.auth().mergeMap(res => {
                         if (res === true) {
                             // Retry with new token
                             return this.authService.retryPOST({ data }, API.solicitarVC)
-                            .map(res => {return this.getResponseData(res);})
+                            .map(res => {
+                                console.log('BK: Reintento solicitarVC Response: ',res);
+                                return this.getResponseData(res);
+                            })
                             .catch(err => {
-                                this.error('Erro al solicitarVC', err);
+                                this.error('BK: Erro al solicitarVC', err);
                                 return Observable.throw(err)
                             })
                         }
@@ -311,20 +319,25 @@ export class DataService {
     }
 
 
-    public validarVC(dni): Observable<any> {
-        console.log("validarVC Request : " + dni);
+    public validarVC(dni:string, soloservicio:string): Observable<any> {
+        
         //Se obtiene el token actualizado según auth
-        let headers :Headers = this.authService.getActualHeaders();
-        return this.http.get(SERVER_URL + API.validarVC + dni, { headers })
-            .map(res => {return this.getResponseData(res);})
+        let headers: Headers = this.authService.getActualHeaders();
+        
+        let params= "?dni="+dni+"&soloservicio="+soloservicio;
+        console.log("validarVC Request : " + params);
+        //let options = new RequestOptions({headers:myheaders, search:myParams });
+
+        return this.http.get(SERVER_URL + API.validarVC+params, {headers})
+            .map(response => {return response;})
             .catch(err => {
                 if (err.status === 401) {
-                    console.log('BK : Reintento validarVC devuelve: ')
+                    console.log('BK : Reintenta validarVC por auth ')
                     // Token might be expired, try to refresh token
                     return this.authService.auth().mergeMap(res => {
                         if (res === true) {
-                            this.authService.retryGETService(API.validarVC + dni, { headers })
-                                .map(res => { return this.getResponseData(res)})
+                            this.authService.retryGETService(API.validarVC, {headers, params })
+                                .map(response2 => { return response2})
                                 .catch(err => { return Observable.throw(err);})
                         }
                         return Observable.throw(err)
@@ -336,7 +349,7 @@ export class DataService {
 
 
     //Obtiene la info dentro del response
-    private getResponseData(res):any{
+    public getResponseData(res):any{
         const data = res.json();
         console.log('Response Data: ', data);
         return data;
@@ -528,6 +541,22 @@ export class DataService {
         const tel = this.blockedUserPhoneNumber;
         return tel && tel.number
     }
+
+    public validateAvailableVC(dni): Observable<any>{
+        console.log("LLamado a validateAvailableVC con DNI: " + dni);
+        return this.validarVC(dni, "SI").map(
+            (res)=> {return this.getResponseData(res);
+            })
+            .catch(err =>{
+                this.error('Erro al solicitarVC', err);
+                return Observable.throw(err);
+        });
+      
+      
+      };
+
+      
+      
     error(prop, err) {
         console.error('Could not get [' + prop + ']: ' + (err || 'Server error'))
     }

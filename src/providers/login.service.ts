@@ -19,12 +19,13 @@ export class LoginService {
     if (!dni) throw "Cannot login: missing dni!";
 
     const activeUser = this.utils.getActiveUser();
-
+    console.log(">>>>>> Active User Actual: ",activeUser);
     if (!activeUser && this.isNewUser(dni) && this.utils.getTitular()) {
       //primero borro todo y despues agrego al usuario nuevo
       this.dataService.removeAllUsers();
 
       this.utils.setActiveUser(dni);
+      console.log(">>>>>> Active User nuevo: ",this.utils.getActiveUser())
       this.dataService.addUser(dni, true); // true = noupdate
       this.utils.setTitular(dni);
     } else {

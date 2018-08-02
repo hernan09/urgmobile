@@ -24,8 +24,8 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "$KEYSTORE_PATH
 
 echo "Aligning apk..."
 rm -f "$SIGNED_ALIGNED_APK"
-zipalign -v 4 "$SIGNED_APK" "$SIGNED_ALIGNED_APK"
-#~/Android/Sdk/build-tools/27.0.3/zipalign -v 4 "$SIGNED_APK" "$SIGNED_ALIGNED_APK"
+#zipalign -v 4 "$SIGNED_APK" "$SIGNED_ALIGNED_APK"
+~/Android/Sdk/build-tools/27.0.3/zipalign -v 4 "$SIGNED_APK" "$SIGNED_ALIGNED_APK"
 
 echo "Copying & renaming apk..."
 cp "$SIGNED_ALIGNED_APK" "$OUT_PATH/$APK_NAME"

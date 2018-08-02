@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { AlertService } from '../../providers/alert.service';
 import { Config } from './../../app/config';
 import { NetworkService } from './../../providers/network.service';
@@ -22,7 +23,8 @@ export class SociosPage {
     private socios: any[]
     private socioActual: any
     private sociosDNI: any
-    private telefono: any;    
+    private telefono: any;  
+    public static pageName: string = "SociosPage";  
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
         private dataService: DataService, private networkService:NetworkService, 
@@ -32,17 +34,14 @@ export class SociosPage {
         if (this.navParams.get('socio')) {
             this.socioActual = this.getSociosByDni(this.navParams.get('socio'));
         }
-        console.log(this.socioActual);
-    }
 
-    ionViewDidLoad() {
     }
 
     requestVCPage(socio) {
         if(this.networkService.isNetworkConnected()){
             console.log('Entra en request VC')
             this.utils.showLoader(false);        
-            this.dataService.validarVC(socio.dni).subscribe(this.validateVCResponse.bind(this));
+            this.dataService.validarVC(socio.dni, "NO").subscribe(this.validateVCResponse.bind(this));
         }
         else{
             this.toastService.hideToast();
@@ -51,17 +50,17 @@ export class SociosPage {
         
     }
 
-
     validateVCResponse(responseValidateVC) {
         //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
-        if (responseValidateVC.estadoVC == "Activo") {
+        let response = this.dataService.getResponseData(responseValidateVC);
+        if (response.estadoVC == "Activo") {
             this.utils.hideLoader();
             this.navCtrl.setRoot(SolicitudVcPage, { socio: this.socioActual }, { animate: true, direction: 'back' })
 
         }
         else {
             this.utils.hideLoader();
-            this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, responseValidateVC.Mensaje);
+            this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje);
             //Solo muestra ok y vuelve al home
             this.navCtrl.setRoot(HomePage);
         }
@@ -94,11 +93,11 @@ export class SociosPage {
     }
 
 
-    previusPage() {
-        this.navCtrl.setRoot(HomePage);
-    }
-
     nextPhoneNumber() {
 		this.telefono = this.dataService.nextPhoneNumber();
-	}
+    }
+    
+    previusPage() {
+       this.navCtrl.setRoot(HomePage);
+    }
 }

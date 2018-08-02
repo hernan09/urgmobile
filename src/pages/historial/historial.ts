@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
-import { NavController, NavParams, Content } from 'ionic-angular'
+import { NavController, Content } from 'ionic-angular'
 
 import { HistorialDetallePage } from '../historial-detalle/historial-detalle'
 
@@ -15,18 +15,17 @@ import { Utils } from '../../providers/utils'
 export class HistorialPage {
 
 	@ViewChild(Content)	content :Content
-	showSubHeader = true
-	scrollTopStart
-	historialIsEmpty;
-	historial
-	historialMessage;
+	private showSubHeader = true
+	private  scrollTopStart
+	public  historialIsEmpty;
+	public  historial
+	public historialMessage;
 
-	telefono
+	public telefono;
 
 	constructor (
 		private ref :ChangeDetectorRef,
 		public navCtrl :NavController,
-		public navParams :NavParams,
 		public dataService :DataService,
 		public utils :Utils
 	) {
@@ -40,13 +39,15 @@ export class HistorialPage {
 		console.log('Historial:', data)
 		if(data){			
 			if(data.historialAtencion){
+				this.historialIsEmpty = false;
 				this.historial = this.formatData(data.historialAtencion);
 				this.utils.hideLoader();
 			}
 			else{		
-			this.historialIsEmpty = true;			
-			this.historialMessage = data.mensaje;
-			this.utils.hideLoader();
+				this.historialIsEmpty = true;	
+				this.historial = [];		
+				this.historialMessage = data.mensaje;
+				this.utils.hideLoader();
 			}
 		}
 		else{			
@@ -119,6 +120,7 @@ export class HistorialPage {
 			this.historialMessage = data.mensaje;
 		}	
 		else{
+			this.historialIsEmpty = false;		
 			this.utils.showLoader(false);
 		}
 	}

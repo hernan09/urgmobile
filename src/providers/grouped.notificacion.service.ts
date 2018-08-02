@@ -19,7 +19,7 @@ export class GroupedNotificationService {
 
 
   public addGroupedNotifications(groupedNotifications): Observable<any> {
-
+    this.alertas= this.dataService.restoreAlertas() ;
     let alertaObs: Subject<any> = new Subject<any>();
     console.log("Entra a addGroupedNotifications: ", groupedNotifications);
     let alertasArray = [];
@@ -48,16 +48,19 @@ export class GroupedNotificationService {
       };
       if (!this.wasAlertDisplayed(noti)) {
         this.alertBuilder.createNewAlerta(noti);
-    }
+      }
     }
     return alertaObs;
 
   }
 
 
-   public wasAlertDisplayed(noti) {
+  public wasAlertDisplayed(noti) {
+    this.alertas= this.dataService.restoreAlertas() ;
     let notId = noti.androidNotificationId;
+    console.log(">>>>  Alerta Entrante: "+ noti.androidNotificationId);
     let alertaAnt = this.alertas.find(x => x.androidNotificationId == notId);
+    console.log(">>>>  Alertas: ", this.alertas);
     if (alertaAnt) {
       return true;
     }

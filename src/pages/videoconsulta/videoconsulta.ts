@@ -1,21 +1,18 @@
+import { VideoconsultaMessagePage } from './../videoconsulta-message/videoconsulta-message';
 import { DataService } from './../../providers/data.service';
 import { Component, ChangeDetectorRef } from '@angular/core'
 import { Http } from '@angular/http'
 import { NavController, NavParams } from 'ionic-angular'
-
 import { HomePage } from '../home/home'
-
-import { Config } from '../../app/config'
 import { Utils } from '../../providers/utils'
 import { Tokbox } from '../../providers/tokbox'
 import { ToastService } from '../../providers/toast.service';
+import { Config } from './../../app/config';
 
 
+const RELOAD_DELAY = 3;
+const {VC_SERVER_URL } = Config;
 
-const RELOAD_DELAY = 3
-//const BLACKLIST_SERVER_URL = 'https://urg-rosario.herokuapp.com'
-//const BLACKLIST_SERVER_URL = 'https://videoconsulta-urg-server-dot-urgencias-producto.appspot.com'
-const BLACKLIST_SERVER_URL = 'https://videoconsulta-backend-dot-urg-easydoc-205820.appspot.com/'
 
 @Component({
   selector: 'page-videoconsulta',
@@ -53,7 +50,7 @@ export class VideoConsultaPage {
 
   checkCid() {
     this.utils.showLoader()
-    return this.http.get(BLACKLIST_SERVER_URL + '/cid/' + this.cid).subscribe(
+    return this.http.get(VC_SERVER_URL + '/cid/' + this.cid).subscribe(
       data => {
         // if get succeeds, cid is blacklisted
         console.log('Conference is no longer available')
@@ -79,7 +76,7 @@ export class VideoConsultaPage {
   }
 
   blockCid() {
-    return this.http.post(BLACKLIST_SERVER_URL + '/cid', { cid : parseInt(this.cid) } ).subscribe(
+    return this.http.post(VC_SERVER_URL + '/cid', { cid : parseInt(this.cid) } ).subscribe(
       data => {
         console.log('Conference blocked')
       },
@@ -139,19 +136,9 @@ export class VideoConsultaPage {
     this.navCtrl.setRoot(HomePage)
   }
 
-  // public checkIfBlocked(isBlocked){
-  //   return this.http.get(BLACKLIST_SERVER_URL + '/cid/' + this.cid).subscribe(
-  //     data => {
-  //       // if get succeeds, cid is blacklisted
-  //       this.isBlocked = true;
-  //       isBlocked = this.isBlocked;
-  //     },
-  //     err => {
-  //       this.isBlocked = false;
-  //       isBlocked = this.isBlocked;
-  //     }
-  //   )}
-  
+goHome(vcInstance:any){
+  vcInstance.navCtrl.setRoot(VideoconsultaMessagePage);
 
+}
 
 }

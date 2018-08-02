@@ -45,7 +45,7 @@ export class HomePage {
 		this.alertas = notiService.getAlertas().filter(alerta => alerta.visible == true)
 		this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 
-		this.telefono = dataService.getPhoneNumber()
+		//this.telefono = dataService.getPhoneNumber()
 		this.videoconsulta = !!utils.getItem('cid')
 		this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
 		this.dni = navParams.get('dni') || utils.getItem('dni') || this.utils.getActiveUser();		
@@ -146,13 +146,14 @@ export class HomePage {
 	
 	sendPoll() {
 		this.utils.showLoader()
-		const { question, rate, comment } = this.alertas.slice(-1)[0].poll
+		const { question, rate, comment, idAttention } = this.alertas.slice(-1)[0].poll
 		const data = {
 			dni : this.utils.getActiveUser(),
 			question,
 			rate,
 			comment,
 			answerDate : new Date(),
+			idAttention
 		}
 		this.dataService.responderEncuesta(data).subscribe(
 			data => {

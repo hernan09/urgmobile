@@ -33,6 +33,8 @@ import { DeletePage } from '../pages/delete/delete'
 import { VideoConsultaPage } from '../pages/videoconsulta/videoconsulta'
 import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 import { SociosPage } from '../pages/socios/socios';
+import { VideoconsultaMessagePage } from './../pages/videoconsulta-message/videoconsulta-message';
+
 
 
 // services
@@ -71,6 +73,7 @@ import { AlertBuilder } from './../providers/builders/alert.builder';
     VideoConsultaPage,
     SociosPage,
     SolicitudVcPage,
+    VideoconsultaMessagePage, 
     CheckerComponent,
   ],
   
@@ -89,6 +92,7 @@ import { AlertBuilder } from './../providers/builders/alert.builder';
     VideoConsultaPage,
     SociosPage,
     SolicitudVcPage,
+    VideoconsultaMessagePage, 
     CheckerComponent,
   ],
 

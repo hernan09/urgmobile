@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
-import { NavController, NavParams, Content } from 'ionic-angular'
+import { NavParams, Content } from 'ionic-angular'
 import { DataService } from '../../providers/data.service';
 
 @Component({
@@ -19,7 +19,6 @@ export class HistorialDetallePage {
 
 	constructor (
 		private ref :ChangeDetectorRef,
-		public navCtrl: NavController,
 		public navParams: NavParams,
 		public dataService: DataService
 	) {

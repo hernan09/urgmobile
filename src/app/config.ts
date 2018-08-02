@@ -10,17 +10,30 @@ export class Config {
 		// ONE_SIGNAL_APP_ID : '6222cb3a-8180-4242-971c-86a4baa23529',
 		// GOOGLE_PROJECT_NUMBER : '367741538862',
 
+		//----- AMBIENTES DE PREPROD -----
+		//ONE_SIGNAL_APP_ID_PREPROD : 'e966ed19-8ef0-44a8-af72-ce60889f18d1',
+		//GOOGLE_PROJECT_NUMBER__PREPROD : '600665001510',
+
 		//----- AMBIENTES DE DESA -----
 		ONE_SIGNAL_APP_ID_TEST : '99b9131f-cfa9-4b3a-ab12-2d0d459c9916',
 		GOOGLE_PROJECT_NUMBER_TEST : '981462568601',
 
-		VERSION_NUMBER : '1.0.12.3',
+		VERSION_NUMBER : '1.0.13.2-TEST',
 	}
 
 	static SERVERS = {
 		new : 'https://urgencias-producto.appspot.com/api',
 		old : 'https://easydocbackend.appspot.com',
-		test : 'https://easydoc-backend-test-dot-urgencias-producto.appspot.com/api',
+		test : 'https://urg-easydoc-backend-test-dot-urg-easydoc-205820.appspot.com/api',
+		preprod:'https://urg-easydoc-backend-preprod-dot-urg-easydoc-205820.appspot.com/api'
+	}
+
+
+	static VC_SERVERS = {
+		
+		test : 'https://urg-videoconsulta-backend-test-dot-urg-easydoc-205820.appspot.com/',
+		preprod:'https://urg-videoconsulta-backend-preprod-dot-urg-easydoc-205820.appspot.com/'
+		
 	}
 
 	public static API = {
@@ -34,13 +47,15 @@ export class Config {
 		responderEncuesta: '/encuesta/respuesta',
 		sintomas: '/sintoma/sintomas',
 		solicitarVC : '/vc/solicitar',
-		validarVC : '/vc/validar/',
+		validarVC : '/vc/validar',
 		registroDispositivo: '/socio/registrarDispositivo'
 	}
 
-	public static SERVER_URL = getServerURL()
+	public static SERVER_URL = getServerURL();
+	
+	public static authBody = getAuthBody();
 
-	public static authBody = getAuthBody()
+	public static VC_SERVER_URL = getVCServerURL();
 
 	public static KEY = {
 		TITULAR : 'titular',
@@ -91,7 +106,8 @@ export class Config {
 		SORRY : 'Lo sentimos',
 		TITULAR_EXIST_INFO: 'El DNI {} se encuentra registrado en esta aplicación. Si continúa con el proceso los datos relacionados con el mismo serán reemplazados. ¿Desea continuar?',
 		VIDEO_CALL: 'Nueva Video Consulta en Espera',
-		WRONG_NUMBER_ERROR : 'La suma del prefijo y el número de telefono debe ser de 10 caracteres',		
+		WRONG_NUMBER_ERROR : 'La suma del prefijo y el número de telefono debe ser de 10 caracteres',	
+		SOLICITUD_VC_ERROR: "No es posible utilizar el servicio de Video Consulta en este momento. Comunicate con nosotros de la manera tradicional.",
 	}
 
 }
@@ -100,6 +116,11 @@ export class Config {
 function getServerURL() {
 	return Config.SERVERS[Config.OPTIONS.SERVER]
 }
+
+function getVCServerURL() {
+	return Config.VC_SERVERS[Config.OPTIONS.SERVER]
+}
+
 
 function getAuthBody() {
 	const client_id = 'urg_ClientIdEasyDoc'

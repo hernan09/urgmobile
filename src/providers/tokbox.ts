@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
-
-const SERVER_BASE_URL = 'https://videoconsulta-backend-dot-urg-easydoc-205820.appspot.com/'
+import { Utils } from './utils';
+import { VideoConsultaService } from './video.consulta.service';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Config } from './../app/config';
 
 declare var OT :any
 declare var Cordova :any
+const {VC_SERVER_URL } = Config;
+const EXIT_DELAY= 3;
 
 @Injectable()
 export class Tokbox {
@@ -25,17 +28,18 @@ export class Tokbox {
       console.warn('handler not ready yet')
     },
   }
-  private participants = []
+  private participants = [];
 
-  public VC
+  public VC;
 
-  constructor(private http :Http){}
+  constructor(private http :Http, private vcService :VideoConsultaService, private utils :Utils){
+  }
 
 
   public getCredentials(params) {
     const { cid, isSafari } = params
     console.log('BK: credenciales tok-box')
-    this.http.post(SERVER_BASE_URL + '/room/' + cid, { isSafari } ).subscribe(
+    this.http.post(VC_SERVER_URL + '/room/' + cid, { isSafari } ).subscribe(
       res => {
         if (!res.ok) return this.handleError('Network response was not ok',  'Get credentials')
         this.initService(res.json())
@@ -98,11 +102,25 @@ export class Tokbox {
       console.info('Remote participants:', this.participants)
     })
     .on('streamDestroyed', event => {
-      // Remove participants
-      const deadguy = this.participants.find( p => p.streamId == event.stream.streamId )
-      this.participants = this.participants.filter(p => p.streamId != event.stream.streamId)
-      console.info('Removed participant:', deadguy)
-      console.info('Remote participants:', this.participants)
+      
+      setTimeout(_ => {
+          // Remove participants
+          this.vcService.checkIfBlocked2(this.utils.getActiveUser())
+          .filter(data => data === true)
+          .subscribe(
+            data =>{
+                    this.participants = [];
+                    session.off();
+                    this.utils.delItem('cid');
+                    session.disconnect();
+                    this.VC.goHome(this.VC);
+            });
+
+          const deadguy = this.participants.find( p => p.streamId == event.stream.streamId )
+          this.participants = this.participants.filter(p => p.streamId != event.stream.streamId)
+          console.info('Removed participant:', deadguy)
+          console.info('Remote participants:', this.participants)
+      }, 1000)
     })
     .on('sessionConnected', event => {
       console.log('Connected to session! :D')

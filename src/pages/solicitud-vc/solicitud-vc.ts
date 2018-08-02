@@ -29,10 +29,10 @@ export class SolicitudVcPage implements Overlay {
     private prefijo : number;
     private tel: number;
     private symptom: string;
-    private symptoms: any[];
+    public symptoms: any[];
     private showSelectText: string;
-    private selectTextColor: string = '#EE4035';
-    private selectOptions;
+    public selectTextColor: string = '#EE4035';
+    public selectOptions;
     private telefono;    
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
@@ -65,15 +65,15 @@ export class SolicitudVcPage implements Overlay {
         if(this.networkService.isNetworkConnected()){
             if(this.checkTelLength()){
                 this.utils.showLoader(false);
-                console.log("deviceInfo:", this.device.version);
                 //llamo al servicio de solicitarVC de mi dataService
                 let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version };
-                console.log("response:", response);
+                console.log("sendVCRequest - response:", response);
                 this.dataService.solicitarVC(response).subscribe(this.VCResponse.bind(this));
                 }
                 else{
                     this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR);
                     console.log("Cantidad de numeros del telefono debe sumar 10");
+                    this.navCtrl.setRoot(HomePage);
                 }
         }
         else{
@@ -87,13 +87,15 @@ export class SolicitudVcPage implements Overlay {
         //dependiendo la respuesta del servicio es el mensaje que muestro
         if (data.registroVC == "SI") {
             this.utils.hideLoader();
+            console.log("VCResponse - data.registroVC(SI): ",data.registroVC);
             this.alertService.showAlert("Video Consulta", data.Mensaje);
-            this.navCtrl.setRoot(HomePage)
         }
         else {
             this.utils.hideLoader();
+            console.log("VCResponse - data.registroVC: ",data.registroVC);
             this.alertService.showAlert("Video Consulta", data.Mensaje);
         }
+        this.navCtrl.setRoot(HomePage)
     }
 
     previusPage() {

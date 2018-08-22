@@ -5,7 +5,6 @@ import { Platform, Nav, MenuController, IonicApp } from 'ionic-angular'
 import { StatusBar } from '@ionic-native/status-bar'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { Network } from '@ionic-native/network'
-//import { AndroidFullScreen } from '@ionic-native/android-full-screen'
 
 import { LoginPage } from '../pages/login/login'
 import { HomePage } from '../pages/home/home'
@@ -64,6 +63,11 @@ export class MyApp {
 
   ]
 
+   
+
+  private static APP_COMPONENT_LOG="MyApp";
+
+
   activeUser = {
     dni: '',
     nombre: ''
@@ -71,9 +75,10 @@ export class MyApp {
   otherUsers = []
   viewMembers = false
 
-  private disconnected = false
-  private readyToExit = false
-
+  private disconnected = false;
+  private readyToExit = false;
+  
+ 
   constructor(
     private platform :Platform,
     private statusBar :StatusBar,
@@ -114,6 +119,8 @@ export class MyApp {
         // before we determine the connection type. Might need to wait
         // prior to doing any api requests as well.
         setTimeout(_ => {
+          
+          
           console.log('Network type:', this.network.type)
         }, 3000)
       })
@@ -125,10 +132,7 @@ export class MyApp {
         if (!this.ref['destroyed']) this.ref.detectChanges()
       })
 
-
-      //busca en Back los telefonos de URG
-      //DUDAS: no deberia guardarlos en localStorage???
-      dataService.getTelefonos().subscribe(); 
+      dataService.updateTelefono();
 
       dataService.app = this
 
@@ -141,6 +145,7 @@ export class MyApp {
 private goToPage(page, params?, force?) {
     if (!page) return;
     if ( page.pageName && page.pageName == "SociosPage" ){
+      
       console.log(">>> Entra en Page: "+ page.pageName);
       this.isVCAvailable(page, params);
     }else{  

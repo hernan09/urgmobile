@@ -16,7 +16,7 @@ SIGNED_ALIGNED_APK="$APK_PATH/android-release-signed-aligned.apk"
 
 echo "Building apk..."
 #ionic cordova plugin rm cordova-plugin-console
-MY_ENV=prod ionic cordova build android --prod --release
+MY_ENV=preprod ionic cordova build android --release
 
 echo "Signing apk..."
 cp "$UNSIGNED_APK" "$SIGNED_APK"

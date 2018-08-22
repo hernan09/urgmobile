@@ -79,6 +79,7 @@ export class RegisterPage {
     nextAnswer() {
         if (this.last) {
             this.checkPreguntas();
+            this.dataService.updateTelefono();
         }
         else {
             this.p = this.preguntas[this.i++];
@@ -164,9 +165,7 @@ export class RegisterPage {
             dataResponse => {
                 this.checker.showOk(Config.MSG.REGISTER_OK)
                 this.loginService.login(this.user.dni)
-                this.dataService.getHistorial().subscribe(
-                    data =>{ this.dataService.saveHistorial(data,this.user.dni)},
-                    error =>{console.warn('Could not save Historial in localStorage')});
+
                 setTimeout(_ => this.navCtrl.setRoot(HomePage), 2000)
             },
             err => {

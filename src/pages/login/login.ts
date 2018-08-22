@@ -59,10 +59,10 @@ export class LoginPage implements Overlay {
       this.notiService
         .init(this.navCtrl)
         .then(data => {
-          console.log("Se inicia el servicio de OneSignal");
+          console.log("login : OneSignal is Starting");
         })
         .catch(err => {
-          console.warn("No se pudo conectar al Servicio de OneSignal", err);
+          console.warn("login : OneSignal Service Error", err);
         });
     });
   }
@@ -87,11 +87,11 @@ export class LoginPage implements Overlay {
           this.login(dni);
         })
         .catch(err => {
-          console.warn("Could not get device ID:", err);
+          console.warn("login - getDeviceID : Could not get device ID:", err);
           this.login(dni);
         });
     } catch (err) {
-      console.warn("Cordova not available.");
+      console.warn("login - getDeviceID : Cordova not available.");
       this.login(dni);
     }
     }
@@ -138,7 +138,7 @@ export class LoginPage implements Overlay {
     this.authService.checkDNI({ dni }).subscribe(
       data => {
 
-        console.log("C:Entra en logints.checkDNI")
+        console.log("login - checkDNI")
         this.utils.hideLoader();
         this.navCtrl.setRoot(
           RegisterPage,
@@ -147,7 +147,7 @@ export class LoginPage implements Overlay {
         );
       },
       error => {
-        console.log('Error---->',error);
+        console.log('login - Error: ',error);
         this.utils.hideLoader();      
       }
     );

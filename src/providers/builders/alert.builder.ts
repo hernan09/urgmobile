@@ -8,6 +8,7 @@ import { ImageService } from "../image.service";
 
 const ALERTA: any = {
   title: "Inicio",
+  alerta : "",
   step: 0,
   asignacion: null,
   prearribo: {},
@@ -56,6 +57,7 @@ export class AlertBuilder {
       alerta.step = 4;
       alerta.androidNotificationId = notification.androidNotificationId;
       alerta.title = "Encuesta de satisfacción";
+      alerta.alerta = notification.data.alerta;
       alerta.poll.question = notification.data.preguntas[0];
       alerta.poll.thanks = false;
       alerta.visible = true;
@@ -63,6 +65,7 @@ export class AlertBuilder {
     } else {
       alerta.title = notification.title;
       alerta.androidNotificationId = notification.androidNotificationId;
+      alerta.alerta = notification.data.alerta;
 
       switch (notification.data.tipoAtencion) {
         case "1":

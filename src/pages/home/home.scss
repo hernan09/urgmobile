@@ -20,10 +20,6 @@ page-home {
 		transition: 0.5s !important;
 	}
 
-	.alerta-list {
-
-	}
-
 	.alerta-item-none {
 		.label {
 			padding-left: 10px;
@@ -64,8 +60,10 @@ page-home {
 
 	.alerta-item-1 {
 		display: flex;
-		margin: 0 -16px 20px;
 		background-color: #eee;
+		width: 100%;
+		position: relative;
+		margin-bottom: 20px;
 		.label {
 			padding: 20px;
 			font-size: 18px;
@@ -88,11 +86,22 @@ page-home {
 			background-size: contain;
 			background-repeat: no-repeat;
 		}
+		.alert-exit {
+			position: absolute;
+			top: 50%;
+			right: 0px;
+			font-size: 28px;
+			color: rgba(0, 0, 0, 0.3);
+			margin-top: -14px;
+			margin-right: 10px;
+		}
 	}
 
 	.alerta-item-prearribo {
 		margin-bottom: 30px;
 		font-size: 18px;
+		position: relative;
+		margin-bottom: 20px;
 		.instructions {
 			text-transform: uppercase;
 			font-weight: bold;
@@ -100,16 +109,22 @@ page-home {
 		}
 		div:not(.title) {
 			padding-left: 15px;
-			padding-right: 15px;
+			padding-right: 25px;
 			margin-bottom: 5px;
+		}
+		.alert-exit {
+		    position: absolute;
+    		top: 0%;
+    		right: 0px;
+    		font-size: 28px;
+			color: rgba(0, 0, 0, 0.3);
+    		margin-right: 10px;
 		}
 	}
 
 	.alerta-item-visita {		
 		margin-bottom: 20px;
 		position: relative;
-
-
 		.visita-estado {
 			margin-bottom: 5px;
 			padding: 5px 5px;
@@ -164,9 +179,6 @@ page-home {
 				width: 100%;
 				text-align: center;
 			}
-			.visita-info-profesional {
-
-			}
 			.visita-info-nombre {
 				color: $osde_cyan;
 				font-size: 1.5em;
@@ -175,9 +187,7 @@ page-home {
 			.visita-info-especialidad {
 				font-weight: bold;
 			}
-			.visita-info-matricula {
-
-			}
+			
 		}
 
 		.visita-hora {
@@ -223,10 +233,18 @@ page-home {
 					color: $osde_red;
 				}
 			}
-			.llamadaBtn{
-
-			}
+		
 		}
+		.alert-exit {
+			position: absolute;
+			top: 2px;
+			right: 0px;
+			font-size: 28px;
+			color: rgba(0, 0, 0, 0.3);
+			margin-right: 10px;
+			
+		}
+	
 
 	}
 
@@ -234,6 +252,7 @@ page-home {
 		height: 70vh;
 		margin-bottom: 20px;
 		position: relative;
+		margin-bottom: 10px;
 
 		.poll-question {
 			text-align: center;

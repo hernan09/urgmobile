@@ -36,3 +36,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 config.xml
 .angulardoc.json
+# Envrionment Variables
+**/environment.*
+!**/environment.model.ts

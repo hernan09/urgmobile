@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import { AlertService } from './alert.service';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core'
-import {RequestOptions, Request, RequestMethod, Http, Headers} from '@angular/http';
+import {RequestOptions, Request, RequestMethod, Http, Headers, Response} from '@angular/http';
 import 'rxjs/Rx'
 import 'rxjs/add/operator/map'
 import { Subject } from 'rxjs/Subject'
@@ -140,8 +140,6 @@ export class DataService {
     }
 
   
-
-
     public getHistorial(dni?): Observable<any> {
         dni = dni || this.utils.getActiveUser()
         console.log('BK: getHistorial Request:', dni);
@@ -174,18 +172,19 @@ export class DataService {
         }
         return data;
     }
+
     private  showHistorialError(err,dni):any{
         this.error('historial', err)
         return [this.restoreHistorial(dni)] || []
     }
+    
     public getHistorialNotifications(dni?) {
         dni = dni || this.utils.getActiveUser()
         console.log('getHistorial Request:', dni)
         this.restoreHistorial(dni)
     }
 
-
-
+    
     public registrarDispositivo(idDevice, dni): Observable<Response> {
 
         const datos = { "dni": dni, "deviceId": idDevice };
@@ -194,7 +193,8 @@ export class DataService {
         let headers :Headers = this.authService.getActualHeaders();
         return this.http.post(SERVER_URL + API.registroDispositivo, datos, { headers })
             .map(res => { // Success
-                console.log("Se Registro el Device Correctamente");
+                console.log("data.service - Device registration success");
+                return res;
             })
             .catch(error => {
                 if (error.status === 401) {
@@ -202,7 +202,8 @@ export class DataService {
                     return this.authService.auth().mergeMap(res => {
                         if (res === true) {
                             return this.authService.retryPOST(datos, API.registroDispositivo)
-                            .map(res=> {console.log("Retry sucess in Registro Dispositivo ");})
+                                    .map(res=> {console.log("data.service - retry Device registration ");
+                                    return res;})
                             .catch(err => {return this.throwObservableError(err);})
                         }
                        return this.throwObservableError(error);
@@ -560,6 +561,19 @@ export class DataService {
     error(prop, err) {
         console.error('Could not get [' + prop + ']: ' + (err || 'Server error'))
     }
+
+
+    updateTelefono() {
+		console.log("data.services - updateTelefono: get phone numbers from URG if exists, other way get the static phone numbers")
+		this.getTelefonos().subscribe(
+			data => {
+				return this.getPhoneNumber();
+			},
+			err => {
+				return this.nextPhoneNumber();
+			}
+		)
+	}
 
 
 }

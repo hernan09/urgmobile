@@ -1,3 +1,5 @@
+import { Config } from './../../app/config';
+import { AlertService } from './../../providers/alert.service';
 import { VideoConsultaService } from './../../providers/video.consulta.service';
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
 import { NavController, NavParams, Content } from 'ionic-angular'
@@ -19,7 +21,7 @@ export class HomePage {
 	showHomeIcon:boolean
 	scrollTopStart
 
-	alertas :any
+	alertas_home :any
 	telefono :string
 	videoconsulta = false
 	answered = false
@@ -40,70 +42,80 @@ export class HomePage {
 		private notiService :NotificationsService,
 		private dataService :DataService,
 		private utils :Utils,
-		private videoConsultaService : VideoConsultaService,		
+		private videoConsultaService : VideoConsultaService,
+		private alertService : AlertService,		
 	){
-		this.alertas = notiService.getAlertas().filter(alerta => alerta.visible == true)
-		this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
+		let isBlocked = this.navParams.get("isBlocked");
+		if(isBlocked){
+			this.isCIDBlocked =  isBlocked;
+		}
+		// else{
+		// 	this.isCIDBlocked = false;
+		// }
+		this.alertas_home = notiService.getAlertas().filter(alerta => alerta.visible == true)
+		this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 
-		//this.telefono = dataService.getPhoneNumber()
 		this.videoconsulta = !!utils.getItem('cid')
 		this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
-		this.dni = navParams.get('dni') || utils.getItem('dni') || this.utils.getActiveUser();		
+		this.dni = navParams.get('dni') || utils.getItem('dni') || this.utils.getActiveUser();
+			
 
 		notiService.alertasChange.subscribe(alertas => {
 			console.log("Recibo alertas actualizadas");
-			this.alertas = alertas.filter(alerta => alerta.visible == true)
-			this.alertas.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
+			this.alertas_home = alertas.filter(alerta => alerta.visible == true)
+			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 			if (!this.ref['destroyed']) this.ref.detectChanges()
 		})		
-		this.alertas = notiService.getCurrentAlertas();
+		this.alertas_home = notiService.getCurrentAlertas();
+		 
+		setTimeout(_ => {
+			this.checkIfVCBlocked();
+		}, 1000)
+		this.updateUserData();
+		
+}
 
-		setTimeout(_ => {			
-			this.updateDatos();
-		}, 500);
+	checkIfVCBlocked() {
+		this.videoConsultaService.checkIfBlocked(this.dni, this.cid)
+		.filter(data => data === true).subscribe(
+            data =>{
+				console.log("data === true : la VC FINALIZO!!!!");
+				this.isCIDBlocked = data;
+			})
+			err =>{
+				console.log("data === false : COMO QUE LA  VC NO FINALIZO????");
+			}
 	}
 
-
-	updateDatos() {
-		this.videoConsultaService.checkIfBlocked(this.dni).subscribe(data =>{
-			this.isCIDBlocked = data;
-			this.renderPage();
-		})
-	}
-
-	renderPage(){
+	updateUserData(){
 		//Si es videoconsulta no llamo al servicio de actualizar datos
 		if(this.videoconsulta){
 			this.initVideoconsulta(this.cid,this.dni);
 		}
 		else{
-			this.dataService.getDatosSocio().subscribe(
-				data => {
-					this.dataService.updateUsers()
-					this.updateTelefono()
-				},
-				err => {
-					this.dataService.updateUsers()
-					this.updateTelefono()
-				}
-			)
+			let phonesLS = this.dataService.getLocalStorage(Config.KEY.TELEFONOS);
+			let userDataLS = this.dataService.getLocalStorage(Config.KEY.MIS_DATOS);
+			let historyLS = this.dataService.getLocalStorage(Config.KEY.HISTORIAL);
+			if(!phonesLS){
+				console.log("No hay telefonos en LS => los telefonos");
+				this.dataService.updateTelefono();
+				this.telefono = this.dataService.getPhoneNumber();
+			} 
+			if(!userDataLS){
+				console.log("No hay usuarios en LS => traigo los Usuarios");
+
+				this.dataService.getDatosSocio().subscribe(
+					data => {this.dataService.updateUsers()},
+					err => {console.log("Error al actualizar datos de Usuario y Telefono desde URG");
+				})
+			}
+			if(!historyLS){
+				console.log("No hay historial en LS => traigo el historial");
+			    this.dataService.getHistorial(this.dni).subscribe();
+
+			}
 		}
 	}
-
-
-	updateTelefono() {
-
-		console.log("updateTelefono hace lo mismo en Ok que error???")
-		this.dataService.getTelefonos().subscribe(
-			data => {
-				this.telefono = this.dataService.getPhoneNumber()
-			},
-			err => {
-				this.telefono = this.dataService.getPhoneNumber()
-			}
-		)
-	}
-
 
 	ionViewDidLoad() {
 		this.content.ionScrollStart.subscribe((data)=>{
@@ -138,7 +150,7 @@ export class HomePage {
 	}
 
 	rate(rating) {
-		const poll = this.alertas.slice(-1)[0].poll
+		const poll = this.alertas_home.slice(-1)[0].poll
 		poll.rate = rating
 		this.ref.detectChanges()
 	}
@@ -146,7 +158,7 @@ export class HomePage {
 	
 	sendPoll() {
 		this.utils.showLoader()
-		const { question, rate, comment, idAttention } = this.alertas.slice(-1)[0].poll
+		const { question, rate, comment, idAttention } = this.alertas_home.slice(-1)[0].poll
 		const data = {
 			dni : this.utils.getActiveUser(),
 			question,
@@ -168,17 +180,30 @@ export class HomePage {
 		data.comment = "";
 	}
 
+	closeAlert(alerta){
+		
+		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR);
+
+		alert.onDidDismiss(res => {
+			if (res != false) {						
+					alerta.visible=false;
+					this.notiService.setAlertas(this.alertas_home);		
+					this.notiService.alertasChange.next(this.alertas_home);		  
+			} 
+		  });
+		  alert.present();
+	}
 
 	sayThanks() {
 		this.utils.hideLoader()
-		this.alertas[0].poll.thanks = true
+		this.alertas_home[0].poll.thanks = true
 		this.ref.detectChanges()
         setTimeout(_ => {
 
 			this.notiService.hideNotifications();
 			this.showHomeIcon = true;
 			
-			const poll = this.alertas.slice(-1)[0].poll
+			const poll = this.alertas_home.slice(-1)[0].poll
 			poll.rate = 0
 			poll.comment = ''
 			this.ref.detectChanges()
@@ -189,7 +214,7 @@ export class HomePage {
 
 
 	closePoll() {
-		const poll = this.alertas.slice(-1)[0].poll
+		const poll = this.alertas_home.slice(-1)[0].poll
 		poll.rate = 0
 		poll.comment = ''
 		poll.thanks = false

@@ -72,8 +72,7 @@ export class SolicitudVcPage implements Overlay {
                 }
                 else{
                     this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR);
-                    console.log("Cantidad de numeros del telefono debe sumar 10");
-                    this.navCtrl.setRoot(HomePage);
+                    console.log("Cantidad de numeros del telefono debe sumar 10");                    
                 }
         }
         else{

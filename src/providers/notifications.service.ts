@@ -22,6 +22,7 @@ const SIM_DELAY: number = Config.OPTIONS.NOTI_SIM_DELAY;
 
 const ALERTA: any = {
   title: "Inicio",
+  alerta : "",
   step: 0,
   asignacion: null,
   prearribo: {},
@@ -76,17 +77,8 @@ export class NotificationsService {
 
   init(navCtrl) {
     this.oneSignal.startInit(
-      //Config.OPTIONS.ONE_SIGNAL_APP_ID,
-      //Config.OPTIONS.GOOGLE_PROJECT_NUMBER
-
-      //----- AMBIENTES DE PREPROD -----
-      //Config.OPTIONS.ONE_SIGNAL_APP_ID_PREPROD,
-      //Config.OPTIONS.GOOGLE_PROJECT_NUMBER__PREPROD
-
-      //----- AMBIENTES DE DESA -----
-      Config.OPTIONS.ONE_SIGNAL_APP_ID_TEST,
-      Config.OPTIONS.GOOGLE_PROJECT_NUMBER_TEST
-
+      Config.ONE_SIGNAL_ID_APP,
+      Config.GOOGLE_PROJECT_NUMBER_APP
     );
 
     this.oneSignal.inFocusDisplaying(
@@ -163,10 +155,12 @@ export class NotificationsService {
           Config.MSG.VIDEO_CALL, Config.ALERT_OPTIONS.CONTESTAR, Config.ALERT_OPTIONS.IGNORAR
         );
         alert.onDidDismiss(res => {
+          const cid = noti.data.contenido;
+          console.log("cid: " + cid + " noti.data.dni " + noti.data.dni);
           if (res != false) {
-            const cid = noti.data.contenido;
-            console.log("cid: " + cid + " noti.data.dni " + noti.data.dni);
             navCtrl.setRoot(VideoConsultaPage, { cid, dni: noti.data.dni });
+          }else{
+            navCtrl.setRoot(HomePage, { cid, dni: noti.data.dni });
           }
         });
         alert.present();
@@ -235,6 +229,7 @@ export class NotificationsService {
     if (notification.data.preguntas && notification.data.preguntas.length) {
       alerta.step = 4;
       alerta.androidNotificationId = notification.androidNotificationId;
+      alerta.alerta = notification.data.alerta;
       alerta.title = "Encuesta de satisfacción";
       alerta.poll.question = notification.data.preguntas[0];
       alerta.poll.idAttention = notification.data.idAtencion;
@@ -247,6 +242,7 @@ export class NotificationsService {
     } else {
       alerta.title = notification.title;
       alerta.androidNotificationId = notification.androidNotificationId;
+      alerta.alerta = notification.data.alerta;
       switch (notification.data.tipoAtencion) {
         case "1":
           alerta.step = 1;

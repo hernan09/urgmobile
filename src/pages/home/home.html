@@ -19,7 +19,7 @@
 	</ion-navbar>
 
 	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
-		<ion-title *ngIf="!showHomeIcon">{{alertas[0].title}}</ion-title>
+		<ion-title *ngIf="!showHomeIcon">{{alertas_home[0].alerta}}</ion-title>
 		<ion-title *ngIf="showHomeIcon">Inicio</ion-title>
 	</ion-toolbar>
 
@@ -28,9 +28,12 @@
 
 <ion-content padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
-	<div *ngFor="let alerta of alertas" class="alerta-list">
-
+	<div *ngFor="let alerta of alertas_home" class="alerta-list">
+		
 		<div *ngIf="alerta.step == 5 && alerta.visible" class="alerta-item-1">
+			<div>
+				<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
+			</div>
 			<div class="imgCall"></div>
 			<div class="label">
 				{{alerta.estado.label}}
@@ -60,9 +63,9 @@
 
 				<textarea class="poll-comment" placeholder="Dejanos tu comentario" [(ngModel)]='alerta.poll.comment'></textarea>
 
-				<button ion-button full class="urg-button-blue"
-					(click)="sendPoll()">
-					Enviar
+				<button ion-button full class="urg-button-blue" [disabled]="!alerta.poll.rate"
+						(click)="sendPoll()">
+						Enviar
 				</button>
 
 			</div>
@@ -78,6 +81,9 @@
 
 
 		<div *ngIf="alerta.step == 3 && alerta.visible" class="alerta-item-visita">
+			
+			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit" ></ion-icon>
+
 			<div class="visita-estado" [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.status}}</div>
 			<div *ngIf="!alerta.doctor.foto"class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>	
 			<div *ngIf="alerta.doctor.foto">		
@@ -91,7 +97,7 @@
 					<div class="visita-info-matricula" *ngIf="alerta.doctor.matricula">Matrícula: {{alerta.doctor.matricula}}</div>
 				</div>
 			</div>
-			<div class="visita-hora">
+			<div *ngIf="alerta.estado.hora" class="visita-hora">
 				<div class="visita-hora-reloj"></div>
 				<div class="visita-hora-label">
 					<div [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.label}}</div>
@@ -104,14 +110,18 @@
 
 
 		<div *ngIf="alerta.step == 2 && alerta.visible" class="alerta-item-prearribo">
+			<div>
+				<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
+			</div>
 			<div>Mientras que arriba el médico, seguí estas recomendaciones:</div>
-			<div class="instructions">INSTRUCCIONES DE PREARRIBO</div>
-			<div>{{alerta.prearribo.condicion}}</div>
+			<div class="instructions">INSTRUCCIONES DE PREARRIBO</div>			
+			<div>{{alerta.title}}</div>			
 			<div *ngFor="let consejo of alerta.prearribo.consejos">{{consejo}}</div>
 		</div>
 
 
 		<div *ngIf="alerta.step == 1 && alerta.visible" class="alerta-item-1">
+			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
 			<div class="img"><!--<div class="small badge">1</div>--></div>
 			<div class="label">
 				{{alerta.asignacion}}
@@ -128,7 +138,8 @@
 		</div>
 	</div>
 
-	<button *ngIf="videoconsulta" ion-button full icon-start class="urg-button-blue"
+
+	<button *ngIf="videoconsulta"  ion-button full icon-start class="urg-button-blue"
 		(click)="initVideoconsulta()">
 		<ion-icon name="video"></ion-icon>
 		Comenzar Videoconsulta

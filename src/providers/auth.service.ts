@@ -1,7 +1,7 @@
 import { $CARET } from '@angular/compiler/src/chars';
 import { AlertService } from './alert.service';
 import { Injectable } from "@angular/core";
-import { Http, Headers } from "@angular/http";
+import { Http, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs";
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';

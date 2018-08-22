@@ -78,7 +78,7 @@ export class VideoConsultaPage {
   blockCid() {
     return this.http.post(VC_SERVER_URL + '/cid', { cid : parseInt(this.cid) } ).subscribe(
       data => {
-        console.log('Conference blocked')
+        console.log('Conference blocked')        
       },
       err => {
         console.log('Could not block conference')
@@ -131,9 +131,9 @@ export class VideoConsultaPage {
     this.exit()
   }
 
-  exit() {
+  exit() {    
     this.utils.delItem('cid')
-    this.navCtrl.setRoot(HomePage)
+    this.navCtrl.setRoot(HomePage);
   }
 
 goHome(vcInstance:any){

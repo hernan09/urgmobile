@@ -15,7 +15,7 @@ export class VideoconsultaMessagePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     console.log("Redireccionar al home");
-    setTimeout(_ => this.navCtrl.setRoot(HomePage), RELOAD_DELAY * 1000);
+    setTimeout(_ => this.navCtrl.setRoot(HomePage, {isBlocked: true}), RELOAD_DELAY * 1000);
   }
 
 }

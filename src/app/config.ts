@@ -1,39 +1,20 @@
+import { ENV } from '@app/env'
+
 export class Config {
 
 	public static OPTIONS = {
-		SERVER : 'test',
 		EXPIRE_TIME : 30 * 24 * 60, // login expire time, in minutes
 		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds		
 		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation)
-
-		//----- AMBIENTES DE PROD -----
-		// ONE_SIGNAL_APP_ID : '6222cb3a-8180-4242-971c-86a4baa23529',
-		// GOOGLE_PROJECT_NUMBER : '367741538862',
-
-		//----- AMBIENTES DE PREPROD -----
-		//ONE_SIGNAL_APP_ID_PREPROD : 'e966ed19-8ef0-44a8-af72-ce60889f18d1',
-		//GOOGLE_PROJECT_NUMBER__PREPROD : '600665001510',
-
-		//----- AMBIENTES DE DESA -----
-		ONE_SIGNAL_APP_ID_TEST : '99b9131f-cfa9-4b3a-ab12-2d0d459c9916',
-		GOOGLE_PROJECT_NUMBER_TEST : '981462568601',
-
-		VERSION_NUMBER : '1.0.13.2-TEST',
+		VERSION_NUMBER : '1.0.14.5-PREPROD'
 	}
 
-	static SERVERS = {
-		new : 'https://urgencias-producto.appspot.com/api',
-		old : 'https://easydocbackend.appspot.com',
-		test : 'https://urg-easydoc-backend-test-dot-urg-easydoc-205820.appspot.com/api',
-		preprod:'https://urg-easydoc-backend-preprod-dot-urg-easydoc-205820.appspot.com/api'
-	}
-
-
-	static VC_SERVERS = {
-		
-		test : 'https://urg-videoconsulta-backend-test-dot-urg-easydoc-205820.appspot.com/',
-		preprod:'https://urg-videoconsulta-backend-preprod-dot-urg-easydoc-205820.appspot.com/'
-		
+	public static getEnv(){
+		console.log("El env apunta a : " + ENV.mode);
+		console.log("SERVER_URL", this.SERVER_URL);
+		console.log("VC_SERVERS", this.VC_SERVER_URL);
+		console.log("ONE_SIGNAL_ID", this.ONE_SIGNAL_ID_APP);
+		console.log("GOOGLE_PROJECT_NUMBER", this.GOOGLE_PROJECT_NUMBER_APP);
 	}
 
 	public static API = {
@@ -51,11 +32,15 @@ export class Config {
 		registroDispositivo: '/socio/registrarDispositivo'
 	}
 
-	public static SERVER_URL = getServerURL();
+	public static SERVER_URL = ENV.server;	
 	
-	public static authBody = getAuthBody();
+	public static VC_SERVER_URL = ENV.vc_server;	
+	
+	public static ONE_SIGNAL_ID_APP = ENV.oneSignal_id;	
+	
+	public static GOOGLE_PROJECT_NUMBER_APP = ENV.google_pj;
 
-	public static VC_SERVER_URL = getVCServerURL();
+	public static authBody = getAuthBody();	
 
 	public static KEY = {
 		TITULAR : 'titular',
@@ -75,7 +60,7 @@ export class Config {
 		VIDEO_CALL_TITLE:'Video Consulta',
 		WARNING_TITLE:'Atención',
 		WE_ARE_SORRY : 'Lo sentimos',
-		WRONG_NUMBER : 'Número de telefono erroneo',
+		WRONG_NUMBER : 'Número de telefono erroneo',		
 	}
 
 
@@ -84,6 +69,8 @@ export class Config {
 		IGNORAR:'Ignorar',
 		SI:'Si', 
 		NO:'No',
+		ACEPTAR: 'Aceptar',
+		CANCELAR: 'Cancelar',
 	}
 
 
@@ -108,19 +95,12 @@ export class Config {
 		VIDEO_CALL: 'Nueva Video Consulta en Espera',
 		WRONG_NUMBER_ERROR : 'La suma del prefijo y el número de telefono debe ser de 10 caracteres',	
 		SOLICITUD_VC_ERROR: "No es posible utilizar el servicio de Video Consulta en este momento. Comunicate con nosotros de la manera tradicional.",
+		ALERT_CLEANER : 'Se va a eliminar la alerta. ¿Desea continuar?',
 	}
-
+	
 }
 
-
-function getServerURL() {
-	return Config.SERVERS[Config.OPTIONS.SERVER]
-}
-
-function getVCServerURL() {
-	return Config.VC_SERVERS[Config.OPTIONS.SERVER]
-}
-
+Config.getEnv();
 
 function getAuthBody() {
 	const client_id = 'urg_ClientIdEasyDoc'
@@ -128,3 +108,4 @@ function getAuthBody() {
 	const grant_type = 'client_credentials'
 	return `client_id=${client_id}&client_secret=${client_secret}&grant_type=${grant_type}`
 }
+

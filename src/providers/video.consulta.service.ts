@@ -13,46 +13,32 @@ export class VideoConsultaService {
         
     }   
 
-    public checkIfBlocked(dni) : Observable<any>{
+public checkIfBlocked(dni, cid?) : Observable<any>{
 
         let answerObs : Subject<any> = new Subject<any>();
-        let cid = this.dataService.getCID(dni);
-        
+        //Cambie la logica el cid siempre lo recibe por parametro no lo busca mas en el dataService
+        let cidUrl;
+        if(cid){
+          cidUrl = cid;
+        }
+        else{
+         cidUrl = this.dataService.getCID(dni);
+        }
+        //let cid = this.dataService.getCID(dni);
 
-          this.http.get(VC_SERVER_URL + '/cid/' + cid).subscribe(
+        this.http.get(VC_SERVER_URL + '/cid/' + cidUrl).subscribe(
             data => {
               // if get succeeds, cid is blacklisted
               answerObs.next(true);
-              console.log("Se termino la videoConsulta");
+              console.log("video.consulta.service - VC finished");
             },
             err => {
-                console.log("Sigue en pie la videoconsulta");
+                console.log("video.consulta.service - VC still open");
                 answerObs.next(false);
             }            
           )
 
           return answerObs; 
-}
-
-public checkIfBlocked2(dni) : Observable<any>{
-
-  let answerObs2 : Subject<any> = new Subject<any>();
-  let cid = this.dataService.getCID(dni);
-  
-
-    this.http.get(VC_SERVER_URL + '/cid/' + cid).subscribe(
-      data => {
-        // if get succeeds, cid is blacklisted
-        answerObs2.next(true);
-        console.log("Se termino la videoConsulta");
-      },
-      err => {
-          console.log("Sigue en pie la videoconsulta");
-          answerObs2.next(false);
-      }            
-    )
-
-    return answerObs2; 
 }
 }
 

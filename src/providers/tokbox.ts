@@ -105,7 +105,7 @@ export class Tokbox {
       
       setTimeout(_ => {
           // Remove participants
-          this.vcService.checkIfBlocked2(this.utils.getActiveUser())
+          this.vcService.checkIfBlocked(this.utils.getActiveUser())
           .filter(data => data === true)
           .subscribe(
             data =>{
@@ -113,7 +113,8 @@ export class Tokbox {
                     session.off();
                     this.utils.delItem('cid');
                     session.disconnect();
-                    this.VC.goHome(this.VC);
+                    //this.VC.exit(true);
+                    this.VC.goHome(this.VC,true);
             });
 
           const deadguy = this.participants.find( p => p.streamId == event.stream.streamId )

@@ -54,13 +54,13 @@
             <ion-col col-4>               
               <ion-item>                
                 <ion-label class="primary">0</ion-label>
-                <ion-input type="tel" [(ngModel)]="prefijo" maxlength="4"></ion-input>
+                <ion-input type="tel" [(ngModel)]="prefijo" maxlength="4" [disabled]="checkTel"></ion-input>
               </ion-item>
             </ion-col>            
             <ion-col>
               <ion-item>
                 <ion-label class="primary">15</ion-label>
-                <ion-input type="tel" [(ngModel)]="tel" maxlength="8"></ion-input>
+                <ion-input type="tel" [(ngModel)]="tel" maxlength="8" [disabled]="checkTel"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -78,7 +78,7 @@
   </ion-col>
   <ion-col>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="email" [disabled]="true"></ion-input>
+        <ion-input type="text" [(ngModel)]="email" [disabled]="checkEmail"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>

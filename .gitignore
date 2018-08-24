@@ -39,4 +39,3 @@ config.xml
 # Envrionment Variables
 **/environment.*
 !**/environment.model.ts
-config/webpack.config.js

@@ -46,13 +46,8 @@
       <div>
         <ion-grid>
           <ion-row>
-              <ion-col col-2>
+            <ion-col col-5>
               <ion-item>
-                  <ion-checkbox [(ngModel)]="checkTel"></ion-checkbox>
-              </ion-item>
-              </ion-col>
-            <ion-col col-4>               
-              <ion-item>                
                 <ion-label class="primary">0</ion-label>
                 <ion-input type="tel" [(ngModel)]="prefijo" maxlength="4" [disabled]="checkTel"></ion-input>
               </ion-item>
@@ -66,24 +61,6 @@
           </ion-row>
         </ion-grid>
       </div>
-
-      <div class="osde-label">EMAIL</div>
-      <div>
-      <ion-grid>
-          <ion-row>
-      <ion-col col-2>
-      <ion-item>
-      <ion-checkbox [(ngModel)]="checkEmail"></ion-checkbox>
-    </ion-item>
-  </ion-col>
-  <ion-col>
-      <ion-item>
-        <ion-input type="text" [(ngModel)]="email" [disabled]="checkEmail"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-</div>
 
       <div class="osde-label">SINTOMA</div>
       <ion-item>

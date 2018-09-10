@@ -3,7 +3,7 @@ import { AlertService } from '../../providers/alert.service';
 import { Config } from './../../app/config';
 import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, NavParams} from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms'
 import { SolicitudVcPage } from '../solicitud-vc/solicitud-vc';
 import { DataService } from '../../providers/data.service';
@@ -54,8 +54,9 @@ export class SociosPage {
         //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
         let response = this.dataService.getResponseData(responseValidateVC);
         if (response.estadoVC == "Activo") {
+            let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}
             this.utils.hideLoader();
-            this.navCtrl.setRoot(SolicitudVcPage, { socio: this.socioActual }, { animate: true, direction: 'back' })
+            this.navCtrl.setRoot(SolicitudVcPage, { socio: this.socioActual, email: response.email, tel : telefono}, { animate: true, direction: 'back' })
 
         }
         else {
@@ -93,10 +94,6 @@ export class SociosPage {
     }
 
 
-    nextPhoneNumber() {
-		this.telefono = this.dataService.nextPhoneNumber();
-    }
-    
     previusPage() {
        this.navCtrl.setRoot(HomePage);
     }

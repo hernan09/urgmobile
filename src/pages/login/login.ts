@@ -28,7 +28,7 @@ const ERROR_MSG = {
 export class LoginPage implements Overlay {
   dni: number;
   telefono;
-  newMember = false;
+  newMember :boolean;
   button_text = "INGRESAR";
   placeholder = "";
 
@@ -153,10 +153,9 @@ export class LoginPage implements Overlay {
     );
   }
 
-  nextPhoneNumber() {
-    this.telefono = this.dataService.nextPhoneNumber();
+  nextPhoneNumber(){
+     this.telefono = this.dataService.nextPhoneNumber();
   }
-
   closeAllOverlays(){
     this.alertService.hideAlert();
   }

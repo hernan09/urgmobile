@@ -48,10 +48,6 @@ export class CredencialPage {
 		)
 	}
 
-	nextPhoneNumber() {
-		this.telefono = this.data.nextPhoneNumber();
-	}
-
 	fullCredentialData(){
 		let credentialData = this.data.restoreMisDatos(this.utils.getActiveUser())
 		if(credentialData){

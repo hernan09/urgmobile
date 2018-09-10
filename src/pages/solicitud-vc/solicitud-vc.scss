@@ -84,8 +84,20 @@ page-solicitud-vc {
         border-left: 0px !important; 
         border-right: 0px !important;
         border-bottom: 0px !important;
-      }      
+      } 
       
+}
+
+ion-col{
+  position: initial !important;
+}
+
+ion-grid{
+  padding: 0px !important;
+}
+
+ion-list{
+  margin: 0 !important;
 }
 
 .hideHeader .alert-head{

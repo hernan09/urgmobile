@@ -9,7 +9,7 @@ page-videoconsulta {
 
   .videoconf {
     height: 100%;
-    background-color: $black;
+    background-color:$white
   }
 
   .frame {
@@ -93,4 +93,78 @@ page-videoconsulta {
     }
   }
 
+
+  .gracias-pop{
+    border-top:4px solid#a5d546;
+   border-bottom:4px solid #00b7d8;
+   background-color:#ffffff;
+   -webkit-box-shadow: -1px 3px 28px -2px rgba(0,0,0,0.75);
+   -moz-box-shadow: -1px 3px 28px -2px rgba(0,0,0,0.75);
+   box-shadow: -1px 3px 28px -2px rgba(0,0,0,0.75);
+   height:auto;
+   padding:50px 0;
+   width:80%;
+   margin:0 auto;
+   max-width:800px;
+   margin-top:15%;
+   text-align:center;
+}
+
+  .waiting-doctor{
+    margin-top:-15px;
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999999;
+    display: block;
+    opacity: 1;
+    margin-top: -125px;
+    margin-left: -100px;
+    box-sizing: border-box;
+  }
+  .waiting-doctor img{
+    animation-name: imagen;
+    animation-duration: 2s;
+    border-radius:50%;
+    -webkit-box-shadow: -4px 8px 0px 6px rgba(0,180,213,1);
+    -moz-box-shadow: -4px 8px 0px 6px rgba(0,180,213,1);
+    box-shadow: -4px 8px 0px 6px rgba(0,180,213,1);
+    animation-iteration-count: infinite;
+  }
+
+  p.mensajeTexto {
+    font-size:26px;
+    font-size: 23px;
+    margin-top:15px;
+  }
+  p.mensajeTexto span{
+    animation-name: punto;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transition:all 0.3s;
+  }
+  .mensajeTexto span:first-child{
+     animation-delay: 0.1s;
+  }
+  .mensajeTexto span:nth-child(2){
+     animation-delay: 0.2s;
+  }
+  .mensajeTexto span:last-child{
+     animation-delay: 0.3s;
+  }
+ 
+  
+  .logo {
+		height: 15vh;
+		margin-top: 10vh;
+		background: url('../assets/img/logo.png') center;
+		background-size: contain;
+		background-repeat: no-repeat;
+  }
+  
+  .salto{
+    display:block;
+}
 }

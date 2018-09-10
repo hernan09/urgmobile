@@ -10,6 +10,7 @@ import { ToastService } from '../../providers/toast.service';
 import { Config } from './../../app/config';
 
 
+
 const RELOAD_DELAY = 3;
 const {VC_SERVER_URL } = Config;
 
@@ -27,6 +28,8 @@ export class VideoConsultaPage {
   cam = true
   private readyToExit = false
   isBlocked = false;
+  waitingDoctor: boolean;
+  
 
   constructor(
     public navCtrl :NavController,
@@ -36,33 +39,33 @@ export class VideoConsultaPage {
     private provider :Tokbox,
     private ref: ChangeDetectorRef,
     private toastService : ToastService,
-    private dataService : DataService,
+    private dataService : DataService,    
   ) {
     this.utils.showLoader();
     this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
     this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
 
     this.utils.setItem('cid', this.cid)
-    provider.VC = this
-    this.checkCid()
+    provider.VC = this 
+    this.checkCid();    
   }
-
+  
 
   checkCid() {
-    this.utils.showLoader()
+    this.utils.showLoader();
     return this.http.get(VC_SERVER_URL + '/cid/' + this.cid).subscribe(
       data => {
-        // if get succeeds, cid is blacklisted
+        // if get succeeds, cid is blacklisted 
         console.log('Conference is no longer available')
         this.show = 'unavailable'
-        this.utils.hideLoader()        
-        setTimeout(this.exit, 2000)
+        this.utils.hideLoader();   
+        this.exit;     
       },
       err => {
         // if get yields a 404, cid is available
         // for any other error, allow access to conf anyway
         this.dataService.saveCID(this.cid,this.dni);
-        this.provider.getCredentials({ cid : this.cid, isSafari : 0 })
+        this.provider.getCredentials({ cid : this.cid, isSafari : 0 })        
       }
     )
   }
@@ -86,10 +89,9 @@ export class VideoConsultaPage {
     )
   }
 
-
   public startCall() {
     this.show = 'video'
-    this.utils.hideLoader()
+    this.utils.hideLoader();
   }
 
 
@@ -108,7 +110,7 @@ export class VideoConsultaPage {
 
   public showError() {
     this.show = 'error'
-    this.utils.hideLoader()
+    this.utils.hideLoader();
     setTimeout(_ => this.navCtrl.setRoot(VideoConsultaPage), RELOAD_DELAY * 1000)
   }
 
@@ -116,29 +118,29 @@ export class VideoConsultaPage {
   toggleCam() {
     this.cam = !this.cam
     this.provider.controlHandlers.toggleCam( this.cam )
-    this.ref.detectChanges()
+    this.ref.detectChanges();
   }
 
   toggleMic() {
     this.mic = !this.mic
     this.provider.controlHandlers.toggleMic( this.mic )
-    this.ref.detectChanges()
+    this.ref.detectChanges();
   }
 
   hangup() {
     console.log('hanging up')
-    this.provider.controlHandlers.hangup()
-    this.exit()
+    this.provider.controlHandlers.hangup();
+    this.exit();
   }
 
-  exit() {    
-    this.utils.delItem('cid')
+  exit() {
+    this.utils.delItem('cid');  
     this.navCtrl.setRoot(HomePage);
+
   }
 
-goHome(vcInstance:any){
+goHome(vcInstance:any){   
   vcInstance.navCtrl.setRoot(VideoconsultaMessagePage);
-
 }
 
 }

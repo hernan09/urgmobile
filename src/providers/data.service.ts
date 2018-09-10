@@ -154,7 +154,7 @@ export class DataService {
                     return this.authService.auth().mergeMap(res => {
                         if (res === true) {
                             return this.authService.retryPOST({ dni }, API.historial)
-                                .map(this.handleHistorial.bind(dni,"this"))
+                                .map(this.handleHistorial.bind(this,dni))
                                 .catch(err => {return this.showHistorialError(err,dni);})
                         }
                         return this.showHistorialError(err,dni);
@@ -567,10 +567,10 @@ export class DataService {
 		console.log("data.services - updateTelefono: get phone numbers from URG if exists, other way get the static phone numbers")
 		this.getTelefonos().subscribe(
 			data => {
-				return this.getPhoneNumber();
+				this.saveTelefonos(data);
 			},
 			err => {
-				return this.nextPhoneNumber();
+				console.log("No se pudieron obtener los telefonos");
 			}
 		)
 	}

@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import "rxjs/Rx";
 import "rxjs/add/operator/map";
 import { Subject } from "rxjs/Subject";
-import { Utils, DUMMY_NOTIS } from "../utils";
 import { ImageService } from "../image.service";
 
 const ALERTA: any = {

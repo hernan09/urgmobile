@@ -55,7 +55,7 @@ export class LoginService {
   }
 
   calcExpireTime() {
-    return Date.now() + Config.OPTIONS.EXPIRE_TIME * 6000;
+    return Date.now() + Config.OPTIONS.EXPIRE_TIME * 60000;
   }
 
 }

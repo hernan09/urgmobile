@@ -1,4 +1,3 @@
-import { VideoConsultaService } from './../providers/video.consulta.service';
 import { BrowserModule } from '@angular/platform-browser'
 import { ErrorHandler, NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
@@ -34,7 +33,8 @@ import { VideoConsultaPage } from '../pages/videoconsulta/videoconsulta'
 import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 import { SociosPage } from '../pages/socios/socios';
 import { VideoconsultaMessagePage } from './../pages/videoconsulta-message/videoconsulta-message';
-
+import { NavigatorPage } from './../pages/navigator/navigator';
+import { FooterPage } from './../pages/footer/footer';
 
 
 // services
@@ -52,7 +52,7 @@ import { AlertService } from './../providers/alert.service';
 import { ImageService } from './../providers/image.service';
 import { GroupedNotificationService } from './../providers/grouped.notificacion.service';
 import { AlertBuilder } from './../providers/builders/alert.builder';
-
+import { VideoConsultaService } from './../providers/video.consulta.service';
 
 
 
@@ -74,7 +74,10 @@ import { AlertBuilder } from './../providers/builders/alert.builder';
     SociosPage,
     SolicitudVcPage,
     VideoconsultaMessagePage, 
+    NavigatorPage,
+    FooterPage,
     CheckerComponent,
+    
   ],
   
   entryComponents: [
@@ -93,6 +96,8 @@ import { AlertBuilder } from './../providers/builders/alert.builder';
     SociosPage,
     SolicitudVcPage,
     VideoconsultaMessagePage, 
+    NavigatorPage,
+    FooterPage,
     CheckerComponent,
   ],
 

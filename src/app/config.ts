@@ -5,8 +5,8 @@ export class Config {
 	public static OPTIONS = {
 		EXPIRE_TIME : 30 * 24 * 60, // login expire time, in minutes
 		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds		
-		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation)
-		VERSION_NUMBER : '1.0.14.5-PREPROD'
+		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation
+		VERSION_NUMBER : '1.0.15.6'
 	}
 
 	public static getEnv(){
@@ -60,7 +60,8 @@ export class Config {
 		VIDEO_CALL_TITLE:'Video Consulta',
 		WARNING_TITLE:'Atención',
 		WE_ARE_SORRY : 'Lo sentimos',
-		WRONG_NUMBER : 'Número de telefono erroneo',		
+		WRONG_NUMBER : 'Número de telefono erroneo',
+		WRONG_EMAIL : 'Formato de email incorrecto',		
 	}
 
 
@@ -94,8 +95,10 @@ export class Config {
 		TITULAR_EXIST_INFO: 'El DNI {} se encuentra registrado en esta aplicación. Si continúa con el proceso los datos relacionados con el mismo serán reemplazados. ¿Desea continuar?',
 		VIDEO_CALL: 'Nueva Video Consulta en Espera',
 		WRONG_NUMBER_ERROR : 'La suma del prefijo y el número de telefono debe ser de 10 caracteres',	
+		WRONG_EMAIL_ERROR : 'Por favor verifique lo escrito y reingrese un email con formato válido',
 		SOLICITUD_VC_ERROR: "No es posible utilizar el servicio de Video Consulta en este momento. Comunicate con nosotros de la manera tradicional.",
 		ALERT_CLEANER : 'Se va a eliminar la alerta. ¿Desea continuar?',
+		DATA_SAVED: 'Los datos han sido guardados',
 	}
 	
 }

@@ -299,6 +299,12 @@ export class NotificationsService {
     if (i != -1) this.alertas[i].visible = false;
   }
 
+  public hideAlertById(id) {
+    let i = this.alertas.findIndex(alert => alert.androidNotificationId === id);
+    if (i != -1) this.alertas[i].visible = false;
+    this.saveAlertas();
+  }
+
   private isVideoCall(tipoAlerta: String) {
     return tipoAlerta == "6";
   }

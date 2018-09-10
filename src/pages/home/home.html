@@ -1,22 +1,6 @@
 <ion-header>
 
-	<ion-navbar hideBackButton>
-	    <ion-buttons left>
-	    	<button left menuToggle="left" class="urgIcon">
-	    		<ion-icon name="menu"></ion-icon>
-	    	</button>
-	    </ion-buttons>
-	    <ion-title>
-	    	URG
-	    </ion-title>
-	    <ion-buttons right>
-	    	<a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
-			    <button right class="urgIcon">
-			    	<ion-icon name="call"></ion-icon>
-			    </button>
-			</a>
-		</ion-buttons>
-	</ion-navbar>
+	<page-navigator></page-navigator>
 
 	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
 		<ion-title *ngIf="!showHomeIcon">{{alertas_home[0].alerta}}</ion-title>
@@ -112,7 +96,7 @@
 		<div *ngIf="alerta.step == 2 && alerta.visible" class="alerta-item-prearribo">
 			<div>
 				<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
-			</div>	
+			</div>
 			<div class="instructions">{{alerta.title}}</div>			
 			<div>{{alerta.prearribo.condicion}}</div>		
 			<div *ngFor="let consejo of alerta.prearribo.consejos">{{consejo}}</div>
@@ -146,11 +130,4 @@
 
 </ion-content>
 
-<ion-footer id="homeFooter">
-	<a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
-		<button ion-button full icon-start class="urg-button-lightgreen">
-			<ion-icon name="call"></ion-icon>
-			Solicitar médico
-		</button>
-	</a>
-</ion-footer>
+<page-footer></page-footer>

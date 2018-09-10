@@ -1,6 +1,5 @@
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
-import { VideoConsultaPage } from './../videoconsulta/videoconsulta';
 import { Overlay } from './../../interfaces/overlay.interface';
 import { ToastService } from './../../providers/toast.service';
 import { NetworkService } from './../../providers/network.service';
@@ -33,7 +32,8 @@ export class SolicitudVcPage implements Overlay {
     private showSelectText: string;
     public selectTextColor: string = '#EE4035';
     public selectOptions;
-    private telefono;    
+    private telefono;  
+    private email : string;  
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
         private dataService: DataService, private device: Device, private networkService: NetworkService, 
@@ -55,24 +55,30 @@ export class SolicitudVcPage implements Overlay {
     ionViewDidLoad() {
         //asigno mi name al socio que recibo de la pantalla anterior
         console.log(this.navParams.get('socio').dni);
-        this.name = this.navParams.get('socio').nombre;
-        this.lastname = this.navParams.get('socio').apellido;
-        this.dni = this.navParams.get('socio').dni
-
+        this.name = this.navParams.get('socio').nombre || "";
+        this.lastname = this.navParams.get('socio').apellido || "";
+        this.dni = this.navParams.get('socio').dni || "";
+        this.tel = this.navParams.get('tel').numero || "";
+        this.prefijo = this.navParams.get('tel').prefijo || "";
+        this.email = this.navParams.get('email') || "";
     }
 
     sendVCRequest() {
         if(this.networkService.isNetworkConnected()){
-            if(this.checkTelLength()){
-                this.utils.showLoader(false);
-                //llamo al servicio de solicitarVC de mi dataService
-                let response = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version };
-                console.log("sendVCRequest - response:", response);
-                this.dataService.solicitarVC(response).subscribe(this.VCResponse.bind(this));
+            if(!this.validateEmail(this.email)){
+                this.alertService.showAlert(Config.TITLE.WRONG_EMAIL, Config.MSG.WRONG_EMAIL_ERROR);
+                console.log("El formato de email no es el correcto");
+            }
+            else if(!this.checkTelLength()){
+                this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR);
+                    console.log("Cantidad de numeros del telefono debe sumar 10");
                 }
                 else{
-                    this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR);
-                    console.log("Cantidad de numeros del telefono debe sumar 10");                    
+                    this.utils.showLoader(false);
+                //llamo al servicio de solicitarVC de mi dataService
+                let requestParam = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version , "email" : this.email};
+                console.log("sendVCRequest - response:", requestParam);
+                this.dataService.solicitarVC(requestParam).subscribe(this.VCResponse.bind(this));
                 }
         }
         else{
@@ -88,11 +94,12 @@ export class SolicitudVcPage implements Overlay {
             this.utils.hideLoader();
             console.log("VCResponse - data.registroVC(SI): ",data.registroVC);
             this.alertService.showAlert("Video Consulta", data.Mensaje);
+            this.toastService.showToast(Config.MSG.DATA_SAVED,2000);
         }
         else {
             this.utils.hideLoader();
             console.log("VCResponse - data.registroVC: ",data.registroVC);
-            this.alertService.showAlert("Video Consulta", data.Mensaje);
+            this.alertService.showAlert("Video Consulta", data.Mensaje);            
         }
         this.navCtrl.setRoot(HomePage)
     }
@@ -114,9 +121,11 @@ export class SolicitudVcPage implements Overlay {
         }
     }
 
-    nextPhoneNumber() {
-		this.telefono = this.dataService.nextPhoneNumber();
-    }   
+    validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
 
     closeAllOverlays(){
         this.symptomSelect.close();         

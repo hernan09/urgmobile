@@ -79,7 +79,6 @@ export class RegisterPage {
     nextAnswer() {
         if (this.last) {
             this.checkPreguntas();
-            this.dataService.updateTelefono();
         }
         else {
             this.p = this.preguntas[this.i++];

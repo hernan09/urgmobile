@@ -4,13 +4,7 @@ import { Observable } from 'rxjs'
 import 'rxjs/Rx'
 import 'rxjs/add/operator/map'
 
-import { Config } from '../app/config'
-
-const headers = new Headers({ 'Content-Type': 'application/json' })
-const authHeaders = new Headers({
-    'Authorization': 'Bearer',
-    'Content-Type': 'application/x-www-form-urlencoded'
-})
+const headers = new Headers({ 'Content-Type': 'application/json' });
 
 @Injectable()
 export class ImageService {    

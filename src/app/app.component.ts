@@ -1,11 +1,10 @@
+import { FooterPage } from './../pages/footer/footer';
 import { Config } from './config';
 import { AlertService } from './../providers/alert.service';
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'
 import { Platform, Nav, MenuController, IonicApp } from 'ionic-angular'
-import { StatusBar } from '@ionic-native/status-bar'
-import { SplashScreen } from '@ionic-native/splash-screen'
 import { Network } from '@ionic-native/network'
-
+import { SplashScreen } from '@ionic-native/splash-screen'
 import { LoginPage } from '../pages/login/login'
 import { HomePage } from '../pages/home/home'
 import { DatosPage } from '../pages/datos/datos'
@@ -13,11 +12,10 @@ import { HistorialPage } from '../pages/historial/historial'
 import { CredencialPage } from '../pages/credencial/credencial'
 import { DeletePage } from '../pages/delete/delete'
 import { SociosPage } from '../pages/socios/socios'
-import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
-
 import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
 import { ToastService } from '../providers/toast.service';
+
 
 
 @Component({
@@ -52,7 +50,7 @@ export class MyApp {
     {
       page : SociosPage,
       title : 'Solicitar Video Consulta',
-      icon : 'videocam'
+      icon : 'ios-videocam-outline'
     },
     {
       page : LoginPage,
@@ -62,10 +60,6 @@ export class MyApp {
     },
 
   ]
-
-   
-
-  private static APP_COMPONENT_LOG="MyApp";
 
 
   activeUser = {
@@ -81,9 +75,7 @@ export class MyApp {
  
   constructor(
     private platform :Platform,
-    private statusBar :StatusBar,
     private splashScreen :SplashScreen,
-    //private androidFullScreen: AndroidFullScreen,
     private network :Network,
     private ref :ChangeDetectorRef,
     private dataService: DataService,
@@ -131,11 +123,7 @@ export class MyApp {
         //console.log('Change detected in users:', users)
         if (!this.ref['destroyed']) this.ref.detectChanges()
       })
-
-      dataService.updateTelefono();
-
       dataService.app = this
-
       this.viewMembers = false;
 
     })
@@ -145,7 +133,6 @@ export class MyApp {
 private goToPage(page, params?, force?) {
     if (!page) return;
     if ( page.pageName && page.pageName == "SociosPage" ){
-      
       console.log(">>> Entra en Page: "+ page.pageName);
       this.isVCAvailable(page, params);
     }else{  
@@ -160,7 +147,7 @@ private isVCAvailable(page,params){
           console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
           if(res.estadoVC =="Inactivo"){
             let message = res.Mensaje;
-            let alert = this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+            this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
             this.navigatePage(HomePage, params, false);
           }else{
             this.navigatePage(page, params, false);
@@ -168,7 +155,7 @@ private isVCAvailable(page,params){
     err=>{
           console.log('Erro al validateAvailableVC:', err);
           let message = Config.MSG.SOLICITUD_VC_ERROR;
-          let alert = this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+          this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
           this.navigatePage(HomePage, params, false);
     })
   }

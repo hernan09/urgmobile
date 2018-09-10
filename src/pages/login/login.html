@@ -25,8 +25,8 @@
       {{ button_text }}
     </button>
 
-    <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
-      <button ion-button full icon-start class="callDoctor urg-button-lightgreen">
+    <a *ngIf="!newMember" href="tel:{{telefono}}" (click)="nextPhoneNumber()">
+      <button  ion-button full icon-start class="callDoctor urg-button-lightgreen">
         <ion-icon name="call"></ion-icon>
         SOLICITAR MÉDICO
       </button>
@@ -36,4 +36,4 @@
 
 </ion-content>
 
-<ion-footer>{{version}}</ion-footer>
+<ion-footer *ngIf="!newMember">{{version}}</ion-footer>

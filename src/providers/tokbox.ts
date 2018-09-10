@@ -1,8 +1,10 @@
+import { Observable } from 'rxjs';
 import { Utils } from './utils';
 import { VideoConsultaService } from './video.consulta.service';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Config } from './../app/config';
+import { Subject } from "rxjs/Subject";
 
 declare var OT :any
 declare var Cordova :any
@@ -11,7 +13,6 @@ const EXIT_DELAY= 3;
 
 @Injectable()
 export class Tokbox {
-
   private styleProps = {
     buttonDisplayMode: 'off',
     audioLevelDisplayMode: 'off',
@@ -29,10 +30,9 @@ export class Tokbox {
     },
   }
   private participants = [];
-
   public VC;
 
-  constructor(private http :Http, private vcService :VideoConsultaService, private utils :Utils){
+  constructor(private http :Http, private vcService :VideoConsultaService, private utils :Utils){    
   }
 
 
@@ -52,8 +52,8 @@ export class Tokbox {
   initService(params) {
     const { apiKey, sessionId, token } = params
 
-    const session = OT.initSession(apiKey, sessionId)
-
+    const session = OT.initSession(apiKey, sessionId);
+    
     const publisher = OT.initPublisher('local',
       {
         insertMode : 'append',
@@ -95,7 +95,9 @@ export class Tokbox {
         {
           insertMode: 'append',
           style: this.styleProps,
-        }
+          
+        },       
+        
       )
       this.participants.push(newguy)
       console.info('Added participant:', newguy)
@@ -105,18 +107,19 @@ export class Tokbox {
       
       setTimeout(_ => {
           // Remove participants
-          this.vcService.checkIfBlocked(this.utils.getActiveUser())
-          .filter(data => data === true)
+         this.vcService.checkIfBlocked(this.utils.getActiveUser())
+          
           .subscribe(
             data =>{
+              if(data){
                     this.participants = [];
                     session.off();
                     this.utils.delItem('cid');
-                    session.disconnect();
-                    //this.VC.exit(true);
+                    session.disconnect();                    
                     this.VC.goHome(this.VC,true);
-            });
-
+              }    
+            }
+          );
           const deadguy = this.participants.find( p => p.streamId == event.stream.streamId )
           this.participants = this.participants.filter(p => p.streamId != event.stream.streamId)
           console.info('Removed participant:', deadguy)
@@ -127,14 +130,14 @@ export class Tokbox {
       console.log('Connected to session! :D')
     })
     .on('sessionDisconnected', event => {
-      console.log('Hasta la vista, baby')
+        console.log('Hasta la vista, baby')
     })
     // Connect to session
     .connect(token, err => {
       if (err) return this.handleError(err, 'Connect')
       console.log('session connected, publishing')
       session.publish(publisher)
-      this.VC.startCall()
+      this.VC.startCall();   
       setTimeout(OT.updateViews, 1000)
     })
     
@@ -147,7 +150,7 @@ export class Tokbox {
   public getParticipants() {
     return this.participants
   }
-
+ 
   handleError(error, prefix?) {
     if (!error) return
     let msg = error.message

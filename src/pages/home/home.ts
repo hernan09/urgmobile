@@ -45,13 +45,14 @@ export class HomePage {
 		private videoConsultaService : VideoConsultaService,
 		private alertService : AlertService,		
 	){
+		//Actualizo los datos de todos los usuarios, refresca el menu de multiusuario.
+		this.dataService.updateUsers();
+		
 		let isBlocked = this.navParams.get("isBlocked");
 		if(isBlocked){
 			this.isCIDBlocked =  isBlocked;
 		}
-		// else{
-		// 	this.isCIDBlocked = false;
-		// }
+		
 		this.alertas_home = notiService.getAlertas().filter(alerta => alerta.visible == true)
 		this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 
@@ -111,7 +112,7 @@ export class HomePage {
 			}
 			if(!historyLS){
 				console.log("No hay historial en LS => traigo el historial");
-			    this.dataService.getHistorial(this.dni).subscribe();
+				this.dataService.getHistorial(this.dni).subscribe();
 
 			}
 		}
@@ -185,10 +186,9 @@ export class HomePage {
 		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR);
 
 		alert.onDidDismiss(res => {
-			if (res != false) {						
-					alerta.visible=false;
-					this.notiService.setAlertas(this.alertas_home);		
-					this.notiService.alertasChange.next(this.alertas_home);		  
+			if (res != false) {			
+				this.notiService.hideAlertById(alerta.androidNotificationId);
+				this.notiService.alertasChange.next(this.alertas_home);		  
 			} 
 		  });
 		  alert.present();

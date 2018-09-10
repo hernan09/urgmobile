@@ -1,22 +1,6 @@
 <ion-header>
 
-  <ion-navbar hideBackButton>
-      <ion-buttons left>
-        <button left menuToggle="left" class="urgIcon">
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      </ion-buttons>
-      <ion-title>
-        URG
-      </ion-title>
-      <ion-buttons right>
-        <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
-          <button right class="urgIcon">
-            <ion-icon name="call"></ion-icon>
-          </button>
-        </a>
-    </ion-buttons>
-  </ion-navbar>
+  <page-navigator></page-navigator>
 
 	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
 		<ion-title>Video Consulta</ion-title>
@@ -24,10 +8,8 @@
 
 </ion-header>
 
-
 <ion-content padding>
 
-  
   <ion-list radio-group [(ngModel)]="socioActual" >
 
     <ion-list-header>Seleccione el Socio</ion-list-header>

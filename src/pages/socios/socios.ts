@@ -1,3 +1,4 @@
+import { NavigatorPage } from './../navigator/navigator';
 import { Observable } from 'rxjs';
 import { AlertService } from '../../providers/alert.service';
 import { Config } from './../../app/config';
@@ -10,7 +11,7 @@ import { DataService } from '../../providers/data.service';
 import { HomePage } from '../home/home';
 import { Utils } from '../../providers/utils'
 import { ToastService } from '../../providers/toast.service';
-
+import { ViewChild } from '@angular/core';
 
 
 @Component({
@@ -25,16 +26,23 @@ export class SociosPage {
     private sociosDNI: any
     private telefono: any;  
     public static pageName: string = "SociosPage";  
+    @ViewChild(NavigatorPage) menu : NavigatorPage;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
         private dataService: DataService, private networkService:NetworkService, 
         private toastService:ToastService, private alertService : AlertService) {
+
+        
         this.getSocios()
         this.telefono = dataService.getPhoneNumber();
         if (this.navParams.get('socio')) {
             this.socioActual = this.getSociosByDni(this.navParams.get('socio'));
         }
 
+    }
+
+    ionViewDidEnter(){
+        this.menu.setArrowBack(true);
     }
 
     requestVCPage(socio) {
@@ -93,8 +101,4 @@ export class SociosPage {
         return this.socios.find(x => x.datosCredencial[0].nroasociado === socio.datosCredencial[0].nroasociado);
     }
 
-
-    previusPage() {
-       this.navCtrl.setRoot(HomePage);
-    }
 }

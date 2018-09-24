@@ -116,7 +116,7 @@ export class Tokbox {
                     session.off();
                     this.utils.delItem('cid');
                     session.disconnect();                    
-                    this.VC.goHome(this.VC,true);
+                    this.VC.goHome(this.VC);
               }    
             }
           );

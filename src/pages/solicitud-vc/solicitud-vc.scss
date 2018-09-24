@@ -47,15 +47,6 @@ page-solicitud-vc {
           color: #008fbb;
         }
 
-        ion-footer {
-          height: 6vh;
-          background: linear-gradient(110deg,
-            $osde_lightgreen 0%, $osde_lightgreen 10%,
-            $osde_blue 10%, $osde_blue 40%,
-            $osde_cyan 40%, $osde_cyan 100%
-          );
-        }
-
         .myCustomSelect{
           max-width: 100% !important;
         }
@@ -85,6 +76,12 @@ page-solicitud-vc {
         border-right: 0px !important;
         border-bottom: 0px !important;
       } 
+
+        .p-name{
+        margin: 5px 8px 5px 0;
+        font-size: 1.5rem;
+        color: #000000;
+    }
       
 }
 

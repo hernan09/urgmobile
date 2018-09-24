@@ -2,8 +2,8 @@
 <ion-header>
 
   <page-navigator></page-navigator>
-  
-	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+
+	<ion-toolbar>
 		<ion-title>Video Consulta</ion-title>
 	</ion-toolbar>
 
@@ -14,18 +14,10 @@
 
   <div class="vc">
 
-    <ion-list>
-
-      <div class="osde-label">APELLIDO</div>
+    <ion-list>     
       <ion-item>
-        <ion-input type="text" [(ngModel)]="lastname" [disabled]="true"></ion-input>
+      <p class="p-name" text-wrap>{{name}}</p>    
       </ion-item>
-
-      <div class="osde-label">NOMBRE</div>
-      <ion-item>
-        <ion-input type="text" [(ngModel)]="name" [disabled]="true"></ion-input>
-      </ion-item>
-
       <div class="osde-label">TELEFONO</div>
       <div>
         <ion-grid>
@@ -67,18 +59,13 @@
         </ion-select>
             </ion-item>           
     </ion-list>
-    
-
-    <button ion-button full icon-start class="urg-button-blue" [disabled]="!lastname || !name || !tel || !prefijo || !symptom || !email"
-      (click)="sendVCRequest()">
-      <ion-icon name="confirm"></ion-icon>
-      CONFIRMAR
-    </button>
-
-    <button ion-button full icon-start class="urg-button-lightgreen" (click)="previusPage()">
-      VOLVER
-    </button>
-
+   
   </div>
 
 </ion-content>
+
+<ion-footer id="homeFooter" bottom>
+    <button ion-button full icon-start class="urg-button-blue"  [disabled]=" !name || !tel || !prefijo || !symptom || !email" (click)="sendVCRequest()">               
+    Confirmar
+    </button>
+</ion-footer>

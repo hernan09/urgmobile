@@ -4,13 +4,6 @@ page-home {
 		transition: 0.5s;
 	}
 
-	.subHidden {
-		height: 0px;
-		transition: 0.5s;
-		padding: 0px;
-    	min-height: 0px;
-	}
-
 	ion-content.subHiddenMargin .scroll-content {
 		margin-top: 12vh !important;
 		transition: 0.5s !important;

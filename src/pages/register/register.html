@@ -21,11 +21,6 @@
         <div class="label" (click)="goToTycs()" >Al registrarme declaro que leí y acepté los <strong>Términos y Condiciones de URG</strong>.</div>
       </div>
 
-      <button (click)="nextAnswer()" [disabled]="!hasChosen || (last && !tycs)"
-        ion-button full class="urg-button-blue" >
-        {{ last ? 'Finalizar' : 'Continuar' }}
-      </button>
-
 	  </ion-list>
 
     <checker></checker>
@@ -42,3 +37,11 @@
       </button>
     </a>
 </ion-content>
+
+<ion-footer id="homeFooter" bottom>
+  <button (click)="nextAnswer()" [disabled]="!hasChosen || (last && !tycs)"
+    ion-button full class="urg-button-blue" >
+    {{ last ? 'Finalizar' : 'Continuar' }}
+  </button>
+</ion-footer>
+  

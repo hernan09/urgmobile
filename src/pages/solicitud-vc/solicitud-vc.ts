@@ -1,3 +1,4 @@
+import { Keyboard } from '@ionic-native/keyboard';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
 import { Overlay } from './../../interfaces/overlay.interface';
@@ -12,19 +13,19 @@ import { DataService } from '../../providers/data.service'
 import { Device } from '@ionic-native/device';
 import { Select } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
-
+import { NavigatorPage } from './../navigator/navigator';
 
 @Component({
     selector: 'page-solicitud-vc',
     templateUrl: 'solicitud-vc.html',
 })
-export class SolicitudVcPage implements Overlay {
+export class SolicitudVcPage implements Overlay {    
 
     @ViewChild(Select) symptomSelect: Select;
+    @ViewChild(NavigatorPage) menu : NavigatorPage;
 
     private dni: string;
-    private name: string;
-    private lastname: string;
+    private name: string;  
     private prefijo : number;
     private tel: number;
     private symptom: string;
@@ -34,17 +35,32 @@ export class SolicitudVcPage implements Overlay {
     public selectOptions;
     private telefono;  
     private email : string;  
+    private iskeyboardOpen; 
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
         private dataService: DataService, private device: Device, private networkService: NetworkService, 
-        private toastService:ToastService, private alertService : AlertService) {   
+        private toastService:ToastService, private alertService : AlertService, private keyboard: Keyboard) {
+           
         this.telefono = dataService.getPhoneNumber();
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))
         this.showSelectText = "Seleccionar";
         this.selectOptions = {
             cssClass:"hideHeader"
         }
+        this.keyboard.onKeyboardShow().subscribe((data) => {            
+                this.iskeyboardOpen = true;
+         });
+         this.keyboard.onKeyboardHide().subscribe((data) => {           
+                this.iskeyboardOpen = false;
+         });
+
     }
+
+
+    ionViewDidEnter(){
+        this.menu.setArrowBack(true);
+    }
+
 
     handleData(data) {
         console.log('Sintomas:', data)
@@ -54,9 +70,9 @@ export class SolicitudVcPage implements Overlay {
 
     ionViewDidLoad() {
         //asigno mi name al socio que recibo de la pantalla anterior
-        console.log(this.navParams.get('socio').dni);
-        this.name = this.navParams.get('socio').nombre || "";
-        this.lastname = this.navParams.get('socio').apellido || "";
+        console.log(this.navParams.get('socio').dni);       
+        this.name = this.navParams.get('socio').nombre + " " + this.navParams.get('socio').apellido || "";
+
         this.dni = this.navParams.get('socio').dni || "";
         this.tel = this.navParams.get('tel').numero || "";
         this.prefijo = this.navParams.get('tel').prefijo || "";
@@ -133,4 +149,12 @@ export class SolicitudVcPage implements Overlay {
     }
     
 
+    nextPhoneNumber(){
+        this.dataService.nextPhoneNumber();
+    }
+
+
+    public backButtonAction() {
+       this.previusPage();
+    }
 }

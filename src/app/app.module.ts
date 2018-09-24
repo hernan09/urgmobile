@@ -1,8 +1,10 @@
+import { Keyboard } from '@ionic-native/keyboard';
 import { BrowserModule } from '@angular/platform-browser'
 import { ErrorHandler, NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
 import { Device } from '@ionic-native/device';
+
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 
@@ -12,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar'
 import { OneSignal } from '@ionic-native/onesignal'
 import { Network } from '@ionic-native/network'
 import { AndroidFullScreen } from '@ionic-native/android-full-screen'
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { MyApp } from './app.component'
 
@@ -56,8 +59,7 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
 
 
 
-@NgModule({
-
+@NgModule({  
   declarations: [
     MyApp,
     LoginPage,
@@ -77,7 +79,6 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     NavigatorPage,
     FooterPage,
     CheckerComponent,
-    
   ],
   
   entryComponents: [
@@ -132,6 +133,8 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     GroupedNotificationService,
     AlertBuilder,
     VideoConsultaService,
+    Keyboard,  
+    AndroidPermissions,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 

@@ -8,6 +8,7 @@ import { Utils } from '../../providers/utils'
 import { Tokbox } from '../../providers/tokbox'
 import { ToastService } from '../../providers/toast.service';
 import { Config } from './../../app/config';
+import { Events } from 'ionic-angular';
 
 
 
@@ -27,7 +28,7 @@ export class VideoConsultaPage {
   mic = true
   cam = true
   private readyToExit = false
-  isBlocked = false;
+  //isBlocked = false;
   waitingDoctor: boolean;
   
 
@@ -39,7 +40,9 @@ export class VideoConsultaPage {
     private provider :Tokbox,
     private ref: ChangeDetectorRef,
     private toastService : ToastService,
-    private dataService : DataService,    
+    private dataService : DataService,
+    private events : Events,  
+    
   ) {
     this.utils.showLoader();
     this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
@@ -47,10 +50,9 @@ export class VideoConsultaPage {
 
     this.utils.setItem('cid', this.cid)
     provider.VC = this 
-    this.checkCid();    
+    this.checkCid();     
   }
   
-
   checkCid() {
     this.utils.showLoader();
     return this.http.get(VC_SERVER_URL + '/cid/' + this.cid).subscribe(
@@ -58,8 +60,8 @@ export class VideoConsultaPage {
         // if get succeeds, cid is blacklisted 
         console.log('Conference is no longer available')
         this.show = 'unavailable'
-        this.utils.hideLoader();   
-        this.exit;     
+        this.utils.hideLoader(); 
+        this.exit();         
       },
       err => {
         // if get yields a 404, cid is available
@@ -133,10 +135,16 @@ export class VideoConsultaPage {
     this.exit();
   }
 
-  exit() {
-    this.utils.delItem('cid');  
-    this.navCtrl.setRoot(HomePage);
-
+  exit() {     
+    if(this.show == 'unavailable'){
+      this.dataService.setVCStatus(true);
+      this.events.publish('vcStatus', true);
+      this.navCtrl.setRoot(HomePage);
+    } 
+    else{
+      this.navCtrl.setRoot(HomePage);
+    }
+    this.utils.delItem('cid'); 
   }
 
 goHome(vcInstance:any){   

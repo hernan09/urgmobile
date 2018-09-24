@@ -1,6 +1,7 @@
+import { DataService } from './../../providers/data.service';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 
 const RELOAD_DELAY = 3;
@@ -12,10 +13,14 @@ const RELOAD_DELAY = 3;
 export class VideoconsultaMessagePage {
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private dataService : DataService, 
+    private events: Events) {
     console.log("Redireccionar al home");
-    setTimeout(_ => this.navCtrl.setRoot(HomePage, {isBlocked: true}), RELOAD_DELAY * 1000);
+    this.dataService.setVCStatus(true);
+    this.events.publish('vcStatus', true);
+    setTimeout(_ => this.navCtrl.setRoot(HomePage), RELOAD_DELAY * 1000);
   }
 
 }

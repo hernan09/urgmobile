@@ -2,20 +2,45 @@ import { Config } from './../app/config';
 import { Utils } from './utils';
 import { DataService } from './data.service';
 import { Injectable } from '@angular/core';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+
 
 
 
 @Injectable()
 export class LoginService {
 
+
+
     constructor(
         private utils: Utils,
         private dataService : DataService,
-      ) {}
+        private androidPermissions: AndroidPermissions,  
+      ) {
 
+      }
+
+  
+private checkAndRequestPermissions(permission: string){
+    
+  this.androidPermissions.hasPermission(permission).then(
+    result =>{ 
+      if(!result.hasPermission){
+          console.log('Has permission?',result.hasPermission);
+          this.androidPermissions.requestPermission(permission)
+      }
+    },
+    err => this.androidPermissions.requestPermission(permission)
+    );
+    
+}
 
 // UTILS
  public login(dni) {
+
+  this.checkAndRequestPermissions(this.androidPermissions.PERMISSION.CAMERA);
+  this.checkAndRequestPermissions(this.androidPermissions.PERMISSION.RECORD_AUDIO);
+
     if (!dni) throw "Cannot login: missing dni!";
 
     const activeUser = this.utils.getActiveUser();

@@ -9,6 +9,7 @@ import { DataService } from '../../providers/data.service'
 import { Utils } from '../../providers/utils'
 
 import { VideoConsultaPage } from '../videoconsulta/videoconsulta'
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -26,8 +27,8 @@ export class HomePage {
 	videoconsulta = false
 	answered = false
 	cid=''
-	dni=''
-	isCIDBlocked = false;
+	dni=''	
+	isCIDBlocked : boolean;
 
 	poll_options = [
 		{ value : 3, class : 'good', label : '¡MUY BUENA!' },
@@ -43,15 +44,12 @@ export class HomePage {
 		private dataService :DataService,
 		private utils :Utils,
 		private videoConsultaService : VideoConsultaService,
-		private alertService : AlertService,		
+		private alertService : AlertService,
+		private events : Events,		
 	){
 		//Actualizo los datos de todos los usuarios, refresca el menu de multiusuario.
-		this.dataService.updateUsers();
-		
-		let isBlocked = this.navParams.get("isBlocked");
-		if(isBlocked){
-			this.isCIDBlocked =  isBlocked;
-		}
+		this.dataService.updateUsers();	
+		this.checkVCStatus();
 		
 		this.alertas_home = notiService.getAlertas().filter(alerta => alerta.visible == true)
 		this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
@@ -64,10 +62,14 @@ export class HomePage {
 		notiService.alertasChange.subscribe(alertas => {
 			console.log("Recibo alertas actualizadas");
 			this.alertas_home = alertas.filter(alerta => alerta.visible == true)
-			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
+			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true			
 			if (!this.ref['destroyed']) this.ref.detectChanges()
-		})		
-		this.alertas_home = notiService.getCurrentAlertas();
+		})
+		
+		events.subscribe('vcStatus', (data) => {
+			this.isCIDBlocked = data;			
+		  });
+		
 		 
 		setTimeout(_ => {
 			this.checkIfVCBlocked();
@@ -150,6 +152,10 @@ export class HomePage {
 		})
 	}
 
+	ionViewDidEnter(){
+		this.ref.detectChanges();
+	}
+
 	rate(rating) {
 		const poll = this.alertas_home.slice(-1)[0].poll
 		poll.rate = rating
@@ -212,6 +218,11 @@ export class HomePage {
 		this.content.scrollToTop(1000);
 	}
 
+	//ver si es necesario
+	ionViewWillLeave() {		
+		this.checkVCStatus();
+	}
+
 
 	closePoll() {
 		const poll = this.alertas_home.slice(-1)[0].poll
@@ -229,5 +240,14 @@ export class HomePage {
 
 	initVideoconsulta(cid,dni) {
 		this.navCtrl.setRoot(VideoConsultaPage, { cid, dni })
+	}
+
+	checkVCStatus(){
+		if(this.dataService.getVCStatus() == null){
+			this.isCIDBlocked = false;
+		}
+		else{
+			this.isCIDBlocked  = this.dataService.getVCStatus();
+		}
 	}
 }

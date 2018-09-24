@@ -2,7 +2,7 @@
 
   <page-navigator></page-navigator>
 
-	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
+	<ion-toolbar>
 		<ion-title>Video Consulta</ion-title>
 	</ion-toolbar>
 
@@ -22,15 +22,10 @@
     </div>
 
   </ion-list>
-
-
-  <button ion-button full icon-start class="urg-button-blue" [disabled]="!socioActual" (click)="requestVCPage(socioActual)">
-    CONTINUAR    
-  </button>
-
-  <button ion-button full icon-start class="urg-button-lightgreen"  (click)="previusPage()">
-    VOLVER
-</button>
-  
+   
 </ion-content>
-<ion-footer>{{version}}</ion-footer>
+<ion-footer id="homeFooter">
+  <button ion-button full icon-start class="urg-button-blue" [disabled]="!socioActual" (click)="requestVCPage(socioActual)">               
+    Continuar
+  </button>
+</ion-footer>

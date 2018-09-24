@@ -17,6 +17,7 @@ import { DataService } from "./data.service";
 import { Utils, DUMMY_NOTIS } from "./utils";
 import { LoginPage } from "../pages/login/login";
 import {Observable} from 'rxjs/Observable';
+import { Events } from 'ionic-angular';
 
 const SIM_DELAY: number = Config.OPTIONS.NOTI_SIM_DELAY;
 
@@ -65,6 +66,7 @@ export class NotificationsService {
     private alertService : AlertService,
     private imageService : ImageService,
     private groupedNotificationService : GroupedNotificationService,
+    private events : Events,
   ) {
     if (SIM_DELAY) {
       const simulation = setInterval(() => {
@@ -148,16 +150,18 @@ export class NotificationsService {
   }
 
   private openVideoCall(navCtrl, noti: any) {
+    this.dataService.setVCStatus(false);
+    this.events.publish('vcStatus', false);
     if (!this.doneVC && this.isVideoCall(noti.data.tipoAtencion)) {
       //Hay un usuario activo
       if (this.utils.getActiveUser()) {
         let alert = this.alertService.showOptionAlert(Config.TITLE.VIDEO_CALL_TITLE,
           Config.MSG.VIDEO_CALL, Config.ALERT_OPTIONS.CONTESTAR, Config.ALERT_OPTIONS.IGNORAR
         );
-        alert.onDidDismiss(res => {
+        alert.onDidDismiss(res => {          
           const cid = noti.data.contenido;
           console.log("cid: " + cid + " noti.data.dni " + noti.data.dni);
-          if (res != false) {
+          if (res != false) {            
             navCtrl.setRoot(VideoConsultaPage, { cid, dni: noti.data.dni });
           }else{
             navCtrl.setRoot(HomePage, { cid, dni: noti.data.dni });

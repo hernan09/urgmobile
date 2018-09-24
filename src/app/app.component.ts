@@ -17,7 +17,6 @@ import { Utils } from '../providers/utils'
 import { ToastService } from '../providers/toast.service';
 
 
-
 @Component({
   templateUrl : 'app.html'
 })

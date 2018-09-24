@@ -252,7 +252,7 @@ export class DataService {
         return data;
     }
     private showSintomasError(err,dni){
-        this.error('sintomas', err)
+        this.error('sintomas', err);
         return this.restoreSintomas(dni) || []
     }
     
@@ -414,6 +414,14 @@ export class DataService {
       public getCID(dni){
           return this.restoreCID(dni);
       }
+
+      public getVCStatus(){
+        return this.utils.getItem(Config.KEY.VC_STATUS);
+      }
+
+      public setVCStatus(data){       
+        this.utils.setItem(Config.KEY.VC_STATUS, data);
+      }     
 
 
     public getLocalStorage(prop, dni?) {

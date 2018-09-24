@@ -52,8 +52,8 @@ export class LoginPage implements Overlay {
     this.newMember = this.navParams.get("newMember");
 
     if (authService.isAuthenticated() && !this.newMember) this.getDeviceID();
-
-    this.placeholder = this.newMember ? "DNI DEL SOCIO A AGREGAR" : "TU DNI";
+    
+    this.placeholder = Config.PLACEHOLDER_MSG.NEW_USER;
 
     this.platform.ready().then(() => {
       this.notiService

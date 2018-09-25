@@ -3,6 +3,7 @@ import { AlertController, LoadingController } from 'ionic-angular'
 import { Subject } from 'rxjs/Subject'
 
 import { Config } from '../app/config'
+import { Alert } from 'ionic-angular/components/alert/alert';
 
 
 @Injectable()
@@ -75,6 +76,14 @@ export class Utils {
     this.setItem(Config.KEY.CID, cid)
   }
 
+  public setAlert(anAlert:any) {
+    if (!alert) return
+    this.setItem(Config.KEY.ALERTAS, anAlert)
+  }
+
+  public getAlerts() {
+    this.getItem(Config.KEY.ALERTAS)
+  }
 
   public increaseNotificationsCounter() {
     this.notificationsCounter++

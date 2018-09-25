@@ -85,7 +85,7 @@ export class MyApp {
     private alertService : AlertService
   ){
 
-    platform.ready().then(_ => {
+    platform.ready().then(_ => {     
 
       splashScreen.hide()
 
@@ -118,7 +118,7 @@ export class MyApp {
 
       dataService.usersChange.subscribe(users => {
         this.activeUser = users.find(e => e.active)
-        this.otherUsers = users.filter(e => !e.active)
+        this.otherUsers = users.filter(e => !e.active)        
         //console.log('Change detected in users:', users)
         if (!this.ref['destroyed']) this.ref.detectChanges()
       })
@@ -193,6 +193,13 @@ private isVCAvailable(page,params){
 
   public closeMenu(){
     this.viewMembers = false;
+  }
+
+  public openMenu(){
+    this.activeUser.dni = this.utils.getActiveUser();
+    let user = this.dataService.restoreMisDatos(this.utils.getActiveUser());
+    this.activeUser.nombre = user.nombre + " " + user.apellido;
+    this.ref.detectChanges();
   }
 
   toggleView() {

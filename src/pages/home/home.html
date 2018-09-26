@@ -130,4 +130,11 @@
 
 </ion-content>
 
-<page-footer></page-footer>
+<ion-footer id="homeFooter" *ngIf="showHomeIcon">
+	<a (click)="goToSociosPage()">
+	  <button ion-button full icon-start class="urg-button-lightgreen">
+		<ion-icon name="ios-videocam-outline"></ion-icon>
+		Solicitar VC
+	  </button>
+	</a>
+  </ion-footer>

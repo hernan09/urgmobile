@@ -1,3 +1,4 @@
+import { SociosPage } from './../socios/socios';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
 import { VideoConsultaService } from './../../providers/video.consulta.service';
@@ -237,7 +238,6 @@ export class HomePage {
 		this.telefono = this.dataService.nextPhoneNumber()
 	}
 
-
 	initVideoconsulta(cid,dni) {
 		this.navCtrl.setRoot(VideoConsultaPage, { cid, dni })
 	}
@@ -250,4 +250,31 @@ export class HomePage {
 			this.isCIDBlocked  = this.dataService.getVCStatus();
 		}
 	}
+
+	goToSociosPage(){
+		this.utils.showLoader();
+		this.isVCAvailable();
+	}
+
+	private isVCAvailable(params?){
+		this.dataService.validateAvailableVC(this.utils.getActiveUser()).subscribe(
+		  res=>{
+			  	this.utils.hideLoader();
+				console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
+				if(res.estadoVC =="Inactivo"){
+				  let message = res.Mensaje;
+				  this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+				  this.navCtrl.setRoot(HomePage, params);
+				}else{
+					this.navCtrl.push(SociosPage, params);
+		  }},
+		  err=>{
+				this.utils.hideLoader();
+				console.log('Erro al validateAvailableVC:', err);
+				let message = Config.MSG.SOLICITUD_VC_ERROR;
+				this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+				this.navCtrl.setRoot(HomePage, params);
+		  })
+		}  
+		
 }

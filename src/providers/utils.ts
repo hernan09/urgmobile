@@ -82,7 +82,7 @@ export class Utils {
   }
 
   public getAlerts() {
-    this.getItem(Config.KEY.ALERTAS)
+    return this.getItem(Config.KEY.ALERTAS)
   }
 
   public increaseNotificationsCounter() {

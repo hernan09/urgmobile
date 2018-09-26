@@ -294,8 +294,8 @@ export class NotificationsService {
   }
   ///////////////////////////////// END OLD
 
-  private saveAlertas(dni?) {
-    this.dataService.saveAlertas(this.alertas, dni);
+  private saveAlertas() {
+    this.dataService.saveAlertas(this.alertas);
   }
 
   private removeStep(step) {

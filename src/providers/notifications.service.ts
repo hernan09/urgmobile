@@ -242,7 +242,7 @@ export class NotificationsService {
       this.hideNotifications();
       console.log("Lista Alerta encuenta: " , this.alertas);
       this.alertas.unshift(alerta);
-      this.saveAlertas(notification.data.dni);
+      this.saveAlertas();
     } else {
       alerta.title = notification.title;
       alerta.androidNotificationId = notification.androidNotificationId;
@@ -254,7 +254,7 @@ export class NotificationsService {
           alerta.visible = true;
           console.log("Lista Alerta tipo 1: " , this.alertas);
           this.alertas.unshift(alerta);
-          this.saveAlertas(notification.data.dni);
+          this.saveAlertas();
           break;
 
         case "2":
@@ -263,7 +263,7 @@ export class NotificationsService {
           alerta.visible = true;
           console.log("Lista Alerta tipo 2: " , this.alertas);
           this.alertas.unshift(alerta);
-          this.saveAlertas(notification.data.dni);
+          this.saveAlertas();
           break;
         case "3":
           alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico está en camino","Horario estimado de arribo",notification.data.hora,true); 
@@ -287,15 +287,15 @@ export class NotificationsService {
           };
           alerta.visible = true;
           this.alertas.unshift(alerta);
-          this.saveAlertas(notification.data.dni);
+          this.saveAlertas();
           break;
       }
     }
   }
   ///////////////////////////////// END OLD
 
-  private saveAlertas(dni?) {
-    this.dataService.saveAlertas(this.alertas, dni);
+  private saveAlertas() {
+    this.dataService.saveAlertas(this.alertas);
   }
 
   private removeStep(step) {
@@ -359,7 +359,7 @@ export class NotificationsService {
         alerta.visible = true;
         console.log("Lista Alerta tipo doctor " + notification.data.tipoAtencion + ": " , this.alertas);
         this.alertas.unshift(alerta);
-        this.saveAlertas(notification.data.dni);
+        this.saveAlertas();
         this.alertasChange.next(this.alertas);
         return alerta;
       }, err => { console.error(err);
@@ -373,7 +373,7 @@ export class NotificationsService {
       alerta.visible = true;
       console.log("Lista Alerta tipo doctor " + notification.data.tipoAtencion + ": " , this.alertas);
       this.alertas.unshift(alerta);
-      this.saveAlertas(notification.data.dni);
+      this.saveAlertas();
       this.alertasChange.next(this.alertas);
     } 
     return alerta;

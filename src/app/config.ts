@@ -7,7 +7,7 @@ export class Config {
 		EXPIRE_TIME : 30 * 24 * 60, // login expire time, in minutes
 		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds		
 		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation
-		VERSION_NUMBER : '1.0.16.5'
+		VERSION_NUMBER : '1.0.17.1'
 	}
 
 	public static getEnv(){

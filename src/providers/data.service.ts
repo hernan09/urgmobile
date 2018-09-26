@@ -388,12 +388,13 @@ export class DataService {
     }
 
     public restoreAlertas(dni?) {
-        return this.getLocalStorage(Config.KEY.ALERTAS, dni)
+        return this.utils.getAlerts();
     }
-    public saveAlertas(data, dni?) {
+    public saveAlertas(data) {
         if (!data) return
-        this.setLocalStorage(Config.KEY.ALERTAS, data, dni)
+        this.utils.setAlert(data)
     }
+    
 
     public restoreSintomas(dni?) {
         return this.getLocalStorage(Config.KEY.SINTOMAS, dni)

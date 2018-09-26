@@ -133,6 +133,8 @@ private goToPage(page, params?, force?) {
     if (!page) return;
     if ( page.pageName && page.pageName == "SociosPage" ){
       console.log(">>> Entra en Page: "+ page.pageName);
+      //agrego el loader porque el servicio tarda bastante.
+      this.utils.showLoader();
       this.isVCAvailable(page, params);
     }else{  
       this.navigatePage(page, params, force);
@@ -143,6 +145,7 @@ private goToPage(page, params?, force?) {
 private isVCAvailable(page,params){
   this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
     res=>{
+          this.utils.hideLoader();
           console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
           if(res.estadoVC =="Inactivo"){
             let message = res.Mensaje;
@@ -152,6 +155,7 @@ private isVCAvailable(page,params){
             this.navigatePage(page, params, false);
     }},
     err=>{
+          this.utils.hideLoader();
           console.log('Erro al validateAvailableVC:', err);
           let message = Config.MSG.SOLICITUD_VC_ERROR;
           this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);

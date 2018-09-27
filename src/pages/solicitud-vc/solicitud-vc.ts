@@ -56,8 +56,7 @@ export class SolicitudVcPage implements Overlay {
 
     }
 
-
-    ionViewDidEnter(){
+    ionViewCanEnter(){
         this.menu.setArrowBack(true);
     }
 

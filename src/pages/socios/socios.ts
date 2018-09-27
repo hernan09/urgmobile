@@ -40,8 +40,8 @@ export class SociosPage {
         }
 
     }
-
-    ionViewDidEnter(){
+    
+    ionViewCanEnter(){
         this.menu.setArrowBack(true);
     }
 

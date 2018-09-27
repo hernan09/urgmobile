@@ -154,6 +154,7 @@ export class SolicitudVcPage implements Overlay {
 
 
     public backButtonAction() {
+       this.closeAllOverlays();
        this.previusPage();
     }
 }

@@ -50,7 +50,7 @@ export class HomePage {
 	){
 		//Actualizo los datos de todos los usuarios, refresca el menu de multiusuario.
 		this.dataService.updateUsers();	
-		this.checkVCStatus();
+		this.checkVCStatus();		
 		
 		this.alertas_home = notiService.getAlertas().filter(alerta => alerta.visible == true)
 		this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
@@ -64,7 +64,7 @@ export class HomePage {
 			console.log("Recibo alertas actualizadas");
 			this.alertas_home = alertas.filter(alerta => alerta.visible == true)
 			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true			
-			if (!this.ref['destroyed']) this.ref.detectChanges()
+			if (!this.ref['destroyed']) this.ref.detectChanges()						
 		})
 		
 		events.subscribe('vcStatus', (data) => {
@@ -185,12 +185,13 @@ export class HomePage {
 		this.answered = true
 
 		data.rate = 0;
-		data.comment = "";
+		data.comment = "";	
 	}
 
 	closeAlert(alerta){
 		
-		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR);
+		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR);	 		
+		
 
 		alert.onDidDismiss(res => {
 			if (res != false) {			
@@ -217,6 +218,7 @@ export class HomePage {
 		}, 3000)
 
 		this.content.scrollToTop(1000);
+		this.events.publish('survey', false);
 	}
 
 	//ver si es necesario

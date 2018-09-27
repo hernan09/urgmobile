@@ -422,7 +422,15 @@ export class DataService {
 
       public setVCStatus(data){       
         this.utils.setItem(Config.KEY.VC_STATUS, data);
-      }     
+      } 
+      
+      public getSurveyStatus(){
+        return this.utils.getItem(Config.KEY.SURVEY_STATUS);
+      }
+
+      public setSurveyStatus(data){       
+        this.utils.setItem(Config.KEY.SURVEY_STATUS, data);
+      }  
 
 
     public getLocalStorage(prop, dni?) {

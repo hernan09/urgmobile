@@ -15,8 +15,8 @@
     <ion-title [className]="arrowBack ? 'title title-md urg-title' : 'title title-md'">
       URG
     </ion-title>
-    <ion-buttons right>
-      <a href="tel:{{telefono}}" (click)="nextPhoneNumber()" *ngIf=!arrowBack>
+    <ion-buttons *ngIf=!arrowBack  right>
+      <a href="tel:{{telefono}}" (click)="nextPhoneNumber()" *ngIf="!isSurveyActive">
         <button right class="urgIcon">
           <ion-icon name="call"></ion-icon>
         </button>

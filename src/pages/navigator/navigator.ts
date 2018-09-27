@@ -1,8 +1,8 @@
 import { HomePage } from './../home/home';
 import { SociosPage } from './../socios/socios';
 import { DataService } from './../../providers/data.service';
-import { Component } from '@angular/core';
-import { NavController ,ViewController} from 'ionic-angular';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { NavController ,ViewController, Events} from 'ionic-angular';
 
 
 @Component({
@@ -13,13 +13,23 @@ export class NavigatorPage {
 
   public telefono;
   public arrowBack:boolean = false;
+  isSurveyActive : boolean = false;
 
   constructor(
     public navCtrl: NavController,
-    private data :DataService, private viewCtrl:ViewController) {
+    private data :DataService, private viewCtrl:ViewController, private events:Events, private ref : ChangeDetectorRef
+  ) {
     
       //Busca en localstorage phone numbers
-		  this.telefono = data.getPhoneNumber();
+      this.telefono = data.getPhoneNumber();
+
+      this.isSurveyActive = this.data.getSurveyStatus();
+
+      events.subscribe('survey', (data) => {
+        this.isSurveyActive = data;
+        this.data.setSurveyStatus(data);
+        this.ref.detectChanges();
+      });
   }
 
   ionViewDidLoad() {
@@ -48,4 +58,6 @@ export class NavigatorPage {
     console.log();
     
   }
+
+  
 }

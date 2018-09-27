@@ -55,6 +55,7 @@ export class Config {
 		SINTOMAS: 'sintomas',
 		CID : 'cid',
 		VC_STATUS : 'videoconsulta-status',		
+		SURVEY_STATUS : 'survey-status'
 	}
 
 

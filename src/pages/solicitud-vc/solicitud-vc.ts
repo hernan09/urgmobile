@@ -1,3 +1,4 @@
+import { ModalService } from './../../providers/modal.service';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
@@ -37,9 +38,16 @@ export class SolicitudVcPage implements Overlay {
     private email : string;  
     private iskeyboardOpen; 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
-        private dataService: DataService, private device: Device, private networkService: NetworkService, 
-        private toastService:ToastService, private alertService : AlertService, private keyboard: Keyboard) {
+    constructor(public navCtrl: NavController, 
+        public navParams: NavParams, 
+        public utils: Utils, 
+        private dataService: DataService, 
+        private device: Device, 
+        private networkService: NetworkService, 
+        private toastService:ToastService, 
+        private alertService : AlertService, 
+        private keyboard: Keyboard,
+        private modal : ModalService) {
            
         this.telefono = dataService.getPhoneNumber();
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))
@@ -142,9 +150,9 @@ export class SolicitudVcPage implements Overlay {
     }
 
 
-    closeAllOverlays(){
-        this.symptomSelect.close();         
-        this.alertService.hideAlert();     
+    closeAllOverlays(){        
+            this.symptomSelect.close();         
+            this.alertService.hideAlert();           
     }
     
 
@@ -154,7 +162,12 @@ export class SolicitudVcPage implements Overlay {
 
 
     public backButtonAction() {
-       this.closeAllOverlays();
-       this.previusPage();
+       if(this.symptomSelect.isFocus()){
+           this.closeAllOverlays();
+       }
+       else{
+           this.previusPage();
+       }
     }
+    
 }

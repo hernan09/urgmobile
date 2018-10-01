@@ -35,17 +35,11 @@ export class NavigatorPage {
   public setArrowBack(value: boolean){
     this.arrowBack = value;
 
-  }
-  previusPage(){
-    if(this.viewCtrl.component.name=="SociosPage"){
-      this.navCtrl.setRoot(HomePage);
-    }
-    else{
-      if (this.viewCtrl.component.name=="SolicitudVcPage"){
-        this.navCtrl.setRoot(SociosPage);
-      }
-    }
-    console.log();
-    
-  }
+  } 
+
+  public previusPage(){
+    if(this.navCtrl.getActive().instance.previusPage)
+        this.navCtrl.getActive().instance.previusPage();
+}
+
 }

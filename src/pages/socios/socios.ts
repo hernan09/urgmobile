@@ -38,6 +38,7 @@ export class SociosPage {
         if (this.navParams.get('socio')) {
             this.socioActual = this.getSociosByDni(this.navParams.get('socio'));
         }
+        console.log("estoy en la pagina de socios");
 
     }
     
@@ -99,6 +100,10 @@ export class SociosPage {
 
     getSociosByDni(socio) {
         return this.socios.find(x => x.datosCredencial[0].nroasociado === socio.datosCredencial[0].nroasociado);
+    }
+
+    previusPage() {
+        this.navCtrl.setRoot(HomePage);
     }
 
 }

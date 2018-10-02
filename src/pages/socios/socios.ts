@@ -41,7 +41,7 @@ export class SociosPage {
 
     }
 
-    ionViewDidEnter(){
+    ionViewCanEnter(){
         this.menu.setArrowBack(true);
     }
 
@@ -100,5 +100,10 @@ export class SociosPage {
     getSociosByDni(socio) {
         return this.socios.find(x => x.datosCredencial[0].nroasociado === socio.datosCredencial[0].nroasociado);
     }
+
+    previusPage() {
+        this.navCtrl.setRoot(HomePage);
+    }
+
 
 }

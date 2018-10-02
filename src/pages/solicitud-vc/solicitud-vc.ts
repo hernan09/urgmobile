@@ -14,6 +14,7 @@ import { Device } from '@ionic-native/device';
 import { Select } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { NavigatorPage } from './../navigator/navigator';
+import { ModalService } from './../../providers/modal.service';
 
 @Component({
     selector: 'page-solicitud-vc',
@@ -37,9 +38,16 @@ export class SolicitudVcPage implements Overlay {
     private email : string;  
     private iskeyboardOpen; 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
-        private dataService: DataService, private device: Device, private networkService: NetworkService, 
-        private toastService:ToastService, private alertService : AlertService, private keyboard: Keyboard) {
+    constructor(public navCtrl: NavController, 
+        public navParams: NavParams, 
+        public utils: Utils, 
+        private dataService: DataService, 
+        private device: Device, 
+        private networkService: NetworkService, 
+        private toastService:ToastService, 
+        private alertService : AlertService, 
+        private keyboard: Keyboard,
+        private modal : ModalService) {
            
         this.telefono = dataService.getPhoneNumber();
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))
@@ -56,10 +64,10 @@ export class SolicitudVcPage implements Overlay {
 
     }
 
-
-    ionViewDidEnter(){
+    ionViewCanEnter(){
         this.menu.setArrowBack(true);
     }
+
 
 
     handleData(data) {
@@ -143,18 +151,23 @@ export class SolicitudVcPage implements Overlay {
     }
 
 
-    closeAllOverlays(){
-        this.symptomSelect.close();         
-        this.alertService.hideAlert();     
+     closeAllOverlays(){        
+            this.symptomSelect.close();         
+            this.alertService.hideAlert();           
     }
-    
 
     nextPhoneNumber(){
         this.dataService.nextPhoneNumber();
     }
 
-
     public backButtonAction() {
-       this.previusPage();
-    }
+        if(this.symptomSelect.isFocus()){
+            this.closeAllOverlays();
+        }
+        else{
+            this.previusPage();
+        }
+     }
+ 
+ 
 }

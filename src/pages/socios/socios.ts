@@ -41,7 +41,6 @@ export class SociosPage {
         console.log("estoy en la pagina de socios");
 
     }
-    
     ionViewCanEnter(){
         this.menu.setArrowBack(true);
     }

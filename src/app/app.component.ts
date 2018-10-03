@@ -119,7 +119,6 @@ export class MyApp {
       dataService.usersChange.subscribe(users => {
         this.activeUser = users.find(e => e.active)
         this.otherUsers = users.filter(e => !e.active)        
-        //console.log('Change detected in users:', users)
         if (!this.ref['destroyed']) this.ref.detectChanges()
       })
       dataService.app = this

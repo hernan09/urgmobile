@@ -80,7 +80,7 @@ export class HomePage {
 }
 
 	checkIfVCBlocked() {
-		this.videoConsultaService.checkIfBlocked(this.dni, this.cid)
+		this.videoConsultaService.checkIfBlocked(this.cid)
 		.filter(data => data === true).subscribe(
             data =>{
 				console.log("data === true : la VC FINALIZO!!!!");

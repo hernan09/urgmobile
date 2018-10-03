@@ -13,7 +13,6 @@ export class NavigatorPage {
 
   public telefono;
   public arrowBack:boolean = false;
-  isSurveyActive : boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -23,14 +22,7 @@ export class NavigatorPage {
       //Busca en localstorage phone numbers
       this.telefono = data.getPhoneNumber();
 
-      this.isSurveyActive = this.data.getSurveyStatus();
-
-      events.subscribe('survey', (data) => {
-        this.isSurveyActive = data;
-        this.data.setSurveyStatus(data);
-        this.ref.detectChanges();
-      });
-  }
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NavigatorPage');

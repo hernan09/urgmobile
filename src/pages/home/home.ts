@@ -218,7 +218,6 @@ export class HomePage {
 		}, 3000)
 
 		this.content.scrollToTop(1000);
-		this.events.publish('survey', false);
 	}
 
 	//ver si es necesario

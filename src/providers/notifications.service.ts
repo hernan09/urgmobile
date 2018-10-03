@@ -242,9 +242,6 @@ export class NotificationsService {
       this.hideNotifications();
       console.log("Lista Alerta encuenta: " , this.alertas);
 
-      //this.dataService.setSurveyStatus(true);
-      this.events.publish('survey', true);
-
       this.alertas.unshift(alerta);
       this.saveAlertas();
     } else {

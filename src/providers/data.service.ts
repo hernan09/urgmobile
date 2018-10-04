@@ -414,19 +414,7 @@ export class DataService {
         this.setLocalStorage(Config.KEY.SINTOMAS, data, dni)
     }
 
-  /*  public saveCID(data, dni?) {
-        if (!data) return
-        this.setLocalStorage(Config.KEY.CID, data, dni)
-    }
-    public restoreCID(dni?) {
-        return this.getLocalStorage(Config.KEY.CID, dni)
-      }
- 
-      public getCID(dni){
-          return this.restoreCID(dni);
-      }
-*/
-      public getVCStatus(){
+    public getVCStatus(){
         return this.utils.getItem(Config.KEY.VC_STATUS);
       }
 

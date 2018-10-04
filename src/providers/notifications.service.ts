@@ -243,6 +243,7 @@ export class NotificationsService {
       console.log("Lista Alerta encuenta: " , this.alertas);
 
       this.alertas.unshift(alerta);
+      this.events.publish('survey', true);
       this.saveAlertas();
     } else {
       alerta.title = notification.title;

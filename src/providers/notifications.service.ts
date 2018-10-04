@@ -267,13 +267,13 @@ export class NotificationsService {
           this.saveAlertas();
           break;
         case "3":
-          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico está en camino","Horario estimado de arribo",notification.data.hora,true); 
+          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Horario estimado de arribo",notification.data.hora,true); 
           break;
         case "4":
-          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico está demorado","Nuevo horario de arribo",notification.data.hora,false);
+          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Nuevo horario de arribo",notification.data.hora,false);
           break;
         case "5":
-          this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico arribó al domicilio","Horario estimado de arribo",notification.data.hora,true);
+          this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Horario estimado de arribo",notification.data.hora,true);
           break;
         case "6":
           this.removeStep(5);

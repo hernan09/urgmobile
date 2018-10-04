@@ -177,10 +177,10 @@ export class HomePage {
 		}
 		this.dataService.responderEncuesta(data).subscribe(
 			data => {
-				this.sayThanks()
+				this.sayThanks();
 			},
 			err => {
-				this.sayThanks()
+				this.sayThanks();
 			})
 		this.answered = true
 
@@ -218,6 +218,7 @@ export class HomePage {
 		}, 3000)
 
 		this.content.scrollToTop(1000);
+		this.events.publish('survey', false);
 	}
 
 	//ver si es necesario

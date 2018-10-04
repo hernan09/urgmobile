@@ -13,7 +13,8 @@ export class NavigatorPage {
 
   public telefono;
   public arrowBack:boolean = false;
-
+  public isSurveyActive : boolean = false;
+ 
   constructor(
     public navCtrl: NavController,
     private data :DataService, private viewCtrl:ViewController, private events:Events, private ref : ChangeDetectorRef
@@ -21,6 +22,11 @@ export class NavigatorPage {
     
       //Busca en localstorage phone numbers
       this.telefono = data.getPhoneNumber();
+      
+      events.subscribe('survey', (data) => {
+        this.isSurveyActive = data;
+        //this.ref.detectChanges();
+      });
 
    }
 

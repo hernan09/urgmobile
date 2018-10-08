@@ -1,3 +1,4 @@
+import { ChangeDetectorRef } from '@angular/core';
 import { NavigatorPage } from './../navigator/navigator';
 import { Observable } from 'rxjs';
 import { AlertService } from '../../providers/alert.service';
@@ -30,10 +31,10 @@ export class SociosPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils, 
         private dataService: DataService, private networkService:NetworkService, 
-        private toastService:ToastService, private alertService : AlertService) {
+        private toastService:ToastService, private alertService : AlertService, private ref: ChangeDetectorRef) {
 
         
-        this.getSocios()
+        this.getSocios();
         this.telefono = dataService.getPhoneNumber();
         if (this.navParams.get('socio')) {
             this.socioActual = this.getSociosByDni(this.navParams.get('socio'));
@@ -103,6 +104,11 @@ export class SociosPage {
 
     previusPage() {
         this.navCtrl.setRoot(HomePage);
+    }
+
+    radioChecked(){
+        //fuerzo el refresco para que actualice la variable socioActual        
+        this.ref.detectChanges();
     }
 
 

@@ -1,3 +1,4 @@
+import { SolicitudVcPage } from './../solicitud-vc/solicitud-vc';
 import { SociosPage } from './../socios/socios';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
@@ -258,17 +259,28 @@ export class HomePage {
 		this.isVCAvailable();
 	}
 
-	private isVCAvailable(params?){
+	private isVCAvailable(params?){		
 		this.dataService.validateAvailableVC(this.utils.getActiveUser()).subscribe(
-		  res=>{
-			  	this.utils.hideLoader();
+		  res=>{			  	
 				console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
 				if(res.estadoVC =="Inactivo"){
 				  let message = res.Mensaje;
 				  this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+				  this.utils.hideLoader();
 				  this.navCtrl.setRoot(HomePage, params);
 				}else{
-					this.navCtrl.push(SociosPage, params);
+					let sociosDNI = this.dataService.restoreUsers();
+              		if(sociosDNI.length == 1){
+                		let socioActual = this.dataService.restoreMisDatos(sociosDNI[0]);
+                		this.dataService.validarVC(socioActual.dni, "NO").subscribe(data =>{
+                  		this.validateVCResponse(data,socioActual);
+               		 });
+              	}
+              else{
+                this.navCtrl.push(SociosPage, params);              
+            }
+					
+					
 		  }},
 		  err=>{
 				this.utils.hideLoader();
@@ -278,5 +290,21 @@ export class HomePage {
 				this.navCtrl.setRoot(HomePage, params);
 		  })
 		}  
+
+		validateVCResponse(responseValidateVC,socioActual) {
+			//Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
+			let response = this.dataService.getResponseData(responseValidateVC);
+			if (response.estadoVC == "Activo") {
+				let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}        
+				let params = { socio: socioActual, email: response.email, tel : telefono};
+				this.navCtrl.push(SolicitudVcPage, params);               
+			}
+			else {
+				this.utils.hideLoader();
+				this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje);
+				//Solo muestra ok y vuelve al home
+				this.navCtrl.push(HomePage);
+			}
+		}
 		
 }

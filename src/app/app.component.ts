@@ -15,6 +15,8 @@ import { SociosPage } from '../pages/socios/socios'
 import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
 import { ToastService } from '../providers/toast.service';
+import { SolicitudVcPage } from './../pages/solicitud-vc/solicitud-vc';
+
 
 
 @Component({
@@ -56,8 +58,7 @@ export class MyApp {
       title : 'Agregar socio',
       icon : 'ios-add-outline',
       params : {newMember: true}
-    },
-
+    },    
   ]
 
 
@@ -143,15 +144,24 @@ private goToPage(page, params?, force?) {
 
 private isVCAvailable(page,params){
   this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
-    res=>{
-          this.utils.hideLoader();
+    res=>{          
           console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
           if(res.estadoVC =="Inactivo"){
             let message = res.Mensaje;
             this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+            this.utils.hideLoader();
             this.navigatePage(HomePage, params, false);
           }else{
-            this.navigatePage(page, params, false);
+            let sociosDNI = this.dataService.restoreUsers();
+              if(sociosDNI.length == 1){
+                let socioActual = this.dataService.restoreMisDatos(sociosDNI[0]);
+                this.dataService.validarVC(socioActual.dni, "NO").subscribe(data =>{
+                  this.validateVCResponse(data,socioActual);
+                });
+              }
+              else{
+                this.navigatePage(page, params, false);               
+            }
     }},
     err=>{
           this.utils.hideLoader();
@@ -161,6 +171,22 @@ private isVCAvailable(page,params){
           this.navigatePage(HomePage, params, false);
     })
   }
+
+  validateVCResponse(responseValidateVC,socioActual) {
+    //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
+    let response = this.dataService.getResponseData(responseValidateVC);
+    if (response.estadoVC == "Activo") {
+        let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}        
+        let params = { socio: socioActual, email: response.email, tel : telefono};
+        this.navigatePage(SolicitudVcPage, params);               
+    }
+    else {
+        this.utils.hideLoader();
+        this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje);
+        //Solo muestra ok y vuelve al home
+        this.navigatePage(HomePage);
+    }
+}
 
 
   private navigatePage(page, params?, force?){

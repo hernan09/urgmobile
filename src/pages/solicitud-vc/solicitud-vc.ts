@@ -125,11 +125,17 @@ export class SolicitudVcPage implements Overlay {
             console.log("VCResponse - data.registroVC: ",data.registroVC);
             this.alertService.showAlert("Video Consulta", data.Mensaje);            
         }
-        this.navCtrl.setRoot(HomePage)
+        this.navCtrl.setRoot(HomePage);
     }
 
     previusPage() {
-        this.navCtrl.setRoot(SociosPage, { socio: this.navParams.get('socio') })
+        let users = this.dataService.restoreUsers();
+        if(users.length == 1){
+            this.navCtrl.setRoot(HomePage);
+        }
+        else{
+            this.navCtrl.setRoot(SociosPage, { socio: this.navParams.get('socio') });
+        }
     }
 
     onChangeSymptom() {

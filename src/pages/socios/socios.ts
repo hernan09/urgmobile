@@ -44,6 +44,11 @@ export class SociosPage {
 
     ionViewCanEnter(){
         this.menu.setArrowBack(true);
+        // this.sociosDNI = this.dataService.restoreUsers();
+        // if(this.sociosDNI.length == 1){           
+        //     this.socioActual = this.dataService.restoreMisDatos(this.sociosDNI[0]);
+        //     this.dataService.validarVC(this.sociosDNI[0], "NO").subscribe(this.validateVCResponse.bind(this));
+        // }
     }
 
     requestVCPage(socio) {
@@ -66,7 +71,6 @@ export class SociosPage {
             let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}
             this.utils.hideLoader();
             this.navCtrl.setRoot(SolicitudVcPage, { socio: this.socioActual, email: response.email, tel : telefono}, { animate: true, direction: 'back' })
-
         }
         else {
             this.utils.hideLoader();

@@ -348,7 +348,6 @@ export class DataService {
             })
     }
 
-
     //Obtiene la info dentro del response
     public getResponseData(res):any{
         const data = res.json();

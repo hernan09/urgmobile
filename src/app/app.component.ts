@@ -1,3 +1,4 @@
+import { SolicitudVcPage } from 'pages/solicitud-vc/solicitud-vc';
 import { FooterPage } from './../pages/footer/footer';
 import { Config } from './config';
 import { AlertService } from './../providers/alert.service';
@@ -15,6 +16,7 @@ import { SociosPage } from '../pages/socios/socios'
 import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
 import { ToastService } from '../providers/toast.service';
+
 
 
 @Component({
@@ -151,7 +153,14 @@ private isVCAvailable(page,params){
             this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
             this.navigatePage(HomePage, params, false);
           }else{
-            this.navigatePage(page, params, false);
+            let sociosDNI = this.dataService.restoreUsers();
+              if(sociosDNI.length == 1){
+                let socioActual = this.dataService.restoreMisDatos(sociosDNI[0]);
+                this.dataService.validarVC(socioActual.dni, "NO").subscribe(this.validateVCResponse.bind(this,socioActual));
+              }
+              else{
+                this.navigatePage(page, params, false);
+            }
     }},
     err=>{
           this.utils.hideLoader();
@@ -161,6 +170,23 @@ private isVCAvailable(page,params){
           this.navigatePage(HomePage, params, false);
     })
   }
+
+  validateVCResponse(responseValidateVC,socioActual) {
+    //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
+    let response = this.dataService.getResponseData(responseValidateVC);
+    if (response.estadoVC == "Activo") {
+        let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}
+        this.utils.hideLoader();
+        let params = { socio: socioActual, email: response.email, tel : telefono};
+        this.goToPage(SolicitudVcPage, params);               
+    }
+    else {
+        this.utils.hideLoader();
+        this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje);
+        //Solo muestra ok y vuelve al home
+        this.navigatePage(HomePage);
+    }
+}
 
 
   private navigatePage(page, params?, force?){

@@ -1,4 +1,3 @@
-import { SolicitudVcPage } from 'pages/solicitud-vc/solicitud-vc';
 import { FooterPage } from './../pages/footer/footer';
 import { Config } from './config';
 import { AlertService } from './../providers/alert.service';
@@ -16,6 +15,7 @@ import { SociosPage } from '../pages/socios/socios'
 import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
 import { ToastService } from '../providers/toast.service';
+import { SolicitudVcPage } from './../pages/solicitud-vc/solicitud-vc';
 
 
 
@@ -58,8 +58,7 @@ export class MyApp {
       title : 'Agregar socio',
       icon : 'ios-add-outline',
       params : {newMember: true}
-    },
-
+    },    
   ]
 
 
@@ -145,21 +144,23 @@ private goToPage(page, params?, force?) {
 
 private isVCAvailable(page,params){
   this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
-    res=>{
-          this.utils.hideLoader();
+    res=>{          
           console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
           if(res.estadoVC =="Inactivo"){
             let message = res.Mensaje;
             this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+            this.utils.hideLoader();
             this.navigatePage(HomePage, params, false);
           }else{
             let sociosDNI = this.dataService.restoreUsers();
               if(sociosDNI.length == 1){
                 let socioActual = this.dataService.restoreMisDatos(sociosDNI[0]);
-                this.dataService.validarVC(socioActual.dni, "NO").subscribe(this.validateVCResponse.bind(this,socioActual));
+                this.dataService.validarVC(socioActual.dni, "NO").subscribe(data =>{
+                  this.validateVCResponse(data,socioActual);
+                });
               }
               else{
-                this.navigatePage(page, params, false);
+                this.navigatePage(page, params, false);               
             }
     }},
     err=>{
@@ -175,10 +176,9 @@ private isVCAvailable(page,params){
     //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
     let response = this.dataService.getResponseData(responseValidateVC);
     if (response.estadoVC == "Activo") {
-        let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}
-        this.utils.hideLoader();
+        let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}        
         let params = { socio: socioActual, email: response.email, tel : telefono};
-        this.goToPage(SolicitudVcPage, params);               
+        this.navigatePage(SolicitudVcPage, params);               
     }
     else {
         this.utils.hideLoader();

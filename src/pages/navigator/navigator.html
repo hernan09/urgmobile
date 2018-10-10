@@ -12,11 +12,12 @@
     </button>
   </ion-buttons>
 
-  <ion-title [className]="arrowBack ? 'title title-md urg-title' : 'title title-md'">
+      
+  <ion-title class="title title-md urg-title">     
     URG
   </ion-title>
 
-  <ion-buttons *ngIf=!arrowBack  right>
+  <ion-buttons *ngIf=!arrowBack right>
     <a href="tel:{{telefono}}"  *ngIf="!isSurveyActive" (click)="nextPhoneNumber()">
       <button right class="urgIcon">
         <ion-icon name="call"></ion-icon>

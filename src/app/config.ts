@@ -2,12 +2,11 @@ import { ENV } from '@app/env';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 export class Config {
-
 	public static OPTIONS = {
 		EXPIRE_TIME : 30 * 24 * 60, // login expire time, in minutes
 		REQUEST_TIMEOUT : 7000, // for some backend requests, in milliseconds		
 		NOTI_SIM_DELAY : 0, //notification simulation delay, in seconds (0: disable simulation
-		VERSION_NUMBER : '1.0.17.3'
+		VERSION_NUMBER : '1.0.18.1'
 	}
 
 	public static getEnv(){
@@ -83,7 +82,6 @@ export class Config {
 
 
 	public static MSG = {
-
 		EXIT : 'Apretá otra vez para salir de URG Móvil.',
 		EXIT_VC : 'Apretá otra vez para salir de la video consulta.',
 		DISCONNECTED : 'Problemas con Internet. Revisá tu conexión para poder visualizar tus datos actualizados.',
@@ -94,9 +92,9 @@ export class Config {
 		REGISTER_OK : 'Su registración ha sido realizada con éxito.',
 		REGISTER_ERROR_INCORRECT : 'La respuesta es incorrecta.',
  		REGISTER_ERROR_INCORRECT_2 : '. Comunicate con nosotros para habilitar la registración al {}.',
-		TIMEOUT_ERROR: 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde o comunicate al 0800-444-3511',
+		TIMEOUT_ERROR: 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intente nuevamente más tarde o comunicate al 0800-444-3511',
 		ADD_USER_ERROR : 'El usuario ya se encuentra registrado',
-		CONNECTION_ERROR : 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intentá nuevamente más tarde.',
+		CONNECTION_ERROR : 'Lo sentimos. No podemos procesar tu solicitud en este momento. Por favor, intente nuevamente más tarde.',
 		ERROR : 'Lo sentimos, ha ocurrido un error.',
 		SORRY : 'Lo sentimos',
 		TITULAR_EXIST_INFO: 'El DNI {} se encuentra registrado en esta aplicación. Si continúa con el proceso los datos relacionados con el mismo serán reemplazados. ¿Desea continuar?',

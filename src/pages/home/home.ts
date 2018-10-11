@@ -1,3 +1,4 @@
+import { SociosPage } from './../socios/socios';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
 import { VideoConsultaService } from './../../providers/video.consulta.service';
@@ -49,7 +50,7 @@ export class HomePage {
 	){
 		//Actualizo los datos de todos los usuarios, refresca el menu de multiusuario.
 		this.dataService.updateUsers();	
-		this.checkVCStatus();
+		this.checkVCStatus();		
 		
 		this.alertas_home = notiService.getAlertas().filter(alerta => alerta.visible == true)
 		this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
@@ -63,7 +64,7 @@ export class HomePage {
 			console.log("Recibo alertas actualizadas");
 			this.alertas_home = alertas.filter(alerta => alerta.visible == true)
 			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true			
-			if (!this.ref['destroyed']) this.ref.detectChanges()
+			if (!this.ref['destroyed']) this.ref.detectChanges()						
 		})
 		
 		events.subscribe('vcStatus', (data) => {
@@ -79,7 +80,7 @@ export class HomePage {
 }
 
 	checkIfVCBlocked() {
-		this.videoConsultaService.checkIfBlocked(this.dni, this.cid)
+		this.videoConsultaService.checkIfBlocked(this.cid)
 		.filter(data => data === true).subscribe(
             data =>{
 				console.log("data === true : la VC FINALIZO!!!!");
@@ -176,20 +177,21 @@ export class HomePage {
 		}
 		this.dataService.responderEncuesta(data).subscribe(
 			data => {
-				this.sayThanks()
+				this.sayThanks();
 			},
 			err => {
-				this.sayThanks()
+				this.sayThanks();
 			})
 		this.answered = true
 
 		data.rate = 0;
-		data.comment = "";
+		data.comment = "";	
 	}
 
 	closeAlert(alerta){
 		
-		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR);
+		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR);	 		
+		
 
 		alert.onDidDismiss(res => {
 			if (res != false) {			
@@ -216,6 +218,7 @@ export class HomePage {
 		}, 3000)
 
 		this.content.scrollToTop(1000);
+		this.events.publish('survey', false);
 	}
 
 	//ver si es necesario
@@ -237,7 +240,6 @@ export class HomePage {
 		this.telefono = this.dataService.nextPhoneNumber()
 	}
 
-
 	initVideoconsulta(cid,dni) {
 		this.navCtrl.setRoot(VideoConsultaPage, { cid, dni })
 	}
@@ -250,4 +252,31 @@ export class HomePage {
 			this.isCIDBlocked  = this.dataService.getVCStatus();
 		}
 	}
+
+	goToSociosPage(){
+		this.utils.showLoader();
+		this.isVCAvailable();
+	}
+
+	private isVCAvailable(params?){
+		this.dataService.validateAvailableVC(this.utils.getActiveUser()).subscribe(
+		  res=>{
+			  	this.utils.hideLoader();
+				console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
+				if(res.estadoVC =="Inactivo"){
+				  let message = res.Mensaje;
+				  this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+				  this.navCtrl.setRoot(HomePage, params);
+				}else{
+					this.navCtrl.push(SociosPage, params);
+		  }},
+		  err=>{
+				this.utils.hideLoader();
+				console.log('Erro al validateAvailableVC:', err);
+				let message = Config.MSG.SOLICITUD_VC_ERROR;
+				this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+				this.navCtrl.setRoot(HomePage, params);
+		  })
+		}  
+		
 }

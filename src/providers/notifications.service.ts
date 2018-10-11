@@ -241,8 +241,10 @@ export class NotificationsService {
       alerta.visible = true;
       this.hideNotifications();
       console.log("Lista Alerta encuenta: " , this.alertas);
+
       this.alertas.unshift(alerta);
-      this.saveAlertas(notification.data.dni);
+      this.events.publish('survey', true);
+      this.saveAlertas();
     } else {
       alerta.title = notification.title;
       alerta.androidNotificationId = notification.androidNotificationId;
@@ -254,7 +256,7 @@ export class NotificationsService {
           alerta.visible = true;
           console.log("Lista Alerta tipo 1: " , this.alertas);
           this.alertas.unshift(alerta);
-          this.saveAlertas(notification.data.dni);
+          this.saveAlertas();
           break;
 
         case "2":
@@ -263,16 +265,16 @@ export class NotificationsService {
           alerta.visible = true;
           console.log("Lista Alerta tipo 2: " , this.alertas);
           this.alertas.unshift(alerta);
-          this.saveAlertas(notification.data.dni);
+          this.saveAlertas();
           break;
         case "3":
-          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico está en camino","Horario estimado de arribo",notification.data.hora,true); 
+          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Horario estimado de arribo",notification.data.hora,true); 
           break;
         case "4":
-          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico está demorado","Nuevo horario de arribo",notification.data.hora,false);
+          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Nuevo horario de arribo",notification.data.hora,false);
           break;
         case "5":
-          this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,"El médico arribó al domicilio","Horario estimado de arribo",notification.data.hora,true);
+          this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Horario estimado de arribo",notification.data.hora,true);
           break;
         case "6":
           this.removeStep(5);
@@ -287,15 +289,15 @@ export class NotificationsService {
           };
           alerta.visible = true;
           this.alertas.unshift(alerta);
-          this.saveAlertas(notification.data.dni);
+          this.saveAlertas();
           break;
       }
     }
   }
   ///////////////////////////////// END OLD
 
-  private saveAlertas(dni?) {
-    this.dataService.saveAlertas(this.alertas, dni);
+  private saveAlertas() {
+    this.dataService.saveAlertas(this.alertas);
   }
 
   private removeStep(step) {
@@ -359,7 +361,7 @@ export class NotificationsService {
         alerta.visible = true;
         console.log("Lista Alerta tipo doctor " + notification.data.tipoAtencion + ": " , this.alertas);
         this.alertas.unshift(alerta);
-        this.saveAlertas(notification.data.dni);
+        this.saveAlertas();
         this.alertasChange.next(this.alertas);
         return alerta;
       }, err => { console.error(err);
@@ -373,7 +375,7 @@ export class NotificationsService {
       alerta.visible = true;
       console.log("Lista Alerta tipo doctor " + notification.data.tipoAtencion + ": " , this.alertas);
       this.alertas.unshift(alerta);
-      this.saveAlertas(notification.data.dni);
+      this.saveAlertas();
       this.alertasChange.next(this.alertas);
     } 
     return alerta;

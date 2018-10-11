@@ -17,7 +17,7 @@
     <div>
       <ion-item *ngFor="let opcionSocio of socios">
         <ion-label>{{ opcionSocio.nombre }} {{opcionSocio.apellido}}</ion-label>
-        <ion-radio [value]="opcionSocio"></ion-radio>
+        <ion-radio [value]="opcionSocio" (ionSelect)="radioChecked()"></ion-radio>
       </ion-item>
     </div>
 

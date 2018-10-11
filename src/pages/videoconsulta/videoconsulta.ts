@@ -48,7 +48,7 @@ export class VideoConsultaPage {
     this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
     this.dni = navParams.get('dni') || utils.getItem('dni') || '12345678'
 
-    this.utils.setItem('cid', this.cid)
+    this.dataService.saveCID(this.cid)
     provider.VC = this 
     this.checkCid();     
   }
@@ -66,7 +66,7 @@ export class VideoConsultaPage {
       err => {
         // if get yields a 404, cid is available
         // for any other error, allow access to conf anyway
-        this.dataService.saveCID(this.cid,this.dni);
+        this.dataService.saveCID(this.cid);
         this.provider.getCredentials({ cid : this.cid, isSafari : 0 })        
       }
     )

@@ -1,5 +1,3 @@
-import { SolicitudVcPage } from './../solicitud-vc/solicitud-vc';
-import { SociosPage } from './../socios/socios';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
 import { VideoConsultaService } from './../../providers/video.consulta.service';
@@ -9,9 +7,11 @@ import { NavController, NavParams, Content } from 'ionic-angular'
 import { NotificationsService } from '../../providers/notifications.service'
 import { DataService } from '../../providers/data.service'
 import { Utils } from '../../providers/utils'
+import { Events } from 'ionic-angular';
 
 import { VideoConsultaPage } from '../videoconsulta/videoconsulta'
-import { Events } from 'ionic-angular';
+import { SolicitudVcPage } from './../solicitud-vc/solicitud-vc';
+import { SociosPage } from './../socios/socios';
 
 @Component({
   selector: 'page-home',
@@ -259,9 +259,10 @@ export class HomePage {
 		this.isVCAvailable();
 	}
 
-	private isVCAvailable(params?){		
+	private isVCAvailable(params?){
 		this.dataService.validateAvailableVC(this.utils.getActiveUser()).subscribe(
-		  res=>{			  	
+		  res=>{
+			  	this.utils.hideLoader();
 				console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
 				if(res.estadoVC =="Inactivo"){
 				  let message = res.Mensaje;

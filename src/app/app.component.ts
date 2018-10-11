@@ -144,7 +144,8 @@ private goToPage(page, params?, force?) {
 
 private isVCAvailable(page,params){
   this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
-    res=>{          
+    res=>{
+          this.utils.hideLoader();
           console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
           if(res.estadoVC =="Inactivo"){
             let message = res.Mensaje;

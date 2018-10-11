@@ -388,12 +388,23 @@ export class DataService {
     }
 
     public restoreAlertas(dni?) {
-        return this.getLocalStorage(Config.KEY.ALERTAS, dni)
+        return this.utils.getAlerts();
     }
-    public saveAlertas(data, dni?) {
+    public saveAlertas(data) {
         if (!data) return
-        this.setLocalStorage(Config.KEY.ALERTAS, data, dni)
+        this.utils.setAlert(data)
     }
+    
+
+    public saveCID(data) {
+        if (!data) return
+        this.utils.setCID(data);
+    }
+
+    public restoreCID() {
+        this.utils.getCID();
+    }
+
 
     public restoreSintomas(dni?) {
         return this.getLocalStorage(Config.KEY.SINTOMAS, dni)
@@ -403,25 +414,21 @@ export class DataService {
         this.setLocalStorage(Config.KEY.SINTOMAS, data, dni)
     }
 
-    public saveCID(data, dni?) {
-        if (!data) return
-        this.setLocalStorage(Config.KEY.CID, data, dni)
-    }
-    public restoreCID(dni?) {
-        return this.getLocalStorage(Config.KEY.CID, dni)
-      }
-
-      public getCID(dni){
-          return this.restoreCID(dni);
-      }
-
-      public getVCStatus(){
+    public getVCStatus(){
         return this.utils.getItem(Config.KEY.VC_STATUS);
       }
 
       public setVCStatus(data){       
         this.utils.setItem(Config.KEY.VC_STATUS, data);
-      }     
+      } 
+      
+      public getSurveyStatus(){
+        return this.utils.getItem(Config.KEY.SURVEY_STATUS);
+      }
+
+      public setSurveyStatus(data){       
+        this.utils.setItem(Config.KEY.SURVEY_STATUS, data);
+      }  
 
 
     public getLocalStorage(prop, dni?) {

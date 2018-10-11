@@ -1,3 +1,4 @@
+import { Utils } from './utils';
 import { DataService } from './data.service';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core'
@@ -13,7 +14,7 @@ export class VideoConsultaService {
         
     }   
 
-public checkIfBlocked(dni, cid?) : Observable<any>{
+public checkIfBlocked(cid?) : Observable<any>{
 
         let answerObs : Subject<any> = new Subject<any>();
         //Cambie la logica el cid siempre lo recibe por parametro no lo busca mas en el dataService
@@ -22,10 +23,8 @@ public checkIfBlocked(dni, cid?) : Observable<any>{
           cidUrl = cid;
         }
         else{
-         cidUrl = this.dataService.getCID(dni);
+         cidUrl = this.dataService.restoreCID();
         }
-        //let cid = this.dataService.getCID(dni);
-
         this.http.get(VC_SERVER_URL + '/cid/' + cidUrl).subscribe(
             data => {
               // if get succeeds, cid is blacklisted

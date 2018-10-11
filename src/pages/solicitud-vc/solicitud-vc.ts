@@ -1,4 +1,3 @@
-import { ModalService } from './../../providers/modal.service';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
@@ -15,6 +14,7 @@ import { Device } from '@ionic-native/device';
 import { Select } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { NavigatorPage } from './../navigator/navigator';
+import { ModalService } from './../../providers/modal.service';
 
 @Component({
     selector: 'page-solicitud-vc',
@@ -67,6 +67,7 @@ export class SolicitudVcPage implements Overlay {
     ionViewCanEnter(){
         this.menu.setArrowBack(true);
     }
+
 
 
     handleData(data) {
@@ -150,24 +151,23 @@ export class SolicitudVcPage implements Overlay {
     }
 
 
-    closeAllOverlays(){        
+     closeAllOverlays(){        
             this.symptomSelect.close();         
             this.alertService.hideAlert();           
     }
-    
 
     nextPhoneNumber(){
         this.dataService.nextPhoneNumber();
     }
 
-
     public backButtonAction() {
-       if(this.symptomSelect.isFocus()){
-           this.closeAllOverlays();
-       }
-       else{
-           this.previusPage();
-       }
-    }
-    
+        if(this.symptomSelect.isFocus()){
+            this.closeAllOverlays();
+        }
+        else{
+            this.previusPage();
+        }
+     }
+ 
+ 
 }

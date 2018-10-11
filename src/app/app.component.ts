@@ -85,7 +85,7 @@ export class MyApp {
     private alertService : AlertService
   ){
 
-    platform.ready().then(_ => {
+    platform.ready().then(_ => {     
 
       splashScreen.hide()
 
@@ -118,8 +118,7 @@ export class MyApp {
 
       dataService.usersChange.subscribe(users => {
         this.activeUser = users.find(e => e.active)
-        this.otherUsers = users.filter(e => !e.active)
-        //console.log('Change detected in users:', users)
+        this.otherUsers = users.filter(e => !e.active)        
         if (!this.ref['destroyed']) this.ref.detectChanges()
       })
       dataService.app = this
@@ -133,6 +132,8 @@ private goToPage(page, params?, force?) {
     if (!page) return;
     if ( page.pageName && page.pageName == "SociosPage" ){
       console.log(">>> Entra en Page: "+ page.pageName);
+      //agrego el loader porque el servicio tarda bastante.
+      this.utils.showLoader();
       this.isVCAvailable(page, params);
     }else{  
       this.navigatePage(page, params, force);
@@ -143,6 +144,7 @@ private goToPage(page, params?, force?) {
 private isVCAvailable(page,params){
   this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
     res=>{
+          this.utils.hideLoader();
           console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
           if(res.estadoVC =="Inactivo"){
             let message = res.Mensaje;
@@ -152,6 +154,7 @@ private isVCAvailable(page,params){
             this.navigatePage(page, params, false);
     }},
     err=>{
+          this.utils.hideLoader();
           console.log('Erro al validateAvailableVC:', err);
           let message = Config.MSG.SOLICITUD_VC_ERROR;
           this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
@@ -193,6 +196,13 @@ private isVCAvailable(page,params){
 
   public closeMenu(){
     this.viewMembers = false;
+  }
+
+  public openMenu(){
+    this.activeUser.dni = this.utils.getActiveUser();
+    let user = this.dataService.restoreMisDatos(this.utils.getActiveUser());
+    this.activeUser.nombre = user.nombre + " " + user.apellido;
+    this.ref.detectChanges();
   }
 
   toggleView() {

@@ -86,7 +86,7 @@ export class AlertBuilder {
             3,
             notification,
             notification.data.nombreMedico,
-            "El médico está en camino",
+            notification.data.titulo,
             "Horario estimado de arribo",
             notification.data.hora,
             true
@@ -100,7 +100,7 @@ export class AlertBuilder {
             3,
             notification,
             notification.data.nombreMedico,
-            "El médico está demorado",
+            notification.data.titulo,
             "Nuevo horario de arribo",
             notification.data.hora,
             false
@@ -114,7 +114,7 @@ export class AlertBuilder {
             3,
             notification,
             notification.data.nombreMedico,
-            "El médico arribó al domicilio",
+            notification.data.titulo,
             "Horario estimado de arribo",
             notification.data.hora,
             true

@@ -58,7 +58,6 @@ export class Tokbox {
       {
         insertMode : 'append',
         style : this.styleProps,
-        //resolution : '640x480',
         audioBitrate : 20000,
         fitMode : 'contain',
         width : 640,
@@ -107,14 +106,12 @@ export class Tokbox {
       
       setTimeout(_ => {
           // Remove participants
-         this.vcService.checkIfBlocked(this.utils.getActiveUser())
-          
+         this.vcService.checkIfBlocked(this.utils.getCID())          
           .subscribe(
             data =>{
               if(data){
                     this.participants = [];
-                    session.off();
-                    this.utils.delItem('cid');
+                    session.off();                 
                     session.disconnect();                    
                     this.VC.goHome(this.VC);
               }    

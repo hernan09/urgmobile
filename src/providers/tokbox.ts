@@ -112,8 +112,8 @@ export class Tokbox {
               if(data){
                     this.participants = [];
                     session.off();                 
-                    session.disconnect();                    
-                    this.VC.goHome(this.VC);
+                    session.disconnect();
+                    this.VC.checkCid();
               }    
             }
           );

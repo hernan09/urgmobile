@@ -1,15 +1,12 @@
-import { VideoconsultaMessagePage } from './../videoconsulta-message/videoconsulta-message';
 import { DataService } from './../../providers/data.service';
 import { Component, ChangeDetectorRef } from '@angular/core'
 import { Http } from '@angular/http'
-import { NavController, NavParams } from 'ionic-angular'
+import { NavController, NavParams, Events } from 'ionic-angular'
 import { HomePage } from '../home/home'
 import { Utils } from '../../providers/utils'
 import { Tokbox } from '../../providers/tokbox'
 import { ToastService } from '../../providers/toast.service';
 import { Config } from './../../app/config';
-import { Events } from 'ionic-angular';
-
 
 
 const RELOAD_DELAY = 3;
@@ -27,8 +24,7 @@ export class VideoConsultaPage {
   show = 'start'
   mic = true
   cam = true
-  private readyToExit = false
-  //isBlocked = false;
+  private readyToExit = false  
   waitingDoctor: boolean;
   
 
@@ -41,8 +37,7 @@ export class VideoConsultaPage {
     private ref: ChangeDetectorRef,
     private toastService : ToastService,
     private dataService : DataService,
-    private events : Events,  
-    
+    private events : Events  
   ) {
     this.utils.showLoader();
     this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
@@ -109,7 +104,6 @@ export class VideoConsultaPage {
     }
   }
 
-
   public showError() {
     this.show = 'error'
     this.utils.hideLoader();
@@ -139,16 +133,12 @@ export class VideoConsultaPage {
     if(this.show == 'unavailable'){
       this.dataService.setVCStatus(true);
       this.events.publish('vcStatus', true);
-      this.navCtrl.setRoot(HomePage);
+      setTimeout(_ => this.navCtrl.setRoot(HomePage), RELOAD_DELAY * 700);
     } 
     else{
       this.navCtrl.setRoot(HomePage);
     }
     this.utils.delItem('cid'); 
   }
-
-goHome(vcInstance:any){   
-  vcInstance.navCtrl.setRoot(VideoconsultaMessagePage);
-}
 
 }

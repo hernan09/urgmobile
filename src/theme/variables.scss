@@ -72,6 +72,9 @@ $toolbar-ios-background: #002664;
 $toolbar-md-background: #002664;
 $toolbar-wp-background: #002664;
 
+//>>>> EasyDoc Custom CSS
+@import "easydoc.style";
+
 
 // Ionicons
 // --------------------------------------------------
@@ -84,5 +87,9 @@ $toolbar-wp-background: #002664;
 // Fonts
 // --------------------------------------------------
 
+
 @import "roboto";
 @import "noto-sans";
+
+//>>>> EasyDoc Custom font-family
+@import "easydoc.fonts";

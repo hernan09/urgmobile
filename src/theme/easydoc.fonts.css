@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'OpenSans-bold';
+    src: url('fonts/OpenSans-Bold.eot');
+    src: local('Open Sans Bold'), local('OpenSans-Bold'),
+        url('fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/OpenSans-Bold.woff2') format('woff2'),
+        url('fonts/OpenSans-Bold.woff') format('woff'),
+        url('fonts/OpenSans-Bold.ttf') format('truetype'),
+        url('fonts/OpenSans-Bold.svg#OpenSans-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans-light';
+    src: url('fonts/OpenSans-Light_1.eot');
+    src: local('Open Sans Light'), local('OpenSans-Light'),
+        url('fonts/OpenSans-Light_1.eot?#iefix') format('embedded-opentype'),
+        url('fonts/OpenSans-Light_1.woff2') format('woff2'),
+        url('fonts/OpenSans-Light_1.woff') format('woff'),
+        url('fonts/OpenSans-Light_1.ttf') format('truetype'),
+        url('fonts/OpenSans-Light_1.svg#OpenSans-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'OpenSans-regular';
+    src: url('fonts/OpenSans-Regular.eot');
+    src: local('Open Sans Regular'), local('OpenSans-Regular'),
+        url('fonts/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/OpenSans-Regular.woff2') format('woff2'),
+        url('fonts/OpenSans-Regular.woff') format('woff'),
+        url('fonts/OpenSans-Regular.ttf') format('truetype'),
+        url('fonts/OpenSans-Regular.svg#OpenSans-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OpenSans-SemiBold';
+    src: url('fonts/OpenSans-SemiBold_1.eot');
+    src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
+        url('fonts/OpenSans-SemiBold_1.eot?#iefix') format('embedded-opentype'),
+        url('fonts/OpenSans-SemiBold_1.woff2') format('woff2'),
+        url('fonts/OpenSans-SemiBold_1.woff') format('woff'),
+        url('fonts/OpenSans-SemiBold_1.ttf') format('truetype'),
+        url('fonts/OpenSans-SemiBold_1.svg#OpenSans-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+

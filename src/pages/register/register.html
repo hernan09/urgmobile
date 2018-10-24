@@ -25,8 +25,7 @@
 
     <checker></checker>
 
-    <button *ngIf="show == 'retry'" (click)="retry()"
-      ion-button full icon-start class="urg-button-blue" >
+    <button *ngIf="show == 'retry'" (click)="retry()"   class="btn btn-blue" >
       Responder nuevamente
     </button>
 
@@ -40,7 +39,7 @@
 
 <ion-footer id="homeFooter" bottom>
   <button (click)="nextAnswer()" [disabled]="!hasChosen || (last && !tycs)"
-    ion-button full class="urg-button-blue" >
+    class="btn btn-blue" >
     {{ last ? 'Finalizar' : 'Continuar' }}
   </button>
 </ion-footer>

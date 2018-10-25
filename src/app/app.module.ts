@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
 import { Device } from '@ionic-native/device';
 
-
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 
 // ionic plugins
@@ -39,6 +38,9 @@ import { NavigatorPage } from './../pages/navigator/navigator';
 import { FooterPage } from './../pages/footer/footer';
 import { SolicitudAtencionPage } from './../pages/solicitud-atencion/solicitud-atencion';
 import { SaContactoPage } from './../pages/sa-contacto/sa-contacto';
+import { SaConsultaPage } from './../pages/sa-consulta/sa-consulta';
+import { SaTiempoPage } from './../pages/sa-tiempo/sa-tiempo';
+import { SaServiciosPage } from './../pages/sa-servicios/sa-servicios';
 
 // services
 import { AuthService } from '../providers/auth.service'
@@ -77,7 +79,10 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     FooterPage,
     CheckerComponent,
     SolicitudAtencionPage,
-    SaContactoPage
+    SaContactoPage,
+    SaConsultaPage,
+    SaTiempoPage,
+    SaServiciosPage
   ],
 
   entryComponents: [
@@ -99,7 +104,10 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     FooterPage,
     CheckerComponent,
     SolicitudAtencionPage,
-    SaContactoPage
+    SaContactoPage,
+    SaConsultaPage,
+    SaTiempoPage,
+    SaServiciosPage
   ],
 
   imports: [

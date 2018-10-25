@@ -1,0 +1,47 @@
+<ion-header>
+
+  <page-navigator></page-navigator>
+
+</ion-header>
+
+<ion-content >
+
+  <div class="header header-rectangular-container"></div>
+  <div class="box-container">
+
+    <div class="image img-url"></div>
+    <ion-list radio-group  >
+
+      <h3 class="title">Incarbone Eduardo Oscar</h3>
+      <h5 class="sub-title">Elegí la opción que mejor se adapte a vos</h5>
+
+      <hr class="soft-line soft-line-black">
+
+      <div class="box-option">
+        <ion-grid>
+          <ion-row>
+
+            <ion-col col-4>
+              <div class="image-option"></div>
+            </ion-col>
+
+            <ion-col col-8>
+              <label>Solicitá una</label>
+              <p>Video Consulta Mèdica</p>
+              <label for="">Sin salir de tu casa</label>
+
+              <p>Tiempo de espera:</p>
+              <label for="">10 minutos</label>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+
+      </div>
+
+    </ion-list>
+
+    <button  class="btn btn-blue" (click)="gotoPage()" >
+      Continuar
+    </button>
+  </div>

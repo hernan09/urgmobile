@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SaConsultaPage } from '../sa-consulta/sa-consulta';
-
+import { SaTiempoPage } from '../sa-tiempo/sa-tiempo';
 /**
- * Generated class for the SaContactoPage page.
+ * Generated class for the SaConsultaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +10,20 @@ import { SaConsultaPage } from '../sa-consulta/sa-consulta';
 
 @IonicPage()
 @Component({
-  selector: 'page-sa-contacto',
-  templateUrl: 'sa-contacto.html',
+  selector: 'page-sa-consulta',
+  templateUrl: 'sa-consulta.html',
 })
-export class SaContactoPage {
+export class SaConsultaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SaContactoPage');
+    console.log('ionViewDidLoad SaConsultaPage');
   }
 
   gotoPage(){
-    this.navCtrl.setRoot( SaConsultaPage );
+    this.navCtrl.setRoot( SaTiempoPage );
   }
 
 }

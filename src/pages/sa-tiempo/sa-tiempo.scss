@@ -1,6 +1,13 @@
-page-solicitud-atencion {
-  .sub-title{
+page-sa-tiempo {
+  .title {
     text-align: center;
+    font-size: 16px;
+  }
+
+  .sub-title {
+    text-align: center;
+    font-size: 14px;
+    margin: 5px;
     font-weight: 200;
   }
   .scroll-content > *:last-of-type {
@@ -33,11 +40,6 @@ page-solicitud-atencion {
         border-bottom: 0 !important;
       }
     }
-
-    // ion-item {
-    //   border-left: 4px solid $osde_lightgreen !important;
-    //   margin: 10px !important;
-    // }
 
     .item-inner {
       flex-direction: row-reverse;

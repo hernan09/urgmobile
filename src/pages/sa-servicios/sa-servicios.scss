@@ -1,8 +1,4 @@
-page-sa-contacto {
-  .scroll-content > *:last-of-type  {
-    margin-bottom: 10px !important;
-  }
-
+page-sa-servicios {
   .title {
     text-align: center;
     font-size: 16px;
@@ -14,19 +10,12 @@ page-sa-contacto {
     margin: 5px;
     font-weight: 200;
   }
-
-  .padding {
-    padding: 0px;
-  }
-
-  .label-input-number{
-    position: relative;
-    top: 18px;
+  .scroll-content > *:last-of-type {
+    margin-bottom: 0 !important;
   }
 
   .btn{
     position: relative;
     bottom: -46px;
   }
-
 }

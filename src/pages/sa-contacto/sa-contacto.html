@@ -19,25 +19,29 @@
 
       <ion-grid>
         <ion-row>
+
           <ion-col col-1>
             <label for="" class="label-input-number">0</label>
-
           </ion-col>
+
           <ion-col col-4>
             <div class="form-control padding">
                 <input value="" type="text" id="cod" class="input-text input-user">
                 <label class="label-text" >Cod</label>
             </div>
           </ion-col>
+
           <ion-col col-2>
             <label for="" class="label-input-number">- 15</label>
           </ion-col>
+
           <ion-col col-5>
             <div class="form-control padding">
                 <input value="" type="text" id="tel" class="input-text input-user">
                 <label class="label-text" >Tel</label>
             </div>
           </ion-col>
+
         </ion-row>
       </ion-grid>
 
@@ -60,7 +64,7 @@
           </div>
       </div>
 
-      <button  class="btn btn-blue" >
+      <button  class="btn btn-blue" (click) = "gotoPage()">
         Continuar
       </button>
 

@@ -1,5 +1,5 @@
 *{
-  padding:0; 
+  padding:0;
   margin:0;
   font-family: 'OpenSans-regular';
 }
@@ -14,7 +14,7 @@ body{
 }
 
 :root{
-    --main-cyan-color: #098dbd; 
+    --main-cyan-color: #098dbd;
 }
 
 /*headers*/
@@ -22,7 +22,7 @@ body{
 /*Header con bordes circular ------------------------------------------------------------------------------------*/
 
 .header-circle-container  {
-    position: relative; 
+    position: relative;
     margin-bottom: 110px;
 }
 .header-circle-container .div-inner {
@@ -53,7 +53,6 @@ body{
 /*Header con bordes rectangular ------------------------------------------------------------------------------------*/
 
 .header-rectangular-container{
-    display:none;
     height:188px;
     background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
     background: -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
@@ -93,12 +92,12 @@ body{
 .btn:focus,.btn:hover{
     opacity:0.8;
     transition:opacity 0.3s;
-   
+
 }
 
 /*azul*/
 
-.btn.btn-blue{  
+.btn.btn-blue{
     background : -moz-linear-gradient(-26.12% 50% 0deg,rgba(34, 48, 90, 1) 0%,rgba(34, 58, 133, 1) 100%);
     background : -webkit-linear-gradient(0deg, rgba(34, 48, 90, 1) 0%, rgba(34, 58, 133, 1) 100%);
     background : -webkit-gradient(linear,-26.12% 50% ,111.52% 50% ,color-stop(0,rgba(34, 48, 90, 1) ),color-stop(1,rgba(34, 58, 133, 1) ));
@@ -186,7 +185,7 @@ body{
 
  /*linea suave separadora----------------------------------------------------------------------------------------------*/
 
- hr.soft-line { 
+ hr.soft-line {
     border: 0;
     height: 1px;
     position: relative;
@@ -201,8 +200,8 @@ body{
  }
  hr.soft-line:after {
     content:'';
-    height: 0.5em;  
-    top: 1px;       
+    height: 0.5em;
+    top: 1px;
  }
 
  hr.soft-line:before, hr.soft-line:after {
@@ -254,7 +253,7 @@ hr.soft-line-white, hr.soft-line-white:before {
 
  /* text inputs */
 
- .input-text { 
+ .input-text {
      position:relative;
      border:none;
      border-bottom:2px solid #000;
@@ -288,7 +287,42 @@ hr.soft-line-white, hr.soft-line-white:before {
 
  /* textarea */
 
+ /* contenerdo - pagina*/
+ .box-container {
+   position: relative;
+   top: -124px;
+   padding: 10px;
+   margin: 10px;
+   border-radius: 5px;
+   // border: 1px solid #d0d0d0;
+   background-color: white;
+   padding-top: 45px;
+   -webkit-box-shadow: 2px 23px 88px -15px rgba(208,208,208,0.71);
+   -moz-box-shadow: 2px 23px 88px -15px rgba(208,208,208,0.71);
+   box-shadow: 2px 23px 88px -15px rgba(208,208,208,0.71);
+ }
 
+ /* imagen */
+ .image {
+   height: 100px;
+   width: 100px;
+   background-color: white;
+   border-radius: 50%;
+   border: 1px solid #d0d0d0;
+   position: absolute;
+   margin: auto;
+   padding: 10px;
+   left: 0;
+   right: 0;
+   top: -56px;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: contain;
+   -webkit-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
+   -moz-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
+   box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
+ }
 
-
-
+ .img-url{
+   background-image: url("../assets/img/logo-urg.png");
+ }

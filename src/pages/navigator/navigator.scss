@@ -1,8 +1,18 @@
 page-navigator {
-    .urg-title{
-        left: 0;
-        position: absolute;
-        width: 100%;
-        top: 17px;
-    }
+  .urg-title{
+    left: 0;
+    position: absolute;
+    width: 100%;
+    top: 17px;
+  }
+  .toolbar-background-md {
+    background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%) !important;
+    background: -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%)!important;
+    background: -webkit-gradient(linear,-28% 50% ,121.31% 50% ,color-stop(0,rgba(34, 58, 133, 1) ),color-stop(1,rgba(0, 168, 209, 1) ))!important;
+    background: -o-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%)!important;
+    background: -ms-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%)!important;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85', endColorstr='#00A8D1' ,GradientType=0)"!important;
+    background: linear-gradient(90deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%)!important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85',endColorstr='#00A8D1' , GradientType=1)!important;
+  }
 }

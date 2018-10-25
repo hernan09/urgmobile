@@ -37,7 +37,8 @@ import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 import { SociosPage } from '../pages/socios/socios';
 import { NavigatorPage } from './../pages/navigator/navigator';
 import { FooterPage } from './../pages/footer/footer';
-
+import { SolicitudAtencionPage } from './../pages/solicitud-atencion/solicitud-atencion';
+import { SaContactoPage } from './../pages/sa-contacto/sa-contacto';
 
 // services
 import { AuthService } from '../providers/auth.service'
@@ -56,9 +57,7 @@ import { GroupedNotificationService } from './../providers/grouped.notificacion.
 import { AlertBuilder } from './../providers/builders/alert.builder';
 import { VideoConsultaService } from './../providers/video.consulta.service';
 
-
-
-@NgModule({  
+@NgModule({
   declarations: [
     MyApp,
     LoginPage,
@@ -73,12 +72,14 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     DeletePage,
     VideoConsultaPage,
     SociosPage,
-    SolicitudVcPage,   
+    SolicitudVcPage,
     NavigatorPage,
     FooterPage,
     CheckerComponent,
+    SolicitudAtencionPage,
+    SaContactoPage
   ],
-  
+
   entryComponents: [
     MyApp,
     LoginPage,
@@ -97,6 +98,8 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     NavigatorPage,
     FooterPage,
     CheckerComponent,
+    SolicitudAtencionPage,
+    SaContactoPage
   ],
 
   imports: [
@@ -122,7 +125,7 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     Utils,
     Tokbox,
     NetworkService,
-    ToastService,  
+    ToastService,
     MinimizeService,
     ModalService,
     AlertService,
@@ -130,7 +133,7 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     GroupedNotificationService,
     AlertBuilder,
     VideoConsultaService,
-    Keyboard,  
+    Keyboard,
     AndroidPermissions,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

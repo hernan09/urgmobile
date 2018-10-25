@@ -33,17 +33,17 @@ $gray : #bbb;
 $darkgray : #888;
 $lightgray : #ddd;
 
-
-
 * {
 	font-family:"OpenSans-regular" !important;
 }
 
+ion-icon{
+    font-family:"Ionicons" !important;
+}
 
 a {
     text-decoration: none !important;
 }
-
 
 ion-nav {
 	ion-header {

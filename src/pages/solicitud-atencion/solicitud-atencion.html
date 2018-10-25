@@ -1,0 +1,35 @@
+<ion-header>
+
+  <page-navigator></page-navigator>
+
+</ion-header>
+
+<ion-content >
+
+  <div class="header header-rectangular-container"></div>
+  <div class="box-container">
+
+    <div class="image img-url"></div>
+    <ion-list radio-group [(ngModel)]="socioActual" >
+
+      <h3 class="sub-title">Seleccione el Socio</h3>
+
+      <hr class="soft-line soft-line-black">
+
+      <div>
+        <ion-item *ngFor="let opcionSocio of socios">
+          <ion-label>{{ opcionSocio.nombre }} {{opcionSocio.apellido}}</ion-label>
+          <ion-radio [value]="opcionSocio" (ionSelect)="radioChecked()"></ion-radio>
+        </ion-item>
+      </div>
+
+      <hr class="soft-line soft-line-black">
+
+    </ion-list>
+
+    <button  class="btn btn-blue" [disabled]="!socioActual" (click)="requestVCPage(socioActual)">
+      Continuar
+    </button>
+  </div>
+
+</ion-content>

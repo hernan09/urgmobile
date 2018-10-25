@@ -13,7 +13,7 @@
 <ion-content padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
 	<div *ngFor="let alerta of alertas_home" class="alerta-list">
-		
+
 		<div *ngIf="alerta.step == 5 && alerta.visible" class="alerta-item-1">
 			<div>
 				<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
@@ -65,12 +65,12 @@
 
 
 		<div *ngIf="alerta.step == 3 && alerta.visible" class="alerta-item-visita">
-			
+
 			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit" ></ion-icon>
 
 			<div class="visita-estado" [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.status}}</div>
-			<div *ngIf="!alerta.doctor.foto"class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>	
-			<div *ngIf="alerta.doctor.foto">		
+			<div *ngIf="!alerta.doctor.foto"class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>
+			<div *ngIf="alerta.doctor.foto">
 			<img class="visita-imagen-medico" [src]="alerta.doctor.foto"><img>
 			</div>
 			<div class="visita-info">
@@ -97,8 +97,8 @@
 			<div>
 				<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
 			</div>
-			<div class="instructions">{{alerta.title}}</div>			
-			<div>{{alerta.prearribo.condicion}}</div>		
+			<div class="instructions">{{alerta.title}}</div>
+			<div>{{alerta.prearribo.condicion}}</div>
 			<div *ngFor="let consejo of alerta.prearribo.consejos">{{consejo}}</div>
 		</div>
 

@@ -13,12 +13,12 @@
   <ion-content>
   
     <!-- header con borde circular -->
-    <div class="header-circle-container">
+    <div class="header-circle-containerMenu">
       <div class="div-inner">
       </div>
     </div>
 
-    <div class="image"></div>
+    <div class="imageMenu img-url"></div>
 
 
         <!-- Lista Items Menú -->
@@ -47,14 +47,13 @@
           </ion-list>
 
 
-
+          <hr>
+          <br>
 
   </ion-content>
-
   <ion-footer>
     <ion-item (click)="logout()" menuClose="main" class="closeButton" >
-      <ion-icon name="ios-exit-outline"></ion-icon>
-      <label>Salir</label>
+      <button class="btn btn-red">Salir</button>
     </ion-item>
   </ion-footer>
 

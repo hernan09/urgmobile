@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
@@ -41,7 +40,7 @@
 
         <button class="btn btn-light">Solicitar Médico</button> <!-- boton celeste-->
 
-        <hr class="soft-line soft-line-white"> <!-- linea blanca-->
+        <hr class="soft-line soft-line-black"> <!-- linea negra-->
 
         <button class="btn btn-white">Solicitar Médico</button> <!-- boton blanco-->
     </div>
@@ -55,12 +54,51 @@
             <input value="" onkeyup="this.setAttribute('value', this.value);" type="text" id="input1" class="input-text input-user">
             <label class="label-text" for="input1">Nombre</label>
         </div>
+         <!-- textarea --> 
+
         <div class="form-control">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea placeholder="Dejanos tu comentario." class="textarea-control" name="" id="" cols="30" rows="10"></textarea>
+        </div>
+
+        <!-- inputs radio --> 
+
+        <div class="form-control">
+            <label class="radio-container">Input Radio 1
+                <input class="radio-input" type="radio"  name="radio" id="">
+                <span class="checkmark"></span>
+            </label>
+            <label class="radio-container">Input Radio 2
+                <input class="radio-input" type="radio"  name="radio" id="">
+                <span class="checkmark"></span>
+            </label>
+            <label class="radio-container">Input Radio 3
+                <input class="radio-input" type="radio"  name="radio" id="">
+                <span class="checkmark"></span>
+            </label>
         </div>
     </div>
 
+    <hr class="soft-line soft-line-black"> <!-- linea negra-->
 
+ <!-- titulos y textos generico --> 
+
+    <div class="container"> 
+        <h1 class="title-01 color-blue">Titulo 1</h1>
+        <h2 class="text-01 color-blue">Texto 1</h2>
+    </div>
+ 
+ <!-- bloque blanco con sombra -->    
+
+    <div class="container">
+        <div class="shadow-block">
+           <h1 class="title-01 color-blue">
+               Juan Perez
+           </h1>
+           <h2 class="text-01 color-blue">
+                Matricula Nº4
+           </h1>
+        </div>
+    </div>
 
 
 </body>

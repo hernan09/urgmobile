@@ -221,14 +221,14 @@
   
   /*blanco*/
   
-   .btn.btn-white{
+   .btn-white{
        background-color:white;
        color:#000000;
    }
 
     /*blanco con borde*/
   
-       .btn.btn-white-border{
+    .btn-white-border{
         background-color:#f5fafc;
         color:#000000;
         border:1px solid #088DBF;

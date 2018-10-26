@@ -17,6 +17,10 @@
       padding:0 10%;
       margin:20px 0;
   }
+
+  .flex{
+      display:flex;
+  }
   
   :root{
       --main-cyan-color: #098dbd; 
@@ -59,7 +63,6 @@
   /*Header con bordes rectangular ------------------------------------------------------------------------------------*/
   
   .header-rectangular-container{
-      display:none;
       height:188px;
       background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
       background: -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
@@ -113,14 +116,14 @@
   .btn{
       border-radius:30px;
       color:#fff;
-      font-size:18px;
+      font-size:14px;
       outline:none;
       border:none;
-      padding:20px;
+      padding:15px;
       background-color:ccc;
       width:100%;
       display:block;
-      margin:0 auto 10px auto;
+      margin:0 auto 15px auto;
       transition:opacity 0.3s;
       cursor:pointer;
       box-sizing:border-box;
@@ -133,8 +136,7 @@
   
   .btn:focus,.btn:hover{
       opacity:0.8;
-      transition:opacity 0.3s;
-     
+      transition:opacity 0.3s;  
   }
   
   /*azul*/
@@ -221,8 +223,15 @@
   
    .btn.btn-white{
        background-color:white;
-       border:1px solid #088DBF;
        color:#000000;
+   }
+
+    /*blanco con borde*/
+  
+       .btn.btn-white-border{
+        background-color:#f5fafc;
+        color:#000000;
+        border:1px solid #088DBF;
    }
   
    /*linea suave separadora----------------------------------------------------------------------------------------------*/
@@ -411,4 +420,4 @@
       background: white;
   }
   
-  
+    

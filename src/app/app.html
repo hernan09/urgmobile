@@ -1,25 +1,30 @@
-<ion-menu persistent="true" side="left" swipeEnabled="true" [content]="mycontent" id="main" (ionOpen)="openMenu()" (ionClose)="closeMenu()">
+<!--ion-menu persistent="true" side="left" swipeEnabled="true" 
+[content]="mycontent" id="main" (ionOpen)="openMenu()" (ionClose)="closeMenu()"-->
 
+<ion-menu persistent="true" side="left" swipeEnabled="true" 
+[content]="mycontent" id="main" (ionOpen)="openMenu()" (ionClose)="closeMenu()">
   <ion-header>
     <ion-toolbar class="userToolbar">
-      <ion-icon name="ios-contact" class="user-img"></ion-icon>
-      <ion-title (click)="toggleView()" class="user-name">{{ activeUser.nombre }}</ion-title>
-      <ion-icon *ngIf="otherUsers.length" (click)="toggleView()"
-        [name]="viewMembers ? 'md-arrow-dropup' : 'md-arrow-dropdown'" class="userArrow"
-         ></ion-icon>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
   
-    <!-- header con borde circular -->
-    <div class="header-circle-containerMenu">
-      <div class="div-inner">
-      </div>
-    </div>
+        <!-- header con borde circular -->
+        <div class="header-circle-containerMenu">
+          <div class="div-inner">
+          </div>
+        </div>
 
-    <div class="imageMenu img-url"></div>
+        <div class="imageMenu img-url"></div>
 
+        <!--Lista de Usuarios Activos-->
+        <div>
+          <label>{{ activeUser.nombre }}</label>
+          <ion-icon class ="arrow" *ngIf="otherUsers.length" (click)="toggleView()"
+            [name]="viewMembers ? 'md-arrow-dropup' : 'md-arrow-dropdown'">
+          </ion-icon>
+       </div>
 
         <!-- Lista Items Menú -->
         <ion-list *ngIf="!viewMembers">

@@ -498,3 +498,8 @@
       background: linear-gradient(90deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85',endColorstr='#00A8D1' , GradientType=1);
   }
+
+  .arrow{
+    position: relative;
+    top: 10px;
+  }

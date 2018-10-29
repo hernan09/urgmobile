@@ -27,8 +27,7 @@
       --main-blue-color: #22305A;
   }
   
-  /*headers*/
-  
+
   /*Header con bordes circular ------------------------------------------------------------------------------------*/
   
   .header-circle-container  {
@@ -92,11 +91,7 @@
       letter-spacing:0.5px;
   }
   
-  
-  
-  
-  
-  
+
   
   /*botones ------------------------------------------------------------------------------------*/
   .shadow-block{
@@ -219,6 +214,11 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85',endColorstr='#00A8D1' , GradientType=1);
   }
   
+  .selected{
+      background:#008ebb66;
+  }
+
+
   /*blanco*/
   
    .btn-white{

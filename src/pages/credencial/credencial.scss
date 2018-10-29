@@ -1,12 +1,13 @@
 page-credencial {
-	
+	.contenedro-credencial{
+		position: relative;
+	}
 	.tarjeta {
 		height: 280px;
 		width: 460px;
 		transform: rotate(270deg);
 		position: absolute;
-		top: 100px;
-		left: -15vw;
+		top: 25%;
 		padding: 10px;
 		padding-top: 150px;
 		background: url('../assets/img/credencial.png');
@@ -18,6 +19,7 @@ page-credencial {
 		display: flex;
 		flex-direction: column;
 		color: white;
+
 		div {
 			height: 25px;
 		}

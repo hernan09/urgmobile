@@ -4,44 +4,52 @@
 
 </ion-header>
 
-<ion-content >
+<ion-content>
 
   <div class="header header-rectangular-container"></div>
   <div class="box-container">
 
     <div class="image img-url"></div>
-    <ion-list radio-group  >
 
-      <h3 class="title">Incarbone Eduardo Oscar</h3>
-      <h5 class="sub-title">Elegí la opción que mejor se adapte a vos</h5>
+      <ion-list radio-group >
 
-      <hr class="soft-line soft-line-black">
+        <h3 class="title">Incarbone Eduardo Oscar</h3>
+        <h5 class="sub-title">Elegí la opción que mejor se adapte a vos</h5>
 
-      <div class="box-option">
-        <ion-grid>
-          <ion-row>
+        <hr class="soft-line soft-line-black">
 
-            <ion-col col-4>
-              <div class="image-option"></div>
-            </ion-col>
+        <div class="container">
+          <div class="box-option">
 
-            <ion-col col-8>
-              <label>Solicitá una</label>
-              <p>Video Consulta Mèdica</p>
-              <label for="">Sin salir de tu casa</label>
+            <ion-grid>
+              <ion-row class="box-service" *ngFor="let data of dataService">
 
-              <p>Tiempo de espera:</p>
-              <label for="">10 minutos</label>
-            </ion-col>
+                <ion-col col-4>
+                  <div class="image-service image-url " [ngStyle]="{'background-image':'url(' + data.img + ')'}"></div>
+                </ion-col>
 
-          </ion-row>
-        </ion-grid>
+                <ion-col col-8 >
 
-      </div>
+                    <div class="video">
+                      <label>Solicitá {{data.final}}</label>
+                      <p>{{data.type}}</p>
+                      <label *ngIf="data.description"or="">{{data.description}}</label>
+                    </div>
 
-    </ion-list>
+                    <div class="time">
+                      <p>Tiempo de espera:</p>
+                      <label for="">{{data.time}}</label>
+                    </div>
 
-    <button  class="btn btn-blue" (click)="gotoPage()" >
-      Continuar
-    </button>
+                </ion-col>
+
+              </ion-row>
+            </ion-grid>
+
+          </div>
+        </div>
+
+      </ion-list>
+
   </div>
+</ion-content>

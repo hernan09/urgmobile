@@ -9,27 +9,39 @@
   <div class="header header-rectangular-container"></div>
   <div class="box-container">
 
+
     <div class="image img-url"></div>
-    <ion-list radio-group [(ngModel)]="socioActual" >
 
-      <h3 class="sub-title">Seleccione el Socio</h3>
+    <div class="container">
+      <ion-list radio-group >
 
-      <hr class="soft-line soft-line-black">
+        <h3 class="title">Seleccione el Socio</h3>
 
-      <div>
-        <ion-item *ngFor="let opcionSocio of socios">
-          <ion-label>{{ opcionSocio.nombre }} {{opcionSocio.apellido}}</ion-label>
-          <ion-radio [value]="opcionSocio" (ionSelect)="radioChecked()"></ion-radio>
-        </ion-item>
-      </div>
+        <hr class="soft-line soft-line-black">
 
-      <hr class="soft-line soft-line-black">
+        <div class="form-control">
+            <label class="radio-container" >
+                Incarbone Eduardo Oscar
+                <input class="radio-input" type="radio"  name="radio" id="">
+                <span class="checkmark"></span>
+            </label>
 
-    </ion-list>
+            <label class="radio-container" >
+                Incarbone Maria Sol
+                <input class="radio-input" type="radio"  name="radio" id="">
+                <span class="checkmark"></span>
+            </label>
+        </div>
 
-    <button  class="btn btn-blue" [disabled]="!socioActual" (click)="requestVCPage(socioActual)">
-      Continuar
-    </button>
+      </ion-list>
+
+      <!-- <hr class="soft-line soft-line-black"> -->
+
+      <button  class="btn btn-light" (click)="gotoPage()" >
+        Continuar
+      </button>
+
+    </div>
   </div>
 
 </ion-content>

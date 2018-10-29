@@ -14,8 +14,15 @@ import { SaTiempoPage } from '../sa-tiempo/sa-tiempo';
   templateUrl: 'sa-consulta.html',
 })
 export class SaConsultaPage {
-
+  selectOptions:any;
+  symptom:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.selectOptions = {
+      title: 'Síntoma',
+    };
+
+    this.getSymptom();
   }
 
   ionViewDidLoad() {
@@ -24,6 +31,10 @@ export class SaConsultaPage {
 
   gotoPage(){
     this.navCtrl.setRoot( SaTiempoPage );
+  }
+
+  getSymptom() {
+    this.symptom = [ 'Constipación', 'Diarrea', 'Fiebre', 'Síntomas de la piel', 'Alteraciones oculares', 'Dolor de garganta', 'Resfrio' ];
   }
 
 }

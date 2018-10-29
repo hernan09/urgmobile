@@ -10,27 +10,30 @@
   <div class="box-container">
 
     <div class="image img-url"></div>
-    <ion-list radio-group  >
 
-      <h3 class="title">Incarbone Eduardo Oscar</h3>
-      <h5 class="sub-title">¿Hace caunto tiempo estas con fiebre?</h5>
+    <div class="container">
+      <ion-list radio-group >
 
-      <hr class="soft-line soft-line-black">
+        <h3 class="title">Incarbone Eduardo Oscar</h3>
+        <h5 class="sub-title">¿Hace caunto tiempo estas con fiebre?</h5>
 
-      <div>
-        <ion-item >
-          <ion-label></ion-label>
-          <ion-radio ></ion-radio>
-        </ion-item>
-      </div>
+        <hr class="soft-line soft-line-black">
 
-      <hr class="soft-line soft-line-black">
+        <div class="form-control">
+            <label class="radio-container" *ngFor="let dataTime of time">
+                {{ dataTime.period }}
+                <input class="radio-input" type="radio"  name="radio" id="">
+                <span class="checkmark"></span>
+            </label>
+        </div>
 
-    </ion-list>
+      </ion-list>
 
-    <button  class="btn btn-blue" (click)="gotoPage()" >
-      Continuar
-    </button>
+      <button  class="btn btn-light" (click)="gotoPage()" >
+        Continuar
+      </button>
+
+    </div>
+
   </div>
-
 </ion-content>

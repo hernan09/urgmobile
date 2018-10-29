@@ -14,12 +14,25 @@ import { SaServiciosPage } from '../sa-servicios/sa-servicios';
   templateUrl: 'sa-tiempo.html',
 })
 export class SaTiempoPage {
-
+  time:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.getTime();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SaTiempoPage');
+  }
+
+  getTime(){
+    this.time = [
+      {
+        period: "Menos de una semana"
+      },{
+        period: "Entre una y dos semanas"
+      },{
+        period: "Más de dos semanas"
+      }
+    ]
   }
 
   gotoPage(){

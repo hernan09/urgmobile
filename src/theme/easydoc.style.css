@@ -250,17 +250,16 @@ hr.soft-line-white, hr.soft-line-white:before {
     top:-30px;
  }
 
-
  /* text inputs */
 
  .input-text {
-     position:relative;
-     border:none;
-     border-bottom:2px solid #000;
-     display:block;
-     width:100%;
-     padding:8px 0px;
-     transition:border 0.3s;
+   position:relative;
+   border:none;
+   border-bottom:2px solid #000;
+   display:block;
+   width:100%;
+   padding:8px 0px;
+   transition:border 0.3s;
  }
 
  .input-text:focus {
@@ -270,14 +269,12 @@ hr.soft-line-white, hr.soft-line-white:before {
     transition:border 0.3s;
  }
 
-
  .input-text[value=""] ~ .label-text{
     top:-30px;
  }
  .input-text:not([value=""]) ~ .label-text{
     top:-60px;
  }
-
 
  .input-text:focus ~ .label-text {
     color:var(--main-cyan-color);
@@ -286,6 +283,86 @@ hr.soft-line-white, hr.soft-line-white:before {
  }
 
  /* textarea */
+
+ .textarea-control{
+     display:block;
+     width:100%;
+     border-radius:8px;
+     resize:none;
+     padding:10px;
+     transition:border 0.3s;
+     font-size:16px;
+     box-sizing:border-box;
+ }
+ .textarea-control:focus{
+     border:1px solid var(--main-cyan-color);
+     outline:none;
+     transition:border 0.3s;
+     text-align:left;
+ }
+
+
+ /*input Radio*/
+
+.radio-container{
+  display: block;
+  position: relative;
+  padding-left: 50px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size:16px;
+}
+
+.radio-input{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark{
+  position: absolute;
+  top: -3px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border:1px solid var(--main-cyan-color);
+  border-radius: 50%;
+}
+
+.radio-container:hover .radio-input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.radio-container .radio-input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container-radio .radio-input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container-radio .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
 
  /* contenerdo - pagina*/
  .box-container {
@@ -303,7 +380,8 @@ hr.soft-line-white, hr.soft-line-white:before {
  }
 
  /* imagen */
- .image {
+
+.image {
    height: 100px;
    width: 100px;
    background-color: white;
@@ -321,8 +399,8 @@ hr.soft-line-white, hr.soft-line-white:before {
    -webkit-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
    -moz-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
    box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
- }
+}
 
- .img-url{
+.img-url {
    background-image: url("../assets/img/logo-urg.png");
- }
+}

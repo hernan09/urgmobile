@@ -4,25 +4,34 @@
 
 </ion-header>
 
-<ion-content  >
+<ion-content>
 
   <div class="header header-rectangular-container"></div>
   <div class="box-container">
 
     <div class="image img-url"></div>
 
-    <h3 class="title">Incarbone Eduardo Oscar</h3>
-    <h5 class="sub-title">Datos de Contacto</h5>
+    <div class="container ">
 
-    <hr class="soft-line soft-line-black">
+      <h3 class="title">Incarbone Eduardo Oscar</h3>
+      <h5 class="sub-title">Motivo de Consulta</h5>
 
-    <ion-label >Sintoma</ion-label>
-    <ion-select [selectOptions]="selectOptions" id="symptomSelect" class="myCustomSelect">
-      <ion-option modal-title="ABC" >Constipación</ion-option>
-    </ion-select>
+      <hr class="soft-line soft-line-black">
 
-    <button  class="btn btn-green" (click)="gotoPage()">
-      Continuar
-    </button>
+      <div class="form-control">
+        <div class="container-select">
+          <ion-label>Sintoma</ion-label>
+          <ion-select [selectOptions]="selectOptions" okText="Aceptar" cancelText="Cancelar"  placeholder="Seleccionar">
+            <ion-option *ngFor="let dataSymptom of symptom" value="{{dataSymptom}}">{{dataSymptom}}</ion-option>
+          </ion-select>
+        </div>
 
+      </div>
+
+      <button  class="btn btn-light" (click)="gotoPage()">
+        Continuar
+      </button>
+
+    </div>
   </div>
+</ion-content>

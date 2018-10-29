@@ -1,49 +1,56 @@
 <ion-header>
+  <div class="header-circle-containerMenu">
+    <page-navigator></page-navigator>
+    <div class="div-inner"></div>
+  </div>
 
-  <page-navigator></page-navigator>
-
-	<ion-toolbar>
-		<ion-title>Mis Datos</ion-title>
-	</ion-toolbar>
+  <div class="imageMenu img-url"></div>
 
 </ion-header>
 
 
 <ion-content [ngClass]="{'subHiddenMargin': !showSubHeader}">
+  <div class="centrar-datos">
+    <div class="color-blue">
+      <div class="foto-urg"></div>
+      <div>
+        <h3 class="title-01">{{persona.nombre}} {{persona.apellido}}</h3>
+        <div>Nro. de socio: {{persona.nroasociado}}</div>
+        <div class="flex tarjeta-plan">
+          <h5>Plan:</h5>
+          <div>{{persona.plan}}</div>
+        </div>
+        <div class="flex tarjeta-convenio">
+          <h5>Convenio:</h5>
+          <div>{{persona.convenio}}</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="dataCard datosSocio">
-    <div>
-      <div class="cardTitle">{{persona.nombre}} {{persona.apellido}}</div>
+    <div class="container color-blue">
+      <div class="shadow-block">
+        <div>
+          <h3 class="title-01">DNI</h3>
+          <div>{{persona.dni}}</div>
+        </div>
+        <div *ngFor="let data of persona.datosPersonales">
+          <h3 class="title-01">{{data.label}}</h3>
+          <div>{{data.valor}}</div>
+        </div>
+      </div>
     </div>
-    <div>
-      <div>Nro. de socio: {{persona.nroasociado}}</div>
-    </div>
-    <div class="plan">
-      <div>Plan: {{persona.plan}}</div>
-      <div>Convenio: {{persona.convenio}}</div>
-    </div>
-  </div>
 
-  <div class="dataCard datosPersonales">
-    <div>
-      <div>DNI:</div>
-      <div>{{persona.dni}}</div>
-    </div>
-    <div *ngFor="let data of persona.datosPersonales">
-      <div>{{data.label}}:</div>
-      <div>{{data.valor}}</div>
-    </div>
-  </div>
-
-  <div class="dataCard datosMedicos" *ngIf="persona.antecedentes">
-    <div>
-      <div class="cardTitle">ANTECEDENTES MÉDICOS</div>
-    </div>
-    <div>
-      <div *ngFor="let a of persona.antecedentes">- {{a.antecedente}}</div>
+    <div class="container color-blue" *ngIf="persona.antecedentes">
+      <div class="shadow-block">
+        <div>
+          <h3 class="title-01">ANTECEDENTES MÉDICOS</h3>
+        </div>
+        <div>
+          <div *ngFor="let a of persona.antecedentes">- {{a.antecedente}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>
 
 <page-footer></page-footer>
-

@@ -4,107 +4,40 @@ page-datos {
 		transition: 0.5s;
 	}
 
-	ion-content.subHiddenMargin .scroll-content {
-		margin-top: 12vh !important;
-		transition: 0.5s !important;
+	.centrar-datos{
+		text-align: center;
 	}
 
-	.scroll-content {
-		transition: 0.5s !important;
+	ion-navbar.toolbar{
+		position: absolute;
+		z-index: 10;
 	}
 
-
-
-	.dataCard {
-		margin: 50px 10px 50px 25px;
-		font-size: 1.2em;
-		color: $darkgray;
-		div {
-			padding-left: 15px;
-			padding-right: 15px;
-		}
-		& > div:not(:last-child) {
-			margin-bottom: 15px;
-		}
+	.toolbar-background-md {
+		background: transparent !important;
 	}
 
-	.datosSocio {
-		border-left: 4px solid $osde_cyan;
-		.cardTitle {
-			color: $osde_cyan;
-			font-weight: bold;
-			font-size: 1.3em;
-		}
-		.plan {
-			display: inline-flex;
-		}
+	h3 {
+		font-weight: bold;
 	}
 
-	.datosPersonales {
-		border-left: 4px solid $osde_lightgreen;
+	h5 {
+		margin:0;
 	}
-
-	.datosMedicos {
-		border-left: 4px solid $osde_darkblue;
-		.cardTitle {
-			color: $osde_darkblue;
-			font-weight: bold;
-			font-size: 1.3em;
-		}
-	}
-
-	.tarjeta {
-		height: 37vh;
-		padding-left: 20px;
-		background: url('../assets/img/credencial.png') center;
-		background-size: cover;
-		background-repeat: no-repeat;
+	.tarjeta-plan,
+		.tarjeta-convenio{
 		display: flex;
-		flex-direction: column;
-		color: white;
-		& * {
-			white-space: nowrap;
-		}
-		.tarjeta-spacer {
-			height: 18vh;
-		}
-		.tarjeta-label {
-			display: flex;
-			align-items: center;
-			font-weight: bold;
-		}
-		.tarjeta-name {
-			height: 32px;
-		}
-		.tarjeta-nro {
-			height: 21px;
-		}
-		.tarjeta-dni {
-			height: 27px;
-			display: flex;
-			.tarjeta-dni-number {
-				margin-right: 30px;
-			}
-			.tarjeta-convenio {
-
-			}
-		}
-		.tarjeta-plan {
-			height: 25px;
-		}
+		justify-content: center;
+		align-items: center;
 	}
 
-	.card {
-		margin-left: 20px;
-		margin-right: 20px;
-		padding-bottom: 20px;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	ion-content.subHiddenMargin .scroll-content {
+		// margin-top: 12vh !important;
+		transition: 0.5s !important;
 	}
 
-	.card2 {
-		margin-left: 20px;
-		margin-right: 20px;
-		padding-top: 20px;
-		padding-bottom: 20px;
+	.header-md::after{
+		display: none;
 	}
+	
 }

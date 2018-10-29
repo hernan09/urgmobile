@@ -1,47 +1,64 @@
-<ion-menu persistent="true" side="left" swipeEnabled="true" [content]="mycontent" id="main" (ionOpen)="openMenu()" (ionClose)="closeMenu()">
+<!--ion-menu persistent="true" side="left" swipeEnabled="true" 
+[content]="mycontent" id="main" (ionOpen)="openMenu()" (ionClose)="closeMenu()"-->
 
+<ion-menu persistent="true" side="left" swipeEnabled="true" 
+[content]="mycontent" id="main" (ionOpen)="openMenu()" (ionClose)="closeMenu()">
   <ion-header>
     <ion-toolbar class="userToolbar">
-      <ion-icon name="ios-contact" class="user-img"></ion-icon>
-      <ion-title (click)="toggleView()" class="user-name">{{ activeUser.nombre }}</ion-title>
-      <ion-icon *ngIf="otherUsers.length" (click)="toggleView()"
-        [name]="viewMembers ? 'md-arrow-dropup' : 'md-arrow-dropdown'" class="userArrow"
-         ></ion-icon>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
+  
+        <!-- header con borde circular -->
+        <div class="header-circle-containerMenu">
+          <div class="div-inner">
+          </div>
+        </div>
 
-    <ion-list *ngIf="!viewMembers">
-      <ion-item *ngFor="let p of pages" (click)="goToPage(p.page, p.params)"
-        menuClose="main" class="notificationButton" >
-        <ion-icon name="{{p.icon}}"></ion-icon>
-        <label>{{p.title}}</label>
-      </ion-item>
-    </ion-list>
+        <div class="imageMenu img-url"></div>
 
-    <ion-list *ngIf="viewMembers">
-      <ion-item *ngFor="let user of otherUsers" (click)="setActiveUser(user.dni)"
-        menuClose="main" class="notificationButton" >
-        <ion-icon name="ios-person-outline"></ion-icon>
-        <label>{{user.nombre}}</label>
-      </ion-item>
-      <ion-item (click)="goAddMember()" menuClose="main" class="notificationButton" >
-        <ion-icon name="ios-add-outline"></ion-icon>
-        <label>Agregar socio</label>
-      </ion-item>
-      <ion-item (click)="goDeleteMember()" menuClose="main" class="notificationButton" >
-        <ion-icon name="ios-trash-outline"></ion-icon>
-        <label>Eliminar socio</label>
-      </ion-item>
-    </ion-list>
+        <!--Lista de Usuarios Activos-->
+        <div>
+          <label>{{ activeUser.nombre }}</label>
+          <ion-icon class ="arrow" *ngIf="otherUsers.length" (click)="toggleView()"
+            [name]="viewMembers ? 'md-arrow-dropup' : 'md-arrow-dropdown'">
+          </ion-icon>
+       </div>
+
+        <!-- Lista Items Menú -->
+        <ion-list *ngIf="!viewMembers">
+            <ion-item *ngFor="let p of pages" (click)="goToPage(p.page, p.params)"
+              menuClose="main" class="notificationButton" >
+              <ion-icon name="{{p.icon}}"></ion-icon>
+              <label>{{p.title}}</label>
+            </ion-item>
+          </ion-list>
+      
+          <ion-list *ngIf="viewMembers">
+            <ion-item *ngFor="let user of otherUsers" (click)="setActiveUser(user.dni)"
+              menuClose="main" class="notificationButton" >
+              <ion-icon name="ios-person-outline"></ion-icon>
+              <label>{{user.nombre}}</label>
+            </ion-item>
+            <ion-item (click)="goAddMember()" menuClose="main" class="notificationButton" >
+              <ion-icon name="ios-add-outline"></ion-icon>
+              <label>Agregar socio</label>
+            </ion-item>
+            <ion-item (click)="goDeleteMember()" menuClose="main" class="notificationButton" >
+              <ion-icon name="ios-trash-outline"></ion-icon>
+              <label>Eliminar socio</label>
+            </ion-item>
+          </ion-list>
+
+
+          <hr>
+          <br>
 
   </ion-content>
-
   <ion-footer>
     <ion-item (click)="logout()" menuClose="main" class="closeButton" >
-      <ion-icon name="ios-exit-outline"></ion-icon>
-      <label>Salir</label>
+      <button class="btn btn-red">Salir</button>
     </ion-item>
   </ion-footer>
 

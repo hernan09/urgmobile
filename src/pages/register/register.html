@@ -37,7 +37,7 @@
     </a>
 </ion-content>
 
-<ion-footer id="homeFooter" bottom>
+<ion-footer id="homeFooter" bottom *ngIf="mostrarBtnFinalizar">
   <button (click)="nextAnswer()" [disabled]="!hasChosen || (last && !tycs)"
     class="btn btn-blue" >
     {{ last ? 'Finalizar' : 'Continuar' }}

@@ -38,9 +38,8 @@ $lightgray : #ddd;
 }
 
 ion-icon{
-    font-family:"Ionicons" !important;
+	font-family:"Ionicons" !important;
 }
-
 a {
     text-decoration: none !important;
 }
@@ -91,24 +90,14 @@ ion-menu .menu-inner {
 	background-color: $osde_darkblue !important;
 
 	label {
-		padding-left: 15px;
+		padding-left: 35px;
 	}
 
 	ion-toolbar {
 		padding: 0px;
 		.toolbar-title { color: inherit; }
 	}
-	ion-content {
-		color: inherit !important;
-		background-color: inherit !important;
-		.item {
-			border-bottom: 1px solid $lightgray;
-		}
-	}
-	ion-content .item, ion-footer .item {
-		color: inherit !important;
-		background-color: inherit;
-	}
+
 	ion-content button, ion-footer button {
 		color: inherit !important;
 		background-color: inherit;
@@ -161,11 +150,6 @@ ion-badge {
 
 ion-input {
 	border-bottom: 1px solid $osde_cyan;
-}
-
-.list-md .item-input:last-child {
-	border-bottom: 0;
-	box-shadow: none !important;
 }
 
 

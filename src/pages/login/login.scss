@@ -1,5 +1,4 @@
-page-login {
-  background-color: $osde_white;
+page-login {  
 
   .scroll-content {
     padding-right: 26px !important;
@@ -8,7 +7,7 @@ page-login {
 
   .login {
     margin: auto;
-    max-width: 400px;
+    max-width: 225px;    
   }
 
   .form {
@@ -22,6 +21,95 @@ page-login {
       border-left: 3px solid $osde_cyan;
     }
   }
+
+  /*Comienza modificación look and feel*/
+
+  .input-text{
+    background-color: transparent;
+    border-bottom: 2px solid white;
+    color: white;
+    margin-top: 30px;
+    padding-right: 22px;
+  }
+
+  .input-text:focus {
+    border-bottom:2px solid white
+ }
+
+ .input-text:focus ~ .label-text {
+  color: white;
+}
+
+  .header-circle-container .div-inner:before,
+  .header-circle-container .div-inner:after {
+      border-radius: 100%;
+      height: 250px;
+      position: absolute;
+      content: '';
+      right: -16%;
+      left: -16%;
+      top: -63%;
+      background: white !important;
+      z-index: 10;
+  }
+
+  ion-icon{
+    color: white !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .login-logo{
+    top: 50%;
+    position: relative;
+    height: 70px;
+    z-index: 20;    
+    margin: 0;
+    display: block;
+		background: url('../assets/img/logo.png') center;
+		background-size: contain;
+		background-repeat: no-repeat;
+  }
+  
+  ion-header{
+    position: relative;
+  }
+
+  .label-text{
+    color: white;
+  }
+
+  .form-control{
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding: 0;
+  }
+
+  .scroll-content{
+    margin-top : 190px !important;
+  }
+
+  .btn{
+    color: var(--main-blue-color);
+  }
+
+  .login-footer{
+    color: white;
+    text-align: center;
+    top: 25%;    
+    width: 100%;  
+    position: relative;
+    color: white;
+    text-align: center;
+    background: none;
+  }
+
+  .login-footer:before{
+    display: none;    
+  }
+
+  /*Termina modificación*/
 
   .continue {
     margin-top: 30px;
@@ -42,16 +130,27 @@ page-login {
     color: #008fbb;
   }
 
-  ion-footer {
-    color: white;
-    text-align: end;
-    height: 7vh;
-    padding: 15px;
-    background: linear-gradient(110deg,
-      $osde_lightgreen 0%, $osde_lightgreen 10%,
-      $osde_blue 10%, $osde_blue 40%,
-      $osde_cyan 40%, $osde_cyan 100%
-    );
+  // ion-footer {
+  //   color: white;
+  //   text-align: end;
+  //   height: 7vh;
+  //   padding: 15px;
+  //   background: linear-gradient(110deg,
+  //     $osde_lightgreen 0%, $osde_lightgreen 10%,
+  //     $osde_blue 10%, $osde_blue 40%,
+  //     $osde_cyan 40%, $osde_cyan 100%
+  //   );
+  // }
+
+  ion-content{
+    background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    background: -webkit-gradient(linear,-28% 50% ,121.31% 50% ,color-stop(0,rgba(34, 58, 133, 1) ),color-stop(1,rgba(0, 168, 209, 1) ));
+    background: -o-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    background: -ms-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85', endColorstr='#00A8D1' ,GradientType=0)";
+    background: linear-gradient(90deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85',endColorstr='#00A8D1' , GradientType=1);
   }
 
   @media (max-height: 450px) {

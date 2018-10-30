@@ -94,8 +94,22 @@ $toolbar-wp-background: #002664;
 //>>>> EasyDoc Custom font-family
 @import "easydoc.fonts";
 
-//select customize
+// @keyframes shadow-pulse
+// {
+//   0% {
+//     box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+//   }
+//   100% {
+//     box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+//   }
+// }
+//
+// .pulse-buton{
+//   animation: shadow-pulse 1s;
+//   -webkit-animation: shadow-pulse 1s;
+// }
 
+//select customize
 @mixin gradient ($position, $position-two, $color-one, $color-two, $color-msoft-one, $color-msoft-two) {
   background : -moz-linear-gradient($position 0deg, $color-one 0%, $color-two 100%);
   background : -webkit-linear-gradient(0deg, $color-one 0%, $color-two 100%);
@@ -110,7 +124,7 @@ $toolbar-wp-background: #002664;
 .alert-wrapper {
   border-radius: 10px !important;
   contain: none !important;
-
+  min-width: 300px !important;
   //select alert head
   .alert-head{
     text-align: center !important;

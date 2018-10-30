@@ -33,8 +33,7 @@
       --main-blue-color: #22305A;
   }
   
-  /*headers*/
-  
+
   /*Header con bordes circular ------------------------------------------------------------------------------------*/
   
   .header-circle-container  {
@@ -50,11 +49,11 @@
   .header-circle-container .div-inner:before,
   .header-circle-container .div-inner:after {
       border-radius: 100%;
-      height: 250px;
+      height: 163px;
       position: absolute;
       content: '';
-      right: -16%;
-      left: -16%;
+      right: -8%;
+      left: -8%;
       top: -63%;
       background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
       background: -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
@@ -71,7 +70,7 @@
   /*Header con bordes rectangular ------------------------------------------------------------------------------------*/
   
   .header-rectangular-container{
-      height:188px;
+      height:100px;
       background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
       background: -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
       background: -webkit-gradient(linear,-28% 50% ,121.31% 50% ,color-stop(0,rgba(34, 58, 133, 1) ),color-stop(1,rgba(0, 168, 209, 1) ));
@@ -223,6 +222,10 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85',endColorstr='#00A8D1' , GradientType=1);
   }
   
+  .selected{
+      background:rgba(0,142,182,0.4);
+  }
+
   /*blanco*/
   
    .btn-white{

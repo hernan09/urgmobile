@@ -1,5 +1,5 @@
 page-credencial {
-	.contenedro-credencial{
+	.contenedor-credencial{
 		position: relative;
 	}
 	.tarjeta {
@@ -7,7 +7,7 @@ page-credencial {
 		width: 460px;
 		transform: rotate(270deg);
 		position: absolute;
-		top: 25%;
+		top: 20%;
 		padding: 10px;
 		padding-top: 150px;
 		background: url('../assets/img/credencial.png');

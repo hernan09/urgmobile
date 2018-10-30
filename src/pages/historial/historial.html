@@ -5,7 +5,7 @@
 
 <ion-content class="historial-atencion" padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
-    <div class="header header-rectangular-container"></div>
+    <div class="header header-rectangular-container header-rectangular-container-small"></div>
         <div class="items-container">
             <div  *ngFor="let visita of historial" (click)="goToDetail(visita)">
                     <div class="shadow-block">

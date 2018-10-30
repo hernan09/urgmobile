@@ -33,7 +33,8 @@ export class RegisterPage {
     public last: boolean = false;
     public hasChosen: boolean = false;
     public tycs: boolean = false;
-    public telefono:String;
+    public mostrarBtnFinalizar: boolean = true;
+    public telefono: String;
 
     @ViewChild(CheckerComponent) checker: CheckerComponent
 
@@ -79,6 +80,7 @@ export class RegisterPage {
     nextAnswer() {
         if (this.last) {
             this.checkPreguntas();
+            this.mostrarBtnFinalizar = false;
         }
         else {
             this.p = this.preguntas[this.i++];
@@ -93,6 +95,7 @@ export class RegisterPage {
         this.tycs = false;
         this.show = '';
         this.checker.hide();
+        this.mostrarBtnFinalizar = true;
     }
 
     retry() {
@@ -134,7 +137,7 @@ export class RegisterPage {
                         },
                         err => {
                             this.showcallUsError(err);
-                    })
+                        })
                 })
         }
         else {
@@ -144,12 +147,12 @@ export class RegisterPage {
 
     }
 
-    private showcallUsError(err){
+    private showcallUsError(err) {
         this.checker.showError(err.text());
         this.show = 'callus';
     }
 
-    private showAnswerError(data){
+    private showAnswerError(data) {
 
         this.preguntas = this.formatQuestions(JSON.parse(data.questionList).preguntas);
         this.checker.showError(data.answerWrong);
@@ -157,7 +160,7 @@ export class RegisterPage {
 
     }
 
-    private deviceRegistration(data: any){
+    private deviceRegistration(data: any) {
         const deviceId = data.userId // oneSignalPlayerID
         console.log(`Device ID is [${deviceId}]`)
         this.dataService.registrarDispositivo(deviceId, this.user.dni).subscribe(

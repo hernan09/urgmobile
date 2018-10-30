@@ -1,39 +1,39 @@
-<ion-header class="big">
-
-  <div class="logo"></div>
-
+<ion-header>
+<div class="header-circle-container">
+    <div class="div-inner"><div class="login-logo"></div></div>
+</div>
 </ion-header>
-
 
 <ion-content padding>
 
   <div class="login">
+    <ion-list class="form">
+        <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>       
+      <div class="form-control">
+          <input value="" onkeyup="this.setAttribute('value', this.value);" type="text" id="input1" class="input-text input-user" [(ngModel)]="dni">
+          <label class="label-text" for="input1">{{ placeholder }}</label>
+          <ion-icon name="ios-person-outline" isActive="false"></ion-icon>
+      </div>       
+</ion-list>
+    
 
-    <ion-list class="form" [ngClass]="{'border':newMember}">
-      <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>
-      <ion-item>
-        <ion-label><ion-icon name="ios-person-outline" isActive="false"></ion-icon></ion-label>
-        <ion-input type="tel" minlength=8 maxlength=8
-          placeholder="{{ placeholder }}"
-          [(ngModel)]="dni"></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <button ion-button full icon-start class="continue urg-button-blue"
+    <button class="btn btn-white"
       [disabled]="(!dni)"
       (click)="getDeviceID(dni)">
       {{ button_text }}
     </button>
 
+    <hr class="soft-line soft-line-white">
+
     <a *ngIf="!newMember" href="tel:{{telefono}}" (click)="nextPhoneNumber()">
-      <button  ion-button full icon-start class="callDoctor urg-button-lightgreen">
-        <ion-icon name="call"></ion-icon>
-        SOLICITAR MÉDICO
+      <button class="btn btn-white">        
+        Solicitar médico
       </button>
     </a>
 
   </div>
-
+    
+  <div class="login-footer" *ngIf="!newMember">{{version}}</div>
+  
 </ion-content>
 
-<ion-footer *ngIf="!newMember">{{version}}</ion-footer>

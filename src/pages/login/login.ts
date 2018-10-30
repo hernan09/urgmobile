@@ -29,7 +29,7 @@ export class LoginPage implements Overlay {
   dni: number;
   telefono;
   newMember :boolean;
-  button_text = "INGRESAR";
+  button_text = "Ingresar";
   placeholder = "";
 
   version = Config.OPTIONS.VERSION_NUMBER;

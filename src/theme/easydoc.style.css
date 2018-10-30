@@ -511,4 +511,10 @@
   .arrow{
     position: relative;
     top: 10px;
+    size: 50 px;
+  }
+
+  .scroll-ion-list{
+    overflow-y: scroll;
+    height: 40vh;
   }

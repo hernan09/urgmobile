@@ -56,10 +56,9 @@
     </a>
 </ion-content>
 
-
-<ion-footer id="homeFooter" bottom>
+<ion-footer id="homeFooter" bottom *ngIf="mostrarBtnFinalizar">
   <hr class="soft-line soft-line-black">
-  <button *ngIf="!hideButton" (click)="nextAnswer()" [disabled]="!hasChosen || (last && !tycs)"
+  <button (click)="nextAnswer()" [disabled]="!hasChosen || (last && !tycs)"
     class="btn btn-light" >
     {{ last ? 'Finalizar' : 'Continuar' }}
   </button>

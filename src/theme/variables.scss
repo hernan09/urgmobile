@@ -93,3 +93,112 @@ $toolbar-wp-background: #002664;
 
 //>>>> EasyDoc Custom font-family
 @import "easydoc.fonts";
+
+// @keyframes shadow-pulse
+// {
+//   0% {
+//     box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+//   }
+//   100% {
+//     box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
+//   }
+// }
+//
+// .pulse-buton{
+//   animation: shadow-pulse 1s;
+//   -webkit-animation: shadow-pulse 1s;
+// }
+
+//select customize
+@mixin gradient ($position, $position-two, $color-one, $color-two, $color-msoft-one, $color-msoft-two) {
+  background : -moz-linear-gradient($position 0deg, $color-one 0%, $color-two 100%);
+  background : -webkit-linear-gradient(0deg, $color-one 0%, $color-two 100%);
+  background : -webkit-gradient(linear,$position , $position-two,color-stop(0, $color-one ),color-stop(1, $color-two ));
+  background : -o-linear-gradient(0deg, $color-one 0%, $color-two 100%);
+  background : -ms-linear-gradient(0deg, $color-one 0%, $color-two 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=$color-msoft-one, endColorstr=$color-msoft-two ,GradientType=0)";
+  background : linear-gradient(90deg, $color-one 0%, $color-two 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$color-msoft-one, endColorstr=$color-msoft-two , GradientType=1);
+}
+
+.alert-wrapper {
+  border-radius: 10px !important;
+  contain: none !important;
+  min-width: 300px !important;
+  //select alert head
+  .alert-head{
+    text-align: center !important;
+    h2 {
+      font-weight: 300;
+      font-size: 3vh;
+    }
+  }
+
+  //line
+  .alert-message {
+    height: 3px;
+    width: 100%;
+    background-color: #d6d6d6;
+    border-radius: 50%;
+    max-width: 65%;
+    position: absolute;
+    top: 61px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  //select alert body
+  .alert-radio-group {
+    border: none !important;
+    padding: 16px 0 0 10%;
+
+    [aria-checked=true] .alert-radio-icon {
+      border-color: #488aff !important;
+      background-color: #488aff !important;
+    }
+
+    .alert-radio-icon {
+      background-color: #E9F2FF !important;
+      border-color: #488aff !important;
+      // background-color: rgb(72,138,255,0.2)!important;
+      border-width: 1px !important;
+
+      .alert-radio-inner {
+        display: none;
+      }
+    }
+  }
+
+  //select alert button
+  .alert-button-group {
+    margin: 0;
+    padding: 0px 2%;
+
+    .alert-button {
+      position: relative;
+      bottom: -24px;
+      max-width: 46%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      border-radius : 48px;
+      -moz-border-radius : 48px;
+      -webkit-border-radius : 48px;
+
+      &:nth-child(1) {
+        @include gradient(-6.75% 50%, -6.75% 50%, rgba( 34, 58, 133, 1 ), rgba( 0, 168, 209, 1 ), #223A85, #00A8D1 );
+      }
+
+      &:nth-child(2) {
+        @include gradient(-26.12% 50%, 111.52% 50%, rgba(0, 170, 210, 1), rgba(0, 154, 61, 1), #00AAD2, #009A3D );
+      }
+
+      span {
+        margin: auto;
+        display: table;
+      }
+
+    }
+  }
+}

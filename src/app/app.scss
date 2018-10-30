@@ -88,7 +88,7 @@ ion-toolbar.toolbar-md {
 ion-menu .menu-inner {
 	color: $white !important;
 	background-color: $osde_darkblue !important;
-	width: 100%;
+	width: 90%;
 
 	label {
 		padding-left: 35px;
@@ -99,20 +99,20 @@ ion-menu .menu-inner {
 		.toolbar-title { color: inherit; }
 	}
 
-	ion-content button, ion-footer button {
-		color: inherit !important;
-		background-color: inherit;
-		font-size: 16px;
-		font-weight: 500;
-	}
-	ion-footer {
-		.item {
-			border-top: 1px solid $lightgray;
-		}
+	button{
+		max-width: 80%;
+		position: fixed;
+		bottom: 0;
+		left: 10%;
 	}
 
-	.item-inner {
-		border-bottom: none !important;
+	.padding-botton{
+		padding-bottom: 20px;
+	}
+	
+	.item-md {
+		padding-left: 15%;
+		padding-right: 15%;
 	}
 }
 
@@ -140,6 +140,11 @@ ion-header.big {
 	}
 }
 
+.main-menu {
+	.scroll-content{
+		overflow: hidden !important;
+	}
+}
 
 ion-badge {
 	position: absolute;
@@ -206,9 +211,25 @@ ion-input {
     font-size: 1.6em;
 }
 
-.scroll-content{
-	margin-bottom:0px !important;
+
+//Se Utilizan MENU
+ion-list.scroll-ion-list {
+	overflow-y: scroll;
+	height: 45vh;
+	
+	ion-icon {
+		color: #2196F3;
+
+	}
 }
-.scroll-content > *:last-of-type{
-	margin-bottom: 80px !important;
+
+div.label{
+	align-content: "center";
 }
+
+/* imagen Menú*/
+.imgPosition {
+	top: 110px;
+	padding-bottom: 10px;
+}
+   

@@ -6,27 +6,30 @@
 <ion-content class="historial-atencion" padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
     <div class="header header-rectangular-container"></div>
-		<div class="items-container" *ngFor="let visita of historial" (click)="goToDetail(visita)">
-			
-				<div class="shadow-block">
-                    <div class="flex">
-                        <div>
-                            <span>{{ visita.fecha }}</span>   
+        <div class="items-container">
+            <div  *ngFor="let visita of historial" (click)="goToDetail(visita)">
+                    <div class="shadow-block">
+                        <div class="flex">
+                            <div>
+                                <span>{{ visita.fecha }}</span>   
+                            </div>
+                            <div>
+                                <h4 class="text-01">{{ visita.diagnostico }}</h4>
+                                <span>{{ visita.medicacion }}</span>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="text-01">{{ visita.diagnostico }}</h4>
-                            <span>{{ visita.medicacion }}</span>
-                        </div>
+                        <span class="case-number">Nro. de caso {{ visita.idAtencion }}</span>
                     </div>
-                    <span class="case-number">Nro. de caso {{ visita.idAtencion }}</span>
-                </div>
-		</div>
+            </div>
+        </div>
 
-		<div *ngIf="historialIsEmpty" class="visita visita-height">
-				<div>
-					<p>{{historialMessage}}</p>				
-				</div>
-		</div>
+        <div class="items-container itemsEmpty">
+            <div  *ngIf="historialIsEmpty">
+                    <div class="shadow-block">
+                        <p class="text-01">{{historialMessage}}</p>		
+                    </div>
+            </div>
+        </div>
 
 
 </ion-content>

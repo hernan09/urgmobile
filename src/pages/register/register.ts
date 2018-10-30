@@ -99,7 +99,7 @@ export class RegisterPage {
     }
 
     retry() {
-        this.resetVariables();
+        this.resetVariables();        
         this.nextAnswer();
     }
 
@@ -113,7 +113,7 @@ export class RegisterPage {
         return rta ? rta.texto : ''
     }
 
-    checkPreguntas() {
+    checkPreguntas() {       
         console.log('checkPreguntas:', this.preguntas)
         if (this.networkService.isNetworkConnected()) {
             this.checker.showChecking()
@@ -184,7 +184,7 @@ export class RegisterPage {
     }
 
 
-    formatQuestions(questions) {
+    formatQuestions(questions) {        
         return questions.map(q => {
             let correcta
             let opciones = []

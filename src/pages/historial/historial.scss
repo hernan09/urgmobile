@@ -1,75 +1,90 @@
 page-historial {
 
-	ion-toolbar {
-		transition: 0.5s;
-	}
-
-	ion-content.subHiddenMargin .scroll-content {
-		margin-top: 12vh !important;
-		transition: 0.5s !important;
+	.header{
+		background: -webkit-gradient(linear, left top, right top, from(#223a85), to(#00a8d1));
+		background: linear-gradient(90deg, #223a85 0%, #00a8d1 100%);
+		border-bottom:1px solid transparent;
 	}
 
 	.scroll-content {
 		transition: 0.5s !important;
+		z-index:10;
+		overflow-y: scroll;
+		padding:0 !important;
 	}
 
-	.visita {
-		padding-top: 0px !important;
-		padding-bottom: 0px !important;
-		border-left: 4px solid #bed600;
-		margin-top: 10px !important;
-		margin-bottom: 10px !important;
-		background-color: #f1f0f0;
-		transition: 0.09s all linear;
-
-		ion-col {
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
+	.items-container{
+		margin-top: -50px;
 	}
 
-	.info {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		margin-bottom: 5px;
+	.shadow-block{
+		position: relative;
+		padding: 30px 0 20px 0;
+		max-width: 95%;
+		margin: 0px auto 15px auto;
+	}
+	.historial-atencion  div.flex{
+		justify-content: center;
+		align-items:center;
+	}
+
+
+	.historial-atencion h4{
+		font-weight: normal;
 		font-size: 12px;
 	}
 
-	.info div:nth-child(1) {
-		flex-basis: 60%;
+	.historial-atencion div.flex > div:first-child{
+		width:28%;
+		margin-right:5%;
+		border-right:1px solid rgba(0,0,0,0.5);
+		height:35px;
+		padding-top:10px;
+		text-align:center;
+		font-size: 12px;
 	}
 
-	.info div:nth-child(2) {
-		flex-basis: 25%;
-		text-align: right;
+	.historial-atencion div.flex > div:last-child{
+		width:65%;
+		padding-right:2%;
 	}
+	.case-number{
+		font-size:10px;
+		position:absolute;
+		right:10px;
+		top:10px;
+	}
+
+	.historial-atencion div.flex > div:last-child span{
+		font-size:11px;
+		color:var(--main-cyan-color);
+	}
+
+	.itemsEmpty .shadow-block{
+		padding: 30px 10px 20px 10px;
+	}
+
+	.itemsEmpty p{
+		text-align:center;
+		line-height: 1.5;
+		color:#797979;
+	}  
+	  
+
+	/*headers */
+
+	/*clase para cambiar general */
+	ion-header{
+		border-bottom: 1px solid transparent;
+	}
+	.toolbar-background-md,.toolbar-background{
+		background-color: transparent !important;
+		background:transparent !important;
+	}
+
 	
 
-	.item-inner {
-		border-bottom: 0px !important;
-	}
-
-	.item-block:first-child {
-		border-top: 0px !important;
-	}
-
-	.item-block:last-child {
-		border-bottom: 0px !important;
-	}
 
 	
-	.visita-height{
-		height: 100px;
-		font-size: 15px;				
-	}
-
-	.visita-height .label{
-		white-space: normal;
-	}
-
-	.visita-height p{
-		color: black;
-	}
 
 }

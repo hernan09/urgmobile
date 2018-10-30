@@ -1,52 +1,35 @@
 <ion-header>
-
-	<page-navigator></page-navigator>
-
-	<ion-toolbar>
-		<ion-title>Historial de Atención</ion-title>
-	</ion-toolbar>
-
+			<page-navigator></page-navigator>
 </ion-header>
 
 
-<ion-content padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
+<ion-content class="historial-atencion" padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
-	<ion-list>
+    <div class="header header-rectangular-container"></div>
+        <div class="items-container">
+            <div  *ngFor="let visita of historial" (click)="goToDetail(visita)">
+                    <div class="shadow-block">
+                        <div class="flex">
+                            <div>
+                                <span>{{ visita.fecha }}</span>   
+                            </div>
+                            <div>
+                                <h4 class="text-01">{{ visita.diagnostico }}</h4>
+                                <span>{{ visita.medicacion }}</span>
+                            </div>
+                        </div>
+                        <span class="case-number">Nro. de caso {{ visita.idAtencion }}</span>
+                    </div>
+            </div>
+        </div>
 
-		<ion-item class="visita" *ngFor="let visita of historial" (click)="goToDetail(visita)">
-
-			<ion-row>
-				<div class="info">
-					<div>Nro. de caso: {{ visita.idAtencion }}</div>
-					<div>{{ visita.fecha }}</div>
-				</div>
-			</ion-row>
-
-			<ion-row *ngIf="visita.prof">
-				<ion-col>{{ visita.prof }}</ion-col>
-			</ion-row>
-
-			<ion-row>
-				<ion-col>Diagnóstico:
-					<b>{{ visita.diagnostico }}</b>
-				</ion-col>
-			</ion-row>
-
-			<ion-row>
-				<ion-col>Medicación: {{ visita.medicacion }}</ion-col>
-			</ion-row>
-
-		</ion-item>
-
-		<ion-item *ngIf="historialIsEmpty" class="visita visita-height">
-				<div>
-					<p>{{historialMessage}}</p>				
-				</div>
-			</ion-item>
-
-	</ion-list>
+        <div class="items-container itemsEmpty">
+            <div  *ngIf="historialIsEmpty">
+                    <div class="shadow-block">
+                        <p class="text-01">{{historialMessage}}</p>		
+                    </div>
+            </div>
+        </div>
 
 
 </ion-content>
-
-<page-footer></page-footer>

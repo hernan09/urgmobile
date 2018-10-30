@@ -34,6 +34,7 @@ export class RegisterPage {
     public hasChosen: boolean = false;
     public tycs: boolean = false;
     public telefono:String;
+    public hideButton: boolean = false;
 
     @ViewChild(CheckerComponent) checker: CheckerComponent
 
@@ -93,10 +94,11 @@ export class RegisterPage {
         this.tycs = false;
         this.show = '';
         this.checker.hide();
+        this.hideButton = false;
     }
 
     retry() {
-        this.resetVariables();
+        this.resetVariables();        
         this.nextAnswer();
     }
 
@@ -111,6 +113,7 @@ export class RegisterPage {
     }
 
     checkPreguntas() {
+        this.hideButton = true;
         console.log('checkPreguntas:', this.preguntas)
         if (this.networkService.isNetworkConnected()) {
             this.checker.showChecking()
@@ -181,7 +184,7 @@ export class RegisterPage {
     }
 
 
-    formatQuestions(questions) {
+    formatQuestions(questions) {        
         return questions.map(q => {
             let correcta
             let opciones = []

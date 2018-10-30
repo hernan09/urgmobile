@@ -3,11 +3,18 @@ page-login {
   .scroll-content {
     padding-right: 26px !important;
     padding-left: 26px !important;
-  }
+    overflow: hidden; 
+    margin : 0 !important;   
+  }  
 
   .login {
     margin: auto;
-    max-width: 225px;    
+    max-width: 225px; 
+    margin-top: 225px;   
+  }
+
+  .login.notScroll{
+    margin-top: 50px;
   }
 
   .form {
@@ -86,10 +93,6 @@ page-login {
     padding: 0;
   }
 
-  .scroll-content{
-    margin-top : 190px !important;
-  }
-
   .btn{
     color: var(--main-blue-color);
   }
@@ -97,7 +100,7 @@ page-login {
   .login-footer{
     color: white;
     text-align: center;
-    top: 25%;    
+    top: 10%;    
     width: 100%;  
     position: relative;
     color: white;
@@ -119,28 +122,15 @@ page-login {
     margin-top: 30px;
   }
 
-  .osde-label {
-    padding-left: 16px;
+  .osde-label {    
     font-size: 1.1em;
-    font-weight: 600;
-    color: $osde_cyan;
+    font-weight: 600; 
+    color: lightblue;
   }
 
   ion-label {
     color: #008fbb;
-  }
-
-  // ion-footer {
-  //   color: white;
-  //   text-align: end;
-  //   height: 7vh;
-  //   padding: 15px;
-  //   background: linear-gradient(110deg,
-  //     $osde_lightgreen 0%, $osde_lightgreen 10%,
-  //     $osde_blue 10%, $osde_blue 40%,
-  //     $osde_cyan 40%, $osde_cyan 100%
-  //   );
-  // }
+  }  
 
   ion-content{
     background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);

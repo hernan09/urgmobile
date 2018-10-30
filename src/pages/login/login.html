@@ -1,10 +1,3 @@
-<!-- <ion-header class="big">
-
-  <div class="logo"></div>
-
-</ion-header> -->
-
-<!-- header con borde circular -->
 <ion-header>
 <div class="header-circle-container">
     <div class="div-inner"><div class="login-logo"></div></div>
@@ -14,18 +7,7 @@
 <ion-content padding>
 
   <div class="login">
-
-    <!-- <ion-list class="form" [ngClass]="{'border':newMember}">
-      <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>
-      <ion-item>
-        <ion-label><ion-icon name="ios-person-outline" isActive="false"></ion-icon></ion-label>      
-        <ion-input class="input-text" type="tel" minlength=8 maxlength=8
-          placeholder="{{ placeholder }}"
-          [(ngModel)]="dni"></ion-input>
-      </ion-item>
-    </ion-list> -->
-
-    <ion-list class="form" [ngClass]="{'border':newMember}">
+    <ion-list class="form">
         <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>       
       <div class="form-control">
           <input value="" onkeyup="this.setAttribute('value', this.value);" type="text" id="input1" class="input-text input-user" [(ngModel)]="dni">
@@ -55,4 +37,3 @@
   
 </ion-content>
 
-<!-- <ion-item *ngIf="!newMember">{{version}}</ion-item> -->

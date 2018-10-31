@@ -509,4 +509,25 @@
     size: 50px;
   }
 
- 
+  /*input radio ion-radio*/
+
+  .radio-md .radio-icon {
+    border-color:var(--main-cyan-color) !important;
+    border-width:1px !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 25px;
+  }
+
+  .radio-inner {
+    left: 5px !important;
+    top: 5px !important;
+    background-color: var(--main-cyan-color) !important; 
+  }
+
+  .checkbox-md .checkbox-checked {
+    border-color:var(--main-cyan-color) !important;
+    background-color:var(--main-cyan-color) !important;
+}
+
+  

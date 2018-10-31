@@ -2,6 +2,12 @@ page-credencial {
 	.contenedor-credencial{
 		position: relative;
 	}
+
+	.scroll-content{
+		z-index: 10;
+		margin-top: 18% !important;
+	}
+
 	.tarjeta {
 		height: 280px;
 		width: 460px;

@@ -1,9 +1,10 @@
 <ion-header>
+  <page-navigator></page-navigator>
+  <div class="header header-rectangular-container"></div>
 </ion-header>
 
 
 <ion-content padding>
-
   <div class="tarjeta">
     <div class="tarjeta-name" *ngIf="persona.apellido">
       <label>Apellido y nombre: </label><span>{{persona.nombre}} {{persona.apellido}}</span>

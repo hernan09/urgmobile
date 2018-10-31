@@ -94,21 +94,6 @@ $toolbar-wp-background: #002664;
 //>>>> EasyDoc Custom font-family
 @import "easydoc.fonts";
 
-// @keyframes shadow-pulse
-// {
-//   0% {
-//     box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
-//   }
-//   100% {
-//     box-shadow: 0 0 0 35px rgba(0, 0, 0, 0);
-//   }
-// }
-//
-// .pulse-buton{
-//   animation: shadow-pulse 1s;
-//   -webkit-animation: shadow-pulse 1s;
-// }
-
 //select customize
 @mixin gradient ($position, $position-two, $color-one, $color-two, $color-msoft-one, $color-msoft-two) {
   background : -moz-linear-gradient($position 0deg, $color-one 0%, $color-two 100%);
@@ -135,18 +120,18 @@ $toolbar-wp-background: #002664;
   }
 
   //line
-  .alert-message {
-    height: 3px;
-    width: 100%;
-    background-color: #d6d6d6;
-    border-radius: 50%;
-    max-width: 65%;
-    position: absolute;
-    top: 61px;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+  // .alert-message {
+  //   height: 3px;
+  //   width: 100%;
+  //   background-color: #d6d6d6;
+  //   border-radius: 50%;
+  //   max-width: 65%;
+  //   position: absolute;
+  //   top: 61px;
+  //   left: 0;
+  //   right: 0;
+  //   margin: auto;
+  // }
 
   //select alert body
   .alert-radio-group {
@@ -202,3 +187,15 @@ $toolbar-wp-background: #002664;
     }
   }
 }
+
+//tranparent header border-botton
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+  display: none;
+}
+
+.header-rectangular-container, .header-circle-container {
+  position: relative;
+  top: -1px;
+}
+

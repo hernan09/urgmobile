@@ -11,29 +11,30 @@
 
     <div class="image img-url"></div>
 
-    <div class="container">
+    <form class="container" [formGroup]="profileForm" (ngSubmit)="getDataTime()">
+
       <ion-list radio-group >
 
         <h3 class="title">Incarbone Eduardo Oscar</h3>
-        <h5 class="sub-title">¿Hace caunto tiempo estas con fiebre?</h5>
+        <h5 class="sub-title">¿Hace cuanto tiempo estas con fiebre?</h5>
 
         <hr class="soft-line soft-line-black">
 
         <div class="form-control">
             <label class="radio-container" *ngFor="let dataTime of time">
                 {{ dataTime.period }}
-                <input class="radio-input" type="radio"  name="radio" id="">
+                <input class="radio-input" value="  {{ dataTime.period }}" type="radio" formControlName="time">
                 <span class="checkmark"></span>
             </label>
         </div>
 
       </ion-list>
 
-      <button  class="btn btn-light" (click)="gotoPage()" >
+      <button  type="submit" class="btn btn-light" [disabled]="!profileForm.valid">
         Continuar
       </button>
 
-    </div>
+    </form>
 
   </div>
 </ion-content>

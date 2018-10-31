@@ -15,7 +15,7 @@
 
     <hr class="soft-line soft-line-black">
 
-    <div class="container">
+    <form class="container" [formGroup]="profileForm" (ngSubmit)="getDataContact()">
 
       <ion-grid>
         <ion-row>
@@ -26,7 +26,7 @@
 
           <ion-col col-4>
             <div class="form-control padding">
-                <input value="" type="text"  onkeyup="this.setAttribute('value', this.value);" id="cod" class="input-text input-user">
+                <input value="" type="number"  formControlName="cod" onkeyup="this.setAttribute('value', this.value);" id="cod" class="input-text input-user">
                 <label class="label-text" >Cod</label>
             </div>
           </ion-col>
@@ -37,7 +37,7 @@
 
           <ion-col col-5>
             <div class="form-control padding">
-                <input value="" type="text" onkeyup="this.setAttribute('value', this.value);"  id="tel" class="input-text input-user">
+                <input value="" type="number"  formControlName="tel" onkeyup="this.setAttribute('value', this.value);"  id="tel" class="input-text input-user">
                 <label class="label-text" >Tel</label>
             </div>
           </ion-col>
@@ -45,31 +45,30 @@
         </ion-row>
       </ion-grid>
 
-
       <div class="form-control">
-          <input value="" type="text" onkeyup="this.setAttribute('value', this.value);"  id="email" class="input-text input-user">
+          <input value="" type="text"  formControlName="email" onkeyup="this.setAttribute('value', this.value);"  id="email" class="input-text input-user">
           <label class="label-text" >Email</label>
       </div>
 
       <div class="">
         <div class="container-select">
           <ion-label>Localidad</ion-label>
-          <ion-select [selectOptions]="selectOptions" okText="Aceptar" cancelText="Cancelar"  placeholder="Seleccionar">
+          <ion-select [selectOptions]="selectOptions"   formControlName="location" okText="Aceptar" cancelText="Cancelar"  placeholder="Seleccionar">
             <ion-option *ngFor="let dataLocation of location" value="{{dataLocation}}" >{{dataLocation}}</ion-option>
           </ion-select>
         </div>
       </div>
 
       <div class="form-control">
-          <input value="" type="text" id="direction"  onkeyup="this.setAttribute('value', this.value);"  class="input-text input-user">
+          <input value="" type="text" id="direction"  formControlName="direction"  onkeyup="this.setAttribute('value', this.value);"  class="input-text input-user">
           <label class="label-text" >Dirección</label>
       </div>
 
-      <button  class="btn btn-light" (click) = "gotoPage()">
+      <button type="submit" class="btn btn-light" [disabled]="!profileForm.valid">
         Continuar
       </button>
 
-    </div>
+    </form>
   </div>
 
 </ion-content>

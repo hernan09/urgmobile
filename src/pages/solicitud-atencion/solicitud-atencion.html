@@ -1,45 +1,42 @@
 <ion-header>
-
   <page-navigator></page-navigator>
-
 </ion-header>
 
-<ion-content >
+<ion-content>
 
   <div class="header header-rectangular-container"></div>
   <div class="box-container">
 
-
     <div class="image img-url"></div>
 
     <div class="container">
+
       <ion-list radio-group >
 
         <h3 class="title">Seleccione el Socio</h3>
-
         <hr class="soft-line soft-line-black">
 
-        <div class="form-control">
-            <label class="radio-container" >
+        <form [formGroup]="profileForm" (ngSubmit)="getDataPartner()">
+
+            <label class="radio-container">
                 Incarbone Eduardo Oscar
-                <input class="radio-input" type="radio"  name="radio" id="">
+                <input class="radio-input" type="radio" value="Incarbone Eduardo Oscar"   formControlName="partner" >
                 <span class="checkmark"></span>
             </label>
 
-            <label class="radio-container" >
+            <label class="radio-container">
                 Incarbone Maria Sol
-                <input class="radio-input" type="radio"  name="radio" id="">
+                <input class="radio-input" type="radio" value="Incarbone Maria Sol"  formControlName="partner" >
                 <span class="checkmark"></span>
             </label>
-        </div>
+
+            <button type="submit" class="btn btn-light"  [disabled]="!profileForm.valid">
+              Continuar
+            </button>
+
+        </form>
 
       </ion-list>
-
-      <!-- <hr class="soft-line soft-line-black"> -->
-
-      <button  class="btn btn-light" (click)="gotoPage()" >
-        Continuar
-      </button>
 
     </div>
   </div>

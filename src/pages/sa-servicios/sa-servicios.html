@@ -1,0 +1,55 @@
+<ion-header>
+
+  <page-navigator></page-navigator>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="header header-rectangular-container"></div>
+  <div class="box-container">
+
+    <div class="image img-url"></div>
+
+      <ion-list radio-group >
+
+        <h3 class="title">Incarbone Eduardo Oscar</h3>
+        <h5 class="sub-title">Elegí la opción que mejor se adapte a vos</h5>
+
+        <hr class="soft-line soft-line-black">
+
+        <div class="container">
+          <div class="box-option">
+
+            <ion-grid>
+              <ion-row class="box-service" *ngFor="let data of dataService">
+
+                <ion-col col-4>
+                  <div class="image-service image-url " [ngStyle]="{'background-image':'url(' + data.img + ')'}"></div>
+                </ion-col>
+
+                <ion-col col-8 >
+
+                    <div class="video">
+                      <label>Solicitá {{data.final}}</label>
+                      <p>{{data.type}}</p>
+                      <label *ngIf="data.description"or="">{{data.description}}</label>
+                    </div>
+
+                    <div class="time">
+                      <p>Tiempo de espera:</p>
+                      <label for="">{{data.time}}</label>
+                    </div>
+
+                </ion-col>
+
+              </ion-row>
+            </ion-grid>
+
+          </div>
+        </div>
+
+      </ion-list>
+
+  </div>
+</ion-content>

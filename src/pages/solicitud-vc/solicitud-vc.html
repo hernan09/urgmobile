@@ -14,9 +14,9 @@
 
   <div class="vc">
 
-    <ion-list>     
+    <ion-list>
       <ion-item>
-      <p class="p-name" text-wrap>{{name}}</p>    
+      <p class="p-name" text-wrap>{{name}}</p>
       </ion-item>
       <div class="osde-label">TELEFONO</div>
       <div>
@@ -27,7 +27,7 @@
                 <ion-label class="primary">0</ion-label>
                 <ion-input type="tel" [(ngModel)]="prefijo" maxlength="4"></ion-input>
               </ion-item>
-            </ion-col>            
+            </ion-col>
             <ion-col>
               <ion-item>
                 <ion-label class="primary">15</ion-label>
@@ -41,7 +41,7 @@
       <div class="osde-label">EMAIL</div>
       <div>
       <ion-grid>
-          <ion-row>      
+          <ion-row>
   <ion-col>
       <ion-item>
         <ion-input type="text" [(ngModel)]="email"></ion-input>
@@ -55,17 +55,17 @@
       <ion-item>
         <ion-label [ngStyle]="{'color': selectTextColor}">{{showSelectText}}</ion-label>
         <ion-select [selectOptions]="selectOptions" id="symptomSelect" class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom">
-          <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>          
+          <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
         </ion-select>
-            </ion-item>           
+      </ion-item>
     </ion-list>
-   
+
   </div>
 
 </ion-content>
 
 <ion-footer id="homeFooter" bottom>
-    <button ion-button full icon-start class="urg-button-blue"  [disabled]=" !name || !tel || !prefijo || !symptom || !email" (click)="sendVCRequest()">               
+    <button ion-button full icon-start class="urg-button-blue"  [disabled]=" !name || !tel || !prefijo || !symptom || !email" (click)="sendVCRequest()">
     Confirmar
     </button>
 </ion-footer>

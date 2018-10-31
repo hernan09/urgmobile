@@ -1,0 +1,29 @@
+page-sa-tiempo {
+  .title {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .sub-title {
+    text-align: center;
+    font-size: 14px;
+    margin: 5px;
+    font-weight: 200;
+  }
+
+  .form-control {
+    max-width: 250px;
+    font-size: 14px;
+    font-weight: 200;
+    padding: 0;
+  }
+
+  .scroll-content > *:last-of-type {
+    margin-bottom: 0 !important;
+  }
+
+  .btn{
+    position: relative;
+    bottom: -46px;
+  }
+}

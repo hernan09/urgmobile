@@ -1,0 +1,58 @@
+page-sa-contacto {
+  .scroll-content > *:last-of-type  {
+    margin-bottom: 10px !important;
+  }
+
+  .form-control{
+    z-index: 1111111;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .sub-title {
+    text-align: center;
+    font-size: 14px;
+    margin: 5px;
+    font-weight: 200;
+  }
+
+  .padding {
+    padding: 0px;
+  }
+
+  .label-input-number{
+    position: relative;
+    top: 18px;
+  }
+
+  .btn{
+    position: relative;
+    bottom: -46px;
+  }
+
+  ion-item {
+    padding-left: 0 !important;
+  }
+
+  .container-select {
+    margin-bottom: 15px;
+    position: relative;
+
+    ion-label {
+      color: #9395ad;
+      font-size: 14px;
+      cursor: text;
+      margin: 0;
+      padding: 0;
+    }
+
+    ion-select {
+      max-width: 300px;
+      padding-left: 0;
+      border-bottom: 1px solid black;
+    }
+  }
+}

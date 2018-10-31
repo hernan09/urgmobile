@@ -1,6 +1,6 @@
 
-<ion-navbar hideBackButton>
-  <ion-buttons left>
+<ion-navbar hideBackButton >
+  <ion-buttons left >
     <!--Menu Haburguesa Visible-->
     <button  *ngIf=!arrowBack left menuToggle="left" class="urgIcon">
       <ion-icon name="menu"></ion-icon>
@@ -8,20 +8,19 @@
 
     <!--Flecha de back Visible-->
     <button *ngIf=arrowBack (click)="previusPage()" left class="urgIcon">
-      <ion-icon name="arrow-back"></ion-icon> 
+      <ion-icon name="arrow-back"></ion-icon>
     </button>
   </ion-buttons>
 
-      
-  <ion-title class="title title-md urg-title">     
+  <ion-title class="title title-md urg-title">
     URG
   </ion-title>
 
-  <ion-buttons *ngIf=!arrowBack right>
+  <ion-buttons *ngIf=!arrowBack right >
     <a href="tel:{{telefono}}"  *ngIf="!isSurveyActive" (click)="nextPhoneNumber()">
       <button right class="urgIcon">
         <ion-icon name="call"></ion-icon>
       </button>
     </a>
-</ion-buttons>
+  </ion-buttons>
 </ion-navbar>

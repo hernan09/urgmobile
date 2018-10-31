@@ -1,0 +1,39 @@
+<ion-header>
+
+  <page-navigator></page-navigator>
+
+</ion-header>
+
+<ion-content >
+
+  <div class="header header-rectangular-container"></div>
+  <div class="box-container">
+
+    <div class="image img-url"></div>
+
+    <div class="container">
+      <ion-list radio-group >
+
+        <h3 class="title">Incarbone Eduardo Oscar</h3>
+        <h5 class="sub-title">¿Hace caunto tiempo estas con fiebre?</h5>
+
+        <hr class="soft-line soft-line-black">
+
+        <div class="form-control">
+            <label class="radio-container" *ngFor="let dataTime of time">
+                {{ dataTime.period }}
+                <input class="radio-input" type="radio"  name="radio" id="">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+
+      </ion-list>
+
+      <button  class="btn btn-light" (click)="gotoPage()" >
+        Continuar
+      </button>
+
+    </div>
+
+  </div>
+</ion-content>

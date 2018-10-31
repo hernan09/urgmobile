@@ -20,13 +20,13 @@ import { ModalService } from './../../providers/modal.service';
     selector: 'page-solicitud-vc',
     templateUrl: 'solicitud-vc.html',
 })
-export class SolicitudVcPage implements Overlay {    
+export class SolicitudVcPage implements Overlay {
 
     @ViewChild(Select) symptomSelect: Select;
     @ViewChild(NavigatorPage) menu : NavigatorPage;
 
     private dni: string;
-    private name: string;  
+    private name: string;
     private prefijo : number;
     private tel: number;
     private symptom: string;
@@ -34,41 +34,38 @@ export class SolicitudVcPage implements Overlay {
     private showSelectText: string;
     public selectTextColor: string = '#EE4035';
     public selectOptions;
-    private telefono;  
-    private email : string;  
-    private iskeyboardOpen; 
+    private telefono;
+    private email : string;
+    private iskeyboardOpen;
 
-    constructor(public navCtrl: NavController, 
-        public navParams: NavParams, 
-        public utils: Utils, 
-        private dataService: DataService, 
-        private device: Device, 
-        private networkService: NetworkService, 
-        private toastService:ToastService, 
-        private alertService : AlertService, 
+    constructor(public navCtrl: NavController,
+        public navParams: NavParams,
+        public utils: Utils,
+        private dataService: DataService,
+        private device: Device,
+        private networkService: NetworkService,
+        private toastService:ToastService,
+        private alertService : AlertService,
         private keyboard: Keyboard,
         private modal : ModalService) {
-           
+
         this.telefono = dataService.getPhoneNumber();
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))
         this.showSelectText = "Seleccionar";
         this.selectOptions = {
             cssClass:"hideHeader"
         }
-        this.keyboard.onKeyboardShow().subscribe((data) => {            
+        this.keyboard.onKeyboardShow().subscribe((data) => {
                 this.iskeyboardOpen = true;
          });
-         this.keyboard.onKeyboardHide().subscribe((data) => {           
+         this.keyboard.onKeyboardHide().subscribe((data) => {
                 this.iskeyboardOpen = false;
          });
-
     }
 
     ionViewCanEnter(){
         this.menu.setArrowBack(true);
     }
-
-
 
     handleData(data) {
         console.log('Sintomas:', data)
@@ -78,7 +75,7 @@ export class SolicitudVcPage implements Overlay {
 
     ionViewDidLoad() {
         //asigno mi name al socio que recibo de la pantalla anterior
-        console.log(this.navParams.get('socio').dni);       
+        console.log(this.navParams.get('socio').dni);
         this.name = this.navParams.get('socio').nombre + " " + this.navParams.get('socio').apellido || "";
 
         this.dni = this.navParams.get('socio').dni || "";
@@ -108,8 +105,8 @@ export class SolicitudVcPage implements Overlay {
         else{
             this.toastService.hideToast();
             this.toastService.showToast(Config.MSG.DISCONNECTED,0);
-        }       
-        
+        }
+
     }
 
     VCResponse(data) {
@@ -123,25 +120,25 @@ export class SolicitudVcPage implements Overlay {
         else {
             this.utils.hideLoader();
             console.log("VCResponse - data.registroVC: ",data.registroVC);
-            this.alertService.showAlert("Video Consulta", data.Mensaje);            
+            this.alertService.showAlert("Video Consulta", data.Mensaje);
         }
         this.navCtrl.setRoot(HomePage);
     }
 
     previusPage() {
-        let users = this.dataService.restoreUsers();
-        if(users.length == 1){
-            this.navCtrl.setRoot(HomePage);
-        }
-        else{
-            this.navCtrl.setRoot(SociosPage, { socio: this.navParams.get('socio') });
-        }
+      let users = this.dataService.restoreUsers();
+      if(users.length == 1){
+          this.navCtrl.setRoot(HomePage);
+      }
+      else{
+          this.navCtrl.setRoot(SociosPage, { socio: this.navParams.get('socio') });
+      }
     }
 
     onChangeSymptom() {
         this.selectTextColor = 'transparent';
     }
-    
+
     checkTelLength(){
         if((this.prefijo+ this.tel).toString().length == 10){
             return true;
@@ -157,9 +154,9 @@ export class SolicitudVcPage implements Overlay {
     }
 
 
-     closeAllOverlays(){        
-            this.symptomSelect.close();         
-            this.alertService.hideAlert();           
+     closeAllOverlays(){
+            this.symptomSelect.close();
+            this.alertService.hideAlert();
     }
 
     nextPhoneNumber(){
@@ -174,6 +171,6 @@ export class SolicitudVcPage implements Overlay {
             this.previusPage();
         }
      }
- 
- 
+
+
 }

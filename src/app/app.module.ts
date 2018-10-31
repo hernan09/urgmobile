@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http'
 import { FormsModule } from '@angular/forms'
 import { Device } from '@ionic-native/device';
 
-
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular'
 
 // ionic plugins
@@ -37,7 +36,11 @@ import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 import { SociosPage } from '../pages/socios/socios';
 import { NavigatorPage } from './../pages/navigator/navigator';
 import { FooterPage } from './../pages/footer/footer';
-
+import { SolicitudAtencionPage } from './../pages/solicitud-atencion/solicitud-atencion';
+import { SaContactoPage } from './../pages/sa-contacto/sa-contacto';
+import { SaConsultaPage } from './../pages/sa-consulta/sa-consulta';
+import { SaTiempoPage } from './../pages/sa-tiempo/sa-tiempo';
+import { SaServiciosPage } from './../pages/sa-servicios/sa-servicios';
 
 // services
 import { AuthService } from '../providers/auth.service'
@@ -56,9 +59,7 @@ import { GroupedNotificationService } from './../providers/grouped.notificacion.
 import { AlertBuilder } from './../providers/builders/alert.builder';
 import { VideoConsultaService } from './../providers/video.consulta.service';
 
-
-
-@NgModule({  
+@NgModule({
   declarations: [
     MyApp,
     LoginPage,
@@ -73,12 +74,17 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     DeletePage,
     VideoConsultaPage,
     SociosPage,
-    SolicitudVcPage,   
+    SolicitudVcPage,
     NavigatorPage,
     FooterPage,
     CheckerComponent,
+    SolicitudAtencionPage,
+    SaContactoPage,
+    SaConsultaPage,
+    SaTiempoPage,
+    SaServiciosPage
   ],
-  
+
   entryComponents: [
     MyApp,
     LoginPage,
@@ -97,6 +103,11 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     NavigatorPage,
     FooterPage,
     CheckerComponent,
+    SolicitudAtencionPage,
+    SaContactoPage,
+    SaConsultaPage,
+    SaTiempoPage,
+    SaServiciosPage
   ],
 
   imports: [
@@ -122,7 +133,7 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     Utils,
     Tokbox,
     NetworkService,
-    ToastService,  
+    ToastService,
     MinimizeService,
     ModalService,
     AlertService,
@@ -130,7 +141,7 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     GroupedNotificationService,
     AlertBuilder,
     VideoConsultaService,
-    Keyboard,  
+    Keyboard,
     AndroidPermissions,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

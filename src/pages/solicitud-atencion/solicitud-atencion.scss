@@ -1,0 +1,60 @@
+page-solicitud-atencion {
+  .sub-title{
+    text-align: center;
+    font-weight: 200;
+  }
+  .scroll-content > *:last-of-type {
+    margin-bottom: 0 !important;
+  }
+
+  .btn{
+    position: relative;
+    bottom: -46px;
+  }
+
+  ion-list {
+
+      ion-list-header {
+        padding-left: 0px !important;
+        margin-bottom: 0 !important;
+        border-bottom: 0 !important;
+        border: 0 !important;
+        text-align: center;
+        ion-label {
+          font-weight: 200;
+          font-size: 1.4em;
+          white-space: normal;
+          text-transform: uppercase;
+          margin-right: 0px !important;
+          margin-left: 0px !important;
+        }
+      }
+      ion-item:last-child {
+        border-bottom: 0 !important;
+      }
+    }
+
+    // ion-item {
+    //   border-left: 4px solid $osde_lightgreen !important;
+    //   margin: 10px !important;
+    // }
+
+    .item-inner {
+      flex-direction: row-reverse;
+      border-bottom: 0 !important;
+    }
+
+    ion-radio {
+      height: 20px !important;
+      .radio-icon {
+        border: 1px solid black;
+        border-radius: 25px;
+        width: 20px !important;
+        height: 20px !important;
+      }
+      .radio-inner {
+        left: 4px !important;
+        top: 4px !important;
+      }
+    }
+}

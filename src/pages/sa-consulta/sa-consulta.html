@@ -1,0 +1,37 @@
+<ion-header>
+
+  <page-navigator></page-navigator>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="header header-rectangular-container"></div>
+  <div class="box-container">
+
+    <div class="image img-url"></div>
+
+    <div class="container ">
+
+      <h3 class="title">Incarbone Eduardo Oscar</h3>
+      <h5 class="sub-title">Motivo de Consulta</h5>
+
+      <hr class="soft-line soft-line-black">
+
+      <div class="form-control">
+        <div class="container-select">
+          <ion-label>Sintoma</ion-label>
+          <ion-select [selectOptions]="selectOptions" okText="Aceptar" cancelText="Cancelar"  placeholder="Seleccionar">
+            <ion-option *ngFor="let dataSymptom of symptom" value="{{dataSymptom}}">{{dataSymptom}}</ion-option>
+          </ion-select>
+        </div>
+
+      </div>
+
+      <button  class="btn btn-light" (click)="gotoPage()">
+        Continuar
+      </button>
+
+    </div>
+  </div>
+</ion-content>

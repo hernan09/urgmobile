@@ -16,13 +16,13 @@ import { DataService } from '../providers/data.service'
 import { Utils } from '../providers/utils'
 import { ToastService } from '../providers/toast.service';
 import { SolicitudVcPage } from './../pages/solicitud-vc/solicitud-vc';
-
+import { SolicitudAtencionPage } from './../pages/solicitud-atencion/solicitud-atencion';
 
 
 @Component({
   templateUrl : 'app.html'
 })
-export class MyApp {  
+export class MyApp {
 
   @ViewChild(Nav) nav :Nav
   rootPage :any = LoginPage
@@ -54,11 +54,16 @@ export class MyApp {
       icon : 'ios-videocam-outline'
     },
     {
+      page : SolicitudAtencionPage,
+      title : 'Solicitud de Atención',
+      icon : 'ios-people-outline'
+    },
+    {
       page : LoginPage,
       title : 'Agregar socio',
       icon : 'ios-add-outline',
       params : {newMember: true}
-    },    
+    }
   ]
 
 
@@ -71,8 +76,8 @@ export class MyApp {
 
   private disconnected = false;
   private readyToExit = false;
-  
- 
+
+
   constructor(
     private platform :Platform,
     private splashScreen :SplashScreen,
@@ -86,7 +91,7 @@ export class MyApp {
     private alertService : AlertService
   ){
 
-    platform.ready().then(_ => {     
+    platform.ready().then(_ => {
 
       splashScreen.hide()
 
@@ -97,7 +102,7 @@ export class MyApp {
         if(!this.disconnected){
         this.toastService.showToast(Config.MSG.DISCONNECTED, 0)
         this.disconnected = true
-        }              
+        }
       })
 
       this.network.onConnect().subscribe(_ => {
@@ -111,15 +116,15 @@ export class MyApp {
         // before we determine the connection type. Might need to wait
         // prior to doing any api requests as well.
         setTimeout(_ => {
-          
-          
+
+
           console.log('Network type:', this.network.type)
         }, 3000)
       })
 
       dataService.usersChange.subscribe(users => {
         this.activeUser = users.find(e => e.active)
-        this.otherUsers = users.filter(e => !e.active)        
+        this.otherUsers = users.filter(e => !e.active)
         if (!this.ref['destroyed']) this.ref.detectChanges()
       })
       dataService.app = this
@@ -136,7 +141,7 @@ private goToPage(page, params?, force?) {
       //agrego el loader porque el servicio tarda bastante.
       this.utils.showLoader();
       this.isVCAvailable(page, params);
-    }else{  
+    }else{
       this.navigatePage(page, params, force);
     }
   }
@@ -161,7 +166,7 @@ private isVCAvailable(page,params){
                 });
               }
               else{
-                this.navigatePage(page, params, false);               
+                this.navigatePage(page, params, false);
             }
     }},
     err=>{
@@ -174,12 +179,12 @@ private isVCAvailable(page,params){
   }
 
   validateVCResponse(responseValidateVC,socioActual) {
-    //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
+    //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC
     let response = this.dataService.getResponseData(responseValidateVC);
     if (response.estadoVC == "Activo") {
-        let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}        
+        let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}
         let params = { socio: socioActual, email: response.email, tel : telefono};
-        this.navigatePage(SolicitudVcPage, params);               
+        this.navigatePage(SolicitudVcPage, params);
     }
     else {
         this.utils.hideLoader();
@@ -257,7 +262,7 @@ private isVCAvailable(page,params){
       else if (this.menuCtrl.isOpen()){
         this.menuCtrl.close()
         this.viewMembers = false;
-      }     
+      }
       else if (this.nav.canGoBack())
         this.nav.pop()
       else {

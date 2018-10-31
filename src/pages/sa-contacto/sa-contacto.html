@@ -1,0 +1,75 @@
+<ion-header>
+
+  <page-navigator></page-navigator>
+
+</ion-header>
+
+<ion-content  >
+
+  <div class="header header-rectangular-container"></div>
+  <div class="box-container">
+
+    <div class="image img-url"></div>
+    <h3 class="title">Incarbone Eduardo Oscar</h3>
+    <h5 class="sub-title">Datos de Contacto</h5>
+
+    <hr class="soft-line soft-line-black">
+
+    <div class="container">
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col col-1>
+            <label for="" class="label-input-number">0</label>
+          </ion-col>
+
+          <ion-col col-4>
+            <div class="form-control padding">
+                <input value="" type="text"  onkeyup="this.setAttribute('value', this.value);" id="cod" class="input-text input-user">
+                <label class="label-text" >Cod</label>
+            </div>
+          </ion-col>
+
+          <ion-col col-2>
+            <label for="" class="label-input-number">- 15</label>
+          </ion-col>
+
+          <ion-col col-5>
+            <div class="form-control padding">
+                <input value="" type="text" onkeyup="this.setAttribute('value', this.value);"  id="tel" class="input-text input-user">
+                <label class="label-text" >Tel</label>
+            </div>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+
+      <div class="form-control">
+          <input value="" type="text" onkeyup="this.setAttribute('value', this.value);"  id="email" class="input-text input-user">
+          <label class="label-text" >Email</label>
+      </div>
+
+      <div class="">
+        <div class="container-select">
+          <ion-label>Localidad</ion-label>
+          <ion-select [selectOptions]="selectOptions" okText="Aceptar" cancelText="Cancelar"  placeholder="Seleccionar">
+            <ion-option *ngFor="let dataLocation of location" value="{{dataLocation}}" >{{dataLocation}}</ion-option>
+          </ion-select>
+        </div>
+      </div>
+
+      <div class="form-control">
+          <input value="" type="text" id="direction"  onkeyup="this.setAttribute('value', this.value);"  class="input-text input-user">
+          <label class="label-text" >Dirección</label>
+      </div>
+
+      <button  class="btn btn-light" (click) = "gotoPage()">
+        Continuar
+      </button>
+
+    </div>
+  </div>
+
+</ion-content>

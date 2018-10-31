@@ -509,4 +509,11 @@
     size: 50px;
   }
 
- 
+  /*input radio ion-radio*/
+
+  .radio-md .radio-icon {
+    border-color:var(--main-cyan-color) !important;
+    border-width:1px !important;
+  }
+
+  

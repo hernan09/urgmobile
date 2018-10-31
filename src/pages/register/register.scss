@@ -29,8 +29,7 @@ page-register {
     }
   }
 
-  ion-item {
-    border-left: 4px solid $osde_lightgreen !important;
+  ion-item {    
     margin: 10px !important;
   }
 
@@ -173,7 +172,7 @@ ion-list{
   color: white;
   position: absolute;
   font-size: 18px;
-  top: 50%;
+  top: 60%;
   width: 100%;
 }
 
@@ -186,5 +185,8 @@ ion-list{
 }
 /*Terminan cambios look and feel*/
 
+.item-md{
+  padding-left:20%;
+}
 
 }

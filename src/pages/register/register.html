@@ -16,7 +16,12 @@
        
 	    <!-- <ion-list-header>{{ p.texto }}</ion-list-header> -->
 
-	    <ion-item *ngFor="let o of p.opciones; let i = index">
+	    <!-- <ion-item *ngFor="let o of p.opciones; let i = index">
+	      <ion-label>{{ o.texto }}</ion-label>
+	      <ion-radio [value]="o.valor" (click)="hasChosen = true"></ion-radio>
+      </ion-item> -->
+
+      <ion-item *ngFor="let o of p.opciones; let i = index">
 	      <ion-label>{{ o.texto }}</ion-label>
 	      <ion-radio [value]="o.valor" (click)="hasChosen = true"></ion-radio>
       </ion-item>

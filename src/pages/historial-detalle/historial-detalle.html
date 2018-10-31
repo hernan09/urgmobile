@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-navbar>
 	    <ion-title>
-	    	URG
+	    	Detalle de Atención
 	    </ion-title>
 	<ion-buttons right>
         <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
@@ -12,48 +12,48 @@
 	</ion-buttons>
 </ion-navbar>
 
-<ion-toolbar>
-	<ion-title>Detalle de atención</ion-title>
-</ion-toolbar>
-
-
 </ion-header>
 
 
 <ion-content [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
-	<div class="dataCard datosMain">
-    	<div class="info">
-    		<div>Nro. de caso: {{visita.idAtencion}}</div>
-    		<div>{{visita.fecha}}</div>
-		</div>
-		<div>
-			<div class="doctor-title" *ngIf="visita.prof">{{visita.prof}}</div>
-		</div>
-		<div>
-			<div>{{visita.diagnostico}}</div>
-		</div>
-			<!--<div *ngIf="visita.domicilio">DOMICILIO DE ATENCIÓN<br>{{visita.domicilio}}</div>-->
-	  </div>
+ <div class="header header-rectangular-container header-rectangular-container-small"></div>
+ <div class="shadow-block">
+		<div class="dataCard datosMain">
+				<div class="info">
+						<div>Nro. de caso: {{visita.idAtencion}}</div>
+						<div>{{visita.fecha}}</div>
+				</div>
 
-	  <div *ngIf="visita.detalles && visita.detalles[0].detalle" class="dataCard datosDetail">
-	      <div *ngFor="let detalle of visita.detalles">
-	        <ion-row>
-	          <ion-col>{{detalle.detalle}}</ion-col>
-	        </ion-row>
-	        <ion-row>
-	          <ion-col></ion-col>
-	        </ion-row>
-	      </div>
-	  </div>
+				<div>
+						<div class="doctor-title" *ngIf="visita.prof">{{visita.prof}}</div>
+				</div>
 
-	  <div *ngIf="!visita.detalles[0].detalle" class="dataCard datosDetail noData">
-	      <div>
-	      	No contamos con más detalles de la atención.
-	      </div>
-	  </div>
+				<div>
+						<div>{{visita.diagnostico}}</div>
+				</div>
+					<!--<div *ngIf="visita.domicilio">DOMICILIO DE ATENCIÓN<br>{{visita.domicilio}}</div>-->
+		</div>
+
+		<div *ngIf="visita.detalles && visita.detalles[0].detalle" class="dataCard datosDetail">
+					<div *ngFor="let detalle of visita.detalles">
+							<ion-row>
+								<ion-col>{{detalle.detalle}}</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col></ion-col>
+							</ion-row>
+					</div>
+		</div>
+
+			<div *ngIf="!visita.detalles[0].detalle" class="dataCard datosDetail noData">
+					<div>
+						No contamos con más detalles de la atención.
+					</div>
+			</div>
+
+		</div>
+
+
 
 </ion-content>
-
-
-<page-footer></page-footer>

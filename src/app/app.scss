@@ -46,6 +46,9 @@ a {
 
 ion-nav {
 	ion-header {
+
+		border-bottom: 1px solid transparent !important;
+
 		ion-navbar {
 			.toolbar-background { @include gradient(-6.75% 50%, -6.75% 50%, rgba( 34, 58, 133, 1 ), rgba( 0, 168, 209, 1 ), #223A85, #00A8D1 );; }
 		}
@@ -54,6 +57,10 @@ ion-nav {
 
 ion-toolbar.toolbar-md {
 	min-height: 35px;
+}
+
+.toolbar-md {
+	min-height:57px !important;
 }
 
 

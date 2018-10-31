@@ -11,7 +11,7 @@
 
     <div class="image img-url"></div>
 
-    <div class="container ">
+    <form class="container" [formGroup]="profileForm" (ngSubmit)="getDataSymptom()">
 
       <h3 class="title">Incarbone Eduardo Oscar</h3>
       <h5 class="sub-title">Motivo de Consulta</h5>
@@ -21,17 +21,17 @@
       <div class="form-control">
         <div class="container-select">
           <ion-label>Sintoma</ion-label>
-          <ion-select [selectOptions]="selectOptions" okText="Aceptar" cancelText="Cancelar"  placeholder="Seleccionar">
+          <ion-select [selectOptions]="selectOptions" okText="Aceptar" cancelText="Cancelar" formControlName="symptom" placeholder="Seleccionar">
             <ion-option *ngFor="let dataSymptom of symptom" value="{{dataSymptom}}">{{dataSymptom}}</ion-option>
           </ion-select>
         </div>
 
       </div>
 
-      <button  class="btn btn-light" (click)="gotoPage()">
+      <button type="submit" class="btn btn-light" [disabled]="!profileForm.valid">
         Continuar
       </button>
 
-    </div>
+    </form>
   </div>
 </ion-content>

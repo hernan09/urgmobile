@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { SaTiempoPage } from './../sa-tiempo/sa-tiempo';
+import { NavigatorPage } from './../navigator/navigator';
 /**
  * Generated class for the SaServiciosPage page.
  *
@@ -14,6 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'sa-servicios.html',
 })
 export class SaServiciosPage {
+  @ViewChild(NavigatorPage) menu : NavigatorPage;
   dataService: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
@@ -21,7 +23,7 @@ export class SaServiciosPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SaServiciosPage');
+    this.menu.setArrowBack(true);
   }
 
   getDataOption() {
@@ -40,6 +42,10 @@ export class SaServiciosPage {
         img: './assets/img/ambulancia.jpg'
       }
     ]
+  }
+
+  previusPage() {
+    this.navCtrl.setRoot( SaTiempoPage );
   }
 
 }

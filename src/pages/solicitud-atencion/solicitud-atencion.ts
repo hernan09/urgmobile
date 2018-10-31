@@ -6,14 +6,14 @@ import { Config } from './../../app/config';
 import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
-import { FormGroup, FormControl } from '@angular/forms'
 import { SolicitudVcPage } from '../solicitud-vc/solicitud-vc';
 import { SaContactoPage } from '../sa-contacto/sa-contacto';
 import { DataService } from '../../providers/data.service';
 import { HomePage } from '../home/home';
-import { Utils } from '../../providers/utils'
+import { Utils } from '../../providers/utils';
 import { ToastService } from '../../providers/toast.service';
 import { ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 /**
  * Generated class for the SolicitudAtencionPage page.
@@ -28,17 +28,23 @@ import { ViewChild } from '@angular/core';
 })
 
 export class SolicitudAtencionPage {
+    data:any;
+
+    profileForm = new FormGroup({
+      partner: new FormControl('', Validators.required)
+    })
 
     constructor(public navCtrl: NavController){
-      this.getPartner();
+
     }
 
-    getPartner(){
-
+    getDataPartner() {
+      console.log("data", this.profileForm.value);
+      this.gotoPage();
     }
 
     gotoPage(){
-      this.navCtrl.setRoot( SaContactoPage );
+      this.navCtrl.push( SaContactoPage );
     }
 
 }

@@ -7,34 +7,34 @@
 <ion-content >
 
   <div class="header header-rectangular-container"></div>
+
   <div class="box-container">
 
-    <div class="image img-url"></div>
-
-    <form class="container" [formGroup]="profileForm" (ngSubmit)="getDataTime()">
-
-      <ion-list radio-group >
+      <ion-list >
+        <div class="image img-url"></div>
 
         <h3 class="title">Incarbone Eduardo Oscar</h3>
         <h5 class="sub-title">¿Hace cuanto tiempo estas con fiebre?</h5>
 
         <hr class="soft-line soft-line-black">
 
-        <div class="form-control">
-            <label class="radio-container" *ngFor="let dataTime of time">
-                {{ dataTime.period }}
-                <input class="radio-input" value="  {{ dataTime.period }}" type="radio" formControlName="time">
-                <span class="checkmark"></span>
-            </label>
-        </div>
+        <form  class="container" [formGroup]="profileForm" (ngSubmit)="getDataTime()">
 
-      </ion-list>
+            <div radio-group formControlName="time">
 
-      <button  type="submit" class="btn btn-light" [disabled]="!profileForm.valid">
-        Continuar
-      </button>
+              <ion-item *ngFor="let dataTime of time">
+                <ion-label>{{ dataTime.period }}</ion-label>
+                <ion-radio item-left [value]=" dataTime.period "></ion-radio>
+              </ion-item>
 
-    </form>
+            </div>
 
+            <button  type="submit" class="btn btn-light" [disabled]="!profileForm.valid">
+              Continuar
+            </button>
+
+        </form>
+
+     </ion-list>
   </div>
 </ion-content>

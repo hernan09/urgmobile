@@ -37,6 +37,7 @@ export class HomePage {
 		{ value : 2, class : 'meh', label : 'REGULAR' },
 		{ value : 1, class : 'bad', label : 'MALA' },
 	]
+	title = 'Inicio'
 
 	constructor (
 		private ref :ChangeDetectorRef,

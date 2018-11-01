@@ -17,12 +17,13 @@ export class DatosPage {
 
 	persona :any = {
 		dni: '',
-		// antecedentes: [],
 		datosCredencial: {},
 		datosPersonales: []
 	}
 
 	telefono
+
+	title = 'Mis Datos'
 
 	constructor (
 		private ref :ChangeDetectorRef,

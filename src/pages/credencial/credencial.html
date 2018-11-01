@@ -1,34 +1,28 @@
 <ion-header>
-
-  <page-navigator></page-navigator>
-
-  <ion-toolbar>
-		<ion-title>Credencial</ion-title>
-	</ion-toolbar>
-
+  <page-navigator [title]="title" ></page-navigator>
+  <div class="header header-rectangular-container"></div>
 </ion-header>
 
 
 <ion-content padding>
-
   <div class="tarjeta">
     <div class="tarjeta-name" *ngIf="persona.apellido">
-      <label>Apellido y nombre:    </label><span>{{persona.nombre}} {{persona.apellido}}</span>
+      <label>Apellido y nombre: </label><span>{{persona.nombre}} {{persona.apellido}}</span>
     </div>
     <div class="tarjeta-nro" *ngIf="persona.datosCredencial.nroasociado">
-      <label>Nro de Asociado:    </label><span>{{persona.datosCredencial.nroasociado}}</span>
+      <label>Nro de Asociado: </label><span>{{persona.datosCredencial.nroasociado}}</span>
     </div>
     <div style="margin-top: 10px">
-      <div class="tarjeta-dni" *ngIf="persona.dni" >
-        <label>DNI:    </label><span>{{persona.dni}}</span>
+      <div class="tarjeta-dni" *ngIf="persona.dni">
+        <label>DNI: </label><span>{{persona.dni}}</span>
       </div>
-      <div class="tarjeta-convenio" *ngIf="persona.datosCredencial.convenio" >
-        <label>Convenio:    </label><span>{{persona.datosCredencial.convenio}}</span>
+      <div class="tarjeta-convenio" *ngIf="persona.datosCredencial.convenio">
+        <label>Convenio: </label><span>{{persona.datosCredencial.convenio}}</span>
       </div>
     </div>
     <div class="tarjeta-plan" *ngIf="persona.datosCredencial.plan">
-      <label>Plan:    </label><span>{{persona.datosCredencial.plan}}</span>
+      <label>Plan: </label><span>{{persona.datosCredencial.plan}}</span>
     </div>
   </div>
-  
+
 </ion-content>

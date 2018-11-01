@@ -1,17 +1,10 @@
 <ion-header>
-
 	<page-navigator [title]="title"></page-navigator>
-
-	<ion-toolbar>
-		<ion-title *ngIf="!showHomeIcon">{{alertas_home[0].alerta}}</ion-title>
-		<ion-title *ngIf="showHomeIcon">Inicio</ion-title>
-	</ion-toolbar>
-
+	<div class="header header-rectangular-container header-rectangular-container-small"></div>
 </ion-header>
 
 
 <ion-content padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
-
 	<div *ngFor="let alerta of alertas_home" class="alerta-list">
 
 		<div *ngIf="alerta.step == 5 && alerta.visible" class="alerta-item-1">

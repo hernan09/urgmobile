@@ -14,6 +14,8 @@ export class NavigatorPage {
   public telefono;
   public arrowBack: boolean = false;
   public isSurveyActive: boolean = false;
+  
+  // Parametro para hacer dinamico el titulo del header
   @Input() title: string = null;
 
   constructor(
@@ -26,7 +28,6 @@ export class NavigatorPage {
 
     events.subscribe('survey', (data) => {
       this.isSurveyActive = data;
-      //this.ref.detectChanges();
     });
 
   }

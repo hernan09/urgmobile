@@ -4,9 +4,12 @@ page-datos {
 		transition: 0.5s;
 	}
 
-	ion-content.subHiddenMargin .scroll-content {
-		margin-top: 12vh !important;
-		transition: 0.5s !important;
+	.scroll-content{
+		bottom: 62px !important;
+	}
+
+	.centrar-datos{
+		text-align: center;
 	}
 
 	.scroll-content {

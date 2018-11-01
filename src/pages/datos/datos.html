@@ -1,19 +1,32 @@
 <ion-header>
-
   <page-navigator></page-navigator>
-
-	<ion-toolbar>
-		<ion-title>Mis Datos</ion-title>
-	</ion-toolbar>
 
 </ion-header>
 
 
 <ion-content [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
-  <div class="dataCard datosSocio">
-    <div>
-      <div class="cardTitle">{{persona.nombre}} {{persona.apellido}}</div>
+  <div class="header-circle-container headerPositionMenu ">
+    <div class="div-inner">
+    </div>
+  </div>
+  <div class="image imgPosition img-url"></div>
+
+  <div class="centrar-datos">
+    <div class="color-blue">
+      <div class="foto-urg"></div>
+      <div>
+        <h3 class="title-01">{{persona.nombre}} {{persona.apellido}}</h3>
+        <div>Nro. de socio: {{persona.nroasociado}}</div>
+        <div class="flex tarjeta-plan">
+          <h5>Plan:</h5>
+          <div>{{persona.plan}}</div>
+        </div>
+        <div class="flex tarjeta-convenio">
+          <h5>Convenio:</h5>
+          <div>{{persona.convenio}}</div>
+        </div>
+      </div>
     </div>
     <div>
       <div>Nro. de socio: {{persona.nroasociado}}</div>

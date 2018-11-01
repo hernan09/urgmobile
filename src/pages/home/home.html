@@ -14,8 +14,8 @@
 			<div class="imgCall"></div>
 			<div class="label">
 				{{alerta.estado.label}}
-				<button ion-button icon-left class="urg-button-lightgreen-call"
-					(click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)" [disabled]="isCIDBlocked">
+				<button ion-button icon-left class="urg-button-lightgreen-call" (click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)"
+				 [disabled]="isCIDBlocked">
 					<ion-icon name="ion-ios-videocam"></ion-icon>
 					Ingresar
 				</button>
@@ -24,34 +24,34 @@
 
 		<div *ngIf="alerta.step == 4 && alerta.visible" class="alerta-item-poll" id="encuetasItem">
 
-			<div *ngIf="!alerta.poll.thanks" >
-				<ion-icon (click)="sayThanks()" name="close" class="poll-exit" ></ion-icon>
+			<div *ngIf="!alerta.poll.thanks">
+				<ion-icon (click)="sayThanks()" name="close" class="poll-exit"></ion-icon>
 
 				<div class="poll-question">
 					{{alerta.poll.question}}
 				</div>
 
-				<div *ngFor="let o of poll_options" (click)="rate(o.value)"
-					[ngClass]="{'selected': alerta.poll.rate == o.value}"
-					class="poll-option {{ o.class }}" >
-					<div><div class="poll-option-img"></div></div>
+				<div *ngFor="let o of poll_options" (click)="rate(o.value)" [ngClass]="{'selected': alerta.poll.rate == o.value}"
+				 class="poll-option {{ o.class }}">
+					<div>
+						<div class="poll-option-img"></div>
+					</div>
 					<div>{{ o.label }}</div>
 				</div>
 
 				<textarea class="poll-comment" placeholder="Dejanos tu comentario" [(ngModel)]='alerta.poll.comment'></textarea>
 
-				<button ion-button full class="urg-button-blue" [disabled]="!alerta.poll.rate"
-						(click)="sendPoll()">
-						Enviar
+				<button ion-button full class="urg-button-blue" [disabled]="!alerta.poll.rate" (click)="sendPoll()">
+					Enviar
 				</button>
 
 			</div>
 
-			<div *ngIf="alerta.poll.thanks" >
+			<div *ngIf="alerta.poll.thanks">
 				<div class="logo"></div>
 				<div class="poll-msg">
-			    	<div *ngIf="answered">¡MUCHAS GRACIAS POR AYUDARNOS A MEJORAR!</div>
-			    	<div *ngIf="!answered">¡MUCHAS GRACIAS POR UTILIZAR NUESTROS SERVICIOS!</div>
+					<div *ngIf="answered">¡MUCHAS GRACIAS POR AYUDARNOS A MEJORAR!</div>
+					<div *ngIf="!answered">¡MUCHAS GRACIAS POR UTILIZAR NUESTROS SERVICIOS!</div>
 				</div>
 			</div>
 		</div>
@@ -59,12 +59,12 @@
 
 		<div *ngIf="alerta.step == 3 && alerta.visible" class="alerta-item-visita">
 
-			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit" ></ion-icon>
+			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
 
 			<div class="visita-estado" [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.status}}</div>
-			<div *ngIf="!alerta.doctor.foto"class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>
+			<div *ngIf="!alerta.doctor.foto" class="visita-imagen" [ngClass]="{'img-nok': !alerta.estado.ok}"></div>
 			<div *ngIf="alerta.doctor.foto">
-			<img class="visita-imagen-medico" [src]="alerta.doctor.foto"><img>
+				<img class="visita-imagen-medico" [src]="alerta.doctor.foto"><img>
 			</div>
 			<div class="visita-info">
 				<div>
@@ -98,7 +98,9 @@
 
 		<div *ngIf="alerta.step == 1 && alerta.visible" class="alerta-item-1">
 			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
-			<div class="img"><!--<div class="small badge">1</div>--></div>
+			<div class="img">
+				<!--<div class="small badge">1</div>-->
+			</div>
 			<div class="label">
 				{{alerta.asignacion}}
 			</div>
@@ -108,15 +110,19 @@
 
 
 	<div *ngIf="showHomeIcon" class="alerta-item-none">
-		<div class="img"><!--<div class="badge">0</div>--></div>
-		<div class="label">
-			No tenés ninguna solicitud pendiente de médico a domicilio
+		<div class="container color-blue">
+			<div class="shadow-block">
+				<div>
+					No tenés ninguna solicitud pendiente de médico a domicilio
+				</div>
+			</div>
 		</div>
+		<!-- <div class="img"><div class="badge">0</div></div> -->
+
 	</div>
 
 
-	<button *ngIf="videoconsulta"  ion-button full icon-start class="urg-button-blue"
-		(click)="initVideoconsulta()">
+	<button *ngIf="videoconsulta" ion-button full icon-start class="urg-button-blue" (click)="initVideoconsulta()">
 		<ion-icon name="video"></ion-icon>
 		Comenzar Videoconsulta
 	</button>
@@ -125,9 +131,9 @@
 
 <ion-footer id="homeFooter" *ngIf="showHomeIcon">
 	<a (click)="goToSociosPage()">
-	  <button ion-button full icon-start class="urg-button-lightgreen">
-		<ion-icon name="ios-videocam-outline"></ion-icon>
-		Solicitar Video Consulta
-	  </button>
+		<button ion-button full icon-start class="urg-button-lightgreen">
+			<ion-icon name="ios-videocam-outline"></ion-icon>
+			Solicitar Video Consulta
+		</button>
 	</a>
-  </ion-footer>
+</ion-footer>

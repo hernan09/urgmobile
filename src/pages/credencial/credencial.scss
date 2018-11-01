@@ -1,12 +1,21 @@
 page-credencial {
-	
+	.contenedor-credencial{
+		position: relative;
+	}
+
+	.scroll-content{
+		z-index: 10;
+		margin-top: 18% !important;
+	}
+
 	.tarjeta {
 		height: 280px;
 		width: 460px;
 		transform: rotate(270deg);
 		position: absolute;
-		top: 100px;
-		left: -15vw;
+		top: 20%;
+		left: 50%;
+		margin-left: -230px;
 		padding: 10px;
 		padding-top: 150px;
 		background: url('../assets/img/credencial.png');
@@ -18,6 +27,7 @@ page-credencial {
 		display: flex;
 		flex-direction: column;
 		color: white;
+
 		div {
 			height: 25px;
 		}

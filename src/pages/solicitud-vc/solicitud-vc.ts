@@ -38,6 +38,8 @@ export class SolicitudVcPage implements Overlay {
     private email : string;
     private iskeyboardOpen;
 
+    title = 'Video Consulta';
+    
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
         public utils: Utils,

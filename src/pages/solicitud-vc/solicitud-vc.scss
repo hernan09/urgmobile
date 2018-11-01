@@ -1,109 +1,58 @@
 page-solicitud-vc {
-        background-color: $osde_white;
+  .scroll-content > *:last-of-type  {
+    margin-bottom: 10px !important;
+  }
 
-        .scroll-content {
-          padding-right: 26px !important;
-          padding-left: 26px !important;
-        }
+  .form-control{
+    z-index: 1111111;
+  }
 
-        .vc {
-          margin: auto;
-          max-width: 400px;
-        }
+  .title {
+    text-align: center;
+    font-size: 16px;
+  }
 
-        .form {
-          margin-top: 40px;
-          ion-icon {
-            font-size: 1.6em;
-            font-weight: bold;
-            color: #008fbb;
-          }
-          &.border {
-            border-left: 3px solid $osde_cyan;
-          }
-        }
+  .sub-title {
+    text-align: center;
+    font-size: 14px;
+    margin: 5px;
+    font-weight: 200;
+  }
 
-        .continue {
-          margin-top: 30px;
-        }
+  .padding {
+    padding: 0px;
+  }
 
-        .callDoctor {
-          margin-top: 30px;
-        }
+  .label-input-number{
+    position: relative;
+    top: 18px;
+  }
 
-        .osde-label {
-          padding-left: 16px;
-          padding-top: 10px;
-          font-size: 1.1em;
-          font-weight: 600;
-          color: $osde_cyan;
-        }
+  .btn{
+    position: relative;
+    bottom: -46px;
+  }
 
-        .wrapping-list {
-            white-space: pre-line;
-        }
+  ion-item {
+    padding-left: 0 !important;
+  }
 
-        ion-label {
-          color: #008fbb;
-        }
+  .container-select {
+    margin-bottom: 15px;
+    position: relative;
 
-        .myCustomSelect{
-          max-width: 100% !important;
-        }
-
-        @media (max-height: 450px) {
-
-          .form {
-            margin-top: 0;
-          }
-
-        }        
-      
-      .select-text{
-          white-space: inherit !important;
-      }
-      
-      .label-red{
-        color: rgb(238, 64, 53) !important;
-      }     
-      
-      
-      .item-inner
-      {
-        padding-right: 0px !important;
-        border-top: 0px !important;
-        border-left: 0px !important; 
-        border-right: 0px !important;
-        border-bottom: 0px !important;
-      } 
-
-        .p-name{
-        margin: 5px 8px 5px 0;
-        font-size: 1.5rem;
-        color: #000000;
+    ion-label {
+      color: #9395ad;
+      font-size: 14px;
+      cursor: text;
+      margin: 0;
+      padding: 0;
     }
-      
-}
 
-ion-col{
-  position: initial !important;
-}
-
-ion-grid{
-  padding: 0px !important;
-}
-
-ion-list{
-  margin: 0 !important;
-}
-
-.hideHeader .alert-head{
-  display:none !important;
-}
-
-.hideHeader .alert-radio-label{
-  white-space: inherit !important;
-}
-.hideHeader .alert-radio-group{
-  max-height: 315px !important;
+    ion-select {
+      max-width: 300px;
+      padding-left: 0;
+      border-bottom: 1px solid black;
+    }
+  }
 }

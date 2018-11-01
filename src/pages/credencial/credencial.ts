@@ -20,7 +20,8 @@ export class CredencialPage {
 	}
 
 	public telefono
-
+	title = 'Credencial'
+	
 	constructor (
 		public navCtrl :NavController,
 		public navParams :NavParams, 

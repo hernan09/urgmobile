@@ -1,6 +1,6 @@
 <ion-header>
 
-	<page-navigator></page-navigator>
+	<page-navigator [title]="title"></page-navigator>
 
 	<ion-toolbar>
 		<ion-title *ngIf="!showHomeIcon">{{alertas_home[0].alerta}}</ion-title>

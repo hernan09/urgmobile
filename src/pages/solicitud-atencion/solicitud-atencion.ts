@@ -35,12 +35,12 @@ export class SolicitudAtencionPage {
     })
 
     constructor(public navCtrl: NavController){
-
+      this.data = ["Incarbone Eduardo Oscar","Incarbone Maria Sol" ]
     }
 
     getDataPartner() {
-      console.log("data", this.profileForm.value);
       this.gotoPage();
+
     }
 
     gotoPage(){

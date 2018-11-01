@@ -16,23 +16,20 @@
         <h3 class="title">Seleccione el Socio</h3>
         <hr class="soft-line soft-line-black">
 
-        <form [formGroup]="profileForm" (ngSubmit)="getDataPartner()">
+        <form  [formGroup]="profileForm" (ngSubmit)="getDataPartner()">
 
-            <label class="radio-container">
-                Incarbone Eduardo Oscar
-                <input class="radio-input" type="radio" value="Incarbone Eduardo Oscar"   formControlName="partner" >
-                <span class="checkmark"></span>
-            </label>
+          <div radio-group formControlName="partner">
 
-            <label class="radio-container">
-                Incarbone Maria Sol
-                <input class="radio-input" type="radio" value="Incarbone Maria Sol"  formControlName="partner" >
-                <span class="checkmark"></span>
-            </label>
+            <ion-item *ngFor="let user of data" >
+              <ion-label>{{user}}</ion-label>
+              <ion-radio [value]="user"></ion-radio>
+            </ion-item>
 
-            <button type="submit" class="btn btn-light"  [disabled]="!profileForm.valid">
-              Continuar
-            </button>
+          </div>
+
+          <button type="submit" class="btn btn-light"  [disabled]="!profileForm.valid">
+            Continuar
+          </button>
 
         </form>
 

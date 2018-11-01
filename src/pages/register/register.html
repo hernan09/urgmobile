@@ -1,37 +1,22 @@
-<!-- <ion-header class="big">
-
-  <div class="logo"></div>
-  <ion-list-header>{{ p.texto }}</ion-list-header>
-
-</ion-header> -->
-
 <div class="header-circle-container" *ngIf=p> 
-    <!-- <div class="div-inner"><p class="text-01">¿A traves de que empresa recibe nuestro servicio?</p></div>     -->
     <div class="div-inner"><p class="text-01">{{ p.texto }}</p></div> 
 </div>
 
 <ion-content padding>
 
 	  <ion-list *ngIf=p radio-group [(ngModel)]="p.respuesta">
-       
-	    <!-- <ion-list-header>{{ p.texto }}</ion-list-header> -->
 
-	    <ion-item *ngFor="let o of p.opciones; let i = index">
+
+      <ion-item *ngFor="let o of p.opciones; let i = index">
 	      <ion-label>{{ o.texto }}</ion-label>
 	      <ion-radio [value]="o.valor" (click)="hasChosen = true"></ion-radio>
       </ion-item>
-      <!-- <ion-list *ngIf=p [(ngModel)]="p.respuesta">    
-      
-      <div *ngFor="let o of p.opciones; let i = index">
-      <button class="btn btn-white-border" (click)="hasChosen = true" [ngClass]="hasChosen ? 'btn btn-blue' : 'btn btn-white-border'" value="{{o.valor}}">{{ o.texto }}  
-        </button>
-      </div> -->
-    
         
       <div *ngIf=last class="tycs" >
         <ion-checkbox [(ngModel)]="tycs"></ion-checkbox>
         <div class="label" (click)="goToTycs()" >Al registrarme declaro que leí y acepté los <strong>Términos y Condiciones de URG</strong>.</div>
       </div>
+      
       <!-- <div class="form-control" *ngIf=last>
       <label (click)="goToTycs()"  class="radio-container">Al registrarme declaro que leí y acepté los <strong>Términos y Condiciones de URG de URG</strong>
         <input [(ngModel)]="tycs" class="radio-input" type="radio"  name="radio" id="" >
@@ -40,7 +25,7 @@
       </div> -->
 
       </ion-list>
-	  <!-- </ion-list> -->
+
 
     <checker></checker>
 

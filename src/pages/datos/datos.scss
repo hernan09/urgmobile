@@ -12,102 +12,36 @@ page-datos {
 		text-align: center;
 	}
 
-	.scroll-content {
+	ion-navbar.toolbar{
+		position: absolute;
+		z-index: 10;
+	}
+
+	.toolbar-background-md {
+		background: transparent !important;
+	}
+
+	h3 {
+		font-weight: bold;
+	}
+
+	h5 {
+		margin:0;
+	}
+	.tarjeta-plan,
+		.tarjeta-convenio{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	ion-content.subHiddenMargin .scroll-content {
+		// margin-top: 12vh !important;
 		transition: 0.5s !important;
 	}
 
-
-
-	.dataCard {
-		margin: 50px 10px 50px 25px;
-		font-size: 1.2em;
-		color: $darkgray;
-		div {
-			padding-left: 15px;
-			padding-right: 15px;
-		}
-		& > div:not(:last-child) {
-			margin-bottom: 15px;
-		}
+	.header-md::after{
+		display: none;
 	}
-
-	.datosSocio {
-		border-left: 4px solid $osde_cyan;
-		.cardTitle {
-			color: $osde_cyan;
-			font-weight: bold;
-			font-size: 1.3em;
-		}
-		.plan {
-			display: inline-flex;
-		}
-	}
-
-	.datosPersonales {
-		border-left: 4px solid $osde_lightgreen;
-	}
-
-	.datosMedicos {
-		border-left: 4px solid $osde_darkblue;
-		.cardTitle {
-			color: $osde_darkblue;
-			font-weight: bold;
-			font-size: 1.3em;
-		}
-	}
-
-	.tarjeta {
-		height: 37vh;
-		padding-left: 20px;
-		background: url('../assets/img/credencial.png') center;
-		background-size: cover;
-		background-repeat: no-repeat;
-		display: flex;
-		flex-direction: column;
-		color: white;
-		& * {
-			white-space: nowrap;
-		}
-		.tarjeta-spacer {
-			height: 18vh;
-		}
-		.tarjeta-label {
-			display: flex;
-			align-items: center;
-			font-weight: bold;
-		}
-		.tarjeta-name {
-			height: 32px;
-		}
-		.tarjeta-nro {
-			height: 21px;
-		}
-		.tarjeta-dni {
-			height: 27px;
-			display: flex;
-			.tarjeta-dni-number {
-				margin-right: 30px;
-			}
-			.tarjeta-convenio {
-
-			}
-		}
-		.tarjeta-plan {
-			height: 25px;
-		}
-	}
-
-	.card {
-		margin-left: 20px;
-		margin-right: 20px;
-		padding-bottom: 20px;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-	}
-
-	.card2 {
-		margin-left: 20px;
-		margin-right: 20px;
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
+	
 }

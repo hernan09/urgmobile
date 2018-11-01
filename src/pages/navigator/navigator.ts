@@ -14,6 +14,7 @@ export class NavigatorPage {
   public telefono;
   public arrowBack:boolean = false;
   public isSurveyActive : boolean = false;
+  public title : string = null;
  
   constructor(
     public navCtrl: NavController,

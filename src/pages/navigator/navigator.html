@@ -13,7 +13,9 @@
   </ion-buttons>
 
   <ion-title class="title title-md urg-title">
-    URG
+    <div *ngIf="title; else elseBlock">{{title}}}</div>
+    <ng-template #elseBlock>URG</ng-template>
+
   </ion-title>
 
   <ion-buttons *ngIf=!arrowBack right >

@@ -1,8 +1,7 @@
-
-<ion-navbar hideBackButton >
-  <ion-buttons left >
+<ion-navbar hideBackButton>
+  <ion-buttons left>
     <!--Menu Haburguesa Visible-->
-    <button  *ngIf=!arrowBack left menuToggle="left" class="urgIcon">
+    <button *ngIf=!arrowBack left menuToggle="left" class="urgIcon">
       <ion-icon name="menu"></ion-icon>
     </button>
 
@@ -13,13 +12,12 @@
   </ion-buttons>
 
   <ion-title class="title title-md urg-title">
-    <div *ngIf="title; else elseBlock">{{title}}}</div>
+    <div *ngIf="title; else elseBlock">{{title}}</div>
     <ng-template #elseBlock>URG</ng-template>
-
   </ion-title>
 
-  <ion-buttons *ngIf=!arrowBack right >
-    <a href="tel:{{telefono}}"  *ngIf="!isSurveyActive" (click)="nextPhoneNumber()">
+  <ion-buttons *ngIf=!arrowBack right>
+    <a href="tel:{{telefono}}" *ngIf="!isSurveyActive" (click)="nextPhoneNumber()">
       <button right class="urgIcon">
         <ion-icon name="call"></ion-icon>
       </button>

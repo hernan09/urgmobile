@@ -96,8 +96,14 @@ ion-menu .menu-inner {
 	background-color: $osde_darkblue !important;
 	width: 90%;
 
-	label {
-		padding-left: 35px;
+	.scroll-ion-list {
+		label {
+			padding-left: 10%;
+			font-size: 12px;
+		}
+		ion-icon {
+
+		}
 	}
 
 	ion-toolbar {
@@ -114,8 +120,15 @@ ion-menu .menu-inner {
 
 	.padding-botton{
 		padding-bottom: 20px;
+		text-align: center;
+
+		.icon-arrow {
+			color: gray;
+			margin-left: 4%;
+			font-size: 18px;
+		}
 	}
-	
+
 	.item-md {
 		padding-left: 15%;
 		padding-right: 15%;
@@ -222,10 +235,10 @@ ion-input {
 ion-list.scroll-ion-list {
 	overflow-y: scroll;
 	height: 45vh;
-	
+
 	ion-icon {
 		color: #2196F3;
-
+    margin-left: 5%;
 	}
 }
 
@@ -238,4 +251,3 @@ div.label{
 	top: 110px;
 	padding-bottom: 10px;
 }
-   

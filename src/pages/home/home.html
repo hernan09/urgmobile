@@ -4,7 +4,7 @@
 </ion-header>
 
 
-<ion-content padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
+<ion-content [ngClass]="{'subHiddenMargin': !showSubHeader}">
 	<div *ngFor="let alerta of alertas_home" class="alerta-list">
 
 		<div *ngIf="alerta.step == 5 && alerta.visible" class="alerta-item-1">
@@ -114,9 +114,6 @@
 				<div class="text-none">
 					No tenés ninguna solicitud pendiente de médico a domicilio
 				</div>
-				<!-- <div>
-					ALGUN TEXTO
-				</div> -->
 			</div>
 		</div>
 	</div>

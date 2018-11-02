@@ -156,7 +156,7 @@ export class NotificationsService {
       //Hay un usuario activo
       if (this.utils.getActiveUser()) {
         let alert = this.alertService.showOptionAlert(Config.TITLE.VIDEO_CALL_TITLE,
-          Config.MSG.VIDEO_CALL, Config.ALERT_OPTIONS.CONTESTAR, Config.ALERT_OPTIONS.IGNORAR
+          Config.MSG.VIDEO_CALL, Config.ALERT_OPTIONS.CONTESTAR, Config.ALERT_OPTIONS.IGNORAR,Config.ALERT_CLASS.VIDEO_CONSULTA_CSS
         );
         alert.onDidDismiss(res => {          
           const cid = noti.data.contenido;

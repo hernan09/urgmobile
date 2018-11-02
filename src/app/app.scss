@@ -251,3 +251,80 @@ div.label{
 	top: 110px;
 	padding-bottom: 10px;
 }
+
+
+
+/* alertas */
+
+.alert-md .alert-message{
+	text-align:center;
+}
+.alert-head::before{
+	content:'';
+	width:64px;
+	height:64px;
+	display:block;
+	margin:10px auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size:contain;
+}
+.error-alert  {
+	.alert-wrapper {
+		.alert-head::before{
+			background-image:url('../assets/img/warning.svg');
+		}
+		.alert-button-group{
+			.alert-button{
+				&:nth-child(1){
+					@include gradient(-26.12% 50%, 111.52% 50%, rgba(133, 34, 34, 1), rgba( 209, 0, 0, 1 ), #852222, #D10000 );
+				}
+				&:nth-child(2){
+					@include gradient(-6.75% 50%, 107.38% 50%, rgba(90, 90, 90, 1), rgba( 133, 133, 133, 1 ), #5A5A5A, #858585 );
+				}
+			}
+		}
+	}
+
+}
+
+
+.ok-alert  {
+	.alert-wrapper {
+		.alert-head::before{
+			background-image:url('../assets/img/ok.svg');
+		}
+		.alert-button-group{
+			.alert-button{
+				&:nth-child(1){
+					@include gradient(-26.12% 50%, 111.52% 50%, rgba(34, 48, 90, 1), rgba( 34, 58, 133, 1), #22305A, #223A85 );
+				}
+				&:nth-child(2){
+
+				}
+			}
+		}
+	}
+
+}
+
+.video-alert  {
+	.alert-wrapper {
+		.alert-head::before{
+			background-image:url('../assets/img/videocall.png');
+		}
+		.alert-button-group{
+			.alert-button{
+				&:nth-child(1){
+					@include gradient(-26.12% 50%, 111.52% 50%, rgba(34, 48, 90, 1), rgba( 34, 58, 133, 1), #22305A, #223A85 );
+				}
+				&:nth-child(2){
+					@include gradient(-26.12% 50%, 111.52% 50%, rgba(0, 170, 210, 1), rgba( 0, 154, 61, 1 ), #00AAD2, #009A3D );
+				}
+			}
+		}
+	}
+
+}
+
+

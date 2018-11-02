@@ -138,18 +138,22 @@ $toolbar-wp-background: #002664;
       .alert-radio-inner {
         display: none;
       }
+
     }
   }
 
+
   //select alert button
+
   .alert-button-group {
     margin: 0;
-    padding: 0px 2%;
+    padding:8px 8px 8px 8px !important;
+    margin-bottom: -27px;
 
     .alert-button {
       position: relative;
-      bottom: -24px;
       max-width: 46%;
+      margin:0 auto;
       width: 100%;
       text-align: center;
       color: white;

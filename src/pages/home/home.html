@@ -98,9 +98,7 @@
 
 		<div *ngIf="alerta.step == 1 && alerta.visible" class="alerta-item-1">
 			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
-			<div class="img">
-				<!--<div class="small badge">1</div>-->
-			</div>
+			<div class="img"></div>
 			<div class="label">
 				{{alerta.asignacion}}
 			</div>
@@ -112,13 +110,15 @@
 	<div *ngIf="showHomeIcon" class="alerta-item-none">
 		<div class="container color-blue">
 			<div class="shadow-block">
-				<div>
+				<div class="image img-url"></div>
+				<div class="text-none">
 					No tenés ninguna solicitud pendiente de médico a domicilio
 				</div>
+				<!-- <div>
+					ALGUN TEXTO
+				</div> -->
 			</div>
 		</div>
-		<!-- <div class="img"><div class="badge">0</div></div> -->
-
 	</div>
 
 
@@ -130,9 +130,9 @@
 </ion-content>
 
 <ion-footer id="homeFooter" *ngIf="showHomeIcon">
+	<hr class="soft-line soft-line-black">
 	<a (click)="goToSociosPage()">
-		<button ion-button full icon-start class="urg-button-lightgreen">
-			<ion-icon name="ios-videocam-outline"></ion-icon>
+		<button ion-button full icon-start class="btn btn-blue">
 			Solicitar Video Consulta
 		</button>
 	</a>

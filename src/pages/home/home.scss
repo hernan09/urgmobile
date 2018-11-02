@@ -1,5 +1,26 @@
 page-home {
 
+	.image{
+		position: initial;
+	}
+
+	.shadow-block{
+		min-height: 300px;
+    	padding: 52px;
+	}
+
+	.btn.btn-blue{
+		margin-bottom: 20px;
+	}
+
+	.button-md{
+		text-transform: capitalize;
+	}
+
+	.container{
+		margin: 5px 0;
+	}
+	
 	ion-toolbar {
 		transition: 0.5s;
 	}
@@ -11,7 +32,9 @@ page-home {
 
 	.text-none{
 		text-align: center;
-		font-size: 1.75em;
+		font-weight: 300;
+		font-size: 1.5em;
+		margin-top: 25px;
 	}
 	
 	.scroll-content {

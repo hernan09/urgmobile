@@ -267,7 +267,7 @@ div.label{
 	margin:10px auto;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size:contain;
+	background-size:cover;
 }
 .error-alert  {
 	.alert-wrapper {
@@ -312,6 +312,9 @@ div.label{
 	.alert-wrapper {
 		.alert-head::before{
 			background-image:url('../assets/img/videocall.png');
+			background-size:contain;
+			background-position: center;
+			background-repeat: no-repeat;
 		}
 		.alert-button-group{
 			.alert-button{

@@ -127,13 +127,8 @@ export class AuthService {
             this.utils.hideLoader();
             return;
           }
-<<<<<<< HEAD
-          if(err.message == "Timeout has occurred"){
-            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR,Config.ALERT_CLASS.ERROR_CSS);
-=======
           if (err.message == "Timeout has occurred") {
-            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
->>>>>>> Sprint-19
+            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             return;
           }

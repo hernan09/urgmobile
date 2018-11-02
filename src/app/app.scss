@@ -291,6 +291,7 @@ div.label{
 .ok-alert  {
 	.alert-wrapper {
 		.alert-head::before{
+			content:'';
 			width:64px;
 			height:64px;
 			display:block;
@@ -317,6 +318,7 @@ div.label{
 .video-alert  {
 	.alert-wrapper {
 		.alert-head::before{
+			content:'';
 			width:64px;
 			height:64px;
 			display:block;

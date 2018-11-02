@@ -259,19 +259,18 @@ div.label{
 .alert-md .alert-message{
 	text-align:center;
 }
-.alert-head::before{
-	content:'';
-	width:64px;
-	height:64px;
-	display:block;
-	margin:10px auto;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size:cover;
-}
+
 .error-alert  {
 	.alert-wrapper {
 		.alert-head::before{
+			content:'';
+			width:64px;
+			height:64px;
+			display:block;
+			margin:10px auto;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size:cover;
 			background-image:url('../assets/img/warning.svg');
 		}
 		.alert-button-group{
@@ -292,6 +291,14 @@ div.label{
 .ok-alert  {
 	.alert-wrapper {
 		.alert-head::before{
+			content:'';
+			width:64px;
+			height:64px;
+			display:block;
+			margin:10px auto;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size:cover;
 			background-image:url('../assets/img/ok.svg');
 		}
 		.alert-button-group{
@@ -311,10 +318,15 @@ div.label{
 .video-alert  {
 	.alert-wrapper {
 		.alert-head::before{
-			background-image:url('../assets/img/videocall.png');
-			background-size:contain;
+			content:'';
+			width:64px;
+			height:64px;
+			display:block;
+			margin:10px auto;
 			background-position: center;
 			background-repeat: no-repeat;
+			background-image:url('../assets/img/videocall.png');
+			background-size:contain;
 		}
 		.alert-button-group{
 			.alert-button{

@@ -110,9 +110,15 @@ export class AuthService {
               });
           });
         } else {
-          if (err.status === 502 || err.status === 500 || err.status === 409) {
+          if (err.status === 502 || err.status === 500) {
             //para que muestre el mensaje solicitado correctamente            
             this.alertService.showAlert("Error", Config.MSG.CONNECTION_ERROR);
+            this.utils.hideLoader();
+            return;
+          }
+          else if (err.status === 409) {
+            let mensaje = err.json().mensaje ? err.json().mensaje : Config.MSG.TIMEOUT_ERROR;
+            this.alertService.showAlert("Error", mensaje);
             this.utils.hideLoader();
             return;
           }

@@ -1,9 +1,6 @@
 import { Component, ViewChild, ChangeDetectorRef } from "@angular/core";
 import { NavController, Content } from "ionic-angular";
-
 import { HistorialDetallePage } from "../historial-detalle/historial-detalle";
-
-import { Config } from "../../app/config";
 import { DataService } from "../../providers/data.service";
 import { Utils } from "../../providers/utils";
 

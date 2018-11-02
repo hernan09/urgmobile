@@ -6,7 +6,6 @@ import { Config } from './../../app/config';
 import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
-import { FormGroup, FormControl } from '@angular/forms'
 import { SolicitudVcPage } from '../solicitud-vc/solicitud-vc';
 import { DataService } from '../../providers/data.service';
 import { HomePage } from '../home/home';

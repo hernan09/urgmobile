@@ -1,4 +1,3 @@
-import { FooterPage } from './../pages/footer/footer';
 import { Config } from './config';
 import { AlertService } from './../providers/alert.service';
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core'

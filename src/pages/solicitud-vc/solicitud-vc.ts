@@ -14,7 +14,6 @@ import { Device } from '@ionic-native/device';
 import { Select } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { NavigatorPage } from './../navigator/navigator';
-import { ModalService } from './../../providers/modal.service';
 
 @Component({
     selector: 'page-solicitud-vc',
@@ -48,8 +47,7 @@ export class SolicitudVcPage implements Overlay {
         private networkService: NetworkService,
         private toastService:ToastService,
         private alertService : AlertService,
-        private keyboard: Keyboard,
-        private modal : ModalService) {
+        private keyboard: Keyboard) {
 
         this.telefono = dataService.getPhoneNumber();
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))

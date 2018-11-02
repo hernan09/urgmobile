@@ -20,7 +20,7 @@ page-home {
 	.container{
 		margin: 5px 0;
 	}
-	
+
 	ion-toolbar {
 		transition: 0.5s;
 	}
@@ -36,10 +36,10 @@ page-home {
 		font-size: 1.5em;
 		margin-top: 25px;
 	}
-	
+
 	.scroll-content {
 		transition: 0.5s !important;
-		margin-top: 105px !important;
+		// margin-top: 105px !important;
 	    z-index: 10;
 	}
 
@@ -133,6 +133,7 @@ page-home {
 
 	.close-box {
 		position: relative !important;
+		background-color: white;
 
 		ion-icon {
 			position: absolute;
@@ -158,86 +159,93 @@ page-home {
 		}
 	}
 
+  .alerta-list {
+		position: relative;
+    top: -50px;
 
-	.box-container-alert {
+		.box-container-alert {
 
-		@include box-container-alert();
+			@include box-container-alert();
 
-		.img-alert {
-			height: 100%;
-			width: 100%;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: contain;
-		}
-
-		.text {
-			padding: 10px;
-
-			p {
-				color: gray;
-				font-size: 12px;
-				margin: 8px 0;
+			.img-alert {
+				height: 100%;
+				width: 100%;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: contain;
 			}
 
-			label {
-				color: #4abcff;
+			.text {
+				padding: 10px;
+
+				p {
+					color: gray;
+					font-size: 12px;
+					margin: 8px 0;
+				}
+
+				label {
+					color: #4abcff;
+				}
 			}
-		}
 
-		@extend .close-box;
+			@extend .close-box;
 
-		/*Alerta 2*/
+			/*Alerta 2*/
 
-		.box-alert-2 {
-			padding: 10px 12px;
-	    font-size: 12px;
+			.box-alert-2 {
+				padding: 10px 12px;
+		    font-size: 12px;
 
-			p {
-				 margin: 2px 0;
+				p {
+					 margin: 2px 0;
+				}
 			}
-		}
-  }
+	  }
 
-	/*Alerta 3 --------------------------------------------------*/
+		/*Alerta 3 --------------------------------------------------*/
 
-	.box-container-alert-two {
+		.box-container-alert-two {
 
-		@include box-container-alert();
-		.header {
-			position: relative;
+			@include box-container-alert();
 
-			.box-img {
-				min-height: 50px;
+			.header {
+				position: relative;
 
-				.image {
-					 background-size: cover !important;
+				.box-img {
+					min-height: 50px;
+					position: initial !important;
+
+					.image {
+						 background-size: cover !important;
+					}
+				}
+			}
+
+			img-nok {
+				background: url('../assets/img/medicator_demora.png') center no-repeat;
+			}
+
+			@extend .close-box;
+
+			.content-info {
+				text-align: center;
+
+				h4 {
+					margin: 10px 0 2px 0;
+				}
+
+				span {
+					color: gray;
+				}
+
+				.time {
+					margin-bottom: 20px;
 				}
 			}
 		}
-
-		img-nok {
-			background: url('../assets/img/medicator_demora.png') center no-repeat;
-		}
-
-		@extend .close-box;
-
-		.content-info {
-			text-align: center;
-
-			h4 {
-				margin: 10px 0 2px 0;
-			}
-
-			span {
-				color: gray;
-			}
-
-			.time {
-				margin-bottom: 20px;
-			}
-		}
 	}
+
 
 	/*----------*/
 

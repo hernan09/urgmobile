@@ -455,35 +455,6 @@
     box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
   }
 
-
-  /* imagen */
- .image {
-    height: 100px;
-    width: 100px;
-    background-color: white;
-    border-radius: 50%;
-    border: 5px solid white;
-    position: absolute;
-    margin: auto;
-    padding: 10px;
-    left: 0;
-    right: 0;
-    top: -56px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    -webkit-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
-    -moz-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
-    box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
-  }
-
-  .img-url{
-    background-image: url("../assets/img/logo-urg.png");
-  }
-
-
-
-
 /************************* MENU ************/
 
   .headerPositionMenu  {

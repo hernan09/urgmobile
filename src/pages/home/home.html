@@ -1,10 +1,13 @@
 <ion-header>
 	<page-navigator [title]="title"></page-navigator>
-	<div class="header header-rectangular-container header-rectangular-container-small"></div>
+	<!-- <div class="header header-rectangular-container header-rectangular-container-small"></div> -->
 </ion-header>
 
 
 <ion-content [ngClass]="{'subHiddenMargin': !showSubHeader}">
+
+	<div class="header header-rectangular-container header-rectangular-container-small"></div>
+
 	<div *ngFor="let alerta of alertas_home" class="alerta-list">
 
 		<div *ngIf="alerta.step == 5 && alerta.visible" class="alerta-item-1">
@@ -205,7 +208,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<button *ngIf="videoconsulta" ion-button full icon-start class="urg-button-blue" (click)="initVideoconsulta()">
 		<ion-icon name="video"></ion-icon>

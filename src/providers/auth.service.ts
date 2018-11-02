@@ -52,7 +52,7 @@ export class AuthService {
   }
 
 
-  public retryPOST(datos, api:String): Observable<Response> {
+  public retryPOST(datos, api: String): Observable<Response> {
     // Retry with new token
     return this.http.post(SERVER_URL + api, datos, { headers })
       .map(res => { // Success
@@ -66,18 +66,18 @@ export class AuthService {
   }
 
 
-  public retryGETService(api:String, options:any): Observable<any> {
+  public retryGETService(api: String, options: any): Observable<any> {
     // Retry with new token
     return this.http.get(SERVER_URL + api, options)
-    .map(res => {return res;})
-    .catch(err => {
-      return Observable.throw(err);
-    })
+      .map(res => { return res; })
+      .catch(err => {
+        return Observable.throw(err);
+      })
   }
 
 
 
-  public getActualHeaders():Headers{
+  public getActualHeaders(): Headers {
     return headers;
   }
 
@@ -115,13 +115,13 @@ export class AuthService {
             this.alertService.showAlert("Error", Config.MSG.CONNECTION_ERROR);
             this.utils.hideLoader();
             return;
-          }         
+          }
           else if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {
             this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
             this.utils.hideLoader();
             return;
           }
-          if(err.message == "Timeout has occurred"){
+          if (err.message == "Timeout has occurred") {
             this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
             this.utils.hideLoader();
             return;

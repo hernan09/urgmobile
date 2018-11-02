@@ -6,7 +6,6 @@ import { Config } from './../../app/config';
 import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
-import { FormGroup, FormControl } from '@angular/forms'
 import { SolicitudVcPage } from '../solicitud-vc/solicitud-vc';
 import { DataService } from '../../providers/data.service';
 import { HomePage } from '../home/home';
@@ -26,6 +25,7 @@ export class SociosPage {
     private socioActual: any
     private sociosDNI: any
     private telefono: any;  
+    public title ="Video Consulta";
     public static pageName: string = "SociosPage";  
     @ViewChild(NavigatorPage) menu : NavigatorPage;
 
@@ -43,12 +43,7 @@ export class SociosPage {
 
     }
     ionViewCanEnter(){
-        this.menu.setArrowBack(true);
-        // this.sociosDNI = this.dataService.restoreUsers();
-        // if(this.sociosDNI.length == 1){           
-        //     this.socioActual = this.dataService.restoreMisDatos(this.sociosDNI[0]);
-        //     this.dataService.validarVC(this.sociosDNI[0], "NO").subscribe(this.validateVCResponse.bind(this));
-        // }
+        this.menu.setArrowBack(true);      
     }
 
     requestVCPage(socio) {

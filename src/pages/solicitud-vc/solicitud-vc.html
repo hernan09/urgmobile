@@ -1,71 +1,72 @@
 
 <ion-header>
 
-  <page-navigator></page-navigator>
-
-	<ion-toolbar>
-		<ion-title>Video Consulta</ion-title>
-	</ion-toolbar>
+  <page-navigator [title]="title"></page-navigator>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <div class="vc">
+  <div class="header header-rectangular-container"></div>
+  <div class="box-container">
 
-    <ion-list>
-      <ion-item>
-      <p class="p-name" text-wrap>{{name}}</p>
-      </ion-item>
-      <div class="osde-label">TELEFONO</div>
-      <div>
+    <div class="image img-url"></div>
+    <h3 class="title">{{name}}</h3>
+    <h5 class="sub-title">Datos de Contacto</h5>
+
+    <hr class="soft-line soft-line-black">
+
+    
         <ion-grid>
-          <ion-row>
-            <ion-col col-5>
-              <ion-item>
-                <ion-label class="primary">0</ion-label>
-                <ion-input type="tel" [(ngModel)]="prefijo" maxlength="4"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item>
-                <ion-label class="primary">15</ion-label>
-                <ion-input type="tel" [(ngModel)]="tel" maxlength="8"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
+        <ion-row>
 
-      <div class="osde-label">EMAIL</div>
-      <div>
-      <ion-grid>
-          <ion-row>
-  <ion-col>
-      <ion-item>
-        <ion-input type="text" [(ngModel)]="email"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-</div>
+          <ion-col col-1>
+            <label for="" class="label-input-number">0</label>
+          </ion-col>
 
-      <div class="osde-label">SINTOMA</div>
-      <ion-item>
-        <ion-label [ngStyle]="{'color': selectTextColor}">{{showSelectText}}</ion-label>
+          <ion-col col-4>
+            <div class="form-control padding">
+                <input  type="tel" [(ngModel)]="prefijo" maxlength="4" value="" onkeyup="this.setAttribute('value', this.value);" 
+                id="cod" class="input-text input-user">
+                <label class="label-text" >Cod</label>
+            </div>
+          </ion-col>
+
+          <ion-col col-2>
+            <label for="" class="label-input-number">- 15</label>
+          </ion-col>
+
+          <ion-col col-5>
+            <div class="form-control padding">
+                <input value="" [(ngModel)]="tel" maxlength="8" type="tel" onkeyup="this.setAttribute('value', this.value);"  
+                id="tel" class="input-text input-user">
+                <label class="label-text" >Tel</label>
+            </div>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+
+      <div class="form-control">
+        <input value="" type="text" [(ngModel)]="email" onkeyup="this.setAttribute('value', this.value);"  id="email" class="input-text input-user">
+        <label class="label-text" >Email</label>
+    </div>
+
+    <div class="form-control">
+      <div class="container-select">
+        <ion-label>Sintoma</ion-label>
         <ion-select [selectOptions]="selectOptions" id="symptomSelect" class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom">
           <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
         </ion-select>
-      </ion-item>
-    </ion-list>
+      </div>
+    </div>
 
-  </div>
+    <button type="submit" class="btn btn-light" [disabled]=" !name || !tel || !prefijo || !symptom || !email" (click)="sendVCRequest()">
+      Confirmar
+    </button>
 
+ </div>
 </ion-content>
 
-<ion-footer id="homeFooter" bottom>
-    <button ion-button full icon-start class="urg-button-blue"  [disabled]=" !name || !tel || !prefijo || !symptom || !email" (click)="sendVCRequest()">
-    Confirmar
-    </button>
-</ion-footer>

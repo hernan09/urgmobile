@@ -1,31 +1,34 @@
 <ion-header>
-
-  <page-navigator></page-navigator>
-
-	<ion-toolbar>
-		<ion-title>Video Consulta</ion-title>
-	</ion-toolbar>
-
+  <page-navigator [title]="title"></page-navigator>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-  <ion-list radio-group [(ngModel)]="socioActual" >
 
-    <ion-list-header>Seleccione el Socio</ion-list-header>
+    <div class="header header-rectangular-container"></div>
+    <div class="box-container">
+  
+      <div class="image img-url"></div>
+  
+      <div class="container">
+        <h3 class="title">Seleccione el Socio</h3>
+        <hr class="soft-line soft-line-black">
 
-    <div>
-      <ion-item *ngFor="let opcionSocio of socios">
-        <ion-label>{{ opcionSocio.nombre }} {{opcionSocio.apellido}}</ion-label>
-        <ion-radio [value]="opcionSocio" (ionSelect)="radioChecked()"></ion-radio>
-      </ion-item>
+        <div radio-group  [(ngModel)]="socioActual">
+
+          <ion-item *ngFor="let opcionSocio of socios">
+              <ion-label>{{ opcionSocio.nombre }} {{opcionSocio.apellido}}</ion-label>
+              <!-- ESTO ESTA DIFERENTE!!!-->
+              <ion-radio [value]="opcionSocio" (ionSelect)="radioChecked()"></ion-radio>
+
+            </ion-item>
+
+        </div>
+
+        <button type="submit" class="btn btn-light"   [disabled]="!socioActual" (click)="requestVCPage(socioActual)">
+          Continuar
+        </button>
+        
+      </div>
     </div>
 
-  </ion-list>
-   
-</ion-content>
-<ion-footer id="homeFooter">
-  <button ion-button full icon-start class="urg-button-blue" [disabled]="!socioActual" (click)="requestVCPage(socioActual)">               
-    Continuar
-  </button>
-</ion-footer>

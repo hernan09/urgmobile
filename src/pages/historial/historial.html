@@ -1,35 +1,35 @@
 <ion-header>
-			<page-navigator></page-navigator>
+    <page-navigator [title]="title"></page-navigator>
 </ion-header>
 
 
-<ion-content class="historial-atencion" padding [ngClass]="{'subHiddenMargin': !showSubHeader}">
+<ion-content class="historial-atencion" [ngClass]="{'subHiddenMargin': !showSubHeader}">
 
     <div class="header header-rectangular-container header-rectangular-container-small"></div>
-        <div class="items-container">
-            <div  *ngFor="let visita of historial" (click)="goToDetail(visita)">
-                    <div class="shadow-block">
-                        <div class="flex">
-                            <div>
-                                <span>{{ visita.fecha }}</span>   
-                            </div>
-                            <div>
-                                <h4 class="text-01">{{ visita.diagnostico }}</h4>
-                                <span>{{ visita.medicacion }}</span>
-                            </div>
-                        </div>
-                        <span class="case-number">Nro. de caso {{ visita.idAtencion }}</span>
+    <div class="items-container">
+        <div *ngFor="let visita of historial" (click)="goToDetail(visita)">
+            <div class="shadow-block">
+                <div class="flex">
+                    <div>
+                        <span>{{ visita.fecha }}</span>
                     </div>
+                    <div>
+                        <h4 class="text-01">{{ visita.diagnostico }}</h4>
+                        <span>{{ visita.medicacion }}</span>
+                    </div>
+                </div>
+                <span class="case-number">Nro. de caso {{ visita.idAtencion }}</span>
             </div>
         </div>
+    </div>
 
-        <div class="items-container itemsEmpty">
-            <div  *ngIf="historialIsEmpty">
-                    <div class="shadow-block">
-                        <p class="text-01">{{historialMessage}}</p>		
-                    </div>
+    <div class="items-container itemsEmpty">
+        <div *ngIf="historialIsEmpty">
+            <div class="shadow-block">
+                <p class="text-01">{{historialMessage}}</p>
             </div>
         </div>
+    </div>
 
 
 </ion-content>

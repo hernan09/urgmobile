@@ -43,7 +43,7 @@ export class SociosPage {
 
     }
     ionViewCanEnter(){
-        this.menu.setArrowBack(true);
+        this.menu.setArrowBack(true);      
     }
 
     requestVCPage(socio) {

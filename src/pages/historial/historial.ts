@@ -19,6 +19,8 @@ export class HistorialPage {
 
   public telefono;
 
+  title = 'Historial de Atención'
+
   constructor(
     private ref: ChangeDetectorRef,
     public navCtrl: NavController,

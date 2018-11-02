@@ -147,35 +147,17 @@ private goToPage(page, params?, force?) {
 
 
 private isVCAvailable(page,params){
-  this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
-    res=>{
-          this.utils.hideLoader();
-          console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
-          if(res.estadoVC =="Inactivo"){
-            let message = res.Mensaje;
-            this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
-            this.utils.hideLoader();
-            this.navigatePage(HomePage, params, false);
-          }else{
-            let sociosDNI = this.dataService.restoreUsers();
-              if(sociosDNI.length == 1){
-                let socioActual = this.dataService.restoreMisDatos(sociosDNI[0]);
-                this.dataService.validarVC(socioActual.dni, "NO").subscribe(data =>{
-                  this.validateVCResponse(data,socioActual);
-                });
-              }
-              else{
-                this.navigatePage(page, params, false);
-            }
-    }},
-    err=>{
-          this.utils.hideLoader();
-          console.log('Erro al validateAvailableVC:', err);
-          let message = Config.MSG.SOLICITUD_VC_ERROR;
-          this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
-          this.navigatePage(HomePage, params, false);
-    })
+    //Un solo socio
+    let sociosDNI = this.dataService.restoreUsers();
+    if(sociosDNI.length == 1){
+      this.oneUserVC(sociosDNI,params);
+    }
+    //mas de un socio
+    else{
+      this.multipleUserVC(page,params);
+    }  
   }
+
 
   validateVCResponse(responseValidateVC,socioActual) {
     //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC
@@ -278,4 +260,42 @@ private isVCAvailable(page,params){
     }, 101);
   }
 
+ oneUserVC(sociosDNI,params){     
+    let socioActual = this.dataService.restoreMisDatos(sociosDNI[0]);
+    this.dataService.validarVC(socioActual.dni, "NO").subscribe(
+      data =>{
+      this.validateVCResponse(data,socioActual);
+      },
+      err=>{
+      this.utils.hideLoader();
+      console.log('Erro al validateAvailableVC:', err);
+      let message = Config.MSG.SOLICITUD_VC_ERROR;
+      this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+      this.navigatePage(HomePage, params, false);
+      })
+  } 
+
+  multipleUserVC(page,params){
+    this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(
+      res=>{
+            this.utils.hideLoader();
+            console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
+            if(res.estadoVC =="Inactivo"){
+              let message = res.Mensaje;
+              this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+              this.utils.hideLoader();
+              this.navigatePage(HomePage, params, false);
+            }
+            else{
+                  this.navigatePage(page, params, false);
+              }
+      },
+      err=>{
+            this.utils.hideLoader();
+            console.log('Erro al validateAvailableVC:', err);
+            let message = Config.MSG.SOLICITUD_VC_ERROR;
+            this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+            this.navigatePage(HomePage, params, false);
+      })
+  }
 }

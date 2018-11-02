@@ -70,7 +70,7 @@ export class SolicitudVcPage implements Overlay {
     handleData(data) {
         console.log('Sintomas:', data)
         if (data && data.length) this.symptoms = data
-        else this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.HISTORIAL_EMPTY)
+        else this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.HISTORIAL_EMPTY,Config.ALERT_CLASS.ERROR_CSS)
     }
 
     ionViewDidLoad() {
@@ -87,11 +87,11 @@ export class SolicitudVcPage implements Overlay {
     sendVCRequest() {
         if(this.networkService.isNetworkConnected()){
             if(!this.validateEmail(this.email)){
-                this.alertService.showAlert(Config.TITLE.WRONG_EMAIL, Config.MSG.WRONG_EMAIL_ERROR);
+                this.alertService.showAlert(Config.TITLE.WRONG_EMAIL, Config.MSG.WRONG_EMAIL_ERROR,Config.ALERT_CLASS.ERROR_CSS);
                 console.log("El formato de email no es el correcto");
             }
             else if(!this.checkTelLength()){
-                this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR);
+                this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR,Config.ALERT_CLASS.ERROR_CSS);
                     console.log("Cantidad de numeros del telefono debe sumar 10");
                 }
                 else{
@@ -114,13 +114,13 @@ export class SolicitudVcPage implements Overlay {
         if (data.registroVC == "SI") {
             this.utils.hideLoader();
             console.log("VCResponse - data.registroVC(SI): ",data.registroVC);
-            this.alertService.showAlert("Video Consulta", data.Mensaje);
+            this.alertService.showAlert("Video Consulta", data.Mensaje,Config.ALERT_CLASS.OK_CSS);
             this.toastService.showToast(Config.MSG.DATA_SAVED,2000);
         }
         else {
             this.utils.hideLoader();
             console.log("VCResponse - data.registroVC: ",data.registroVC);
-            this.alertService.showAlert("Video Consulta", data.Mensaje);
+            this.alertService.showAlert("Video Consulta", data.Mensaje,Config.ALERT_CLASS.OK_CSS);
         }
         this.navCtrl.setRoot(HomePage);
     }

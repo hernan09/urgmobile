@@ -192,7 +192,7 @@ export class HomePage {
 
 	closeAlert(alerta){
 		
-		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR);	 		
+		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR, Config.ALERT_CLASS.ERROR_CSS);	 		
 		
 
 		alert.onDidDismiss(res => {
@@ -267,7 +267,7 @@ export class HomePage {
 				console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
 				if(res.estadoVC =="Inactivo"){
 				  let message = res.Mensaje;
-				  this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+				  this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message,Config.ALERT_CLASS.ERROR_CSS);
 				  this.utils.hideLoader();
 				  this.navCtrl.setRoot(HomePage, params);
 				}else{
@@ -288,7 +288,7 @@ export class HomePage {
 				this.utils.hideLoader();
 				console.log('Erro al validateAvailableVC:', err);
 				let message = Config.MSG.SOLICITUD_VC_ERROR;
-				this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+				this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message,Config.ALERT_CLASS.ERROR_CSS);
 				this.navCtrl.setRoot(HomePage, params);
 		  })
 		}  
@@ -303,7 +303,7 @@ export class HomePage {
 			}
 			else {
 				this.utils.hideLoader();
-				this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje);
+				this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje,Config.ALERT_CLASS.OK_CSS);
 				//Solo muestra ok y vuelve al home
 				this.navCtrl.push(HomePage);
 			}

@@ -10,17 +10,17 @@ export class AlertService {
     public constructor(public alertCtrl :AlertController){
     }
 
-    public showAlert(title, subTitle) {
+    public showAlert(title, subTitle, cssClass?) {
         this.alert = this.alertCtrl.create({
           title,
           subTitle,
-          buttons: ['OK']
-        })
-    
+          buttons: ['OK'],
+          cssClass : cssClass,
+        })    
         this.alert.present()
       }    
      
-      public showOptionAlert(title,message, opcionOk, opcionCancel){
+      public showOptionAlert(title,message, opcionOk, opcionCancel, cssClass?){
         let alert = this.alertCtrl.create({
             title: title,
             message: message,
@@ -40,7 +40,8 @@ export class AlertService {
                         return true;
                     }
                 }
-            ]
+            ],
+            cssClass : cssClass,
         });
     
         return alert;

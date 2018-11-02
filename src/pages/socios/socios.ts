@@ -74,7 +74,7 @@ export class SociosPage {
         }
         else {
             this.utils.hideLoader();
-            this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje);
+            this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje,Config.ALERT_CLASS.OK_CSS);
             //Solo muestra ok y vuelve al home
             this.navCtrl.setRoot(HomePage);
         }

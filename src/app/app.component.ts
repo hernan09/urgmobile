@@ -154,7 +154,7 @@ private isVCAvailable(page,params){
           console.log("validateAvailableVC - res.estadoVC: ", res.estadoVC);
           if(res.estadoVC =="Inactivo"){
             let message = res.Mensaje;
-            this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+            this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             this.navigatePage(HomePage, params, false);
           }else{
@@ -173,7 +173,7 @@ private isVCAvailable(page,params){
           this.utils.hideLoader();
           console.log('Erro al validateAvailableVC:', err);
           let message = Config.MSG.SOLICITUD_VC_ERROR;
-          this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message);
+          this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message,Config.ALERT_CLASS.ERROR_CSS);
           this.navigatePage(HomePage, params, false);
     })
   }
@@ -188,7 +188,7 @@ private isVCAvailable(page,params){
     }
     else {
         this.utils.hideLoader();
-        this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje);
+        this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje,Config.ALERT_CLASS.OK_CSS);
         //Solo muestra ok y vuelve al home
         this.navigatePage(HomePage);
     }

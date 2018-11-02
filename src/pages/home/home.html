@@ -22,7 +22,7 @@
 			<div class="label">
 				{{alerta.estado.label}}
 				<button ion-button icon-left class="urg-button-lightgreen-call"
-					(click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)" [disabled]="isCIDBlocked">
+				(click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)" [disabled]="isCIDBlocked">
 					<ion-icon name="ion-ios-videocam"></ion-icon>
 					Ingresar
 				</button>
@@ -64,7 +64,7 @@
 		</div>
 
 
-		<div *ngIf="alerta.step == 3 && alerta.visible" class="alerta-item-visita">
+		<!-- <div *ngIf="alerta.step == 3 && alerta.visible" class="alerta-item-visita">
 
 			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit" ></ion-icon>
 
@@ -90,25 +90,113 @@
 					<div [ngClass]="{'estado-ok': alerta.estado.ok, 'estado-nok': !alerta.estado.ok}">{{alerta.estado.hora}}</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-
-		<div *ngIf="alerta.step == 2 && alerta.visible" class="alerta-item-prearribo">
+		<!-- <div *ngIf="alerta.step == 2 && alerta.visible" class="alerta-item-prearribo">
 			<div>
 				<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
 			</div>
 			<div class="instructions">{{alerta.title}}</div>
 			<div>{{alerta.prearribo.condicion}}</div>
 			<div *ngFor="let consejo of alerta.prearribo.consejos">{{consejo}}</div>
+		</div> -->
+
+
+		<!-- <div *ngIf="alerta.step == 1 && alerta.visible" class="alerta-item-1">
+			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon> -->
+			<!-- <div class="img"> -->
+				<!--<div class="small badge">1</div>-->
+			<!-- </div> -->
+			<!-- <div class="label"> -->
+				<!-- {{alerta.asignacion}} -->
+			<!-- </div> -->
+		<!-- </div> -->
+
+		<!-- Alerta 1 -->
+	  <div class="box-container-alert"  *ngIf="alerta.step == 1 && alerta.visible">
+
+	    <ion-grid>
+
+	      <ion-row>
+
+	        <ion-col col-3>
+	          <div class="img-alert img-url"></div>
+	        </ion-col>
+
+	        <ion-col col-7 class="text">
+	          <p >{{alerta.asignacion}}</p>
+	          <label class="link" for="">Instrucciones de Prearribo</label>
+	        </ion-col>
+
+	        <ion-col col-2 class="close" (click)="closeAlert(alerta)">
+	          <div class="line"></div>
+	          <ion-icon  name="close" ></ion-icon>
+	        </ion-col>
+
+	      </ion-row>
+
+	    </ion-grid>
+
+	  </div>
+
+		<!-- Alerta 2 -->
+		<div class="box-container-alert"  *ngIf="alerta.step == 2 && alerta.visible">
+
+			<ion-grid>
+
+				<ion-row>
+
+					<ion-col col-10 class="text">
+						<p >{{alerta.title}}</p>
+						<label class="link" for="">Instrucciones de Prearribo</label>
+					</ion-col>
+
+					<ion-col col-2 class="close" (click)="closeAlert(alerta)">
+						<div class="line"></div>
+						<ion-icon  name="close" ></ion-icon>
+					</ion-col>
+
+				</ion-row>
+
+			</ion-grid>
+
+			<div class="box-alert-2">
+				<!-- <p>Titulo alerta 2</p> -->
+				<p *ngFor="let consejo of alerta.prearribo.consejos">{{consejo}}</p>
+			</div>
 		</div>
 
+		<!-- Alerta 3 -->
+		<div class="box-container-alert-two"  *ngIf="alerta.step == 3 && alerta.visible">
 
-		<div *ngIf="alerta.step == 1 && alerta.visible" class="alerta-item-1">
-			<ion-icon (click)="closeAlert(alerta)" name="close" class="alert-exit"></ion-icon>
-			<div class="img"><!--<div class="small badge">1</div>--></div>
-			<div class="label">
-				{{alerta.asignacion}}
+			<ion-grid>
+
+				<ion-row class="header">
+
+					<ion-col col-10 class="box-img">
+						<!-- <div *ngIf="!alerta.doctor.foto"  class="image" [ngClass]="{'img-nok': !alerta.estado.ok}" ></div> -->
+						<div *ngIf="alerta.doctor.foto"  class="image"  [ngStyle]="{'background-image':'url(' + alerta.doctor.foto + ')'}"></div>
+					</ion-col>
+
+					<ion-col col-2 class="close-box" (click)="closeAlert(alerta)">
+						<div class="line"></div>
+						<ion-icon  name="close" ></ion-icon>
+					</ion-col>
+
+				</ion-row>
+
+			</ion-grid>
+
+			<div class="content-info">
+				<h4>{{alerta.doctor.nombre}}</h4>
+				<span>Matrícula: {{alerta.doctor.matricula}}</span>
+
+				<hr class="soft-line soft-line-black">
+
+				<h5>{{alerta.estado.status}}</h5>
+				<div class="time"><span >{{alerta.estado.label}} {{alerta.estado.hora}}</span></div>
 			</div>
+
 		</div>
 
 	</div>
@@ -137,4 +225,4 @@
 		Solicitar Video Consulta
 	  </button>
 	</a>
-  </ion-footer>
+</ion-footer>

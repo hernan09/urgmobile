@@ -148,8 +148,6 @@ page-videoconsulta {
 
 /*Comienza el mensaje de video consulta finalizada*/
 .gracias-pop{
-  border-top:4px solid#a5d546;
- border-bottom:4px solid #00b7d8;
  background-color:#ffffff;
  -webkit-box-shadow: -1px 3px 28px -2px rgba(0,0,0,0.75);
  -moz-box-shadow: -1px 3px 28px -2px rgba(0,0,0,0.75);
@@ -158,8 +156,7 @@ page-videoconsulta {
  padding:50px 0;
  width:80%;
  margin:0 auto;
- max-width:800px;
- margin-top:15%;
+ max-width:800px; 
  text-align:center;
 }
 .gracias-pop h1{
@@ -188,6 +185,25 @@ font-size:25px;
 font-size:16px;
 }
 }
+
+.scroll-content{
+  margin-top: 125px !important;
+  z-index: 99;
+}
+
+.back-button{
+  z-index: 99;
+}
+
+.title{
+    text-align: center;
+    position: absolute;   
+    width: 100%;
+    left: 0;
+    height: 100%;
+    top: 0;
+}
+
 /*Finaliza mensaje de video consulta*/
 
 

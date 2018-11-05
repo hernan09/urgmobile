@@ -39,8 +39,8 @@ page-home {
 
 	.scroll-content {
 		transition: 0.5s !important;
-		// margin-top: 105px !important;
-	    z-index: 10;
+		margin-bottom: 0 !important;
+		z-index: 10;
 	}
 
 	.alerta-item-none {
@@ -120,7 +120,7 @@ page-home {
 		}
 	}
 
-	/*Alerta 1 y 2 --------------------------------------------------*/
+	/*Alerta 1, 2 y 5--------------------------------------------------*/
 	@mixin box-container-alert() {
 		margin: 5px;
 		margin-bottom: 15px;
@@ -201,11 +201,19 @@ page-home {
 					 margin: 2px 0;
 				}
 			}
+
+			/*Alerta 5*/
+			.img-call {
+				background: url('../assets/img/videocall.png') center;
+				background-size: contain;
+				background-repeat: no-repeat;
+			}
 	  }
 
-		/*Alerta 3 --------------------------------------------------*/
+		/*Alerta 3 y 4 --------------------------------------------------*/
 
 		.box-container-alert-two {
+
 
 			@include box-container-alert();
 
@@ -215,10 +223,15 @@ page-home {
 				.box-img {
 					min-height: 50px;
 					position: initial !important;
+					text-align: center;
 
-					.image {
-						 background-size: cover !important;
+					.poll-question {
+						padding: 5px 0 5px 15%;
+						font-size: 14px;
+						color: gray;
+						font-weight: 300;
 					}
+
 				}
 			}
 
@@ -227,6 +240,7 @@ page-home {
 			}
 
 			@extend .close-box;
+
 
 			.content-info {
 				text-align: center;
@@ -242,10 +256,29 @@ page-home {
 				.time {
 					margin-bottom: 20px;
 				}
+
+				&.selected {
+					background-color: #D4DDE4;
+					border-bottom: 0px;
+				}
 			}
+
+			.container-poll {
+				max-width: 300px;
+				margin: auto;
+			}
+
+			.send {
+				position: relative;
+				bottom: -38px;
+			}
+
 		}
 	}
 
+	.top-pull {
+		top: -48px;
+	}
 
 	/*----------*/
 
@@ -254,11 +287,13 @@ page-home {
 		font-size: 18px;
 		position: relative;
 		margin-bottom: 20px;
+
 		.instructions {
 			text-transform: uppercase;
 			font-weight: bold;
 			color: $osde_cyan;
 		}
+
 		div:not(.title) {
 			padding-left: 15px;
 			padding-right: 25px;
@@ -277,6 +312,7 @@ page-home {
 	.alerta-item-visita {
 		margin-bottom: 20px;
 		position: relative;
+
 		.visita-estado {
 			margin-bottom: 5px;
 			padding: 5px 5px;

@@ -281,6 +281,19 @@ $toolbar-wp-background: #002664;
     border:1px solid #088DBF;
 }
 
+.good {
+  color:green;
+  border-color: green;
+}
+.meh {
+  color: orange;
+  border-color: orange;
+}
+.bad {
+  color:red;
+  border-color: red;
+}
+
 /* imagen */
 .image {
   height: 100px;

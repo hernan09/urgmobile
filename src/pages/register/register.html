@@ -22,16 +22,15 @@
         <input [(ngModel)]="tycs" class="radio-input" type="radio"  name="radio" id="" >
           <span class="checkmark"></span>
       </label>
-      </div> -->
+      </div>
+    <checker></checker>
+    
+    -->
 
       </ion-list>
 
 
-    <checker></checker>
-
-    <button *ngIf="show == 'retry'" (click)="retry()"   class="btn btn-blue" >
-      Responder nuevamente
-    </button>
+    
 
     <a *ngIf="show == 'callus'" (click)="getBlockUserPhoneNumber()" href="tel:{{telefono}}" >
       <button ion-button full icon-start class="urg-button-blue" >

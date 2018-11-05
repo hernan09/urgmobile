@@ -10,11 +10,16 @@ export class AlertService {
     public constructor(public alertCtrl :AlertController){
     }
 
-    public showAlert(title, subTitle, cssClass?) {
+    public showAlert(title, subTitle, cssClass?,buttonText = "OK", handler? ) {
         this.alert = this.alertCtrl.create({
           title,
           subTitle,
-          buttons: ['OK'],
+          buttons: [{
+              text:buttonText,
+              handler:() =>{
+                handler
+              }
+          }],
           cssClass : cssClass,
         })    
         this.alert.present()

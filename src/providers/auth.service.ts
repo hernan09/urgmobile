@@ -116,8 +116,14 @@ export class AuthService {
             this.utils.hideLoader();
             return;
           }
-          else if (err.status === 409) {
-            let mensaje = err.json().mensaje ? err.json().mensaje : Config.MSG.TIMEOUT_ERROR;
+          else if (err.status === 409) {                       
+            let mensaje;
+            try{
+              mensaje = err.json().mensaje;
+            }
+            catch{
+              mensaje = Config.MSG.TIMEOUT_ERROR;
+            }
             this.alertService.showAlert("Error", mensaje);
             this.utils.hideLoader();
             return;

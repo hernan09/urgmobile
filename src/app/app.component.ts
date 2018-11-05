@@ -56,7 +56,7 @@ export class MyApp {
       page : SolicitudAtencionPage,
       title : 'Solicitud de Atención',
       icon : 'ios-briefcase-outline'
-    },
+    },    
     {
       page : LoginPage,
       title : 'Agregar socio',

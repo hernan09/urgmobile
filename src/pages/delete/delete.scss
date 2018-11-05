@@ -1,27 +1,23 @@
 page-delete {
-
-	.deletePeople {
-		padding-bottom: 15px;
-		padding-top: 15px;
-		.input-wrapper {
-			flex-direction: column;
-    		align-items: flex-start;
-    		border-left: 4px solid #bed600;
-    		padding-left: 15px;
-        max-width: 78vw;
-		}
-	}
-
+    .deletePeople {
+        padding-bottom: 15px;
+        padding-top: 15px;
+        .input-wrapper {
+            flex-direction: column;
+            align-items: flex-start;
+            border-left: 4px solid #bed600;
+            padding-left: 15px;
+            max-width: 78vw;
+        }
+    }
     .checkbox-icon {
-      width: 8vw !important;
-      height: 8vw !important;
+        width: 8vw !important;
+        height: 8vw !important;
     }
-
     .checkbox-inner {
-      top: 0.5vw !important;
-      left: 2.5vw !important;
-      height: 5vw !important;
-      width: 2vw !important;
+        top: 0.5vw !important;
+        left: 2.5vw !important;
+        height: 5vw !important;
+        width: 2vw !important;
     }
-
 }

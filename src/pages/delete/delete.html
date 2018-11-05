@@ -1,26 +1,19 @@
 <ion-header>
-
-  <page-navigator></page-navigator>
-
-	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
-		<ion-title>Eliminar socio</ion-title>
-	</ion-toolbar>
-
+	<page-navigator [title]="title"></page-navigator>
 </ion-header>
 
 
-<ion-content padding>
-	
+<ion-content>
+	<div class="header header-rectangular-container"></div>
 	<ion-list>
-
-	  <ion-item class="deletePeople" *ngFor="let user of users">
-	    <ion-label><b>{{ user.nombre }}</b></ion-label>
-	    <ion-label>Nro. de socio: <b>{{ user.nroSocio }}</b></ion-label>
-	    <ion-checkbox item-right [(ngModel)]="user.delete"></ion-checkbox>
-	  </ion-item>
+		<ion-item class="deletePeople" *ngFor="let user of users">
+			<ion-label><b>{{ user.nombre }}</b></ion-label>
+			<ion-label>Nro. de socio: <b>{{ user.nroSocio }}</b></ion-label>
+			<ion-checkbox item-right [(ngModel)]="user.delete"></ion-checkbox>
+		</ion-item>
 
 	</ion-list>
 
-	<button ion-button full icon-start class="urg-button-blue" (click)="delete()">ELIMINAR</button>
+	<button ion-button full icon-start class="btn btn-blue" (click)="delete()">ELIMINAR</button>
 
 </ion-content>

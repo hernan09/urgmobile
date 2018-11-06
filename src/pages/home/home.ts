@@ -29,7 +29,7 @@ export class HomePage {
 	videoconsulta = false
 	answered = false
 	cid=''
-	dni=''	
+	dni=''
 	isCIDBlocked : boolean;
 
 	poll_options = [
@@ -48,37 +48,37 @@ export class HomePage {
 		private utils :Utils,
 		private videoConsultaService : VideoConsultaService,
 		private alertService : AlertService,
-		private events : Events,		
+		private events : Events,
 	){
 		//Actualizo los datos de todos los usuarios, refresca el menu de multiusuario.
-		this.dataService.updateUsers();	
-		this.checkVCStatus();		
-		
+		this.dataService.updateUsers();
+		this.checkVCStatus();
+
 		this.alertas_home = notiService.getAlertas().filter(alerta => alerta.visible == true)
 		this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
 
 		this.videoconsulta = !!utils.getItem('cid')
 		this.cid = navParams.get('cid') || utils.getItem('cid') || 'test'
 		this.dni = navParams.get('dni') || utils.getItem('dni') || this.utils.getActiveUser();
-			
+
 
 		notiService.alertasChange.subscribe(alertas => {
 			console.log("Recibo alertas actualizadas");
 			this.alertas_home = alertas.filter(alerta => alerta.visible == true)
-			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true			
-			if (!this.ref['destroyed']) this.ref.detectChanges()						
+			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
+			if (!this.ref['destroyed']) this.ref.detectChanges()
 		})
-		
+
 		events.subscribe('vcStatus', (data) => {
-			this.isCIDBlocked = data;			
+			this.isCIDBlocked = data;
 		  });
-		
-		 
+
+
 		setTimeout(_ => {
 			this.checkIfVCBlocked();
 		}, 1000)
 		this.updateUserData();
-		
+
 }
 
 	checkIfVCBlocked() {
@@ -106,7 +106,7 @@ export class HomePage {
 				console.log("No hay telefonos en LS => los telefonos");
 				this.dataService.updateTelefono();
 				this.telefono = this.dataService.getPhoneNumber();
-			} 
+			}
 			if(!userDataLS){
 				console.log("No hay usuarios en LS => traigo los Usuarios");
 
@@ -160,12 +160,13 @@ export class HomePage {
 	}
 
 	rate(rating) {
+    console.log("rating",rating);
 		const poll = this.alertas_home.slice(-1)[0].poll
 		poll.rate = rating
 		this.ref.detectChanges()
 	}
 
-	
+
 	sendPoll() {
 		this.utils.showLoader()
 		const { question, rate, comment, idAttention } = this.alertas_home.slice(-1)[0].poll
@@ -187,19 +188,19 @@ export class HomePage {
 		this.answered = true
 
 		data.rate = 0;
-		data.comment = "";	
+		data.comment = "";
 	}
 
 	closeAlert(alerta){
-		
+
 		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR, Config.ALERT_CLASS.ERROR_CSS);	 		
-		
+
 
 		alert.onDidDismiss(res => {
-			if (res != false) {			
+			if (res != false) {
 				this.notiService.hideAlertById(alerta.androidNotificationId);
-				this.notiService.alertasChange.next(this.alertas_home);		  
-			} 
+				this.notiService.alertasChange.next(this.alertas_home);
+			}
 		  });
 		  alert.present();
 	}
@@ -212,7 +213,7 @@ export class HomePage {
 
 			this.notiService.hideNotifications();
 			this.showHomeIcon = true;
-			
+
 			const poll = this.alertas_home.slice(-1)[0].poll
 			poll.rate = 0
 			poll.comment = ''
@@ -224,7 +225,7 @@ export class HomePage {
 	}
 
 	//ver si es necesario
-	ionViewWillLeave() {		
+	ionViewWillLeave() {
 		this.checkVCStatus();
 	}
 
@@ -279,10 +280,10 @@ export class HomePage {
                		 });
               	}
               else{
-                this.navCtrl.push(SociosPage, params);              
+                this.navCtrl.push(SociosPage, params);
             }
-					
-					
+
+
 		  }},
 		  err=>{
 				this.utils.hideLoader();
@@ -291,15 +292,15 @@ export class HomePage {
 				this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message,Config.ALERT_CLASS.ERROR_CSS);
 				this.navCtrl.setRoot(HomePage, params);
 		  })
-		}  
+		}
 
 		validateVCResponse(responseValidateVC,socioActual) {
-			//Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC 
+			//Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC
 			let response = this.dataService.getResponseData(responseValidateVC);
 			if (response.estadoVC == "Activo") {
-				let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}        
+				let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}
 				let params = { socio: socioActual, email: response.email, tel : telefono};
-				this.navCtrl.push(SolicitudVcPage, params);               
+				this.navCtrl.push(SolicitudVcPage, params);
 			}
 			else {
 				this.utils.hideLoader();
@@ -308,5 +309,5 @@ export class HomePage {
 				this.navCtrl.push(HomePage);
 			}
 		}
-		
+
 }

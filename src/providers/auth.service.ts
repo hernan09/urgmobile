@@ -112,23 +112,29 @@ export class AuthService {
         } else {
           if (err.status === 502 || err.status === 500) {
             //para que muestre el mensaje solicitado correctamente            
-            this.alertService.showAlert("Error", Config.MSG.CONNECTION_ERROR);
+            this.alertService.showAlert("Error", Config.MSG.CONNECTION_ERROR,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             return;
           }
-          else if (err.status === 409) {
-            let mensaje = err.json().mensaje ? err.json().mensaje : Config.MSG.TIMEOUT_ERROR;
+          else if (err.status === 409) {                       
+            let mensaje;
+            try{
+              mensaje = err.json().mensaje;
+            }
+            catch{
+              mensaje = Config.MSG.TIMEOUT_ERROR;
+            }
             this.alertService.showAlert("Error", mensaje);
             this.utils.hideLoader();
             return;
           }
           else if (err.status === 408 || err.status === 504 || err.name === 'TimeoutError') {
-            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
+            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             return;
           }
           if (err.message == "Timeout has occurred") {
-            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR);
+            this.alertService.showAlert(Config.TITLE.WE_ARE_SORRY, Config.MSG.TIMEOUT_ERROR,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             return;
           }

@@ -3,14 +3,13 @@
   <ion-navbar>
     <ion-title>Video Consulta</ion-title>
   </ion-navbar>
+  <div class="header header-rectangular-container header-rectangular-container-small"></div>
 
 </ion-header>
 
-
-<ion-content [class.no-header]="show=='video'" [class.padding]="show!='video'">
-
+<ion-content [class.no-header]="show=='video'" [class.padding]="show!='video'">  
   
-  <div *ngIf="show=='unavailable'" class="gracias-pop fade">
+  <div *ngIf="show=='unavailable'" class="shadow-block gracias-pop fade">
     <div>
       <h1>La video consulta<span class="salto">ha finalizado.</span></h1>
       <h3>Muchas gracias por utilizar<span class="salto">nuestro servicio.</span></h3>
@@ -18,8 +17,10 @@
     <div>
       <img class="logo" src="assets/img/logo.png" alt="URG">
     </div>
-  </div>
+  </div>  
 
+
+  
   <div *ngIf="show=='error'" >
     <h3>No se pudo iniciar la sesión. Puede ser debido a problemas de conectividad, intentaremos recargarla.</h3>
   </div>
@@ -33,8 +34,7 @@
         </div>
     
       <div id="fullvideo"></div>
-      <div id="minivideo">
-        <!-- <div id="extra"></div> -->
+      <div id="minivideo">      
         <div id="local"></div>
       </div>
     </div>

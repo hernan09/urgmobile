@@ -108,7 +108,7 @@ export class LoginPage implements Overlay {
         //En caso de que exista titular, se avisa de la eliminacion del usuario anterior.
       if (titular && !this.utils.getActiveUser()) {
         var message = Config.MSG.TITULAR_EXIST_INFO.replace("{}", titular);
-        let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, message, Config.ALERT_OPTIONS.SI, Config.ALERT_OPTIONS.NO);
+        let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, message, Config.ALERT_OPTIONS.SI, Config.ALERT_OPTIONS.NO,Config.ALERT_CLASS.ERROR_CSS);
         alert.onDidDismiss(res => {
           if (res != false) {
             //Si contesta que si al Reemplazar titular
@@ -126,7 +126,8 @@ export class LoginPage implements Overlay {
       if (this.newMember)
         return this.alertService.showAlert(
           Config.MSG.SORRY,
-          Config.MSG.ADD_USER_ERROR
+          Config.MSG.ADD_USER_ERROR,
+          Config.ALERT_CLASS.ERROR_CSS
         );
       this.loginService.login(dni);
       this.navCtrl.setRoot(HomePage);

@@ -106,6 +106,12 @@ export class Config {
 		DATA_SAVED: 'Los datos han sido guardados',
 	}
 
+	public static ALERT_CLASS ={
+		ERROR_CSS: 'error-alert',
+		OK_CSS: 'ok-alert',
+		VIDEO_CONSULTA_CSS:'video-alert'
+	}
+
 }
 
 Config.getEnv();

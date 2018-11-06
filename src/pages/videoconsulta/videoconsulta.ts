@@ -25,7 +25,7 @@ export class VideoConsultaPage {
   mic = true
   cam = true
   private readyToExit = false  
-  waitingDoctor: boolean;
+  waitingDoctor: boolean; 
   
 
   constructor(

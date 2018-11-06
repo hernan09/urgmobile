@@ -210,7 +210,6 @@ $toolbar-wp-background: #002664;
     filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=0, OffY=10, Color='#000000') ;
 }
 
-
 .btn{
     border-radius:30px;
     color:#fff;
@@ -284,4 +283,42 @@ $toolbar-wp-background: #002664;
     background-color:#f5fafc;
     color:#000000;
     border:1px solid #088DBF;
+}
+
+.good {
+  color:green;
+  border-color: green;
+}
+.meh {
+  color: orange;
+  border-color: orange;
+}
+.bad {
+  color:red;
+  border-color: red;
+}
+
+/* imagen */
+.image {
+  height: 100px;
+  width: 100px;
+  background-color: white;
+  border-radius: 50%;
+  border: 5px solid white;
+  position: absolute !important;
+  margin: auto;
+  padding: 10px;
+  left: 0;
+  right: 0;
+  top: -56px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
+  -moz-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
+  box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
+}
+
+.img-url{
+  background-image: url("../assets/img/logo-urg.png");
 }

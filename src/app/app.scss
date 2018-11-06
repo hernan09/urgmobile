@@ -41,12 +41,12 @@ ion-icon{
 	font-family:"Ionicons" !important;
 }
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 ion-nav {
-	ion-header {
 
+	ion-header {
 		border-bottom: 1px solid transparent !important;
 
 		ion-navbar {
@@ -63,8 +63,6 @@ ion-toolbar.toolbar-md {
 	min-height:57px !important;
 }
 
-
-
 .userToolbar {
 	.toolbar-title-md {
 		font-size: 1.2em;
@@ -73,15 +71,14 @@ ion-toolbar.toolbar-md {
 
 .userToolbar .toolbar-content {
 	display: flex;
-
 }
 
 .user-img {
 	font-size: 3.5em;
-    margin-left: 10px;
+	margin-left: 10px;
 }
 .user-name {
-    overflow: hidden;
+	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
@@ -124,8 +121,10 @@ ion-menu .menu-inner {
 
 		.icon-arrow {
 			color: gray;
-			margin-left: 4%;
-			font-size: 18px;
+	    margin-left: 2%;
+	    font-size: 28px;
+	    position: relative;
+	    top: 5px;
 		}
 	}
 
@@ -137,18 +136,20 @@ ion-menu .menu-inner {
 
 
 ion-header.big {
+
     .logo {
-		height: 15vh;
-		margin-top: 10vh;
-		background: url('../assets/img/logo.png') center;
-		background-size: contain;
-		background-repeat: no-repeat;
+			height: 15vh;
+			margin-top: 10vh;
+			background: url('../assets/img/logo.png') center;
+			background-size: contain;
+			background-repeat: no-repeat;
     }
+
     .label {
-		text-align: center;
-		font-size: 5vh;
-		color: $osde_blue;
-		letter-spacing: 5px;
+			text-align: center;
+			font-size: 5vh;
+			color: $osde_blue;
+			letter-spacing: 5px;
     }
     & + ion-content .scroll-content {
 	    margin-top: 30vh !important;

@@ -1,21 +1,27 @@
 <ion-header>
-<div class="header-circle-container">
-    <div class="div-inner"><div class="login-logo"></div></div>
-</div>
+
+  <div class="header-circle-container">
+      <div class="div-inner"><div class="login-logo"></div></div>
+  </div>
+
 </ion-header>
 
 <ion-content padding>
 
   <div class="login">
+
     <ion-list class="form">
-        <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>       
+
+      <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>
+
       <div class="form-control">
           <input value="" onkeyup="this.setAttribute('value', this.value);" type="text" id="input1" maxlength="8" class="input-text input-user" [(ngModel)]="dni">
           <label class="label-text" for="input1">{{ placeholder }}</label>
           <ion-icon name="ios-person-outline" isActive="false"></ion-icon>
-      </div>       
-</ion-list>
-    
+      </div>
+
+    </ion-list>
+
 
     <button class="btn btn-white"
       [disabled]="(!dni)"
@@ -26,14 +32,13 @@
     <hr class="soft-line soft-line-white">
 
     <a *ngIf="!newMember" href="tel:{{telefono}}" (click)="nextPhoneNumber()">
-      <button class="btn btn-white">        
+      <button class="btn btn-white">
         Solicitar médico
       </button>
     </a>
 
   </div>
-    
-  <div class="login-footer" *ngIf="!newMember">{{version}}</div>
-  
-</ion-content>
 
+  <div class="login-footer" *ngIf="!newMember">{{version}}</div>
+
+</ion-content>

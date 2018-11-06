@@ -436,98 +436,109 @@ page-home {
 
 	}
 
-	.alerta-item-poll {
-		height: 70vh;
-		margin-bottom: 20px;
-		position: relative;
-		margin-bottom: 10px;
+	// .alerta-item-poll {
+	// 	height: 70vh;
+	// 	margin-bottom: 20px;
+	// 	position: relative;
+	// 	margin-bottom: 10px;
+	//
+	// 	.poll-question {
+	// 		text-align: center;
+	// 		padding: 15px 20px 20px 20px;
+	// 		font-size: 1.3em;
+	// 		font-weight: bold;
+	// 		color: $darkgray;
+	// 		text-transform: uppercase;
+	// 	}
+	//
+	// 	.poll-exit {
+	// 		position: absolute;
+	// 		top: 0px; right: 0px;
+	// 		font-size: 2.5em;
+	// 		color: #222;
+	// 	}
+	//
+	// 	.poll-option {
+	// 		display: flex;
+	// 		align-items: center;
+	// 		height: 12vh;
+	// 		border-bottom: 1px solid $gray;
+	// 		div {
+	// 			flex-basis: 50%;
+	// 			font-size: 1.3em;
+	// 			font-weight: bold;
+	// 			text-transform: uppercase;
+	// 		}
+	// 		.poll-option-img {
+	// 			height: 10vh;
+	// 			width: 38%;
+  //   			margin: auto;
+	// 			background-size: contain;
+	// 			background-repeat: no-repeat;
+	// 			background-position: center;
+	// 		}
+	// 		&.good {
+	// 			color: $rate_good;
+	// 			.poll-option-img {
+	// 				background-image: url('../assets/img/poll-good.png');
+	// 				background-position-y: -10px;
+	// 			}
+	// 		}
+	// 		&.meh {
+	// 			color: $rate_meh;
+	// 			.poll-option-img { background-image: url('../assets/img/poll-meh.png'); }
+	// 		}
+	// 		&.bad  {
+	// 			color: $rate_bad;
+	// 			.poll-option-img {
+	// 				background-image: url('../assets/img/poll-bad.png');
+	// 				background-position-y: 10px;
+	// 			}
+	// 		}
+	// 		&.selected {
+	// 			background-color: #D4DDE4;
+	// 			border-bottom: 0px;
+	// 		}
+	// 	}
+	//
+	// 	.poll-msg {
+	// 		padding-left: 10px;
+	// 		margin: 20px;
+	// 		border-left: 4px solid $osde_lightgreen;
+	// 		font-size: 1.5em;
+	// 		color: #435972;
+	// 	}
+	//
+	// 	.poll-comment {
+	// 		height: 5em;
+	// 		width: 100%;
+	// 		color: $osde_darkblue;
+	// 		font-weight: bold;
+	// 		margin: 10px 0;
+	// 		padding: 10px;
+	// 		border: 1px solid $gray;
+	// 	}
+	//
+	// }
 
-		.poll-question {
-			text-align: center;
-			padding: 15px 20px 20px 20px;
-			font-size: 1.3em;
-			font-weight: bold;
-			color: $darkgray;
-			text-transform: uppercase;
-		}
+	.message {
+		text-align: center;
+		font-size: 14px;
+		font-weight: 300;
 
-		.poll-exit {
-			position: absolute;
-			top: 0px; right: 0px;
-			font-size: 2.5em;
-			color: #222;
-		}
-
-		.poll-option {
-			display: flex;
-			align-items: center;
-			height: 12vh;
-			border-bottom: 1px solid $gray;
-			div {
-				flex-basis: 50%;
-				font-size: 1.3em;
-				font-weight: bold;
-				text-transform: uppercase;
-			}
-			.poll-option-img {
-				height: 10vh;
-				width: 38%;
-    			margin: auto;
-				background-size: contain;
-				background-repeat: no-repeat;
-				background-position: center;
-			}
-			&.good {
-				color: $rate_good;
-				.poll-option-img {
-					background-image: url('../assets/img/poll-good.png');
-					background-position-y: -10px;
-				}
-			}
-			&.meh {
-				color: $rate_meh;
-				.poll-option-img { background-image: url('../assets/img/poll-meh.png'); }
-			}
-			&.bad  {
-				color: $rate_bad;
-				.poll-option-img {
-					background-image: url('../assets/img/poll-bad.png');
-					background-position-y: 10px;
-				}
-			}
-			&.selected {
-				background-color: #D4DDE4;
-				border-bottom: 0px;
-			}
+		.logo {
+			height: 10vh;
+			margin-top: 10vh;
+			background: url('../assets/img/logo.png') center;
+			background-size: contain;
+			background-repeat: no-repeat;
 		}
 
 		.poll-msg {
-			padding-left: 10px;
-			margin: 20px;
-			border-left: 4px solid $osde_lightgreen;
-			font-size: 1.5em;
-			color: #435972;
+	    padding: 12px;
 		}
-
-		.poll-comment {
-			height: 5em;
-			width: 100%;
-			color: $osde_darkblue;
-			font-weight: bold;
-			margin: 10px 0;
-			padding: 10px;
-			border: 1px solid $gray;
-		}
-
 	}
 
-	.logo {
-		height: 15vh;
-		margin-top: 10vh;
-		background: url('../assets/img/logo.png') center;
-		background-size: contain;
-		background-repeat: no-repeat;
-	}
 
 	ios-videocam-outline{
 		font-size: 1.5em !important;

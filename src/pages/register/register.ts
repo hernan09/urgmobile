@@ -5,6 +5,7 @@ import { NavController, NavParams, MenuController } from 'ionic-angular'
 import { FormGroup, FormControl } from '@angular/forms'
 import { Observable } from "rxjs";
 
+import { LoginPage } from '../login/login';
 import { TycsPage } from '../tycs/tycs'
 import { HomePage } from '../home/home'
 
@@ -80,7 +81,7 @@ export class RegisterPage {
         }
         else {
             //this.checker.showError(Config.MSG.ERROR);
-            this.alertService.showAlert(Config.MSG.ERROR,'',Config.ALERT_CLASS.OK_CSS,"Responder nuevamente",this.retry()); 
+            this.alertService.showAlert(Config.MSG.ERROR,'',Config.ALERT_CLASS.ERROR_CSS); 
         }
     }
 
@@ -143,10 +144,10 @@ export class RegisterPage {
                     this.p = null
                     this.auth.answer(this.user.dni, false).subscribe(
                         data => {
-                            this.showAnswerError(data);
+                            this.alertService.showAlert(data,'',Config.ALERT_CLASS.OK_CSS);     
                         },
                         err => {
-                            this.showcallUsError(err);
+                            this.alertService.showAlert(err,'',Config.ALERT_CLASS.ERROR_CSS);     
                         })
                 })
         }
@@ -157,9 +158,12 @@ export class RegisterPage {
 
     }
 
-    private showcallUsError(err) {
-        this.alertService.showAlert(err.text(),'',Config.ALERT_CLASS.ERROR_CSS,"Llamanos",this.getBlockUserPhoneNumber); 
-    }
+    private showcallUsError(err) {      
+        this.navCtrl.push(LoginPage); 
+        let phone = this.dataService.getBlockUserPhoneNumber();
+        let alert = this.alertService.showOptionAlert('Atención',err.text(),'Llamanos',Config.ALERT_OPTIONS.CANCELAR,Config.ALERT_CLASS.ERROR_CSS, () => {window.location.href = "tel:" + phone});
+        alert.present();
+    }  
 
     private showAnswerError(data) {
         this.preguntas = this.formatQuestions(JSON.parse(data.questionList).preguntas);
@@ -210,16 +214,4 @@ export class RegisterPage {
             }
         })
     }
-
-    getBlockUserPhoneNumber() {
-     this.telefono = this.dataService.getBlockUserPhoneNumber();    
-     window.location.href = "tel:" + this.telefono; 
-    }
-
-    
-
-
-
-
-
 }

@@ -9,7 +9,6 @@ import { AlertController } from 'ionic-angular'
 @Injectable()
 export class AlertService {
     alert :any
-    telefono:any;
 
     public constructor(public alertCtrl :AlertController){
 
@@ -17,18 +16,15 @@ export class AlertService {
     
     }
 
-    public showAlert(title, subTitle, cssClass?,buttonText = "OK", handlerEvent? ) {
+    public showAlert(title, subTitle, cssClass?,buttonText = "Aceptar", handlerEvent? ) {
         this.alert = this.alertCtrl.create({
           title,
           subTitle,
           buttons: [{
               text:buttonText,
               handler:() => {
-                  if(handlerEvent /*&& handlerEvent == "callNumber"*/){
+                  if(handlerEvent){
                       handlerEvent();
-                   // this.callNumber.callNumber("113943242", false)       
-                  //  .then(res => console.log('Launched dialer!', res))
-                    //.catch(err => console.log('Error launching dialer', err));
                   }
               }
           }],
@@ -37,7 +33,7 @@ export class AlertService {
         this.alert.present()
       }    
      
-      public showOptionAlert(title,message, opcionOk, opcionCancel, cssClass?){
+      public showOptionAlert(title,message, opcionOk="Si", opcionCancel="No", cssClass?,handlerEvent?){
         let alert = this.alertCtrl.create({
             title: title,
             message: message,
@@ -53,8 +49,12 @@ export class AlertService {
                 {
                     text: opcionOk,
                     handler: () => {
-                        alert.dismiss(true);
-                        return true;
+                        if(!handlerEvent){
+                            alert.dismiss(true);
+                            return true;
+                        }else{
+                            handlerEvent();
+                        }
                     }
                 }
             ],

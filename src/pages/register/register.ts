@@ -18,6 +18,7 @@ import { NotificationsService } from '../../providers/notifications.service'
 import { ToastService } from '../../providers/toast.service';
 import { AlertService } from './../../providers/alert.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { CallNumber } from '@ionic-native/call-number';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class RegisterPage {
     public hasChosen: boolean = false;
     public tycs: boolean = false;
     public mostrarBtnFinalizar: boolean = true;
-    public telefono: String;
+    public telefono: string;
 
  //   @ViewChild(CheckerComponent) checker: CheckerComponent
 
@@ -51,12 +52,14 @@ export class RegisterPage {
         private networkService: NetworkService,
         private toastService: ToastService,
         private loginService: LoginService,
-        private alertService : AlertService
+        private alertService : AlertService,
+        private callNumber: CallNumber
     ) {
         this.telefono = dataService.getPhoneNumber()
         this.form = new FormGroup({
             "pregs": new FormControl({ value: '', disabled: false })
         });
+
     }
 
     ionViewDidEnter() {
@@ -155,7 +158,7 @@ export class RegisterPage {
     }
 
     private showcallUsError(err) {
-        this.alertService.showAlert(err.text(),'',Config.ALERT_CLASS.ERROR_CSS,"Llamanos"); 
+        this.alertService.showAlert(err.text(),'',Config.ALERT_CLASS.ERROR_CSS,"Llamanos",this.getBlockUserPhoneNumber); 
     }
 
     private showAnswerError(data) {
@@ -208,9 +211,15 @@ export class RegisterPage {
         })
     }
 
-    getBlockUserPhoneNumber(index: number) {
-        this.telefono = this.dataService.getBlockUserPhoneNumber();
+    getBlockUserPhoneNumber() {
+     this.telefono = this.dataService.getBlockUserPhoneNumber();    
+     window.location.href = "tel:" + this.telefono; 
     }
+
+    
+
+
+
 
 
 }

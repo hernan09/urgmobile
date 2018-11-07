@@ -9,7 +9,6 @@ page-register {
   }
 
   ion-list {
-
     ion-list-header {
       padding-left: 0px !important;
       margin-bottom: 0 !important;
@@ -169,10 +168,40 @@ ion-list{
 .soft-line{
  margin: 0 auto;
 }
-/*Terminan cambios look and feel*/
 
 .item-md{
   padding-left:20%;
 }
+
+.bg-white::before{
+  background : -moz-linear-gradient(-6.75% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
+  background : -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+  background : -webkit-gradient(linear,-6.75% 50% ,107.38% 50% ,color-stop(0,rgba(34, 58, 133, 1) ),color-stop(1,rgba(0, 168, 209, 1) ));
+  background : -o-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+  background : -ms-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85', endColorstr='#00A8D1' ,GradientType=0)";
+  background : linear-gradient(90deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+  content:"";
+  height:200px;
+  width:100%;
+  display:block;
+  position: absolute;
+  bottom:0;
+  }
+
+  .login-logo{      
+      position: relative;
+      height: 70px;
+      z-index: 20;
+      margin: 0;
+      width: 100%;
+      display: block;
+      background: url(../assets/img/logo.png) center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-bottom: 50px
+  }
+    
+/*Terminan cambios look and feel*/
 
 }

@@ -14,7 +14,6 @@ import { OneSignal } from '@ionic-native/onesignal'
 import { Network } from '@ionic-native/network'
 import { AndroidFullScreen } from '@ionic-native/android-full-screen'
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-import { CallNumber } from '@ionic-native/call-number';
 
 import { MyApp } from './app.component'
 
@@ -144,7 +143,6 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     VideoConsultaService,
     Keyboard,
     AndroidPermissions,
-    CallNumber,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 

@@ -18,7 +18,6 @@ import { NotificationsService } from '../../providers/notifications.service'
 import { ToastService } from '../../providers/toast.service';
 import { AlertService } from './../../providers/alert.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { CallNumber } from '@ionic-native/call-number';
 
 
 @Component({
@@ -51,7 +50,6 @@ export class RegisterPage {
         private toastService: ToastService,
         private loginService: LoginService,
         private alertService : AlertService,
-        private callNumber: CallNumber
     ) {
         this.telefono = dataService.getPhoneNumber()
         this.form = new FormGroup({

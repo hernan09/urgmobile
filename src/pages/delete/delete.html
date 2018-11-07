@@ -1,26 +1,27 @@
 <ion-header>
-
-  <page-navigator></page-navigator>
-
-	<ion-toolbar [ngClass]="{'subHidden': !showSubHeader}">
-		<ion-title>Eliminar socio</ion-title>
-	</ion-toolbar>
-
+	<page-navigator [title]="title"></page-navigator>
 </ion-header>
 
 
-<ion-content padding>
-	
-	<ion-list>
-
-	  <ion-item class="deletePeople" *ngFor="let user of users">
-	    <ion-label><b>{{ user.nombre }}</b></ion-label>
-	    <ion-label>Nro. de socio: <b>{{ user.nroSocio }}</b></ion-label>
-	    <ion-checkbox item-right [(ngModel)]="user.delete"></ion-checkbox>
-	  </ion-item>
-
-	</ion-list>
-
-	<button ion-button full icon-start class="urg-button-blue" (click)="delete()">ELIMINAR</button>
+<ion-content>
+	<div class="header header-rectangular-container header-rectangular-container-small"></div>
+	<div class="tarjeta" *ngFor="let user of users">
+		<div class="container color-blue">
+			<div class="shadow-block">
+				<div>Nro. de socio: <span class="nro-socio">{{ user.nroSocio }}</span></div>
+				<h4 class="text-01 inline-block nombre-socio">{{user.nombre }}</h4>
+				<ion-checkbox item-right [(ngModel)]="user.delete"></ion-checkbox>
+			</div>
+		</div>
+	</div>
 
 </ion-content>
+
+<ion-footer>
+	<hr class="soft-line soft-line-black">
+	<a (click)="delete()">
+		<button ion-button full icon-start class="btn btn-blue">
+			ELIMINAR
+		</button>
+	</a>
+</ion-footer>

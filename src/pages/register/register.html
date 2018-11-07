@@ -1,11 +1,17 @@
-<div class="header-circle-container" *ngIf=p> 
-    <div class="div-inner"><p class="text-01">{{ p.texto }}</p></div> 
+<div class="loadingContainer" *ngIf="!mostrarBtnFinalizar">
+    <div class="login-logo"></div>      
+    <img class="loading" src="assets/img/loading.gif" alt="loading">  
 </div>
 
-<ion-content padding>
+<div *ngIf="mostrarBtnFinalizar">
+  <div class="header-circle-container" *ngIf=p> 
+       <div class="div-inner"><p class="text-01">{{ p.texto }}</p></div> 
+  </div>      
+</div>
 
-	  <ion-list *ngIf=p radio-group [(ngModel)]="p.respuesta">
+<ion-content padding *ngIf="mostrarBtnFinalizar">   
 
+	   <ion-list *ngIf=p radio-group [(ngModel)]="p.respuesta">
 
       <ion-item *ngFor="let o of p.opciones; let i = index">
 	      <ion-label>{{ o.texto }}</ion-label>
@@ -27,5 +33,11 @@
     class="btn btn-light" >
     {{ last ? 'Finalizar' : 'Continuar' }}
   </button>
+</ion-footer>
+
+<ion-footer *ngIf="!mostrarBtnFinalizar">
+    <div class="bg-white">
+        <span class="border-rounded"></span>
+    </div>
 </ion-footer>
   

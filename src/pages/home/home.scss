@@ -1,6 +1,6 @@
 page-home {
     .sin-noti {
-        top: 10px;
+        top: 12px;
         height: 80px;
         width: 80px;
     }
@@ -42,7 +42,7 @@ page-home {
     .text-none {
         text-align: center;
         font-weight: 300;
-        font-size: 1.5em;
+        font-size: 1.3em;
         margin-top: 80px;
     }
     .scroll-content {
@@ -220,6 +220,7 @@ page-home {
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
 			.box-container-alert-two {
+        margin: 18px 4% !important;
 
 				.perfil{
 					position: cover !important;
@@ -237,7 +238,7 @@ page-home {
 
 						.poll-question {
 							padding: 5px 0 5px 15%;
-							font-size: 14px;
+							font-size: 16px;
 							color: gray;
 							font-weight: 300;
 						}
@@ -265,8 +266,6 @@ page-home {
 					.time {
 						margin-bottom: 20px;
 					}
-
-
 				}
 
 				.container-poll {
@@ -285,11 +284,26 @@ page-home {
         top: -48px;
     }
 
-		.selected {
-			background-color: #D4DDE4;
-			border-bottom: 0px;
-			color: white;
+    @mixin btn-selection($color) {
+      background-color: $color;
+      border-color: $color;
+      color: white;
+      -webkit-transition: background-color 2s; /* Safari */
+      transition: background-color 2s;
+    }
+
+    /*Encuesta - respuesta seleccionada*/
+
+		.btn-red-selection {
+      @include btn-selection(red);
 		}
+		.btn-green-selection {
+      @include btn-selection(green);
+		}
+		.btn-yellow-selection {
+      @include btn-selection(orange);
+		}
+
     /*----------*/
 
 		.message {

@@ -125,14 +125,17 @@
 
 				<div class="content-info container-poll">
 
-					<button *ngFor="let o of poll_options" (click)="rate(o.value)"  [ngClass]="{'selected': alerta.poll.rate == btnSelection}"
+					<button *ngFor="let o of poll_options; index as i" (click)="rate(o.value)"
+					 [ngClass]="{ 'btn-green-selection': o.value == btnSelection && btnSelection == 3,
+					 							'btn-yellow-selection': o.value == btnSelection && btnSelection == 2,
+												'btn-red-selection': o.value == btnSelection && btnSelection == 1  }"
 					 class="btn btn-white-border  {{ o.class }}">
 
 						{{ o.label }}
 
 					</button>
 
-					<textarea class="textarea-control" placeholder="Dejanos tu comentario" cols="30" rows="10" [(ngModel)]='alerta.poll.comment'></textarea>
+					<textarea class="textarea-control" placeholder="Dejanos tu comentario..." cols="20" rows="10" [(ngModel)]='alerta.poll.comment'></textarea>
 
 					<button  class="btn btn-green send" [disabled]="!alerta.poll.rate" (click)="sendPoll()">
 						Enviar
@@ -141,12 +144,14 @@
 				</div>
 			</div>
 
-			<div *ngIf="alerta.poll.thanks" class="message">
-				<div class="logo"></div>
-				<div class="poll-msg">
-					<div *ngIf="answered">¡MUCHAS GRACIAS POR <br><span>AYUDARNOS A MEJORAR!</span></div>
-					<div *ngIf="!answered">¡MUCHAS GRACIAS POR <br><span>UTILIZAR NUESTROS SERVICIOS!</span> </div>
-				</div>
+			<div  *ngIf="alerta.poll.thanks"  class="alerta-item-none">
+					<div class="color-blue">
+						<div class="shadow-block">
+							<div class="image img-url sin-noti"></div>
+							<div class="text-none" *ngIf="answered">¡Muchas Gracias por<br><span>ayudarnos a mejorar!</span></div>
+							<div class="text-none" *ngIf="!answered">¡Muchas Gracias por <br><span>utilizar nuestros servicios!</span> </div>
+						</div>
+					</div>
 			</div>
 
 		</div>

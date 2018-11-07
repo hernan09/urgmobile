@@ -363,6 +363,7 @@
 
    .textarea-control{
        display:block;
+       height: 100px;
        width:100%;
        border-radius:8px;
        resize:none;
@@ -500,8 +501,3 @@
     border-color:var(--main-cyan-color) !important;
     background-color:var(--main-cyan-color) !important;
   }
-
-
-  
-
-  

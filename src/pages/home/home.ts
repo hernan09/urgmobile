@@ -33,7 +33,7 @@ export class HomePage {
 	isCIDBlocked : boolean;
 
 	poll_options = [
-		{ value : 3, class : 'good', label : '¡MUY BUENA!' },
+		{ value : 3, class : 'good', label : 'MUY BUENA' },
 		{ value : 2, class : 'meh', label : 'REGULAR' },
 		{ value : 1, class : 'bad', label : 'MALA' },
 	]
@@ -162,8 +162,6 @@ export class HomePage {
 	}
 
 	rate(rating) {
-    console.log("rating",rating);
-    console.log("this.alertas",this.alertas_home);
 		const poll = this.alertas_home.slice(-1)[0].poll;
     this.btnSelection = rating;
 		poll.rate = rating;

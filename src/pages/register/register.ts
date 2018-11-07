@@ -139,10 +139,10 @@ export class RegisterPage {
                     this.p = null
                     this.auth.answer(this.user.dni, false).subscribe(
                         data => {
-                            this.alertService.showAlert(data,'',Config.ALERT_CLASS.OK_CSS);     
+                            this.showAnswerError(data);     
                         },
                         err => {
-                            this.alertService.showAlert(err,'',Config.ALERT_CLASS.ERROR_CSS);     
+                            this.showcallUsError(err);     
                         })
                 })
         }
@@ -154,7 +154,7 @@ export class RegisterPage {
     }
 
     private showcallUsError(err) {      
-        this.navCtrl.push(LoginPage); 
+        this.navCtrl.setRoot(LoginPage); 
         let phone = this.dataService.getBlockUserPhoneNumber();
         let alert = this.alertService.showOptionAlert('Atención',err.text(),'Llamanos',Config.ALERT_OPTIONS.CANCELAR,Config.ALERT_CLASS.ERROR_CSS, () => {window.location.href = "tel:" + phone});
         alert.present();

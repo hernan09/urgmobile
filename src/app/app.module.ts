@@ -35,7 +35,6 @@ import { DeletePage } from '../pages/delete/delete'
 import { VideoConsultaPage } from '../pages/videoconsulta/videoconsulta'
 import { SolicitudVcPage } from '../pages/solicitud-vc/solicitud-vc'
 import { SociosPage } from '../pages/socios/socios';
-import { VideoconsultaMessagePage } from './../pages/videoconsulta-message/videoconsulta-message';
 import { NavigatorPage } from './../pages/navigator/navigator';
 import { FooterPage } from './../pages/footer/footer';
 
@@ -74,8 +73,7 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     DeletePage,
     VideoConsultaPage,
     SociosPage,
-    SolicitudVcPage,
-    VideoconsultaMessagePage, 
+    SolicitudVcPage,   
     NavigatorPage,
     FooterPage,
     CheckerComponent,
@@ -96,7 +94,6 @@ import { VideoConsultaService } from './../providers/video.consulta.service';
     VideoConsultaPage,
     SociosPage,
     SolicitudVcPage,
-    VideoconsultaMessagePage, 
     NavigatorPage,
     FooterPage,
     CheckerComponent,

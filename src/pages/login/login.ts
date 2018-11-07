@@ -137,7 +137,6 @@ export class LoginPage implements Overlay {
   checkDNI(dni,newMember){
     this.authService.checkDNI({ dni }).subscribe(
       data => {
-
         console.log("login - checkDNI")
         this.utils.hideLoader();
         this.navCtrl.setRoot(

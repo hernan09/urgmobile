@@ -43,7 +43,7 @@ export class SociosPage {
 
     }
     ionViewCanEnter(){
-        this.menu.setArrowBack(true);
+        this.menu.setArrowBack(true);      
     }
 
     requestVCPage(socio) {
@@ -66,7 +66,6 @@ export class SociosPage {
             let telefono = {prefijo: response.telefonoCaracteristica, numero: response.telefonoNumero}
             this.utils.hideLoader();
             this.navCtrl.setRoot(SolicitudVcPage, { socio: this.socioActual, email: response.email, tel : telefono}, { animate: true, direction: 'back' })
-
         }
         else {
             this.utils.hideLoader();

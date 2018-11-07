@@ -33,6 +33,7 @@ export class RegisterPage {
     public last: boolean = false;
     public hasChosen: boolean = false;
     public tycs: boolean = false;
+    public mostrarBtnFinalizar: boolean = true;
     public telefono:String;
 
     @ViewChild(CheckerComponent) checker: CheckerComponent
@@ -79,6 +80,7 @@ export class RegisterPage {
     nextAnswer() {
         if (this.last) {
             this.checkPreguntas();
+            this.mostrarBtnFinalizar = false;
         }
         else {
             this.p = this.preguntas[this.i++];
@@ -93,6 +95,7 @@ export class RegisterPage {
         this.tycs = false;
         this.show = '';
         this.checker.hide();
+        this.mostrarBtnFinalizar = true;
     }
 
     retry() {

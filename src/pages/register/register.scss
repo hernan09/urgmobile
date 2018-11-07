@@ -104,6 +104,7 @@ page-register {
   .tycs {
     display: flex;
     padding: 10px;
+    z-index: 99;
     .checkbox{
       width: 50px;
     }
@@ -146,6 +147,10 @@ page-register {
   #error-icon {
     font-size: 130px !important;
     color: #e63535 !important;
+}
+
+.footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+  display: none;
 }
 
 

@@ -1,487 +1,427 @@
 page-home {
-
-	.image{
-		position: initial;
-	}
-
-	.shadow-block{
-		min-height: 300px;
-    	padding: 52px;
-	}
-
-	.button-full{
-		height: 45px;
-		width: 90%;
-	  }
-	
-	  .button-full-md{
-		margin-left: 5% ;
-		margin-right: 5% ;
-	  }
-
-	.btn.btn-blue{
-		margin-bottom: 20px;
-	}
-
-	.button-md{
-		text-transform: capitalize;
-	}
-
-	.container{
-		margin: 5px 0;
-	}
-
-	ion-toolbar {
-		transition: 0.5s;
-	}
-
-	ion-content.subHiddenMargin .scroll-content {
-		margin-top: 12vh !important;
-		transition: 0.5s !important;
-	}
-
-	.text-none{
-		text-align: center;
-		font-weight: 300;
-		font-size: 1.5em;
-		margin-top: 25px;
-	}
-
-	.scroll-content {
-		transition: 0.5s !important;
-		margin-bottom: 0 !important;
-		z-index: 10;
-	}
-
-	.alerta-item-none {
-		.label {
-			padding-left: 10px;
-			border-left: 4px solid $osde_lightgreen;
-			margin: 20px 0px 40px 0px;
-			font-size: 18px;
-			color: $darkgray;
-		    margin-left: 35px;
-		    margin-right: 35px;
-		}
-		.img {
-			position: relative;
-			height: 30vh;
-			background: url('../assets/img/medico-0.png') center;
-			background-size: contain;
-			background-repeat: no-repeat;
-		}
-	}
-
-	.badge {
-		position: absolute;
-		display: flex;
-		align-items: center;
-    	justify-content: center;
-		bottom: 0; right: 15vw;
-		height: 50px; width: 50px;
-		background-color: $osde_lightgreen;
-		border-radius: 100%;
-		font-size: 25px;
-		font-weight: bold;
-		color: #eee;
-		&.small {
-			height: 25px; width: 25px;
-			bottom: 1vh; right: 0;
-			font-size: 10px;
-		}
-	}
-
-	.alerta-item-1 {
-		display: flex;
-		background-color: #eee;
-		width: 100%;
-		position: relative;
-		margin-bottom: 20px;
-		.label {
-			padding: 20px;
-			font-size: 18px;
-		}
-		.img {
-			position: relative;
-		    width: 28vw;
-		    margin-left: 15px;
-			background: url('../assets/img/medico-1.png') center;
-			background-size: contain;
-			background-repeat: no-repeat;
-		}
-		.imgCall {
-			position: relative;
-		    width: 28vw;
-		    margin-left: 15px;
-			margin-top: 10px;
-			margin-bottom: 10px;
-			background: url('../assets/img/videocall.png') center;
-			background-size: contain;
-			background-repeat: no-repeat;
-		}
-		.alert-exit {
-			position: absolute;
-			top: 50%;
-			right: 0px;
-			font-size: 28px;
-			color: rgba(0, 0, 0, 0.3);
-			margin-top: -14px;
-			margin-right: 10px;
-		}
-	}
-
-	/*Alerta 1, 2 y 5--------------------------------------------------*/
-	@mixin box-container-alert() {
-		margin: 5px;
-		margin-bottom: 15px;
-		border-radius: 5px;
-		border: 1px solid #e6e5e5;
-		-webkit-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
-		-moz-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
-		box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
-	}
-
-	.close-box {
-		position: relative !important;
-		background-color: white;
-
-		ion-icon {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: auto;
-			width: 15px;
-			height: 24px;
-			font-size: 28px;
-			color: rgba(0, 0, 0, 0.3);
-		}
-
-		.line {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			height: 60%;
-			width: 1px;
-			background-color: rgba(0, 0, 0, 0.3);
-			margin: auto;
-		}
-	}
-
-  .alerta-list {
-		position: relative;
-    top: -50px;
-
-		.box-container-alert {
-
-			@include box-container-alert();
-
-			.img-alert {
-				height: 100%;
-				width: 100%;
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: contain;
-			}
-
-			.text {
-				padding: 10px;
-
-				p {
-					color: gray;
-					font-size: 12px;
-					margin: 8px 0;
-				}
-
-				label {
-					color: #4abcff;
-				}
-			}
-
-			@extend .close-box;
-
-			/*Alerta 2*/
-
-			.box-alert-2 {
-				padding: 10px 12px;
-		    font-size: 12px;
-
-				p {
-					 margin: 2px 0;
-				}
-			}
-
-			/*Alerta 5*/
-			.img-call {
-				background: url('../assets/img/videocall.png') center;
-				background-size: contain;
-				background-repeat: no-repeat;
-			}
-	  }
-
-		/*Alerta 3 y 4 --------------------------------------------------*/
-
-		.box-container-alert-two {
-
-
-			@include box-container-alert();
-
-			.header {
-				position: relative;
-
-				.box-img {
-					min-height: 50px;
-					position: initial !important;
-					text-align: center;
-
-					.poll-question {
-						padding: 5px 0 5px 15%;
-						font-size: 14px;
-						color: gray;
-						font-weight: 300;
-					}
-
-				}
-			}
-
-			img-nok {
-				background: url('../assets/img/medicator_demora.png') center no-repeat;
-			}
-
-			@extend .close-box;
-
-
-			.content-info {
-				text-align: center;
-
-				h4 {
-					margin: 10px 0 2px 0;
-				}
-
-				span {
-					color: gray;
-				}
-
-				.time {
-					margin-bottom: 20px;
-				}
-
-				&.selected {
-					background-color: #D4DDE4;
-					border-bottom: 0px;
-				}
-			}
-
-			.container-poll {
-				max-width: 300px;
-				margin: auto;
-			}
-
-			.send {
-				position: relative;
-				bottom: -38px;
-			}
-
-		}
-	}
-
-	.top-pull {
-		top: -48px;
-	}
-
-	/*----------*/
-
-	.alerta-item-prearribo {
-		margin-bottom: 30px;
-		font-size: 18px;
-		position: relative;
-		margin-bottom: 20px;
-
-		.instructions {
-			text-transform: uppercase;
-			font-weight: bold;
-			color: $osde_cyan;
-		}
-
-		div:not(.title) {
-			padding-left: 15px;
-			padding-right: 25px;
-			margin-bottom: 5px;
-		}
-		.alert-exit {
-		    position: absolute;
-    		top: 0%;
-    		right: 0px;
-    		font-size: 28px;
-			color: rgba(0, 0, 0, 0.3);
-    		margin-right: 10px;
-		}
-	}
-
-	.alerta-item-visita {
-		margin-bottom: 20px;
-		position: relative;
-
-		.visita-estado {
-			margin-bottom: 5px;
-			padding: 5px 5px;
-			text-align: center;
-			font-size: 1.2em;
-			font-weight: bold;
-			color: $black;
-			&.estado-ok {
-				background-color: #f0f7df;
-				color: #94c91e;
-			}
-			&.estado-nok {
-				background-color: #fae0e1;
-				color: #d9212d;
-			}
-		}
-
-
-		.visita-imagen {
-			height: 25vh;
-			background: url('../assets/img/medico.png') center;
-			background-size: cover;
-			background-repeat: no-repeat;
-			&.img-nok {
-				background: url('../assets/img/medicator_demora.png') center no-repeat;
-				background-size: contain;
-				width: 65vw;
-				margin: auto;
-			}
-		}
-
-		.visita-imagen-medico {
-			height: 25vh;
-			background-size: cover;
-			background-repeat: no-repeat;
-			display: block;
-    		margin: 0 auto;
-		}
-
-		.visita-info {
-			max-height: 25vh;
-			display: flex;
-			justify-content: center;
-			border-bottom: 1px solid $gray;
-			padding: 10px 0;
-			color: $gray;
-			div {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				font-size: 1.2em;
-				width: 100%;
-				text-align: center;
-			}
-			.visita-info-nombre {
-				color: $osde_cyan;
-				font-size: 1.5em;
-				font-weight: bold;
-			}
-			.visita-info-especialidad {
-				font-weight: bold;
-			}
-
-		}
-
-		.visita-hora {
-			height: 10vh;
-			display: flex;
-			border-bottom: 1px solid $lightgray;
-			.visita-hora-reloj {
-				flex-basis: 30%;
-				height: 10vh;
-				border-right: 1px solid $lightgray;
-				background: url('../assets/img/reloj.png') center;
-				background-size: contain;
-				background-repeat: no-repeat;
-				background-clip: content-box;
-				padding-bottom: 1px;
-			}
-			.visita-hora-label {
-				flex-basis: 40%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-				font-size: 1.1em;
-				.estado-ok {
-					color: $gray;
-				}
-				.estado-nok {
-					color: $osde_red;
-				}
-			}
-			.visita-hora-tiempo {
-				flex-basis: 30%;
-				border-left: 1px solid $lightgray;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 2em;
-				font-weight: bold;
-				.estado-ok {
-					color: #2aa4c4;
-				}
-				.estado-nok {
-					color: $osde_red;
-				}
-			}
-
-		}
-		.alert-exit {
-			position: absolute;
-			top: 2px;
-			right: 0px;
-			font-size: 28px;
-			color: rgba(0, 0, 0, 0.3);
-			margin-right: 10px;
-
-		}
-
-
-	}
-
-	.message {
-		text-align: center;
-		font-size: 14px;
-		font-weight: 300;
-
-		.logo {
-			height: 10vh;
-			margin-top: 10vh;
-			background: url('../assets/img/logo.png') center;
-			background-size: contain;
-			background-repeat: no-repeat;
-		}
-
-		.poll-msg {
-	    padding: 12px;
-		}
-	}
-
-
-	ios-videocam-outline{
-		font-size: 1.5em !important;
-	}
-
+    .sin-noti {
+        top: 10px;
+        height: 80px;
+        width: 80px;
+    }
+    .image {
+        background-size: cover !important;
+    }
+    .shadow-block {
+        height: 200px;
+        padding: 25px;
+    }
+    .container.color-blue {
+        position: absolute;
+        top: 40px;
+    }
+    .button-full {
+        height: 45px;
+        width: 90%;
+    }
+    .button-full-md {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .btn.btn-blue {
+        margin-bottom: 20px;
+    }
+    .button-md {
+        text-transform: capitalize;
+    }
+    .container {
+        margin: 5px 0;
+    }
+    ion-toolbar {
+        transition: 0.5s;
+    }
+    ion-content.subHiddenMargin .scroll-content {
+        margin-top: 12vh !important;
+        transition: 0.5s !important;
+    }
+    .text-none {
+        text-align: center;
+        font-weight: 300;
+        font-size: 1.5em;
+        margin-top: 80px;
+    }
+    .scroll-content {
+        transition: 0.5s !important;
+        margin-bottom: 0 !important;
+        z-index: 10;
+    }
+    .alerta-item-none {
+        .label {
+            padding-left: 10px;
+            border-left: 4px solid $osde_lightgreen;
+            margin: 20px 0px 40px 0px;
+            font-size: 18px;
+            color: $darkgray;
+            margin-left: 35px;
+            margin-right: 35px;
+        }
+        .img {
+            position: relative;
+            height: 30vh;
+            background: url('../assets/img/medico-0.png') center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+    .badge {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+        right: 15vw;
+        height: 50px;
+        width: 50px;
+        background-color: $osde_lightgreen;
+        border-radius: 100%;
+        font-size: 25px;
+        font-weight: bold;
+        color: #eee;
+        &.small {
+            height: 25px;
+            width: 25px;
+            bottom: 1vh;
+            right: 0;
+            font-size: 10px;
+        }
+    }
+    .alerta-item-1 {
+        display: flex;
+        background-color: #eee;
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+        .label {
+            padding: 20px;
+            font-size: 18px;
+        }
+        .img {
+            position: relative;
+            width: 28vw;
+            margin-left: 15px;
+            background: url('../assets/img/medico-1.png') center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .imgCall {
+            position: relative;
+            width: 28vw;
+            margin-left: 15px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background: url('../assets/img/videocall.png') center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .alert-exit {
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            font-size: 28px;
+            color: rgba(0, 0, 0, 0.3);
+            margin-top: -14px;
+            margin-right: 10px;
+        }
+    }
+    /*Alerta 1, 2 y 5--------------------------------------------------*/
+    @mixin box-container-alert() {
+        margin: 5px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #e6e5e5;
+        -webkit-box-shadow: -1px 6px 32px -1px rgba(208, 208, 208, 0.71);
+        -moz-box-shadow: -1px 6px 32px -1px rgba(208, 208, 208, 0.71);
+        box-shadow: -1px 6px 32px -1px rgba(208, 208, 208, 0.71);
+    }
+    .close-box {
+        position: relative !important;
+        background-color: white;
+        ion-icon {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 15px;
+            height: 24px;
+            font-size: 28px;
+            color: rgba(0, 0, 0, 0.3);
+        }
+        .line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 60%;
+            width: 1px;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin: auto;
+        }
+    }
+    .alerta-list {
+        position: relative;
+        top: -50px;
+        .box-container-alert {
+            @include box-container-alert();
+            .img-alert {
+                height: 100%;
+                width: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            .text {
+                padding: 10px;
+                p {
+                    color: gray;
+                    font-size: 12px;
+                    margin: 8px 0;
+                }
+                label {
+                    color: #4abcff;
+                }
+            }
+            @extend .close-box;
+            /*Alerta 2*/
+            .box-alert-2 {
+                padding: 10px 12px;
+                font-size: 12px;
+                p {
+                    margin: 2px 0;
+                }
+            }
+            /*Alerta 5*/
+            .img-call {
+                background: url('../assets/img/videocall.png') center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+        /*Alerta 3 y 4 --------------------------------------------------*/
+        .box-container-alert-two {
+            @include box-container-alert();
+            .header {
+                position: relative;
+                .box-img {
+                    min-height: 50px;
+                    position: initial !important;
+                    text-align: center;
+                    .poll-question {
+                        padding: 5px 0 5px 15%;
+                        font-size: 14px;
+                        color: gray;
+                        font-weight: 300;
+                    }
+                }
+            }
+            img-nok {
+                background: url('../assets/img/medicator_demora.png') center no-repeat;
+            }
+            @extend .close-box;
+            .content-info {
+                text-align: center;
+                h4 {
+                    margin: 10px 0 2px 0;
+                }
+                span {
+                    color: gray;
+                }
+                .time {
+                    margin-bottom: 20px;
+                }
+                &.selected {
+                    background-color: #D4DDE4;
+                    border-bottom: 0px;
+                }
+            }
+            .container-poll {
+                max-width: 300px;
+                margin: auto;
+            }
+            .send {
+                position: relative;
+                bottom: -38px;
+            }
+        }
+    }
+    .top-pull {
+        top: -48px;
+    }
+    /*----------*/
+    .alerta-item-prearribo {
+        margin-bottom: 30px;
+        font-size: 18px;
+        position: relative;
+        margin-bottom: 20px;
+        .instructions {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $osde_cyan;
+        }
+        div:not(.title) {
+            padding-left: 15px;
+            padding-right: 25px;
+            margin-bottom: 5px;
+        }
+        .alert-exit {
+            position: absolute;
+            top: 0%;
+            right: 0px;
+            font-size: 28px;
+            color: rgba(0, 0, 0, 0.3);
+            margin-right: 10px;
+        }
+    }
+    .alerta-item-visita {
+        margin-bottom: 20px;
+        position: relative;
+        .visita-estado {
+            margin-bottom: 5px;
+            padding: 5px 5px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: $black;
+            &.estado-ok {
+                background-color: #f0f7df;
+                color: #94c91e;
+            }
+            &.estado-nok {
+                background-color: #fae0e1;
+                color: #d9212d;
+            }
+        }
+        .visita-imagen {
+            height: 25vh;
+            background: url('../assets/img/medico.png') center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            &.img-nok {
+                background: url('../assets/img/medicator_demora.png') center no-repeat;
+                background-size: contain;
+                width: 65vw;
+                margin: auto;
+            }
+        }
+        .visita-imagen-medico {
+            height: 25vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: block;
+            margin: 0 auto;
+        }
+        .visita-info {
+            max-height: 25vh;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid $gray;
+            padding: 10px 0;
+            color: $gray;
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                font-size: 1.2em;
+                width: 100%;
+                text-align: center;
+            }
+            .visita-info-nombre {
+                color: $osde_cyan;
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            .visita-info-especialidad {
+                font-weight: bold;
+            }
+        }
+        .visita-hora {
+            height: 10vh;
+            display: flex;
+            border-bottom: 1px solid $lightgray;
+            .visita-hora-reloj {
+                flex-basis: 30%;
+                height: 10vh;
+                border-right: 1px solid $lightgray;
+                background: url('../assets/img/reloj.png') center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-clip: content-box;
+                padding-bottom: 1px;
+            }
+            .visita-hora-label {
+                flex-basis: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                font-size: 1.1em;
+                .estado-ok {
+                    color: $gray;
+                }
+                .estado-nok {
+                    color: $osde_red;
+                }
+            }
+            .visita-hora-tiempo {
+                flex-basis: 30%;
+                border-left: 1px solid $lightgray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2em;
+                font-weight: bold;
+                .estado-ok {
+                    color: #2aa4c4;
+                }
+                .estado-nok {
+                    color: $osde_red;
+                }
+            }
+        }
+        .alert-exit {
+            position: absolute;
+            top: 2px;
+            right: 0px;
+            font-size: 28px;
+            color: rgba(0, 0, 0, 0.3);
+            margin-right: 10px;
+        }
+    }
+    .message {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 300;
+        .logo {
+            height: 10vh;
+            margin-top: 10vh;
+            background: url('../assets/img/logo.png') center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .poll-msg {
+            padding: 12px;
+        }
+    }
+    ios-videocam-outline {
+        font-size: 1.5em !important;
+    }
 }
 
-
-#encuetasItem{
-	margin-bottom: 80px !important;
+#encuetasItem {
+    margin-bottom: 80px !important;
 }
 
-#callLabel{
-	line-height: 30px !important;
+#callLabel {
+    line-height: 30px !important;
 }
 
-#homeFooter{
-	padding-left: 8px;
+#homeFooter {
+    padding-left: 8px;
     padding-right: 8px;
     padding-top: 4px;
     padding-bottom: 4px;

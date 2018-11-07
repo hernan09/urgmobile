@@ -10,6 +10,20 @@ page-delete {
             max-width: 78vw;
         }
     }
+    .inline-block {
+        display: inline-block;
+    }
+    .nombre-socio {
+        width: 80%;
+    }
+    .nro-socio {
+        font-size: 12px;
+        color: var(--main-cyan-color);
+    }
+    .tarjeta {
+        position: relative;
+        top: -70px;
+    }
     .checkbox-icon {
         width: 8vw !important;
         height: 8vw !important;
@@ -19,5 +33,15 @@ page-delete {
         left: 2.5vw !important;
         height: 5vw !important;
         width: 2vw !important;
+    }
+    .btn.btn-blue {
+        margin-bottom: 20px;
+        height: 45px;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .scroll-content {
+        margin-bottom: 95px !important;
     }
 }

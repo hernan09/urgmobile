@@ -39,6 +39,8 @@ export class HomePage {
 	]
 	title = 'Inicio'
 
+  btnSelection : number;
+
 	constructor (
 		private ref :ChangeDetectorRef,
 		private navCtrl :NavController,
@@ -64,9 +66,9 @@ export class HomePage {
 
 		notiService.alertasChange.subscribe(alertas => {
 			console.log("Recibo alertas actualizadas");
-			this.alertas_home = alertas.filter(alerta => alerta.visible == true)
-			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true
-			if (!this.ref['destroyed']) this.ref.detectChanges()
+			this.alertas_home = alertas.filter(alerta => alerta.visible == true);
+			this.alertas_home.length > 0 ? this.showHomeIcon = false : this.showHomeIcon = true;
+			if (!this.ref['destroyed']) this.ref.detectChanges();
 		})
 
 		events.subscribe('vcStatus', (data) => {
@@ -161,8 +163,10 @@ export class HomePage {
 
 	rate(rating) {
     console.log("rating",rating);
-		const poll = this.alertas_home.slice(-1)[0].poll
-		poll.rate = rating
+    console.log("this.alertas",this.alertas_home);
+		const poll = this.alertas_home.slice(-1)[0].poll;
+    this.btnSelection = rating;
+		poll.rate = rating;
 		this.ref.detectChanges()
 	}
 
@@ -193,7 +197,7 @@ export class HomePage {
 
 	closeAlert(alerta){
 
-		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR, Config.ALERT_CLASS.ERROR_CSS);	 		
+		let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE, Config.MSG.ALERT_CLEANER, Config.ALERT_OPTIONS.ACEPTAR, Config.ALERT_OPTIONS.CANCELAR, Config.ALERT_CLASS.ERROR_CSS);
 
 
 		alert.onDidDismiss(res => {

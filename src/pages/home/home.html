@@ -9,43 +9,44 @@
 	<div class="header header-rectangular-container header-rectangular-container-small"></div>
 
 	<div *ngFor="let alerta of alertas_home" class="alerta-list ">
-
-		<!-- Alerta 1 -->
-	  <div class="box-container-alert"  *ngIf="alerta.step == 1 && alerta.visible">
-
-	    <ion-grid>
-
-	      <ion-row>
-
-	        <ion-col col-3>
-	          <div class="img-alert img-url"></div>
-	        </ion-col>
-
-	        <ion-col col-7 class="text">
-	          <p >{{alerta.asignacion}}</p>
-	          <label class="link" for="">Instrucciones de Prearribo</label>
-	        </ion-col>
-
-	        <ion-col col-2 class="close" (click)="closeAlert(alerta)">
-	          <div class="line"></div>
-	          <ion-icon  name="close" ></ion-icon>
-	        </ion-col>
-
-	      </ion-row>
-
-	    </ion-grid>
-
-	  </div>
-
-		<!-- Alerta 2 -->
-		<div class="box-container-alert"  *ngIf="alerta.step == 2 && alerta.visible">
+		<!-- Alerta 1 - 2 y 5-->
+		<div class="box-container-alert"  *ngIf="alerta.step == 1 && alerta.visible || alerta.step == 2 && alerta.visible || alerta.step == 5 && alerta.visible">
 
 			<ion-grid>
 
-				<ion-row>
+				<ion-row *ngIf = "alerta.step == 1 || alerta.step == 5">
+
+					<ion-col col-3>
+						<div *ngIf = "alerta.step == 1" class="img-alert img-url"></div>
+						<div *ngIf = "alerta.step == 5" class="img-alert img-call"></div>
+
+					</ion-col>
+
+					<ion-col col-7 class="text">
+						<div  *ngIf = "alerta.step == 1">
+							<p >{{alerta.asignacion}}</p>
+							<label class="link" for="">Instrucciones de Prearribo</label>
+						</div>
+
+						<div *ngIf = "alerta.step == 5">
+							<p >{{alerta.estado.label}}</p>
+							<button type="button" name="button" class="btn btn-light" (click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)" [disabled]="isCIDBlocked">
+							Ingresar</button>
+						</div>
+
+					</ion-col>
+
+					<ion-col col-2 class="close" (click)="closeAlert(alerta)">
+						<div class="line"></div>
+						<ion-icon  name="close" ></ion-icon>
+					</ion-col>
+
+				</ion-row>
+
+				<ion-row *ngIf = "alerta.step == 2">
 
 					<ion-col col-10 class="text">
-						<p >{{alerta.title}}</p>
+						<p>{{alerta.title}}</p>
 						<label class="link" for="">Instrucciones de Prearribo</label>
 					</ion-col>
 
@@ -56,11 +57,14 @@
 
 				</ion-row>
 
+
+
 			</ion-grid>
 
-			<div class="box-alert-2">
+			<div class="box-alert-2" *ngIf = "alerta.step == 2">
 				<p *ngFor="let consejo of alerta.prearribo.consejos">{{consejo}}</p>
 			</div>
+
 		</div>
 
 		<!-- Alerta 3 -->
@@ -71,8 +75,8 @@
 				<ion-row class="header">
 
 					<ion-col col-10 class="box-img">
-						<div *ngIf="!alerta.doctor.foto"  class="image" [ngClass]="{'img-nok': !alerta.estado.ok}" ></div>
-						<div *ngIf="alerta.doctor.foto"  class="image"  [ngStyle]="{'background-image':'url(' + alerta.doctor.foto + ')'}"></div>
+						<div *ngIf="!alerta.doctor.foto"  class="image perfil" [ngClass]="{'img-nok': !alerta.estado.ok}" ></div>
+						<div *ngIf="alerta.doctor.foto"  class="image perfil"  [ngStyle]="{'background-image':'url(' + alerta.doctor.foto + ')'}"></div>
 					</ion-col>
 
 					<ion-col col-2 class="close-box" (click)="closeAlert(alerta)">
@@ -95,7 +99,6 @@
 			</div>
 
 		</div>
-
 
 		<!-- Alerta 4 -->
 		<div class="box-container-alert-two top-pull"  *ngIf="alerta.step == 4 && alerta.visible">
@@ -124,7 +127,7 @@
 
 				<div class="content-info container-poll">
 
-					<button *ngFor="let o of poll_options" (click)="rate(o.value)"  [ngClass]="{'selected': alerta.poll.rate == o.value}"
+					<button *ngFor="let o of poll_options" (click)="rate(o.value)"  [ngClass]="{'selected': alerta.poll.rate == btnSelection}"
 					 class="btn btn-white-border  {{ o.class }}">
 
 						{{ o.label }}
@@ -149,35 +152,7 @@
 			</div>
 
 		</div>
-
-		<!-- alerta 5 -->
-		<div class="box-container-alert"  *ngIf="alerta.step == 5 && alerta.visible">
-		 <ion-grid>
-
-			 <ion-row>
-
-				 <ion-col col-3>
-					 <div class="img-alert img-call"></div>
-				 </ion-col>
-
-				 <ion-col col-7 class="text">
-					 <p >{{alerta.estado.label}}</p>
-					 <button type="button" name="button" class="btn btn-light" (click)="initVideoconsulta(alerta.estado.cid, alerta.estado.dni)" [disabled]="isCIDBlocked">
-					 Ingresar</button>
-				 </ion-col>
-
-				 <ion-col col-2 class="close" (click)="closeAlert(alerta)">
-					 <div class="line"></div>
-					 <ion-icon  name="close" ></ion-icon>
-				 </ion-col>
-
-			 </ion-row>
-
-		 </ion-grid>
-	 </div>
-
 	</div>
-
 
 	<div *ngIf="showHomeIcon" class="alerta-item-none">
 		<div class="container color-blue">

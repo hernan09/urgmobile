@@ -17,28 +17,8 @@
         <div class="label" (click)="goToTycs()" >Al registrarme declaro que leí y acepté los <strong>Términos y Condiciones de URG</strong>.</div>
       </div>
       
-      <!-- <div class="form-control" *ngIf=last>
-      <label (click)="goToTycs()"  class="radio-container">Al registrarme declaro que leí y acepté los <strong>Términos y Condiciones de URG de URG</strong>
-        <input [(ngModel)]="tycs" class="radio-input" type="radio"  name="radio" id="" >
-          <span class="checkmark"></span>
-      </label>
-      </div> -->
-
       </ion-list>
 
-
-    <checker></checker>
-
-    <button *ngIf="show == 'retry'" (click)="retry()"   class="btn btn-blue" >
-      Responder nuevamente
-    </button>
-
-    <a *ngIf="show == 'callus'" (click)="getBlockUserPhoneNumber()" href="tel:{{telefono}}" >
-      <button ion-button full icon-start class="urg-button-blue" >
-        <ion-icon name="call"></ion-icon>
-        Llamanos
-      </button>
-    </a>
 </ion-content>
 
 <ion-footer id="homeFooter" bottom *ngIf="mostrarBtnFinalizar">

@@ -124,7 +124,7 @@ export class AuthService {
             catch{
               mensaje = Config.MSG.TIMEOUT_ERROR;
             }
-            this.alertService.showAlert("Error", mensaje);
+            this.alertService.showAlert("Error", mensaje,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             return;
           }

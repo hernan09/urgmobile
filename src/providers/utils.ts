@@ -26,7 +26,7 @@ export class Utils {
   
   public showLoader(dismissOnPageChange?) {
     this.loading = this.loadingCtrl.create({
-      spinner : 'crescent',
+      spinner : 'bubbles',
       content : 'Por favor espere...',
       dismissOnPageChange : dismissOnPageChange || true,
     })

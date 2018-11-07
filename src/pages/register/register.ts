@@ -9,7 +9,6 @@ import { LoginPage } from '../login/login';
 import { TycsPage } from '../tycs/tycs'
 import { HomePage } from '../home/home'
 
-//import { CheckerComponent } from '../../components/checker'
 
 import { AuthService } from '../../providers/auth.service'
 import { DataService } from '../../providers/data.service'
@@ -39,8 +38,6 @@ export class RegisterPage {
     public tycs: boolean = false;
     public mostrarBtnFinalizar: boolean = true;
     public telefono: string;
-
- //   @ViewChild(CheckerComponent) checker: CheckerComponent
 
     constructor(
         public navCtrl: NavController,
@@ -80,7 +77,6 @@ export class RegisterPage {
             this.nextAnswer();
         }
         else {
-            //this.checker.showError(Config.MSG.ERROR);
             this.alertService.showAlert(Config.MSG.ERROR,'',Config.ALERT_CLASS.ERROR_CSS); 
         }
     }
@@ -122,7 +118,6 @@ export class RegisterPage {
     checkPreguntas() {       
         console.log('checkPreguntas:', this.preguntas)
         if (this.networkService.isNetworkConnected()) {
-  //          this.checker.showChecking()
             this.auth.checkPreguntas(this.preguntas)
                 .then(ok => {
                     this.p = null
@@ -193,7 +188,6 @@ export class RegisterPage {
             console.log(error); 
         }
     }
-
 
     formatQuestions(questions) {        
         return questions.map(q => {

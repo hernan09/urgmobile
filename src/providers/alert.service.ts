@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { AlertController } from 'ionic-angular'
 
-
+import { Config } from '../app/config'
 
 
 
@@ -16,7 +16,7 @@ export class AlertService {
     
     }
 
-    public showAlert(title, subTitle, cssClass?,buttonText = "Aceptar", handlerEvent? ) {
+    public showAlert(title, subTitle, cssClass?,buttonText = Config.ALERT_OPTIONS.ACEPTAR, handlerEvent? ) {
         this.alert = this.alertCtrl.create({
           title,
           subTitle,
@@ -33,7 +33,7 @@ export class AlertService {
         this.alert.present()
       }    
      
-      public showOptionAlert(title,message, opcionOk="Si", opcionCancel="No", cssClass?,handlerEvent?){
+      public showOptionAlert(title,message, opcionOk=Config.ALERT_OPTIONS.SI, opcionCancel=Config.ALERT_OPTIONS.NO, cssClass?,handlerEvent?){
         let alert = this.alertCtrl.create({
             title: title,
             message: message,

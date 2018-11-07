@@ -77,7 +77,7 @@
       "sos-cordova-plugin-opentok": {},
       "com.tokbox.cordova.opentok": {},
       "phonegap-plugin-mobile-accessibility": {},
-      "cordova-plugin-android-permissions": {},
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "android"

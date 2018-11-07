@@ -170,7 +170,6 @@ export class HomePage {
 		this.ref.detectChanges()
 	}
 
-
 	sendPoll() {
 		this.utils.showLoader()
 		const { question, rate, comment, idAttention } = this.alertas_home.slice(-1)[0].poll

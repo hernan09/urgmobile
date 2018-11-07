@@ -10,29 +10,29 @@ import { Utils } from '../../providers/utils'
 import { Config } from '../../app/config'
 
 @Component({
-  selector: 'page-delete',
-  templateUrl: 'delete.html',
+	selector: 'page-delete',
+	templateUrl: 'delete.html',
 })
 
 export class DeletePage {
 
 	users = []
-
-  	constructor(
-  		private ref :ChangeDetectorRef,
-  		public navCtrl :NavController,
-  		public navParams :NavParams,
-  		private dataService :DataService,
-		public utils :Utils,
-		private toastService : ToastService
-  	){
-  		this.users = this.exludeTitular( dataService.getUsersData() )
+	title = "Eliminar Socio"
+	constructor(
+		private ref: ChangeDetectorRef,
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		private dataService: DataService,
+		public utils: Utils,
+		private toastService: ToastService
+	) {
+		this.users = this.exludeTitular(dataService.getUsersData())
 
 		dataService.usersChange.subscribe(users => {
-			this.users = this.exludeTitular( users )
+			this.users = this.exludeTitular(users)
 			if (!this.ref['destroyed']) this.ref.detectChanges()
-	    })
-  	}
+		})
+	}
 
 	ionViewDidLoad() {
 	}
@@ -46,31 +46,31 @@ export class DeletePage {
 
 		selected.forEach(user => {
 
-			if(user.dni == this.utils.getActiveUser()){
+			if (user.dni == this.utils.getActiveUser()) {
 
-				if(this.dataService.isTitular(user.dni)){
+				if (this.dataService.isTitular(user.dni)) {
 					this.utils.setActiveUser(this.utils.getTitular())
 					this.dataService.removeUsers(user.dni)
-				}else{	
-					
-						this.dataService.removeUsers(user.dni)
-						this.utils.setActiveUser(null)
-						this.utils.setItem(Config.KEY.EXPIRES, 0)
-						this.navCtrl.setRoot(LoginPage)
-					
+				} else {
+
+					this.dataService.removeUsers(user.dni)
+					this.utils.setActiveUser(null)
+					this.utils.setItem(Config.KEY.EXPIRES, 0)
+					this.navCtrl.setRoot(LoginPage)
+
 				}
 			}
-			else{
+			else {
 				this.dataService.removeUsers(user.dni)
 			}
 
 		})
-		
-		
-		
-			this.toastService.showToast(selected.length + ' usuario(s) eleminado(s)', 2000)
-			this.navCtrl.setRoot(HomePage)
-		
+
+
+
+		this.toastService.showToast(selected.length + ' usuario(s) eleminado(s)', 2000)
+		this.navCtrl.setRoot(HomePage)
+
 	}
 
 }

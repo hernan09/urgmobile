@@ -11,9 +11,6 @@ export class AlertService {
     alert :any
 
     public constructor(public alertCtrl :AlertController){
-
-
-    
     }
 
     public showAlert(title, subTitle, cssClass?,buttonText = Config.ALERT_OPTIONS.ACEPTAR, handlerEvent? ) {

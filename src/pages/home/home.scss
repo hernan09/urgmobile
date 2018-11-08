@@ -92,7 +92,7 @@ page-home {
     }
     .alerta-item-1 {
         display: flex;
-        background-color: #eee;
+        background-color: $white;
         width: 100%;
         position: relative;
         margin-bottom: 20px;
@@ -133,7 +133,7 @@ page-home {
 			margin: 5px;
 			margin-bottom: 15px;
 			border-radius: 5px;
-			border: 1px solid #e6e5e5;
+			border: 1px solid $lightgray;
 			-webkit-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
 			-moz-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
 			box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
@@ -141,7 +141,7 @@ page-home {
 
 		.close-box {
 			position: relative !important;
-			background-color: white;
+			background-color: $white;
 
 			ion-icon {
 				position: absolute;
@@ -187,13 +187,13 @@ page-home {
 					padding: 10px;
 
 					p {
-						color: gray;
-						font-size: 12px;
+						color: $darkgray;
+						font-size: $text_regular_size;
 						margin: 8px 0;
 					}
 
 					label {
-						color: #4abcff;
+						color: $osde_cyan;
 					}
 				}
 
@@ -238,7 +238,7 @@ page-home {
 						.poll-question {
 							padding: 5px 0 5px 15%;
 							font-size: 14px;
-							color: gray;
+							color: $darkgray;
 							font-weight: 300;
 						}
 
@@ -259,7 +259,7 @@ page-home {
 					}
 
 					span {
-						color: gray;
+						color: $darkgray;
 					}
 
 					.time {
@@ -286,9 +286,9 @@ page-home {
     }
 
 		.selected {
-			background-color: #D4DDE4;
+			background-color: $lightgray;
 			border-bottom: 0px;
-			color: white;
+			color: $white;
 		}
     /*----------*/
 

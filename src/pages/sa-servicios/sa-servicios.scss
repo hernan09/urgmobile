@@ -2,12 +2,12 @@ page-sa-servicios {
 
   .title {
     text-align: center;
-    font-size: 16px;
+    font-size: $text_regular_size;
   }
 
   .sub-title {
     text-align: center;
-    font-size: 14px;
+    font-size: $text_extra_big_size;
     margin: 5px;
     font-weight: 200;
   }
@@ -44,16 +44,16 @@ page-sa-servicios {
     }
 
     label{
-      font-size: 10px;
+      font-size: $text_small_size;
       color: gray;
     }
 
     p{
-      font-size: 12px;
+      font-size: $text_regular_size;
     }
 
     .time{
-      margin-top: 15px;
+      margin-top: $title_size;
     }
   }
 

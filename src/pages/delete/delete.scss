@@ -5,7 +5,7 @@ page-delete {
         .input-wrapper {
             flex-direction: column;
             align-items: flex-start;
-            border-left: 4px solid #bed600;
+            border-left: 4px solid $osde_lightgreen;
             padding-left: 15px;
             max-width: 78vw;
         }
@@ -17,8 +17,8 @@ page-delete {
         width: 80%;
     }
     .nro-socio {
-        font-size: 12px;
-        color: var(--main-cyan-color);
+        font-size: $text_regular_size;
+        color: $osde_cyan;
     }
     .tarjeta {
         position: relative;

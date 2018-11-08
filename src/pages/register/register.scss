@@ -16,7 +16,7 @@ page-register {
       border: 0 !important;
       text-align: center;
       ion-label {
-        font-size: 1.4em;
+        font-size: $text_extra_big_size;
         white-space: normal;
         text-transform: uppercase;
         margin-right: 0px !important;
@@ -62,22 +62,22 @@ page-register {
   .label-ok {
     display: table;
     padding-left: 10px;
-    border-left: 4px solid #bed600;
+    border-left: 4px solid $osde_lightgreen;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: $title_big_size;
     text-align: left;
   }
 
   .label-error {
     display: table;
     padding-left: 10px;
-    border-left: 4px solid red;
+    border-left: 4px solid $osde_red;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: $title_big_size;
     height: -1px;
   }
 
@@ -116,7 +116,7 @@ page-register {
       }
       .label {
       margin-top: 10px;
-      font-size: 17px;
+      font-size: $title_size;
     }
     .checkbox-inner {
       left: 13px !important;
@@ -156,13 +156,13 @@ ion-list{
   z-index: 44;
   color: white;
   position: absolute;
-  font-size: 18px;
+  font-size: $title_big_size;
   top: 60%;
   width: 100%;
 }
 
 .footer-md{
-  background-color: white;
+  background-color:$white;
 }
 
 .soft-line{

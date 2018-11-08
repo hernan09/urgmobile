@@ -23,6 +23,11 @@ page-datos {
 
 	h3 {
 		font-weight: bold;
+		font-size:$text_regular_size;
+	}
+
+	h3 ~ div {
+		font-size:$text_small_size
 	}
 
 	h5 {

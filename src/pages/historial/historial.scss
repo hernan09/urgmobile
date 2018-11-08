@@ -31,7 +31,7 @@ page-historial {
 
 	.historial-atencion h4{
 		font-weight: normal;
-		font-size: 13px;
+		font-size: $text_big_size;
 	}
 
 	.historial-atencion div.flex > div:first-child{
@@ -41,7 +41,7 @@ page-historial {
 		height:35px;
 		padding-top:10px;
 		text-align:center;
-		font-size: 14px;
+		font-size: $text_extra_big_size;
 	}
 
 	.historial-atencion div.flex > div:last-child{
@@ -49,15 +49,15 @@ page-historial {
 		padding-right:2%;
 	}
 	.case-number{
-		font-size:12px;
+		font-size:$text_regular_size;
 		position:absolute;
 		right:10px;
 		top:10px;
 	}
 
 	.historial-atencion div.flex > div:last-child span{
-		font-size:12px;
-		color:var(--main-cyan-color);
+		font-size:$text_regular_size;
+		color:$osde_cyan;
 	}
 
 	.itemsEmpty .shadow-block{
@@ -67,7 +67,7 @@ page-historial {
 	.itemsEmpty p{
 		text-align:center;
 		line-height: 1.5;
-		color:#797979;
+		color:$gray;
 	}  
 	  
 

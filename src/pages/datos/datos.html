@@ -14,7 +14,7 @@
   <div class="centrar-datos">
     <div class="color-blue">
       <div>
-        <h3 class="title-01">{{persona.nombre}} {{persona.apellido}}</h3>
+        <h3>{{persona.nombre}} {{persona.apellido}}</h3>
         <div>Nro. de socio: {{persona.nroasociado}}</div>
         <div class="flex tarjeta-plan">
           <h5>Plan:</h5>
@@ -30,11 +30,11 @@
     <div class="container color-blue">
       <div class="shadow-block">
         <div>
-          <h3 class="title-01">DNI</h3>
+          <h3>DNI</h3>
           <div>{{persona.dni}}</div>
         </div>
         <div *ngFor="let data of persona.datosPersonales">
-          <h3 class="title-01">{{data.label}}</h3>
+          <h3>{{data.label}}</h3>
           <div>{{data.valor}}</div>
         </div>
       </div>
@@ -43,7 +43,7 @@
     <div class="container color-blue" *ngIf="persona.antecedentes">
       <div class="shadow-block">
         <div>
-          <h3 class="title-01">ANTECEDENTES MÉDICOS</h3>
+          <h3>ANTECEDENTES MÉDICOS</h3>
         </div>
         <div>
           <div *ngFor="let a of persona.antecedentes">- {{a.antecedente}}</div>

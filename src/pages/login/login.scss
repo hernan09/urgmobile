@@ -20,9 +20,9 @@ page-login {
   .form {
     margin-top: 40px;
     ion-icon {
-      font-size: 1.6em;
+      font-size: $title_size;
       font-weight: bold;
-      color: #008fbb;
+      color: $osde_cyan;
     }
     &.border {
       border-left: 3px solid $osde_cyan;
@@ -33,18 +33,18 @@ page-login {
 
   .input-text{
     background-color: transparent;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid $white;
     color: white;
     margin-top: 30px;
     padding-right: 22px;
   }
 
   .input-text:focus {
-    border-bottom:2px solid white
+    border-bottom:2px solid $white;
  }
 
  .input-text:focus ~ .label-text {
-  color: white;
+  color: $white;
 }
 
   .header-circle-container .div-inner:before,
@@ -56,12 +56,12 @@ page-login {
       right: -16%;
       left: -16%;
       top: -63%;
-      background: white !important;
+      background: $white !important;
       z-index: 10;
   }
 
   ion-icon{
-    color: white !important;
+    color: $white !important;
     position: absolute;
     right: 0;
     top: 0;
@@ -94,7 +94,7 @@ page-login {
   }
 
   .btn{
-    color: var(--main-blue-color);
+    color: $osde_cyan;
   }
 
   .login-footer{
@@ -122,13 +122,13 @@ page-login {
   }
 
   .osde-label {    
-    font-size: 1.1em;
+    font-size: $text_small_size;
     font-weight: 600; 
     color: lightblue;
   }
 
   ion-label {
-    color: #008fbb;
+    color: $osde_cyan;
   }  
 
   ion-content{

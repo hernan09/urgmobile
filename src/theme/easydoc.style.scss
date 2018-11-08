@@ -101,12 +101,12 @@
 
   .title-01{
       font-family:'OpenSans-bold';
-      font-size:20px;
+      font-size:1.8em;
       letter-spacing:0.5px;
   }
   .text-01{
       font-family:'OpenSans-light';
-      font-size:16px;
+      font-size:1.4em;
       letter-spacing:0.5px;
   }
 
@@ -332,7 +332,7 @@
        width:100%;
        padding:8px 0px;
        transition:border 0.3s;
-       font-size:16px;
+       font-size:1.6em;
        box-sizing:border-box;
    }
 
@@ -368,7 +368,7 @@
        resize:none;
        padding:10px;
        transition:border 0.3s;
-       font-size:16px;
+       font-size:1.8em;
        box-sizing:border-box;
    }
    .textarea-control:focus{
@@ -379,67 +379,6 @@
    }
 
 
-   /*input Radio*/
-
-
-   .radio-container{
-      display: block;
-      position: relative;
-      padding-left: 50px;
-      margin-bottom: 30px;
-      cursor: pointer;
-      font-size: 22px;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      font-size:16px;
-   }
-
-   .radio-input{
-      position: absolute;
-      opacity: 0;
-      cursor: pointer;
-      height: 0;
-      width: 0;
-   }
-
-   .checkmark{
-      position: absolute;
-      top: -3px;
-      left: 0;
-      height: 25px;
-      width: 25px;
-      border:1px solid var(--main-cyan-color);
-      border-radius: 50%;
-   }
-
-   .radio-container:hover .radio-input ~ .checkmark {
-      background-color: #ccc;
-    }
-
-   .radio-container .radio-input:checked ~ .checkmark {
-      background-color: #2196F3;
-    }
-
-  .checkmark:after {
-      content: "";
-      position: absolute;
-      display: none;
-  }
-
-  .container-radio .radio-input:checked ~ .checkmark:after {
-      display: block;
-  }
-
-  .container-radio .checkmark:after {
-      top: 9px;
-      left: 9px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: white;
-  }
 
   /* contenerdo - pagina*/
  .box-container {

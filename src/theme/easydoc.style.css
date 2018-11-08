@@ -501,3 +501,57 @@
     border-color:var(--main-cyan-color) !important;
     background-color:var(--main-cyan-color) !important;
   }
+<<<<<<< HEAD
+=======
+
+  /*Loading*/
+
+  .border-rounded{
+    display:block;
+    width:100%;
+    background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    background: -webkit-gradient(linear,-28% 50% ,121.31% 50% ,color-stop(0,rgba(34, 58, 133, 1) ),color-stop(1,rgba(0, 168, 209, 1) ));
+    background: -o-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    background: -ms-linear-gradient(0deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85', endColorstr='#00A8D1' ,GradientType=0)";
+    background: linear-gradient(90deg, rgba(34, 58, 133, 1) 0%, rgba(0, 168, 209, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#223A85',endColorstr='#00A8D1' , GradientType=1);
+    height:200px;
+    position:absolute;
+    bottom:0;
+    }
+    .border-rounded:before,
+    .border-rounded:after {
+    border-radius: 100%;
+    height: 250px;
+    position: absolute;
+    content: '';
+    right: -16%;
+    left: -16%;
+    top:-100px;
+    background:white;
+    
+    }
+
+    .loadingContainer{   
+      height: 100%;   
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .loading{
+        height: 30px;
+        width: 30px;  
+        z-index: 50;
+        margin: 0 auto;
+    }
+
+    /*Finaliza Loading*/
+
+  
+
+  
+>>>>>>> Sprint-19

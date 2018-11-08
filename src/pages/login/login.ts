@@ -44,15 +44,15 @@ export class LoginPage implements Overlay {
     private menu: MenuController,
     private platform: Platform,
     private networkService: NetworkService,
-    private toastService : ToastService, 
-    private alertService : AlertService,   
+    private toastService : ToastService,
+    private alertService : AlertService,
     private loginService:LoginService,
   ) {
     this.telefono = this.dataService.getPhoneNumber();
     this.newMember = this.navParams.get("newMember");
 
     if (authService.isAuthenticated() && !this.newMember) this.getDeviceID();
-    
+
     this.placeholder = Config.PLACEHOLDER_MSG.NEW_USER;
 
     this.platform.ready().then(() => {
@@ -99,7 +99,7 @@ export class LoginPage implements Overlay {
       this.toastService.hideToast();
       this.toastService.showToast(Config.MSG.DISCONNECTED,0);
     }
-    
+
   }
 
   login(dni) {
@@ -148,7 +148,7 @@ export class LoginPage implements Overlay {
       },
       error => {
         console.log('login - Error: ',error);
-        this.utils.hideLoader();      
+        this.utils.hideLoader();
       }
     );
   }
@@ -160,5 +160,7 @@ export class LoginPage implements Overlay {
     this.alertService.hideAlert();
   }
 
-  
+  transitionLogin() {
+    console.log("add class");
+  }
 }

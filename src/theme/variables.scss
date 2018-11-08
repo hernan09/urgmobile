@@ -285,17 +285,20 @@ $toolbar-wp-background: #002664;
     border:1px solid #088DBF;
 }
 
+@mixin btn-poll($color) {
+  color:$color;
+  border-color: $color;
+  background-color: white;
+}
+
 .good {
-  color:green;
-  border-color: green;
+  @include btn-poll(green);
 }
 .meh {
-  color: orange;
-  border-color: orange;
+  @include btn-poll(orange);
 }
 .bad {
-  color:red;
-  border-color: red;
+  @include btn-poll(red);
 }
 
 /* imagen */

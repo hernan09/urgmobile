@@ -33,6 +33,7 @@ export class LoginPage implements Overlay {
   placeholder = "";
 
   version = Config.OPTIONS.VERSION_NUMBER;
+  addClassTransition:boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -161,6 +162,10 @@ export class LoginPage implements Overlay {
   }
 
   transitionLogin() {
-    console.log("add class");
+    this.addClassTransition = true
+  }
+
+  transitionBlurLogin(){
+    this.addClassTransition = false;
   }
 }

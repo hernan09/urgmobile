@@ -1,16 +1,16 @@
-page-login {  
+page-login {
 
   .scroll-content {
     padding-right: 26px !important;
     padding-left: 26px !important;
-    overflow: hidden; 
-    margin : 0 !important;   
-  }  
+    overflow: hidden;
+    margin : 0 !important;
+  }
 
   .login {
     margin: auto;
-    max-width: 225px; 
-    margin-top: 225px;   
+    max-width: 225px;
+    margin-top: 225px;
   }
 
   .login.notScroll{
@@ -71,14 +71,14 @@ page-login {
     top: 50%;
     position: relative;
     height: 70px;
-    z-index: 20;    
+    z-index: 20;
     margin: 0;
     display: block;
 		background: url('../assets/img/logo.png') center;
 		background-size: contain;
 		background-repeat: no-repeat;
   }
-  
+
   ion-header{
     position: relative;
   }
@@ -100,15 +100,15 @@ page-login {
   .login-footer{
     color: white;
     text-align: center;
-    top: 15%;    
-    width: 100%;  
+    top: 15%;
+    width: 100%;
     position: relative;
     text-align: center;
     background: none;
   }
 
   .login-footer:before{
-    display: none;    
+    display: none;
   }
 
   /*Termina modificación*/
@@ -121,15 +121,15 @@ page-login {
     margin-top: 30px;
   }
 
-  .osde-label {    
+  .osde-label {
     font-size: 1.1em;
-    font-weight: 600; 
+    font-weight: 600;
     color: lightblue;
   }
 
   ion-label {
     color: #008fbb;
-  }  
+  }
 
   ion-content{
     background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);
@@ -150,4 +150,34 @@ page-login {
 
   }
 
+  .transition-focus {
+    .login-logo
+    {
+      top: 20%;
+      position: relative;
+      height: 35px;
+      -webkit-transition: height 0.5s, top 3s; /* Safari */
+      transition: height 0.5s,top 3s;
+    }
+
+    .header-circle-container .div-inner:before,  .header-circle-container .div-inner:after {
+        height: 0;
+        -webkit-transition: height 3s; /* Safari */
+        transition: height 3s;
+    }
+
+    .login {
+        margin: auto;
+        max-width: 225px;
+        margin-top: 95px;
+        -webkit-transition: margin-top 3s; /* Safari */
+        transition: margin-top 3s;
+    }
+
+    .header-circle-container .div-inner{
+      height: 60px;
+      -webkit-transition: height 3s; /* Safari */
+      transition: height 3s;
+    }
+  }
 }

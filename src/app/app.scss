@@ -81,9 +81,7 @@ ion-toolbar.toolbar-md {
 	min-height: 35px;
 }
 
-.toolbar-md {
-	min-height:57px !important;
-}
+
 
 .userToolbar {
 	.toolbar-title-md {
@@ -142,7 +140,7 @@ ion-menu .menu-inner {
 		text-align: center;
 
 		.icon-arrow {
-			color: gray;
+		color: $gray;
 	    margin-left: 2%;
 	    font-size: 28px;
 	    position: relative;
@@ -194,7 +192,7 @@ ion-badge {
 	right: -2px;
 	top: -9px;
 	border-radius: 50% !important;
-	background-color: #f53e3e !important;
+	background-color: $osde_red  !important;
 }
 
 ion-input {
@@ -214,7 +212,7 @@ ion-input {
 
 
 .urgIcon {
-	color: white !important;
+	color: $white !important;
 	font-size: 1.7em !important;
 	background-color: inherit;
 }

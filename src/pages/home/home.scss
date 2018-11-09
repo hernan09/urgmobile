@@ -6,6 +6,7 @@ page-home {
     }
     .image {
         background-size: cover !important;
+        top : -40px !important;
     }
     .shadow-block {
         height: 200px;
@@ -220,7 +221,7 @@ page-home {
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
 			.box-container-alert-two {
-        margin: 18px 4% !important;
+                margin: 10% 5px !important;
 
 				.perfil{
 					position: cover !important;
@@ -278,7 +279,8 @@ page-home {
 					bottom: -38px;
 				}
 
-			}
+            }            
+           
     }
     .top-pull {
         top: -48px;
@@ -344,25 +346,3 @@ page-home {
     padding-bottom: 4px;
 }
 
-/*
-
-.transition-focus {
-  page-login .login-logo
-  {
-    top: 20%;
-    position: relative;
-    height: 35px;
-  }
-
-  page-login .header-circle-container .div-inner:before, page-login .header-circle-container .div-inner:after {
-      height: 0;
-  }
-
-  page-login .login {
-      margin: auto;
-      max-width: 225px;
-      margin-top: 95px;
-  }
-}
-
-*/

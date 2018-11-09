@@ -223,6 +223,8 @@ export class HomePage {
 
 		this.content.scrollToTop(1000);
 		this.events.publish('survey', false);
+    //limpia respuesta seleccionada
+    this.btnSelection = 0;
 	}
 
 	//ver si es necesario
@@ -310,5 +312,6 @@ export class HomePage {
 				this.navCtrl.push(HomePage);
 			}
 		}
+
 
 }

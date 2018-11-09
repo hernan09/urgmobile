@@ -73,8 +73,8 @@
 				<ion-row class="header">
 
 					<ion-col col-10 class="box-img">
-						<div *ngIf="!alerta.doctor.foto"  class="image perfil" [ngClass]="{'img-nok': !alerta.estado.ok}" ></div>
-						<div *ngIf="alerta.doctor.foto"  class="image perfil"  [ngStyle]="{'background-image':'url(' + alerta.doctor.foto + ')'}"></div>
+						<div *ngIf="!alerta.doctor.foto" class="image perfil" [ngClass]="{'img-nok': !alerta.estado.ok}" ></div>
+						<div *ngIf="alerta.doctor.foto" class="image perfil" [ngStyle]="{'background-image':'url(' + alerta.doctor.foto + ')'}"></div>
 					</ion-col>
 
 					<ion-col col-2 class="close-box" (click)="closeAlert(alerta)">

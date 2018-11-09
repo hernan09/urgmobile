@@ -5,8 +5,8 @@ page-home {
         width: 80px;
     }
     .image {
-        background-size: cover !important;
-        top : -40px !important;
+        background-size: cover !important;  
+        top : -40px;      
     }
     .shadow-block {
         height: 200px;
@@ -37,6 +37,7 @@ page-home {
         transition: 0.5s;
     }
     ion-content.subHiddenMargin .scroll-content {
+        margin-top: 12vh !important;
         transition: 0.5s !important;
     }
     .text-none {
@@ -92,7 +93,7 @@ page-home {
     }
     .alerta-item-1 {
         display: flex;
-        background-color: $white;
+        background-color: #eee;
         width: 100%;
         position: relative;
         margin-bottom: 20px;
@@ -133,7 +134,7 @@ page-home {
 			margin: 5px;
 			margin-bottom: 15px;
 			border-radius: 5px;
-			border: 1px solid $lightgray;
+			border: 1px solid #e6e5e5;
 			-webkit-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
 			-moz-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
 			box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
@@ -141,7 +142,7 @@ page-home {
 
 		.close-box {
 			position: relative !important;
-			background-color: $white;
+			background-color: white;
 
 			ion-icon {
 				position: absolute;
@@ -187,13 +188,13 @@ page-home {
 					padding: 10px;
 
 					p {
-						color: $darkgray;
-						font-size: $text_regular_size;
+						color: gray;
+						font-size: 12px;
 						margin: 8px 0;
 					}
 
 					label {
-						color: $osde_cyan;
+						color: #4abcff;
 					}
 				}
 
@@ -239,7 +240,7 @@ page-home {
 						.poll-question {
 							padding: 5px 0 5px 15%;
 							font-size: 16px;
-							color: $darkgray;
+							color: gray;
 							font-weight: 300;
 						}
 
@@ -260,7 +261,7 @@ page-home {
 					}
 
 					span {
-						color: $darkgray;
+						color: gray;
 					}
 
 					.time {
@@ -278,7 +279,9 @@ page-home {
 					bottom: -38px;
 				}
 
-            }            
+            } 
+            
+            
            
     }
     .top-pull {
@@ -327,6 +330,10 @@ page-home {
 
     ios-videocam-outline {
         font-size: 1.5em !important;
+    }
+
+    .alerta-item-none .image{
+        top : 12px;
     }
 }
 

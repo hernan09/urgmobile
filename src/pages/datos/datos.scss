@@ -1,11 +1,13 @@
 page-datos {
+	.header-circle-container{
+		margin-bottom:50px;
+	}
+	.imgPosition{
+		top:20px;
+	}
 
 	ion-toolbar {
 		transition: 0.5s;
-	}
-
-	.scroll-content{
-		bottom: 62px !important;
 	}
 
 	.centrar-datos{
@@ -19,6 +21,9 @@ page-datos {
 
 	.toolbar-background-md {
 		background: transparent !important;
+		width:116%;
+		position:absolute;
+		left:-8%;
 	}
 
 	h3, h5 {

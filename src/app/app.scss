@@ -15,9 +15,11 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-$osde_blue : #001ca8;
+/*colores genericos*/
+
+$osde_blue : #22305A;
 $osde_darkblue : #002664;
-$osde_cyan : #00aad2;
+$osde_cyan : #098dbd;
 $osde_green : #009a3d;
 $osde_lightgreen : #bed600;
 $osde_white : #f6f6f7;
@@ -27,11 +29,31 @@ $rate_good: #9DC127;
 $rate_meh: #EFA824;
 $rate_bad: #DE514C;
 
-$white : #eee;
+$white : #ffffff;
 $black : #222;
-$gray : #bbb;
-$darkgray : #888;
+$gray : #7d7d7d;
+$darkgray : #606060;
 $lightgray : #ddd;
+
+/*Tamaño de fuentes*/
+@media screen and (max-width: 400px){
+	body,scroll-content,fixed-content,ion-app.md{
+		font-size:10px;
+	}
+}
+@media screen and (max-width: 700px){
+	body,scroll-content,fixed-content,ion-app.md{
+		font-size:11px;
+	}
+}
+
+$text_small_size:1.1em;
+$text_regular_size:1.2em;
+$text_big_size:1.3em;
+$text_extra_big_size:1.4em;
+$title_size:1.6em;
+$title_big_size:1.8em;
+
 
 * {
 	font-family:"OpenSans-regular" !important;
@@ -59,9 +81,7 @@ ion-toolbar.toolbar-md {
 	min-height: 35px;
 }
 
-.toolbar-md {
-	min-height:57px !important;
-}
+
 
 .userToolbar {
 	.toolbar-title-md {
@@ -120,7 +140,7 @@ ion-menu .menu-inner {
 		text-align: center;
 
 		.icon-arrow {
-			color: gray;
+		color: $gray;
 	    margin-left: 2%;
 	    font-size: 28px;
 	    position: relative;
@@ -163,6 +183,7 @@ ion-header.big {
 .main-menu {
 	.scroll-content{
 		overflow: hidden !important;
+		margin:0 !important;
 	}
 }
 
@@ -171,7 +192,7 @@ ion-badge {
 	right: -2px;
 	top: -9px;
 	border-radius: 50% !important;
-	background-color: #f53e3e !important;
+	background-color: $osde_red  !important;
 }
 
 ion-input {
@@ -186,11 +207,12 @@ ion-input {
 
 .scroll-content {
 	overflow-y: auto;
+	margin-top: 56px !important;
 }
 
 
 .urgIcon {
-	color: white !important;
+	color: $white !important;
 	font-size: 1.7em !important;
 	background-color: inherit;
 }

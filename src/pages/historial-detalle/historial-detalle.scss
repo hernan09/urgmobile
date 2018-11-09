@@ -1,6 +1,7 @@
 page-historial-detalle {
 
 
+
 	.dataCard {
 		margin: 25px;
 		div {
@@ -15,7 +16,7 @@ page-historial-detalle {
 	.datosMain {
 		border-left: 4px solid $osde_cyan;
 		margin-bottom: 30px;
-		font-size: 16px;
+		font-size: $text_small_size;
 		.doctor-title {
 			font-weight: bold;
 			color: #00aad2;
@@ -27,7 +28,7 @@ page-historial-detalle {
 	}
 
 	.noData {
-		font-size: 16px;
+		font-size: $title_size;
 	}
 
 	.info {
@@ -35,16 +36,17 @@ page-historial-detalle {
 		justify-content: space-between;
 		width: 100%;
 		margin-bottom: 5px;
-		font-size: 12px;
+		font-size: $text_regular_size;
 	}
 
 	.info div:nth-child(1) {
-		flex-basis: 60%;
+		flex-basis: 55%;
 	}
 
 	.info div:nth-child(2) {
-		flex-basis: 40%;
+		flex-basis: 45%;
 		text-align: right;
+		font: size 0.7em;
 	}
 
 	.shadow-block{

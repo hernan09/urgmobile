@@ -21,8 +21,13 @@ page-datos {
 		background: transparent !important;
 	}
 
-	h3 {
+	h3, h5 {
 		font-weight: bold;
+		font-size:$text_regular_size;
+	}
+
+	h3 ~ div , h5 ~ div {
+		font-size:$text_small_size
 	}
 
 	h5 {

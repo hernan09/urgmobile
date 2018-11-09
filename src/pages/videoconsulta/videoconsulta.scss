@@ -62,7 +62,7 @@ page-videoconsulta {
       height: 50px;
       width: 50px;
       padding: 5px;
-      border: 2px solid red;
+      border: 2px solid $osde_red;
       border-radius: 100%;
       cursor: pointer;
       filter: invert(1);
@@ -115,15 +115,15 @@ page-videoconsulta {
     animation-name: imagen;
     animation-duration: 2s;
     border-radius:50%;
-    -webkit-box-shadow: -4px 8px 0px 6px rgba(0,180,213,1);
-    -moz-box-shadow: -4px 8px 0px 6px rgba(0,180,213,1);
-    box-shadow: -4px 8px 0px 6px rgba(0,180,213,1);
+    -webkit-box-shadow: -4px 8px 0px 6px $osde_cyan;
+    -moz-box-shadow: -4px 8px 0px 6px $osde_cyan;
+    box-shadow: -4px 8px 0px 6px $osde_cyan;
     animation-iteration-count: infinite;
   }
 
   p.mensajeTexto {
-    font-size:26px;
-    font-size: 23px;
+    font-size:2.6em;
+    font-size: 2.3em;
     margin-top:15px;
   }
   p.mensajeTexto span{
@@ -160,10 +160,10 @@ page-videoconsulta {
  text-align:center;
 }
 .gracias-pop h1{
- font-size:32px;
+ font-size:3.2em;
 }
 .gracias-pop h2{
- font-size:20px;
+ font-size:2em;
 }
 .gracias-pop h3 , .gracias-pop h1{
  color:#003c9d;

@@ -75,7 +75,7 @@ export class RegisterPage {
             this.nextAnswer();
         }
         else {
-            this.alertService.showAlert(Config.MSG.ERROR,'',Config.ALERT_CLASS.ERROR_CSS); 
+            this.alertService.showAlert(Config.TITLE.WARNING_TITLE,'',Config.ALERT_CLASS.ERROR_CSS); 
         }
     }
 

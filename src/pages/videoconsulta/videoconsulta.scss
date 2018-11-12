@@ -36,8 +36,16 @@ page-videoconsulta {
     height: 20vh;
     max-height: 200px;
     text-align: right;
-    z-index: 10;
+    z-index: 999999;
   }
+
+  #local{
+    z-index:999999;
+    position:absolute;
+    right:0;
+    bottom:0;
+  }
+
 
   #local, #extra {
     display: inline-block;
@@ -207,4 +215,15 @@ font-size:16px;
 /*Finaliza mensaje de video consulta*/
 
 
+}
+
+
+
+.platform-android8{
+  #local{
+    z-index:inherit !important;
+  }
+  #minivideo{
+   z-index:inherit !important;
+  }
 }

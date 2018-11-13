@@ -304,7 +304,7 @@ $toolbar-wp-background: #002664;
   width: 100px;
   background-color: white;
   border-radius: 50%;
-  border: 10px solid white;
+  border: 5px solid white;
   position: absolute !important;
   margin: auto;
   padding: 10px;
@@ -314,9 +314,9 @@ $toolbar-wp-background: #002664;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
-  -moz-box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
-  box-shadow: -2px 5px 50px -9px rgba(208,208,208,0.71);
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.19);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.19);
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.19);
 }
 
 .img-url{

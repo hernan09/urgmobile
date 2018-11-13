@@ -74,6 +74,9 @@ export class Config {
 		NO:'No',
 		ACEPTAR: 'Aceptar',
 		CANCELAR: 'Cancelar',
+		CALL_US:'Llamanos',
+		RETRY: 'Reintentar',
+		CONTINUE:'Continuar',
 	}
 
 	public static PLACEHOLDER_MSG = {		

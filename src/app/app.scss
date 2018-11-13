@@ -314,6 +314,14 @@ ion-backdrop{
 
 }
 
+//Centramos los botones
+.alert-button-group{
+	.alert-button{
+		margin: 0 auto;
+		width: 40%;
+		display: inline-block;
+	}
+}
 
 .ok-alert  {
 	.alert-wrapper {
@@ -332,9 +340,6 @@ ion-backdrop{
 			.alert-button{
 				&:nth-child(1){
 					@include gradient(-26.12% 50%, 111.52% 50%, rgba(34, 48, 90, 1), rgba( 34, 58, 133, 1), #22305A, #223A85 );
-				}
-				&:nth-child(2){
-
 				}
 			}
 		}

@@ -6,7 +6,8 @@ page-home {
     }
     .image {
         background-size: cover !important;  
-        top : -40px;      
+		top : -40px;      
+		border: 5px solid white;
     }
     .shadow-block {
         height: 200px;
@@ -187,13 +188,14 @@ page-home {
 					padding: 10px;
 
 					p {
-						color: gray;
-						font-size: 12px;
+						color: $gray;
+						font-size: $text_extra_big_size;
 						margin: 8px 0;
 					}
 
 					label {
-						color: #4abcff;
+						font-size: $text_extra_big_size;
+						color: $osde_cyan;
 					}
 				}
 
@@ -203,7 +205,7 @@ page-home {
 
 				.box-alert-2 {
 					padding: 10px 12px;
-			    font-size: 12px;
+			    	font-size: $text_extra_big_size;
 
 					p {
 						 margin: 2px 0;
@@ -220,7 +222,7 @@ page-home {
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
 			.box-container-alert-two {
-                margin: 10% 5px !important;
+                margin: 10% 20px !important;
 
 				.perfil{
 					position: cover !important;
@@ -238,8 +240,8 @@ page-home {
 
 						.poll-question {
 							padding: 5px 0 5px 15%;
-							font-size: 16px;
-							color: gray;
+							font-size: $title_size;
+							color: $gray;
 							font-weight: 300;
 						}
 
@@ -256,11 +258,21 @@ page-home {
 					text-align: center;
 
 					h4 {
+						color: $osde_darkblue;
 						margin: 10px 0 2px 0;
 					}
 
+					h5{
+						color: $osde_darkblue;
+					}
+
 					span {
-						color: gray;
+						font-size: 15px;
+						color: $gray;
+					}
+
+					p{
+						font-size: 15px;
 					}
 
 					.time {
@@ -333,7 +345,20 @@ page-home {
 
     .alerta-item-none .image{
         top : 12px;
-    }
+	}
+	
+	hr.soft-line {		
+		margin: 15px auto 15px auto;
+	}
+
+	@media screen and (max-width: 300px){
+		.image{
+			top: -35px !important;
+			height: 90px !important;
+			width: 90px !important;
+			border: 5px solid white;
+		}
+	}
 }
 
 #encuetasItem {
@@ -350,4 +375,5 @@ page-home {
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
 

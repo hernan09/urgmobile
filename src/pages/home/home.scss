@@ -6,7 +6,8 @@ page-home {
     }
     .image {
         background-size: cover !important;  
-        top : -40px;      
+		top : -40px;      
+		border: 5px solid white;
     }
     .shadow-block {
         height: 200px;
@@ -354,7 +355,8 @@ page-home {
 		.image{
 			top: -35px !important;
 			height: 90px !important;
-    		width: 90px !important;
+			width: 90px !important;
+			border: 5px solid white;
 		}
 	}
 }

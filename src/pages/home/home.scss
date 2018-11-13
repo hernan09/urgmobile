@@ -130,7 +130,6 @@ page-home {
     }
     /*Alerta 1, 2 y 5--------------------------------------------------*/
 		@mixin box-container-alert() {
-			margin: 5px;
 			margin-bottom: 15px;
 			border-radius: 5px;
 			border: 1px solid #e6e5e5;
@@ -169,7 +168,8 @@ page-home {
 
 	  .alerta-list {
 			position: relative;
-	    top: -50px;
+            top: -50px;
+            padding: 0 3%;
 
 			.box-container-alert {
 

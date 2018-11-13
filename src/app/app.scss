@@ -77,15 +77,19 @@ ion-nav {
 	}
 }
 
-ion-toolbar.toolbar-md {
-	min-height: 35px;
+.toolbar-md {
+	padding:0 2%;
 }
 
-
+page-navigator .bar-buttons-md{
+	padding:0 1% !important;
+	margin:0 !important;
+}
 
 .userToolbar {
 	.toolbar-title-md {
 		font-size: 1.2em;
+		padding:0;
 	}
 }
 

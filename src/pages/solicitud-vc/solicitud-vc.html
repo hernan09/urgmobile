@@ -27,7 +27,7 @@
 
           <ion-col col-4>
             <div class="form-control padding">
-                <input  type="tel" [(ngModel)]="prefijo" maxlength="4" value="" onkeyup="this.setAttribute('value', this.value);" 
+                <input  type="number" [(ngModel)]="prefijo" maxlength="4" value="" onkeyup="this.setAttribute('value', this.value);" 
                 id="cod" class="input-text input-user">
                 <label class="label-text" >Cod</label>
             </div>
@@ -39,7 +39,7 @@
 
           <ion-col col-5>
             <div class="form-control padding">
-                <input value="" [(ngModel)]="tel" maxlength="8" type="tel" onkeyup="this.setAttribute('value', this.value);"  
+                <input value="" [(ngModel)]="number" maxlength="8" type="tel" onkeyup="this.setAttribute('value', this.value);"  
                 id="tel" class="input-text input-user">
                 <label class="label-text" >Tel</label>
             </div>

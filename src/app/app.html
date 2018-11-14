@@ -2,7 +2,7 @@
 
   <ion-content class="main-menu">
         <!-- header con borde circular -->
-      <div class="header-circle-container headerPositionMenu ">
+      <div class="header-circle-container header-circle-container-small headerPositionMenu ">
         <div class="div-inner">
         </div>
       </div>
@@ -12,7 +12,7 @@
       <!--Lista de Usuarios Activos-->
 
       <div class="padding-botton" (click)="toggleView()">
-          <label>{{ activeUser.nombre }}</label>
+          <label class="menu-title">{{ activeUser.nombre }}</label>
           <ion-icon *ngIf="otherUsers.length"
             [name]="viewMembers ? 'md-arrow-dropup' : 'md-arrow-dropdown'" class="icon-arrow">
           </ion-icon>
@@ -46,8 +46,7 @@
             <ion-icon name="{{p.icon}}"></ion-icon>
             <label>{{p.title}}</label>
           </ion-item>
-      </ion-list>
-      <hr class="soft-line soft-line-black"> <!-- linea negra -->
+      </ion-list>      
 
       <button ion-buttom class="btn btn-red" (click)="logout()" menuClose="main">Salir</button>
 

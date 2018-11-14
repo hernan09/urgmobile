@@ -77,15 +77,20 @@ ion-nav {
 	}
 }
 
-ion-toolbar.toolbar-md {
-	min-height: 35px;
+.toolbar-md {
+	padding:0 2%;
 }
 
 
 
+.back-button-icon-md{
+	padding:0 12px 0 0;
+}
+
 .userToolbar {
 	.toolbar-title-md {
 		font-size: 1.2em;
+		padding:0;
 	}
 }
 
@@ -116,11 +121,9 @@ ion-menu .menu-inner {
 	.scroll-ion-list {
 		label {
 			padding-left: 10%;
-			font-size: 12px;
-		}
-		ion-icon {
-
-		}
+			font-size: 0.93em;
+			color : $osde_darkblue;
+		}		
 	}
 
 	ion-toolbar {
@@ -145,6 +148,11 @@ ion-menu .menu-inner {
 	    font-size: 28px;
 	    position: relative;
 	    top: 5px;
+		}
+
+		.menu-title{
+			font-size: $text_big_size;
+			color: $osde_darkblue;
 		}
 	}
 
@@ -257,11 +265,11 @@ ion-input {
 //Se Utilizan MENU
 ion-list.scroll-ion-list {
 	overflow-y: scroll;
-	height: 45vh;
+	height: 55vh;
 
 	ion-icon {
 		color: #2196F3;
-    margin-left: 5%;
+    	margin-left: 5%;
 	}
 }
 
@@ -271,8 +279,9 @@ div.label{
 
 /* imagen Menú*/
 .imgPosition {
-	top: 110px;
+	top: 30px;
 	padding-bottom: 10px;
+	border: 10px solid white;
 }
 
 

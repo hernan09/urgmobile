@@ -268,11 +268,13 @@
    hr.soft-line:before {
       top: -0.5em;
       height: 1em;
+      left:0;
    }
    hr.soft-line:after {
       content:'';
       height: 0.5em;
       top: 1px;
+      left:0;
    }
 
    hr.soft-line:before, hr.soft-line:after {

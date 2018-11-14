@@ -154,14 +154,14 @@ export class RegisterPage {
     private showcallUsError(err) {      
         this.navCtrl.setRoot(LoginPage); 
         let phone = this.dataService.getBlockUserPhoneNumber();
-        let alert = this.alertService.showOptionAlert('Atención',err.text(),'Llamanos',Config.ALERT_OPTIONS.CANCELAR,Config.ALERT_CLASS.ERROR_CSS, () => {window.location.href = "tel:" + phone});
+        let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE,err.text(),Config.ALERT_OPTIONS.CALL_US,Config.ALERT_OPTIONS.CANCELAR,Config.ALERT_CLASS.ERROR_CSS, () => {window.location.href = "tel:" + phone});
         alert.present();
     }  
 
     private showAnswerError(data) {
         this.preguntas = this.formatQuestions(JSON.parse(data.questionList).preguntas);
         this.retry();
-        this.alertService.showAlert(data.answerWrong,'',Config.ALERT_CLASS.ERROR_CSS,"Reintentar"); 
+        this.alertService.showAlert(data.answerWrong,'',Config.ALERT_CLASS.ERROR_CSS,Config.ALERT_OPTIONS.RETRY); 
     }   
 
     private deviceRegistration(data: any) {
@@ -171,7 +171,7 @@ export class RegisterPage {
         
         this.dataService.registrarDispositivo(deviceId, this.user.dni).subscribe(
             dataResponse => {                
-                this.alertService.showAlert(Config.MSG.REGISTER_OK,'',Config.ALERT_CLASS.OK_CSS,"Continuar");                
+                this.alertService.showAlert(Config.MSG.REGISTER_OK,'',Config.ALERT_CLASS.OK_CSS,Config.ALERT_OPTIONS.CONTINUE);                
                 this.loginService.login(this.user.dni)
                 this.navCtrl.setRoot(HomePage);
             },

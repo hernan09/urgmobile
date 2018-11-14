@@ -4,14 +4,6 @@ page-home {
         height: 80px;
         width: 80px;
     }
-    .image {
-        background-size: cover !important;  
-        top : -40px;      
-    }
-    .shadow-block {
-        height: 200px;
-        padding: 25px;
-    }
     .container.color-blue {
         position: absolute;
         top: 40px;
@@ -36,15 +28,22 @@ page-home {
     ion-toolbar {
         transition: 0.5s;
     }
-    ion-content.subHiddenMargin .scroll-content {     
+    ion-content.subHiddenMargin .scroll-content {
         transition: 0.5s !important;
     }
-    .text-none {
+    .box-container {
+      top: -44px;
+      
+      .text-none {
         text-align: center;
         font-weight: 300;
-        font-size: 1.3em;
-        margin-top: 80px;
+        font-size: 1.5em;
+        margin-top: 30%;
+        color: #565656;
+        margin-bottom: 16px;
+      }
     }
+
     .scroll-content {
         transition: 0.5s !important;
         margin-bottom: 0 !important;
@@ -130,7 +129,7 @@ page-home {
     }
     /*Alerta 1, 2 y 5--------------------------------------------------*/
 		@mixin box-container-alert() {
-			margin: 5px;
+			margin: 20px;
 			margin-bottom: 15px;
 			border-radius: 5px;
 			border: 1px solid #e6e5e5;
@@ -187,13 +186,14 @@ page-home {
 					padding: 10px;
 
 					p {
-						color: gray;
-						font-size: 12px;
+						color: $gray;
+						font-size: $text_extra_big_size;
 						margin: 8px 0;
 					}
 
 					label {
-						color: #4abcff;
+						font-size: $text_extra_big_size;
+						color: $osde_cyan;
 					}
 				}
 
@@ -203,7 +203,7 @@ page-home {
 
 				.box-alert-2 {
 					padding: 10px 12px;
-			    font-size: 12px;
+			    	font-size: $text_extra_big_size;
 
 					p {
 						 margin: 2px 0;
@@ -220,7 +220,7 @@ page-home {
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
 			.box-container-alert-two {
-                margin: 10% 5px !important;
+        margin: 10% 20px !important;
 
 				.perfil{
 					position: cover !important;
@@ -238,8 +238,8 @@ page-home {
 
 						.poll-question {
 							padding: 5px 0 5px 15%;
-							font-size: 16px;
-							color: gray;
+							font-size: $title_size;
+							color: $gray;
 							font-weight: 300;
 						}
 
@@ -256,11 +256,21 @@ page-home {
 					text-align: center;
 
 					h4 {
+						color: $osde_darkblue;
 						margin: 10px 0 2px 0;
 					}
 
+					h5{
+						color: $osde_darkblue;
+					}
+
 					span {
-						color: gray;
+						font-size: 15px;
+						color: $gray;
+					}
+
+					p{
+						font-size: 15px;
 					}
 
 					.time {
@@ -278,10 +288,7 @@ page-home {
 					bottom: -38px;
 				}
 
-            } 
-            
-            
-           
+      }
     }
     .top-pull {
         top: -48px;
@@ -331,9 +338,18 @@ page-home {
         font-size: 1.5em !important;
     }
 
-    .alerta-item-none .image{
-        top : 12px;
-    }
+	hr.soft-line {
+		margin: 15px auto 15px auto;
+	}
+
+	@media screen and (max-width: 300px){
+		.image{
+			top: -35px !important;
+			height: 90px !important;
+			width: 90px !important;
+			border: 5px solid white;
+		}
+	}
 }
 
 #encuetasItem {
@@ -350,4 +366,3 @@ page-home {
     padding-top: 4px;
     padding-bottom: 4px;
 }
-

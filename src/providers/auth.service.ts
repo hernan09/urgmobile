@@ -112,7 +112,7 @@ export class AuthService {
         } else {
           if (err.status === 502 || err.status === 500) {
             //para que muestre el mensaje solicitado correctamente            
-            this.alertService.showAlert("Error", Config.MSG.CONNECTION_ERROR,Config.ALERT_CLASS.ERROR_CSS);
+            this.alertService.showAlert(Config.TITLE.WARNING_TITLE, Config.MSG.CONNECTION_ERROR,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             return;
           }
@@ -124,7 +124,7 @@ export class AuthService {
             catch{
               mensaje = Config.MSG.TIMEOUT_ERROR;
             }
-            this.alertService.showAlert("Error", mensaje,Config.ALERT_CLASS.ERROR_CSS);
+            this.alertService.showAlert(Config.TITLE.WARNING_TITLE, mensaje,Config.ALERT_CLASS.ERROR_CSS);
             this.utils.hideLoader();
             return;
           }

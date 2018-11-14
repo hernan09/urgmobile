@@ -36,14 +36,14 @@ $darkgray : #606060;
 $lightgray : #ddd;
 
 /*Tamaño de fuentes*/
-@media screen and (max-width: 400px){
+@media screen and (max-width: 300px){
 	body,scroll-content,fixed-content,ion-app.md{
 		font-size:10px;
 	}
 }
 @media screen and (max-width: 700px){
 	body,scroll-content,fixed-content,ion-app.md{
-		font-size:11px;
+		font-size: 11px;
 	}
 }
 
@@ -314,6 +314,14 @@ ion-backdrop{
 
 }
 
+//Centramos los botones
+.alert-button-group{
+	.alert-button{
+		margin: 0 auto;
+		width: 40%;
+		display: inline-block;
+	}
+}
 
 .ok-alert  {
 	.alert-wrapper {
@@ -332,9 +340,6 @@ ion-backdrop{
 			.alert-button{
 				&:nth-child(1){
 					@include gradient(-26.12% 50%, 111.52% 50%, rgba(34, 48, 90, 1), rgba( 34, 58, 133, 1), #22305A, #223A85 );
-				}
-				&:nth-child(2){
-
 				}
 			}
 		}

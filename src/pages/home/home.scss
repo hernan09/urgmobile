@@ -44,6 +44,17 @@ page-home {
       }
     }
 
+    .message-encuesta {
+      box-shadow: none;
+      text-align: center;
+      font-weight: 300;
+      font-size: 1.5em;
+      position: relative;
+      margin-bottom: 10px;
+      padding: 20% 0 12px 0;
+      color:  #565656;
+    }
+
     .scroll-content {
         transition: 0.5s !important;
         margin-bottom: 0 !important;
@@ -292,6 +303,7 @@ page-home {
     }
     .top-pull {
         top: -48px;
+        // top: -26px;
     }
 
     @mixin btn-selection($color) {

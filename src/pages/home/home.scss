@@ -6,7 +6,7 @@ page-home {
     }
     .image {
         background-size: cover !important;  
-        top : -40px;      
+		top : -40px;
     }
     .shadow-block {
         height: 200px;
@@ -130,46 +130,48 @@ page-home {
     }
     /*Alerta 1, 2 y 5--------------------------------------------------*/
 		@mixin box-container-alert() {
-			margin: 5px;
 			margin-bottom: 15px;
 			border-radius: 5px;
 			border: 1px solid #e6e5e5;
 			-webkit-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
 			-moz-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
 			box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
-		}
+        }
+        
+        .close{
+            height:38px;
+        }
 
 		.close-box {
 			position: relative !important;
 			background-color: white;
 
 			ion-icon {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				margin: auto;
-				width: 15px;
-				height: 24px;
-				font-size: 28px;
-				color: rgba(0, 0, 0, 0.3);
+                position: absolute;
+                top: 5px;
+                right: 15px;
+                margin: auto;
+                width: 15px;
+                height: 38px;
+                font-size: 28px;
+                color: rgba(0, 0, 0, 0.3);
+                padding: 0;
 			}
 
 			.line {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				height: 60%;
-				width: 1px;
-				background-color: rgba(0, 0, 0, 0.3);
-				margin: auto;
+                position: absolute;
+                top: 0;
+                height: 38px;
+                width: 1px;
+                background-color: rgba(0, 0, 0, 0.3);
+                margin: auto;
 			}
 		}
 
 	  .alerta-list {
 			position: relative;
-	    top: -50px;
+            top: -50px;
+            padding: 0 3%;
 
 			.box-container-alert {
 
@@ -187,13 +189,14 @@ page-home {
 					padding: 10px;
 
 					p {
-						color: gray;
-						font-size: 12px;
+						color: $gray;
+						font-size: $text_extra_big_size;
 						margin: 8px 0;
 					}
 
 					label {
-						color: #4abcff;
+						font-size: $text_extra_big_size;
+						color: $osde_cyan;
 					}
 				}
 
@@ -203,7 +206,7 @@ page-home {
 
 				.box-alert-2 {
 					padding: 10px 12px;
-			    font-size: 12px;
+			    	font-size: $text_extra_big_size;
 
 					p {
 						 margin: 2px 0;
@@ -220,7 +223,7 @@ page-home {
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
 			.box-container-alert-two {
-                margin: 10% 5px !important;
+                margin-top: 35px;
 
 				.perfil{
 					position: cover !important;
@@ -238,8 +241,8 @@ page-home {
 
 						.poll-question {
 							padding: 5px 0 5px 15%;
-							font-size: 16px;
-							color: gray;
+							font-size: $title_size;
+							color: $gray;
 							font-weight: 300;
 						}
 
@@ -256,15 +259,27 @@ page-home {
 					text-align: center;
 
 					h4 {
-						margin: 10px 0 2px 0;
+						color: $osde_darkblue;
+                        margin: 10px 0 2px 0;
+                        font-weight: bold;
+					}
+
+					h5{
+                        color: $osde_darkblue;
+                        font-weight: bold;
 					}
 
 					span {
-						color: gray;
+						font-size: 15px;
+						color: $gray;
+					}
+
+					p{
+						font-size: 15px;
 					}
 
 					.time {
-						margin-bottom: 20px;
+						margin-bottom: 20px; 
 					}
 				}
 
@@ -333,7 +348,19 @@ page-home {
 
     .alerta-item-none .image{
         top : 12px;
-    }
+	}
+	
+	hr.soft-line {		
+		margin: 15px auto 15px auto;
+	}
+
+	@media screen and (max-width: 300px){
+		.image{
+			top: -35px !important;
+			height: 90px !important;
+			width: 90px !important;			
+		}
+	}
 }
 
 #encuetasItem {
@@ -350,4 +377,5 @@ page-home {
     padding-top: 4px;
     padding-bottom: 4px;
 }
+
 

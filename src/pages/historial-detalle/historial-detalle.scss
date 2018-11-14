@@ -51,20 +51,23 @@ page-historial-detalle {
 
 	.shadow-block{
 		position:relative;
-		max-width:95%;
-		margin:0 auto;
 		margin-top: -50px;
-		padding:5px;
 	}
 
-	button.urgIcon{
-		min-width:44px;
-		padding:0 5px;
+	.bar-buttons-md{
+		padding:0 !important;
+		margin:0 !important;
 	}
 
 	.back-button-md{
 		margin:0;
+		min-width:auto;
 	}
+
+	ion-navbar.toolbar{
+		padding:0 3%;
+	}
+	
 
 	
 }

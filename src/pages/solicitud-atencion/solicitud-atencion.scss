@@ -6,6 +6,11 @@ page-solicitud-atencion {
   }
   .scroll-content > *:last-of-type {
     margin-bottom: 0 !important;
+    
+  }
+
+  .scroll-content{
+    overflow: hidden !important;
   }
 
   .btn{

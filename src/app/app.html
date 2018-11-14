@@ -12,7 +12,7 @@
       <!--Lista de Usuarios Activos-->
 
       <div class="padding-botton" (click)="toggleView()">
-          <label>{{ activeUser.nombre }}</label>
+          <label class="menu-title">{{ activeUser.nombre }}</label>
           <ion-icon *ngIf="otherUsers.length"
             [name]="viewMembers ? 'md-arrow-dropup' : 'md-arrow-dropdown'" class="icon-arrow">
           </ion-icon>

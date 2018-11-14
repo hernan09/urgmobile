@@ -121,11 +121,9 @@ ion-menu .menu-inner {
 	.scroll-ion-list {
 		label {
 			padding-left: 10%;
-			font-size: 12px;
-		}
-		ion-icon {
-
-		}
+			font-size: 0.93em;
+			color : $osde_darkblue;
+		}		
 	}
 
 	ion-toolbar {
@@ -150,6 +148,11 @@ ion-menu .menu-inner {
 	    font-size: 28px;
 	    position: relative;
 	    top: 5px;
+		}
+
+		.menu-title{
+			font-size: $text_big_size;
+			color: $osde_darkblue;
 		}
 	}
 
@@ -266,7 +269,7 @@ ion-list.scroll-ion-list {
 
 	ion-icon {
 		color: #2196F3;
-    margin-left: 5%;
+    	margin-left: 5%;
 	}
 }
 

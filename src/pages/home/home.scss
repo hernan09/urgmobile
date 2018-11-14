@@ -36,15 +36,22 @@ page-home {
     ion-toolbar {
         transition: 0.5s;
     }
-    ion-content.subHiddenMargin .scroll-content {     
+    ion-content.subHiddenMargin .scroll-content {
         transition: 0.5s !important;
     }
-    .text-none {
+    .box-container {
+      top: -44px;
+
+      .text-none {
         text-align: center;
         font-weight: 300;
-        font-size: 1.3em;
-        margin-top: 80px;
+        font-size: 1.5em;
+        margin-top: 6%;
+        color: #565656;
+        margin-bottom: 16px;
+      }
     }
+
     .scroll-content {
         transition: 0.5s !important;
         margin-bottom: 0 !important;
@@ -223,7 +230,7 @@ page-home {
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
 			.box-container-alert-two {
-                margin-top: 35px;
+        margin: 10% 20px !important;
 
 				.perfil{
 					position: cover !important;
@@ -293,10 +300,7 @@ page-home {
 					bottom: -38px;
 				}
 
-            } 
-            
-            
-           
+      }
     }
     .top-pull {
         top: -48px;
@@ -346,11 +350,7 @@ page-home {
         font-size: 1.5em !important;
     }
 
-    .alerta-item-none .image{
-        top : 12px;
-	}
-	
-	hr.soft-line {		
+	hr.soft-line {
 		margin: 15px auto 15px auto;
 	}
 
@@ -377,5 +377,3 @@ page-home {
     padding-top: 4px;
     padding-bottom: 4px;
 }
-
-

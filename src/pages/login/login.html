@@ -10,7 +10,7 @@
 
   <div class="login">
 
-    <ion-list class="form">
+    <div class="form">
 
       <div class="osde-label" *ngIf="newMember">AGREGAR SOCIO</div>
 
@@ -20,12 +20,12 @@
           <ion-icon name="ios-person-outline" isActive="false"></ion-icon>
       </div>
 
-    </ion-list>
-
+    </div>
 
     <button class="btn btn-white"
+      type="button"
       [disabled]="(!dni)"
-      (click)="getDeviceID(dni)">
+      (mousedown)="getDeviceID(dni)">
       {{ button_text }}
     </button>
 

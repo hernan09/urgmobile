@@ -73,7 +73,7 @@ export class HomePage {
 
 		events.subscribe('vcStatus', (data) => {
 			this.isCIDBlocked = data;
-		  });
+		 });
 
 
 		setTimeout(_ => {

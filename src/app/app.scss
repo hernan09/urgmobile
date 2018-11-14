@@ -77,15 +77,20 @@ ion-nav {
 	}
 }
 
-ion-toolbar.toolbar-md {
-	min-height: 35px;
+.toolbar-md {
+	padding:0 2%;
 }
 
 
 
+.back-button-icon-md{
+	padding:0 12px 0 0;
+}
+
 .userToolbar {
 	.toolbar-title-md {
 		font-size: 1.2em;
+		padding:0;
 	}
 }
 
@@ -257,7 +262,7 @@ ion-input {
 //Se Utilizan MENU
 ion-list.scroll-ion-list {
 	overflow-y: scroll;
-	height: 45vh;
+	height: 55vh;
 
 	ion-icon {
 		color: #2196F3;
@@ -271,8 +276,9 @@ div.label{
 
 /* imagen Menú*/
 .imgPosition {
-	top: 110px;
+	top: 30px;
 	padding-bottom: 10px;
+	border: 10px solid white;
 }
 
 

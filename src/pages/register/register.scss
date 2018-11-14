@@ -1,5 +1,9 @@
 page-register {
 
+  .item-md{
+    padding-left: 0px;
+  }
+
   .labelNewMember {
     font-size: $title_size;
   }
@@ -87,6 +91,7 @@ page-register {
 
   .tycs {
     display: flex;
+    padding: 10px;
     .checkbox{
       width: 50px;
     }
@@ -95,8 +100,8 @@ page-register {
       margin-left: 10px;
     }
     .checkbox-icon {
-      width: 8vw !important;
-      height: 8vw !important;
+      width: 22px !important;
+      height: 22px !important;
     }
     .checkbox-inner {
       top: 0.5vw !important;
@@ -136,11 +141,6 @@ page-register {
   z-index: 10;
 }
 
-ion-list{
-  margin: 0 auto !important;
-  width: 225px;
-}
-
 .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
   display: none;
 }
@@ -166,10 +166,6 @@ ion-list{
 
 .soft-line{
  margin: 0 auto;
-}
-
-.item-md{
-  padding-left:0px
 }
 
 .bg-white::before{

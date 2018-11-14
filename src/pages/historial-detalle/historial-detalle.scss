@@ -8,11 +8,13 @@ page-historial-detalle {
 		& > div:not(:last-child) {
 			margin-bottom: 15px;
 		}
+		color:$darkgray;
 	}
 
 	.datosMain {
 		border-left: 4px solid $osde_cyan;
 		margin-bottom: 30px;
+		color:$darkgray;
 		.doctor-title {
 			font-weight: bold;
 			color: #00aad2;
@@ -33,11 +35,12 @@ page-historial-detalle {
 		justify-content: space-between;
 		width: 100%;
 		margin-bottom: 5px;
-		font-size: $text_small_size;
+		font-size: $text_regular_size;
 	}
-	.datosMain div{
+	.datosMain{
 		.info div:nth-child(1) {
 			text-align: left;
+			color:$black;
 		}
 		.info div:nth-child(2) {
 			text-align: right;
@@ -45,6 +48,7 @@ page-historial-detalle {
 	}
 	.datosMain div:nth-child(3){
 		font-size: $text_extra_big_size;
+		color:$black;
 	}
 
 	.shadow-block{

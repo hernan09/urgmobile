@@ -77,6 +77,7 @@ export class LoginPage implements Overlay {
   }
 
   getDeviceID(dni?) {
+    console.log("dni",dni);
     if(this.networkService.isNetworkConnected()){
       dni = dni || this.utils.getActiveUser();
     if (!dni) return;

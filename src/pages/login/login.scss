@@ -11,6 +11,10 @@ page-login {
     margin: auto;
     max-width: 225px;
     margin-top: 225px;
+    
+    button {
+      z-index: 9999;
+    }
   }
 
   .login.notScroll{
@@ -121,15 +125,15 @@ page-login {
     margin-top: 30px;
   }
 
-  .osde-label {    
+  .osde-label {
     font-size: $text_small_size;
-    font-weight: 600; 
+    font-weight: 600;
     color: lightblue;
   }
 
   ion-label {
     color: $osde_cyan;
-  }  
+  }
 
   ion-content{
     background: -moz-linear-gradient(-28% 50% 0deg,rgba(34, 58, 133, 1) 0%,rgba(0, 168, 209, 1) 100%);

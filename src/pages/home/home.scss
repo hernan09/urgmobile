@@ -5,8 +5,11 @@ page-home {
         width: 80px;
     }
     .image {
-        background-size: cover !important;  
-		top : -40px;
+        background-size: cover !important;
+		    top : -40px;
+    }
+    .image-message {
+		    top: -50px;
     }
     .shadow-block {
         height: 200px;
@@ -49,7 +52,19 @@ page-home {
         margin-top: 6%;
         color: #565656;
         margin-bottom: 16px;
+        line-height: 1.3em;
       }
+    }
+
+    .message-encuesta {
+      box-shadow: none;
+      text-align: center;
+      font-weight: 300;
+      font-size: 1.5em;
+      position: relative;
+      margin-bottom: 10px;
+      padding: 20% 0 12px 0;
+      color:  #565656;
     }
 
     .scroll-content {
@@ -144,7 +159,7 @@ page-home {
 			-moz-box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
 			box-shadow: -1px 6px 32px -1px rgba(208,208,208,0.71);
         }
-        
+
         .close{
             height:38px;
         }
@@ -230,13 +245,14 @@ page-home {
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
 			.box-container-alert-two {
-        margin: 10% 20px !important;
+        margin: 10% 0px !important;
 
 				.perfil{
 					position: cover !important;
 				}
 
 				@include box-container-alert();
+        padding: 10px;
 
 				.header {
 					position: relative;
@@ -286,7 +302,7 @@ page-home {
 					}
 
 					.time {
-						margin-bottom: 20px; 
+						margin-bottom: 20px;
 					}
 				}
 
@@ -303,7 +319,8 @@ page-home {
       }
     }
     .top-pull {
-        top: -48px;
+        // top: -48px;
+        top: -26px;
     }
 
     @mixin btn-selection($color) {
@@ -358,7 +375,7 @@ page-home {
 		.image{
 			top: -35px !important;
 			height: 90px !important;
-			width: 90px !important;			
+			width: 90px !important;
 		}
 	}
 }

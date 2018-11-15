@@ -4,7 +4,6 @@ import { DataService } from './../../providers/data.service';
 import { Component, ChangeDetectorRef, Input } from '@angular/core';
 import { NavController, ViewController, Events } from 'ionic-angular';
 
-
 @Component({
   selector: 'page-navigator',
   templateUrl: 'navigator.html',
@@ -14,7 +13,7 @@ export class NavigatorPage {
   public telefono;
   public arrowBack: boolean = false;
   public isSurveyActive: boolean = false;
-  
+
   // Parametro para hacer dinamico el titulo del header
   @Input() title: string = null;
 

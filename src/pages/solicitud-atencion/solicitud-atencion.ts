@@ -29,6 +29,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class SolicitudAtencionPage {
     data:any;
+    public title ="Solicitud de Atención";
+    @ViewChild(NavigatorPage) menu : NavigatorPage;
 
     profileForm = new FormGroup({
       partner: new FormControl('', Validators.required)
@@ -38,13 +40,20 @@ export class SolicitudAtencionPage {
       this.data = ["Incarbone Eduardo Oscar","Incarbone Maria Sol" ]
     }
 
+    ionViewCanEnter(){
+      this.menu.setArrowBack(true);      
+    }
+
     getDataPartner() {
       this.gotoPage();
 
     }
-
     gotoPage(){
       this.navCtrl.push( SaContactoPage );
     }
+
+    previusPage() {
+      this.navCtrl.setRoot(HomePage);
+  }
 
 }

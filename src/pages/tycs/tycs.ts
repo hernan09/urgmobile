@@ -7,7 +7,7 @@ import { NavController, NavParams, MenuController } from 'ionic-angular'
 })
 
 export class TycsPage {
-
+  title = 'Política de privacidad'
   constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
   }
 

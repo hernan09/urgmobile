@@ -31,7 +31,6 @@ export class SaContactoPage {
     direction: new FormControl('', Validators.required),
   })
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.selectOptions = {

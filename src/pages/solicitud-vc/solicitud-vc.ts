@@ -14,6 +14,7 @@ import { Device } from '@ionic-native/device';
 import { Select } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { NavigatorPage } from './../navigator/navigator';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'page-solicitud-vc',
@@ -38,7 +39,14 @@ export class SolicitudVcPage implements Overlay {
     private iskeyboardOpen;
 
     title = 'Video Consulta';
-    
+
+    solicitudVCForm = new FormGroup({
+      cod: new FormControl('', Validators.required),
+      tel: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.email),
+      symptom: new FormControl('', Validators.required)
+    })
+
     constructor(public navCtrl: NavController,
         public navParams: NavParams,
         public utils: Utils,
@@ -53,8 +61,8 @@ export class SolicitudVcPage implements Overlay {
         dataService.getSintomas().subscribe(this.handleData.bind(this), this.handleData.bind(this))
         this.showSelectText = "Seleccionar";
         this.selectOptions = {
-            cssClass:"hideHeader"
-        }
+          title: 'Sintoma',
+        };
         this.keyboard.onKeyboardShow().subscribe((data) => {
                 this.iskeyboardOpen = true;
          });
@@ -85,28 +93,27 @@ export class SolicitudVcPage implements Overlay {
     }
 
     sendVCRequest() {
-        if(this.networkService.isNetworkConnected()){
-            if(!this.validateEmail(this.email)){
-                this.alertService.showAlert(Config.TITLE.WRONG_EMAIL, Config.MSG.WRONG_EMAIL_ERROR,Config.ALERT_CLASS.ERROR_CSS);
-                console.log("El formato de email no es el correcto");
-            }
-            else if(!this.checkTelLength()){
-                this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR,Config.ALERT_CLASS.ERROR_CSS);
-                    console.log("Cantidad de numeros del telefono debe sumar 10");
-                }
-                else{
-                    this.utils.showLoader(false);
-                //llamo al servicio de solicitarVC de mi dataService
-                let requestParam = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version , "email" : this.email};
-                console.log("sendVCRequest - response:", requestParam);
-                this.dataService.solicitarVC(requestParam).subscribe(this.VCResponse.bind(this));
-                }
-        }
-        else{
-            this.toastService.hideToast();
-            this.toastService.showToast(Config.MSG.DISCONNECTED,0);
-        }
-
+      if(this.networkService.isNetworkConnected()){
+          if(!this.validateEmail(this.email)){
+              this.alertService.showAlert(Config.TITLE.WRONG_EMAIL, Config.MSG.WRONG_EMAIL_ERROR,Config.ALERT_CLASS.ERROR_CSS);
+              console.log("El formato de email no es el correcto");
+          }
+          else if(!this.checkTelLength()){
+              this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR,Config.ALERT_CLASS.ERROR_CSS);
+                  console.log("Cantidad de numeros del telefono debe sumar 10");
+              }
+              else{
+                  this.utils.showLoader(false);
+              //llamo al servicio de solicitarVC de mi dataService
+              let requestParam = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version , "email" : this.email};
+              console.log("sendVCRequest - response:", requestParam);
+              this.dataService.solicitarVC(requestParam).subscribe(this.VCResponse.bind(this));
+              }
+      }
+      else{
+          this.toastService.hideToast();
+          this.toastService.showToast(Config.MSG.DISCONNECTED,0);
+      }
     }
 
     VCResponse(data) {
@@ -136,16 +143,16 @@ export class SolicitudVcPage implements Overlay {
     }
 
     onChangeSymptom() {
-        this.selectTextColor = 'transparent';
+      this.selectTextColor = 'transparent';
     }
 
     checkTelLength(){
-        if((this.prefijo+ this.tel).toString().length == 10){
-            return true;
-        }
-        else{
-            return false;
-        }
+      if((this.prefijo+ this.tel).toString().length == 10){
+          return true;
+      }
+      else{
+          return false;
+      }
     }
 
     validateEmail(email) {
@@ -155,8 +162,8 @@ export class SolicitudVcPage implements Overlay {
 
 
      closeAllOverlays(){
-            this.symptomSelect.close();
-            this.alertService.hideAlert();
+        this.symptomSelect.close();
+        this.alertService.hideAlert();
     }
 
     nextPhoneNumber(){

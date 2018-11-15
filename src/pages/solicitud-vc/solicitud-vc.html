@@ -1,10 +1,8 @@
-
 <ion-header>
 
   <page-navigator [title]="title"></page-navigator>
 
 </ion-header>
-
 
 <ion-content>
 
@@ -17,56 +15,60 @@
 
     <hr class="soft-line soft-line-black">
 
-    
-        <ion-grid>
-        <ion-row>
+    <form class="container" [formGroup]="solicitudVCForm" (ngSubmit)="sendVCRequest()">
+      
+      <ion-grid>
+          <ion-row>
 
-          <ion-col col-2>
-            <label for="" class="label-input-number">0</label>
-          </ion-col>
+            <ion-col col-1>
+              <label for="" class="label-input-number">0</label>
+            </ion-col>
 
-          <ion-col col-3>
-            <div class="form-control padding">
-                <input  type="number" [(ngModel)]="prefijo" maxlength="4" value="" onkeyup="this.setAttribute('value', this.value);" 
-                id="cod" class="input-text input-user">
-                <label class="label-text" >Cod</label>
-            </div>
-          </ion-col>
+            <ion-col col-4>
+              <div class="form-control padding">
+                  <input  type="number" [(ngModel)]="prefijo" formControlName="cod" maxlength="4" value="" onkeyup="this.setAttribute('value', this.value);"
+                  id="cod" class="input-text input-user">
+                  <label class="label-text" >Cod</label>
+              </div>
+            </ion-col>
 
-          <ion-col col-2>
-            <label for="" class="label-input-number">- 15</label>
-          </ion-col>
+            <ion-col col-2>
+              <label for="" class="label-input-number">- 15</label>
+            </ion-col>
 
-          <ion-col col-5>
-            <div class="form-control padding">
-                <input value="" [(ngModel)]="number" maxlength="8" type="tel" onkeyup="this.setAttribute('value', this.value);"  
-                id="tel" class="input-text input-user">
-                <label class="label-text" >Tel</label>
-            </div>
-          </ion-col>
+            <ion-col col-5>
+              <div class="form-control padding">
+                  <input value="" [(ngModel)]="tel" formControlName="tel" maxlength="8" type="tel" onkeyup="this.setAttribute('value', this.value);"
+                  id="tel" class="input-text input-user">
+                  <label class="label-text" >Tel</label>
+              </div>
+            </ion-col>
 
-        </ion-row>
+          </ion-row>
       </ion-grid>
 
 
       <div class="form-control">
-        <input value="" type="text" [(ngModel)]="email" onkeyup="this.setAttribute('value', this.value);"  id="email" class="input-text input-user">
+        <input value="" type="text" [(ngModel)]="email" formControlName="email" onkeyup="this.setAttribute('value', this.value);"  id="email" class="input-text input-user">
         <label class="label-text" >Email</label>
-    </div>
-
-    <div class="form-control">
-      <div class="container-select">
-        <ion-label>Sintoma</ion-label>
-        <ion-select [selectOptions]="selectOptions" id="symptomSelect" class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom" placeholder="Seleccionar">
-          <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
-        </ion-select>
       </div>
-    </div>
 
-    <button type="submit" class="btn btn-light" [disabled]=" !name || !tel || !prefijo || !symptom || !email" (click)="sendVCRequest()">
-      Confirmar
-    </button>
+      <div class="form-control">
+        <div class="container-select">
+
+          <ion-label>SINTOMA</ion-label>
+          <ion-select [selectOptions]="selectOptions" formControlName="symptom" id="symptomSelect" class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom" placeholder="Seleccionar">
+            <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
+          </ion-select>
+
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-light" [disabled]="!solicitudVCForm.valid ">
+        Confirmar
+      </button>
+
+    </form>
 
  </div>
 </ion-content>
-

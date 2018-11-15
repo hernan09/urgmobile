@@ -35,6 +35,8 @@ export class LoginPage implements Overlay {
   version = Config.OPTIONS.VERSION_NUMBER;
   addClassTransition:boolean = false;
 
+  dniFinal:number;
+
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -169,4 +171,18 @@ export class LoginPage implements Overlay {
   transitionBlurLogin(){
     this.addClassTransition = false;
   }
+
+  //validation dni
+  validationNumber(DNI) {
+
+    this.dniFinal;
+
+    if(DNI === null || DNI === undefined) this.dni = undefined;
+
+
+    else if(DNI !== null && DNI && DNI.toString().length < 9 )   this.dniFinal = DNI
+
+    else  this.dni = this.dniFinal;
+  }
+
 }

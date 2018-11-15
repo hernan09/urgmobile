@@ -12,7 +12,7 @@
 
   <div class="centrar-datos">
     <div class="image imgPosition img-url"></div>
-    <div class="color-blue">
+    <div>
       <div>
         <h3>{{persona.nombre}} {{persona.apellido}}</h3>
         <div>Nro. de socio: {{persona.nroasociado}}</div>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="container color-blue">
+    <div class="container">
       <div class="shadow-block">
         <div>
           <h3>DNI</h3>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="container color-blue" *ngIf="persona.antecedentes">
+    <div class="container" *ngIf="persona.antecedentes">
       <div class="shadow-block">
         <div>
           <h3>ANTECEDENTES MÉDICOS</h3>

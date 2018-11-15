@@ -45,12 +45,23 @@ page-datos {
 		align-items: center;
 	}
 
+	.tarjeta-convenio{
+		margin-top: 5px;
+	}
+	.tarjeta-plan{
+		margin-top: 10px;
+	}
+
 	ion-content.subHiddenMargin .scroll-content {
 		transition: 0.5s !important;
 	}
 
 	.header-md::after{
 		display: none;
+	}
+
+	.shadow-block{
+		box-shadow : 0px 2px 15px rgba(0, 0, 0, 0.2);
 	}
 	
 }

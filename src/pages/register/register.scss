@@ -1,7 +1,8 @@
 page-register {
 
   .item-md{
-    padding-left: 0px;
+    padding-left: 45px !important;
+
   }
 
   .labelNewMember {
@@ -97,17 +98,19 @@ page-register {
     }
     .label {
       color: $osde_cyan;      
-      margin-left: 10px;
+      font-size: 1.1em;
+      margin-left: 20px;
+
     }
     .checkbox-icon {
       width: 22px !important;
       height: 22px !important;
+      left: 20px;
     }
     .checkbox-inner {
-      top: 0.5vw !important;
-      left: 2.5vw !important;
-      height: 5vw !important;
-      width: 2vw !important;
+      left: 6px !important;
+      height: 15px !important;
+      width: 7px !important;
     }
   }
 

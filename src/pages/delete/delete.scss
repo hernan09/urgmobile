@@ -19,6 +19,7 @@ page-delete {
     .nro-socio {
         font-size: $text_regular_size;
         color: $osde_cyan;
+        padding-left: 85px;
     }
     .tarjeta {
         position: relative;
@@ -47,5 +48,15 @@ page-delete {
 
     .socio-data{
         padding: 0 0 0 20px;
+        position: relative;   
+        
+        p{    
+            position: absolute;        
+            font-size: $text_regular_size;
+        }
+        
     }
+
+    
+    
 }

@@ -5,6 +5,8 @@ page-sa-contacto {
 
   .form-control{
     z-index: 1111111;
+    padding:0;
+    margin-bottom:10px;
   }
 
   .title {
@@ -54,5 +56,11 @@ page-sa-contacto {
       padding-left: 0;
       border-bottom: 1px solid black;
     }
+  }
+  input.input-text[type="number"]{
+      font-size:$text_small_size;
+  }
+  .grid,.col{
+    padding:0;
   }
 }

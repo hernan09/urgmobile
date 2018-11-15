@@ -17,7 +17,7 @@
   </ion-title>
 
   <ion-buttons *ngIf=!arrowBack right>
-    <a href="tel:{{telefono}}" *ngIf="!isSurveyActive" (click)="nextPhoneNumber()">
+    <a href="tel:{{telefono}}" (click)="nextPhoneNumber()">
       <button right class="urgIcon">
         <ion-icon name="call"></ion-icon>
       </button>

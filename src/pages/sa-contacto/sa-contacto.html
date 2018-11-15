@@ -1,6 +1,6 @@
 <ion-header>
 
-  <page-navigator></page-navigator>
+  <page-navigator [title]="title"></page-navigator>
 
 </ion-header>
 
@@ -20,11 +20,11 @@
       <ion-grid>
         <ion-row>
 
-          <ion-col col-1>
+          <ion-col col-2>
             <label for="" class="label-input-number">0</label>
           </ion-col>
 
-          <ion-col col-4>
+          <ion-col col-3>
             <div class="form-control padding">
                 <input value="" type="number"  formControlName="cod" onkeyup="this.setAttribute('value', this.value);" id="cod" class="input-text input-user">
                 <label class="label-text" >Cod</label>
@@ -50,7 +50,7 @@
           <label class="label-text" >Email</label>
       </div>
 
-      <div class="">
+      <div class="form-control">
         <div class="container-select">
           <ion-label>Localidad</ion-label>
           <ion-select [selectOptions]="selectOptions"   formControlName="location" okText="Aceptar" cancelText="Cancelar"  placeholder="Seleccionar">

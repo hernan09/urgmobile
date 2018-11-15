@@ -8,6 +8,7 @@ import { LoginPage } from '../login/login'
 import { DataService } from '../../providers/data.service'
 import { Utils } from '../../providers/utils'
 import { Config } from '../../app/config'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'page-delete',
@@ -15,7 +16,9 @@ import { Config } from '../../app/config'
 })
 
 export class DeletePage {
-
+	profileForm = new FormGroup({
+		partner: new FormControl('', Validators.required)
+	  })
 	users = []
 	title = "Eliminar Socio"
 	constructor(

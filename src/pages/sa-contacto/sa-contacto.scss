@@ -5,8 +5,16 @@ page-sa-contacto {
 
   .form-control{
     z-index: 1111111;
+    padding:0;
+    margin-bottom:15px;
   }
 
+  .container{
+    margin:45px 0;
+  }
+  hr.soft-line{
+    margin: 20px auto;
+  }
   .title {
     text-align: center;
     font-size: $title_size;
@@ -29,8 +37,7 @@ page-sa-contacto {
   }
 
   .btn{
-    position: relative;
-    bottom: -46px;
+    margin-bottom: -77px;
   }
 
   ion-item {
@@ -38,11 +45,11 @@ page-sa-contacto {
   }
 
   .container-select {
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     position: relative;
 
     ion-label {
-      color: #9395ad;
+      color: $place_holder;
       font-size: $text_extra_big_size;
       cursor: text;
       margin: 0;
@@ -50,9 +57,24 @@ page-sa-contacto {
     }
 
     ion-select {
-      max-width: 300px;
+      max-width: 100%;
       padding-left: 0;
-      border-bottom: 1px solid black;
+      border-bottom: 2px solid black;
     }
   }
+  input.input-text[type="number"]{
+      font-size:$text_regular_size;
+  }
+  .grid{
+    margin-bottom:5px;
+  }
+  .grid,.col{
+    padding:0;
+  }
+  
+  .col{
+    font-size:$text_extra_big_size;
+  }
+
+
 }

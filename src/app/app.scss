@@ -35,6 +35,8 @@ $gray : #7d7d7d;
 $darkgray : #606060;
 $lightgray : #ddd;
 
+
+
 /*Tamaño de fuentes*/
 @media screen and (max-width: 300px){
 	body,scroll-content,fixed-content,ion-app.md{
@@ -75,6 +77,10 @@ ion-nav {
 			.toolbar-background { @include gradient(-6.75% 50%, -6.75% 50%, rgba( 34, 58, 133, 1 ), rgba( 0, 168, 209, 1 ), #223A85, #00A8D1 );; }
 		}
 	}
+}
+
+ion-select{
+	font-size:$title_size;
 }
 
 .toolbar-md {
@@ -120,7 +126,7 @@ ion-menu .menu-inner {
 
 	.scroll-ion-list {
 		label {
-			padding-left: 10%;
+			padding-left: 10px;
 			font-size: 0.93em;
 			color : $osde_darkblue;
 		}		
@@ -161,8 +167,8 @@ ion-menu .menu-inner {
 	}
 
 	.item-md {
-		padding-left: 15%;
-		padding-right: 15%;
+		padding-left: 15px;
+		padding-right: 15px;
 	}
 }
 
@@ -272,8 +278,7 @@ ion-list.scroll-ion-list {
 	height: 55vh;
 
 	ion-icon {
-		color: #2196F3;
-    	margin-left: 5%;
+		color: #2196F3;    	
 	}
 }
 

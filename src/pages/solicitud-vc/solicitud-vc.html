@@ -16,6 +16,7 @@
     <hr class="soft-line soft-line-black">
 
     <form class="container" [formGroup]="solicitudVCForm" (ngSubmit)="sendVCRequest()">
+      
       <ion-grid>
           <ion-row>
 
@@ -63,10 +64,10 @@
         </div>
       </div>
 
-      <!-- <button type="submit" class="btn btn-light" [disabled]=" !name || !tel || !prefijo || !symptom || !email" (click)="sendVCRequest()"> -->
       <button type="submit" class="btn btn-light" [disabled]="!solicitudVCForm.valid ">
         Confirmar
       </button>
+
     </form>
 
  </div>

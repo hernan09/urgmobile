@@ -56,7 +56,7 @@ export class MyApp {
       page : SolicitudAtencionPage,
       title : 'Solicitud de Atención',
       icon : 'ios-briefcase-outline'
-    },    
+    },
     {
       page : LoginPage,
       title : 'Agregar socio',
@@ -92,9 +92,9 @@ export class MyApp {
 
     platform.ready().then(_ => {
 
-      splashScreen.hide()
+      // splashScreen.hide();
 
-      this.initBackButtonAction()
+      this.initBackButtonAction();
 
       this.network.onDisconnect().subscribe(_ => {
         //si esta desconectado se muestra una unica vez
@@ -155,7 +155,7 @@ private isVCAvailable(page,params){
     //mas de un socio
     else{
       this.multipleUserVC(page,params);
-    }  
+    }
   }
 
 
@@ -260,7 +260,7 @@ private isVCAvailable(page,params){
     }, 101);
   }
 
- oneUserVC(sociosDNI,params){     
+ oneUserVC(sociosDNI,params){
     let socioActual = this.dataService.restoreMisDatos(sociosDNI[0]);
     this.dataService.validarVC(socioActual.dni, "NO").subscribe(
       data =>{
@@ -273,7 +273,7 @@ private isVCAvailable(page,params){
       this.alertService.showAlert(Config.TITLE.WARNING_TITLE, message,Config.ALERT_CLASS.ERROR_CSS);
       this.navigatePage(HomePage, params, false);
       })
-  } 
+  }
 
   multipleUserVC(page,params){
     this.dataService.validateAvailableVC(this.activeUser.dni).subscribe(

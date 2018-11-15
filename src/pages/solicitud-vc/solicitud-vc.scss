@@ -50,9 +50,14 @@ page-solicitud-vc {
     }
 
     ion-select {
-      max-width: 300px;
+      max-width: 100%;
       padding-left: 0;
-      border-bottom: 1px solid black;
+      border-bottom: 2px solid black;
     }
   }
+
+  .col{
+    font-size:$text_extra_big_size;
+  }
+
 }

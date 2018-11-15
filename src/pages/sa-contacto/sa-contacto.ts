@@ -31,6 +31,7 @@ export class SaContactoPage {
     direction: new FormControl('', Validators.required),
   })
 
+  title = 'Solicitud de Atención';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 

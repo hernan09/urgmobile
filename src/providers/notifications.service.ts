@@ -56,7 +56,7 @@ export class NotificationsService {
 
   alertasChange: Subject<any> = new Subject<any>();
 
-  
+
 
   constructor(
     private oneSignal: OneSignal,
@@ -97,9 +97,9 @@ export class NotificationsService {
       console.log("Notification Received:", noti);
       this.newNotification(noti);
 
-      const isVideoConsulta = noti.data.tipoAtencion == "6";      
+      const isVideoConsulta = noti.data.tipoAtencion == "6";
         if (isVideoConsulta) {
-        this.modalService.closeAllOverlays(navCtrl);  
+        this.modalService.closeAllOverlays(navCtrl);
         this.openVideoCall(navCtrl, noti);
       }
     });
@@ -109,14 +109,14 @@ export class NotificationsService {
       if (data.notification.groupedNotifications) {
         this.groupedNotificationService.addGroupedNotifications(data.notification.groupedNotifications).subscribe(alertasArray =>{
           console.log("Lo que llega en el array: ", alertasArray);
-          for (let index = 0; index < alertasArray.length; index++) { 
-            let alertFilter = alertasArray.filter(alerta => alerta.order == index)  
-            console.log("Alert Filter: " , alertFilter);                  
+          for (let index = 0; index < alertasArray.length; index++) {
+            let alertFilter = alertasArray.filter(alerta => alerta.order == index)
+            console.log("Alert Filter: " , alertFilter);
             this.addAlert(alertFilter[0]);
           }
-            
+
         });
-      
+
       } else {
         //Si las notificaciones vienen de a una la info esta en el payload
         const noti = {
@@ -158,10 +158,10 @@ export class NotificationsService {
         let alert = this.alertService.showOptionAlert(Config.TITLE.VIDEO_CALL_TITLE,
           Config.MSG.VIDEO_CALL, Config.ALERT_OPTIONS.CONTESTAR, Config.ALERT_OPTIONS.IGNORAR,Config.ALERT_CLASS.VIDEO_CONSULTA_CSS
         );
-        alert.onDidDismiss(res => {          
+        alert.onDidDismiss(res => {
           const cid = noti.data.contenido;
           console.log("cid: " + cid + " noti.data.dni " + noti.data.dni);
-          if (res != false) {            
+          if (res != false) {
             navCtrl.setRoot(VideoConsultaPage, { cid, dni: noti.data.dni });
           }else{
             navCtrl.setRoot(HomePage, { cid, dni: noti.data.dni });
@@ -171,7 +171,7 @@ export class NotificationsService {
       } else {
         //No hay usuario activo, se envia al Login
         navCtrl.setRoot(LoginPage);
-        
+
       }
     } else {
       //la video call ya fue realizada
@@ -243,7 +243,7 @@ export class NotificationsService {
       console.log("Lista Alerta encuenta: " , this.alertas);
 
       this.alertas.unshift(alerta);
-      this.events.publish('survey', true);
+      this.events.publish('survey', false);
       this.saveAlertas();
     } else {
       alerta.title = notification.title;
@@ -268,7 +268,7 @@ export class NotificationsService {
           this.saveAlertas();
           break;
         case "3":
-          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Horario estimado de arribo",notification.data.hora,true); 
+          alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Horario estimado de arribo",notification.data.hora,true);
           break;
         case "4":
           alerta = this.fillDoctorData(alerta,3,notification,notification.data.nombreMedico,notification.data.titulo,"Nuevo horario de arribo",notification.data.hora,false);
@@ -278,7 +278,7 @@ export class NotificationsService {
           break;
         case "6":
           this.removeStep(5);
-          alerta.step = 5;          
+          alerta.step = 5;
           alerta.estado = {
             status: "Video Consulta Activa",
             label: "Tenés una Video Consulta en Curso",
@@ -342,7 +342,7 @@ export class NotificationsService {
       especialidad: notification.data.especialidadMedico
     }
     alerta.step = step;
-    alerta = this.getDoctoPhoto(alerta,notification);                   
+    alerta = this.getDoctoPhoto(alerta,notification);
 
   }
 
@@ -356,7 +356,7 @@ export class NotificationsService {
         }
         else{
           alerta.doctor.foto = "";
-        }        
+        }
         this.removeStep(3);
         alerta.visible = true;
         console.log("Lista Alerta tipo doctor " + notification.data.tipoAtencion + ": " , this.alertas);
@@ -377,7 +377,7 @@ export class NotificationsService {
       this.alertas.unshift(alerta);
       this.saveAlertas();
       this.alertasChange.next(this.alertas);
-    } 
+    }
     return alerta;
   }
 }

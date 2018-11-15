@@ -8,9 +8,11 @@
 	<div class="tarjeta" *ngFor="let user of users">
 		<div class="container color-blue">
 			<div class="shadow-block">
+				<div class="socio-data">
 				<div>Nro. de socio: <span class="nro-socio">{{ user.nroSocio }}</span></div>
 				<h4 class="text-01 inline-block nombre-socio">{{user.nombre }}</h4>
 				<ion-checkbox item-right [(ngModel)]="user.delete"></ion-checkbox>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -73,7 +73,7 @@ export class HomePage {
 
 		events.subscribe('vcStatus', (data) => {
 			this.isCIDBlocked = data;
-		  });
+		 });
 
 
 		setTimeout(_ => {
@@ -81,18 +81,18 @@ export class HomePage {
 		}, 1000)
 		this.updateUserData();
 
-}
+  }
 
-	checkIfVCBlocked() {
-		this.videoConsultaService.checkIfBlocked(this.cid)
-		.filter(data => data === true).subscribe(
+  checkIfVCBlocked() {
+  	this.videoConsultaService.checkIfBlocked(this.cid)
+  	.filter(data => data === true).subscribe(
             data =>{
-				console.log("data === true : la VC FINALIZO!!!!");
-				this.isCIDBlocked = data;
-			})
-			err =>{
-				console.log("data === false : COMO QUE LA  VC NO FINALIZO????");
-			}
+  			console.log("data === true : la VC FINALIZO!!!!");
+  			this.isCIDBlocked = data;
+  		})
+  		err =>{
+  			console.log("data === false : COMO QUE LA  VC NO FINALIZO????");
+  		}
 	}
 
 	updateUserData(){

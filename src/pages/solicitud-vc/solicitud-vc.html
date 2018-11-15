@@ -21,11 +21,11 @@
         <ion-grid>
         <ion-row>
 
-          <ion-col col-1>
+          <ion-col col-2>
             <label for="" class="label-input-number">0</label>
           </ion-col>
 
-          <ion-col col-4>
+          <ion-col col-3>
             <div class="form-control padding">
                 <input  type="number" [(ngModel)]="prefijo" maxlength="4" value="" onkeyup="this.setAttribute('value', this.value);" 
                 id="cod" class="input-text input-user">
@@ -57,7 +57,7 @@
     <div class="form-control">
       <div class="container-select">
         <ion-label>Sintoma</ion-label>
-        <ion-select [selectOptions]="selectOptions" id="symptomSelect" class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom">
+        <ion-select [selectOptions]="selectOptions" id="symptomSelect" class="myCustomSelect" (ionChange)="onChangeSymptom($event)" okText="Aceptar" cancelText="Cancelar" [(ngModel)]="symptom" placeholder="Seleccionar">
           <ion-option modal-title="ABC" *ngFor='let symptomOption of symptoms' [value]="symptomOption.code">{{symptomOption.description}}</ion-option>
         </ion-select>
       </div>

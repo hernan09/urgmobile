@@ -9,6 +9,9 @@
     <div class="items-container">
         <div *ngFor="let visita of historial" (click)="goToDetail(visita)">
             <div class="shadow-block">
+
+                <div class="case-number">Nro. de caso {{ visita.idAtencion }}</div>
+
                 <div class="flex">
                     <div>
                         <span>{{ visita.fecha }}</span>
@@ -18,7 +21,6 @@
                         <span>{{ visita.medicacion }}</span>
                     </div>
                 </div>
-                <span class="case-number">Nro. de caso {{ visita.idAtencion }}</span>
             </div>
         </div>
     </div>

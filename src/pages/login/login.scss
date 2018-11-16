@@ -187,4 +187,18 @@ page-login {
       transition: height 3s;
     }
   }
+
+  .hide-version {
+    opacity: 0;
+  }
+
+  .show-version {
+    opacity: 1;
+    -webkit-transition-property: opacity; /* Safari */
+    -webkit-transition-duration: 1s; /* Safari */
+    -webkit-transition-delay: 0.5s; /* Safari */
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-delay: 0.5s;
+  }
 }

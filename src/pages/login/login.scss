@@ -11,7 +11,7 @@ page-login {
     margin: auto;
     max-width: 225px;
     margin-top: 225px;
-    
+
     button {
       z-index: 9999;
     }
@@ -102,14 +102,17 @@ page-login {
   }
 
   .login-footer{
-    color: white;
-    text-align: center;
-    top: 15%;
-    width: 100%;
-    position: relative;
-    text-align: center;
-    background: none;
-  }
+      color: white;
+      text-align: center;
+      bottom: 10px;
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      background: none;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
 
   .login-footer:before{
     display: none;

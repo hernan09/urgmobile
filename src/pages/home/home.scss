@@ -201,11 +201,15 @@ page-home {
 
 				.img-alert {
 					height: 100%;
-					width: 100%;
-					background-position: center;
-					background-repeat: no-repeat;
-					background-size: contain;
+                    width: 100%;
+                    position:relative,
 				}
+                .img-alert img{
+                    max-width:100%;
+                    position: absolute;
+                    top:50%;
+                    margin-top:-50%;
+                }
 
 				.text {
 					padding: 10px;
@@ -235,12 +239,6 @@ page-home {
 					}
 				}
 
-				/*Alerta 5*/
-				.img-call {
-					background: url('../assets/img/videocall.png') center;
-					background-size: contain;
-					background-repeat: no-repeat;
-				}
 		  }
 			/*Alerta 3 y 4 --------------------------------------------------*/
 

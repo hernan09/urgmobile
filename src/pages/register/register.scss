@@ -11,9 +11,18 @@ page-register {
 
   .scroll-content {
     margin-top: 35vh !important;
+    margin-bottom: 14vh !important;
+    height: 51vh !important;
+    overflow:hidden;
+
   }
 
   ion-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     ion-list-header {
       padding-left: 0px !important;
       margin-bottom: 0 !important;
@@ -31,10 +40,6 @@ page-register {
     ion-item:last-child {
       border-bottom: 0 !important;
     }
-  }
-
-  ion-item {    
-    margin: 10px !important;
   }
 
   .item-inner {

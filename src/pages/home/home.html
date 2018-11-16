@@ -16,8 +16,12 @@
 				<ion-row *ngIf = "alerta.step == 1 || alerta.step == 5">
 
 					<ion-col col-3>
-						<div *ngIf = "alerta.step == 1" class="img-alert img-url"></div>
-						<div *ngIf = "alerta.step == 5" class="img-alert img-call"></div>
+						<div *ngIf = "alerta.step == 1" class="img-alert">
+							<img src="assets/img/logo-urg.png" alt="Logo URG">
+						</div>
+						<div *ngIf = "alerta.step == 5" class="img-alert">
+							<img src="assets/img/videocall.png" alt="Video consulta">
+						</div>
 					</ion-col>
 
 					<ion-col col-7 class="text">

@@ -202,10 +202,12 @@ page-home {
 				.img-alert {
 					height: 100%;
 					width: 100%;
-					background-position: center;
-					background-repeat: no-repeat;
-					background-size: contain;
-				}
+                    display: flex;
+                    align-items:center;
+                }
+                .img-alert > img{
+                    max-width:100%;
+                }
 
 				.text {
 					padding: 10px;
@@ -235,12 +237,7 @@ page-home {
 					}
 				}
 
-				/*Alerta 5*/
-				.img-call {
-					background: url('../assets/img/videocall.png') center;
-					background-size: contain;
-					background-repeat: no-repeat;
-				}
+
 		  }
 			/*Alerta 3 y 4 --------------------------------------------------*/
 
@@ -369,7 +366,8 @@ page-home {
 
 	hr.soft-line {
 		margin: 15px auto 15px auto;
-	}
+    }
+
 
 	@media screen and (max-width: 300px){
 		.image{

@@ -60,4 +60,8 @@ page-solicitud-vc {
     font-size:$text_extra_big_size;
   }
 
+  ion-row > ion-col:nth-child(1),ion-row > ion-col:nth-child(3){
+    text-align:center;
+  }
+
 }

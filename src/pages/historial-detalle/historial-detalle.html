@@ -20,10 +20,20 @@
  <div class="header header-rectangular-container header-rectangular-container-small"></div>
  <div class="shadow-block">
 		<div class="dataCard datosMain">
-				<div class="info">
-					<div>Nro. de caso: {{visita.idAtencion}}</div>
-					<div>{{visita.fecha}}</div>
-				</div>
+
+				<ion-grid class="info">
+					<ion-row>
+
+						<ion-col col-6 class="number">
+							<div>Nro. de caso: {{visita.idAtencion}}</div>
+						</ion-col>
+
+						<ion-col col-6 class="date">
+							<div>{{visita.fecha}}</div>
+						</ion-col>
+
+					</ion-row>
+				</ion-grid>
 
 				<div>
 					<div class="doctor-title" *ngIf="visita.prof">{{visita.prof}}</div>

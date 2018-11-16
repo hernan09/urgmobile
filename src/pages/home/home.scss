@@ -201,14 +201,12 @@ page-home {
 
 				.img-alert {
 					height: 100%;
-                    width: 100%;
-                    position:relative,
-				}
-                .img-alert img{
+					width: 100%;
+                    display: flex;
+                    align-items:center;
+                }
+                .img-alert > img{
                     max-width:100%;
-                    position: absolute;
-                    top:50%;
-                    margin-top:-50%;
                 }
 
 				.text {
@@ -238,6 +236,7 @@ page-home {
 						 margin: 2px 0;
 					}
 				}
+
 
 		  }
 			/*Alerta 3 y 4 --------------------------------------------------*/
@@ -367,7 +366,8 @@ page-home {
 
 	hr.soft-line {
 		margin: 15px auto 15px auto;
-	}
+    }
+
 
 	@media screen and (max-width: 300px){
 		.image{

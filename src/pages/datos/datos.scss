@@ -46,6 +46,10 @@ page-datos {
 		
 	}
 
+	.nro-socio{
+		justify-content: center;
+	}
+
 	.tarjeta-convenio{
 		margin-top: 5px;
 	}
@@ -69,4 +73,7 @@ page-datos {
 		color: $darkgray;
 	}
 	
+	.display-inline{
+		display: inline-block;
+	}
 }

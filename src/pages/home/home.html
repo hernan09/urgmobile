@@ -27,7 +27,6 @@
 					<ion-col col-7 class="text">
 						<div  *ngIf = "alerta.step == 1">
 							<p >{{alerta.asignacion}}</p>
-							<label class="link" for="">Instrucciones de Prearribo</label>
 						</div>
 
 						<div *ngIf = "alerta.step == 5">
@@ -49,7 +48,7 @@
 
 					<ion-col col-10 class="text">
 						<p>{{alerta.title}}</p>
-						<label class="link" for="">Instrucciones de Prearribo</label>
+						<label class="link" for="">{{alerta.prearribo.condicion}}</label>
 					</ion-col>
 
 					<ion-col col-2 class="close" (click)="closeAlert(alerta)">

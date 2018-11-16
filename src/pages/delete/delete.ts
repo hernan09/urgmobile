@@ -9,6 +9,7 @@ import { DataService } from '../../providers/data.service'
 import { Utils } from '../../providers/utils'
 import { Config } from '../../app/config'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { filter } from 'rxjs-compat/operator/filter';
 
 @Component({
 	selector: 'page-delete',
@@ -18,7 +19,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class DeletePage {
 	profileForm = new FormGroup({
 		partner: new FormControl('', Validators.required)
-	  })
+	})
 	users = []
 	title = "Eliminar Socio"
 	constructor(
@@ -43,6 +44,8 @@ export class DeletePage {
 	exludeTitular(data) {
 		return data.filter(e => e.dni !== this.utils.getTitular())
 	}
+
+
 
 	delete() {
 		const selected = this.users.filter(e => e.delete)
@@ -74,6 +77,10 @@ export class DeletePage {
 		this.toastService.showToast(selected.length + ' usuario(s) eleminado(s)', 2000)
 		this.navCtrl.setRoot(HomePage)
 
+	}
+
+	noneSelected(){
+		return !this.users.some(u => u.delete);
 	}
 
 }

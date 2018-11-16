@@ -79,7 +79,6 @@ export class LoginPage implements Overlay {
   }
 
   getDeviceID(dni?) {
-    console.log("dni",dni);
     if(this.networkService.isNetworkConnected()){
       dni = dni || this.utils.getActiveUser();
     if (!dni) return;
@@ -91,11 +90,9 @@ export class LoginPage implements Overlay {
           this.login(dni);
         })
         .catch(err => {
-          console.warn("login - getDeviceID : Could not get device ID:", err);
           this.login(dni);
         });
     } catch (err) {
-      console.warn("login - getDeviceID : Cordova not available.");
       this.login(dni);
     }
     }
@@ -116,6 +113,7 @@ export class LoginPage implements Overlay {
         alert.onDidDismiss(res => {
           if (res != false) {
             //Si contesta que si al Reemplazar titular
+            this.notiService.hideNotifications();
             this.checkDNI(dni,this.newMember)
           } else {
             this.utils.hideLoader();

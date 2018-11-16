@@ -15,14 +15,17 @@
     <div>
       <div>
         <h3>{{persona.nombre}} {{persona.apellido}}</h3>
-        <div>Nro. de socio: {{persona.nroasociado}}</div>
+        <div class="flex">
+          <h5>Nro. de socio:  </h5> 
+          <div>{{persona.nroasociado}}</div>
+        </div>
         <div class="flex tarjeta-plan">
-          <h5>Plan:</h5>
-          <div>{{persona.plan}}</div>
+          <h5>Plan:  </h5>
+          <div class="personal-data">{{persona.plan}}</div>
         </div>
         <div class="flex tarjeta-convenio">
-          <h5>Convenio:</h5>
-          <div>{{persona.convenio}}</div>
+          <h5>Convenio:  </h5>
+          <div class="personal-data">{{persona.convenio}}</div>
         </div>
       </div>
     </div>
@@ -31,11 +34,11 @@
       <div class="shadow-block">
         <div>
           <h3>DNI</h3>
-          <div>{{persona.dni}}</div>
+          <div class="personal-data">{{persona.dni}}</div>
         </div>
         <div *ngFor="let data of persona.datosPersonales">
           <h3>{{data.label}}</h3>
-          <div>{{data.valor}}</div>
+          <div class="personal-data">{{data.valor}}</div>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@
           <h3>ANTECEDENTES MÉDICOS</h3>
         </div>
         <div>
-          <div *ngFor="let a of persona.antecedentes">- {{a.antecedente}}</div>
+          <div class="personal-data" *ngFor="let a of persona.antecedentes">- {{a.antecedente}}</div>
         </div>
       </div>
     </div>

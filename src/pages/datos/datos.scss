@@ -43,6 +43,7 @@ page-datos {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		
 	}
 
 	.tarjeta-convenio{
@@ -62,6 +63,10 @@ page-datos {
 
 	.shadow-block{
 		box-shadow : 0px 2px 15px rgba(0, 0, 0, 0.2);
+	}
+
+	.personal-data{
+		color: darkgray;
 	}
 	
 }

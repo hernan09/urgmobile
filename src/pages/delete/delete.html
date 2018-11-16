@@ -22,7 +22,7 @@
 <ion-footer>
 	<hr class="soft-line soft-line-black">
 	<a (click)="delete()">
-		<button ion-button full icon-start class="btn btn-blue">
+		<button ion-button full icon-start class="btn btn-blue" [disabled]="noneSelected()">
 			ELIMINAR
 		</button>
 	</a>

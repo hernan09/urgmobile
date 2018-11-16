@@ -90,7 +90,7 @@
 			<div class="content-info">
 				<span class= "medico-asignado">Médico Asignado</span>
 				<h4>{{alerta.doctor.nombre}}</h4>
-				<span>Especialidad: {{alerta.doctor.especialidad}}</span>
+				<div *ngIf="alerta.doctor.especialidad" class= "medico-asignado"> Especialidad: {{alerta.doctor.especialidad}}</div>
 				<span>Matrícula: {{alerta.doctor.matricula}}</span>
 
 				<hr class="soft-line soft-line-black">

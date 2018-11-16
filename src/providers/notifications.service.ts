@@ -226,7 +226,6 @@ export class NotificationsService {
   /////////////////////////////////OLD
   private updateAlertas(notification) {
     if (!notification) return;
-    console.log("Updating alertas:", notification.androidNotificationId);
     let alerta = JSON.parse(JSON.stringify(ALERTA));
     alerta.visible = true;
 
@@ -240,7 +239,6 @@ export class NotificationsService {
       alerta.poll.thanks = false;
       alerta.visible = true;
       this.hideNotifications();
-      console.log("Lista Alerta encuenta: " , this.alertas);
 
       this.alertas.unshift(alerta);
       this.events.publish('survey', false);
@@ -254,7 +252,6 @@ export class NotificationsService {
           alerta.step = 1;
           alerta.asignacion = notification.data.contenido;
           alerta.visible = true;
-          console.log("Lista Alerta tipo 1: " , this.alertas);
           this.alertas.unshift(alerta);
           this.saveAlertas();
           break;
@@ -263,7 +260,6 @@ export class NotificationsService {
           alerta.step = 2;
           alerta.prearribo.consejos = [notification.data.contenido];
           alerta.visible = true;
-          console.log("Lista Alerta tipo 2: " , this.alertas);
           this.alertas.unshift(alerta);
           this.saveAlertas();
           break;

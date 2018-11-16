@@ -29,6 +29,7 @@ page-credencial {
 		div {
 			height: 25px;
 		}
+
 		label {
 			font-size: 0.9em;
 			font-weight: 300;
@@ -41,11 +42,21 @@ page-credencial {
 			height: 50px;
 			padding: 8px 0;
 		}
-		.tarjeta-dni,
-		.tarjeta-convenio {
-			display: inline-block;
-			width: 45%;
-			padding-top: 5px;
+
+		.container-info {
+	    margin-bottom: 5px;
+			margin-top: 10px;
+
+			.tarjeta-dni{
+				 margin-bottom: 5px;
+			}
+
+			.tarjeta-dni,
+			.tarjeta-convenio {
+				display: inline-block;
+				width: 45%;
+				padding-top: 5px;
+			}
 		}
 	}
 

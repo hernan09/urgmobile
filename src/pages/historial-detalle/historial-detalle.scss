@@ -31,21 +31,15 @@ page-historial-detalle {
 	}
 
 	.info {
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		margin-bottom: 5px;
-		font-size: $text_regular_size;
-	}
-	.datosMain{
-		.info div:nth-child(1) {
+		.number {
 			text-align: left;
 			color:$black;
 		}
-		.info div:nth-child(2) {
+		.date {
 			text-align: right;
 		}
 	}
+
 	.datosMain div:nth-child(3){
 		font-size: $text_extra_big_size;
 		color:$black;
@@ -73,7 +67,7 @@ page-historial-detalle {
 	.col{
 		padding:0;
 	}
-	
 
-	
+
+
 }

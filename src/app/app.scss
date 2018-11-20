@@ -96,7 +96,7 @@ ion-menu .menu-inner {
 			padding-left: 10px;
 			font-size: 0.93em;
 			color : $osde_darkblue;
-		}		
+		}
 	}
 
 	ion-toolbar {
@@ -248,7 +248,7 @@ ion-list.scroll-ion-list {
 	height: 55vh;
 
 	ion-icon {
-		color: #2196F3;    	
+		color: #2196F3;
 	}
 }
 
@@ -259,7 +259,7 @@ div.label{
 /* imagen Menú*/
 .imgPosition {
 	top: 30px;
-	padding-bottom: 10px;	
+	padding-bottom: 10px;
 	height: 80px;
 	width: 80px;
 }
@@ -274,6 +274,7 @@ ion-backdrop{
 
 .alert-md .alert-message{
 	text-align:center;
+	font-size: $text_small_size !important;
 	overflow: visible !important;
 }
 
@@ -363,5 +364,3 @@ ion-backdrop{
 	}
 
 }
-
-

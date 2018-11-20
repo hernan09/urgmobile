@@ -35,27 +35,34 @@ page-credencial {
 			font-weight: 300;
 		}
 		span {
-			font-size: 1.1em;
+			font-size: 1em;
 			font-weight: 600;
 		}
 		.tarjeta-name {
-			height: 50px;
-			padding: 8px 0;
+			height: 36px;
+	    padding: 18px 0 0 0;
+		}
+
+		.tarjeta-nro {
+			margin-top: 12px;
 		}
 
 		.container-info {
-	    margin-bottom: 5px;
-			margin-top: 10px;
+    	margin: 5px 0 0 0;
 
 			.tarjeta-dni{
-				 margin-bottom: 5px;
+				margin-bottom: 5px;
 			}
 
 			.tarjeta-dni,
 			.tarjeta-convenio {
 				display: inline-block;
-				width: 45%;
+				width: 66%;
 				padding-top: 5px;
+			}
+
+			.tarjeta-dni {
+				width: 33%;
 			}
 		}
 	}

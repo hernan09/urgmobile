@@ -2,7 +2,6 @@ page-register {
 
   .item-md{
     padding-left: 45px !important;
-
   }
 
   .labelNewMember {
@@ -14,7 +13,6 @@ page-register {
     margin-bottom: 14vh !important;
     height: 51vh !important;
     overflow:hidden;
-
   }
 
   ion-list {
@@ -48,25 +46,25 @@ page-register {
   }
 
   .img-ok {
-      height: 150px;
-      width: 150px;
-      margin: auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      background: url('../assets/img/yeah.png') center;
-      background-size: contain;
-      background-repeat: no-repeat;
+    height: 150px;
+    width: 150px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: url('../assets/img/yeah.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   .img-error {
-      height: 150px;
-      width: 150px;
-      margin: auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      background: url('../assets/img/ohno.png') center;
-      background-size: contain;
-      background-repeat: no-repeat;
+    height: 150px;
+    width: 150px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: url('../assets/img/ohno.png') center;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   .label-ok {
@@ -102,7 +100,7 @@ page-register {
       width: 50px;
     }
     .label {
-      color: $osde_cyan;      
+      color: $osde_cyan;
       font-size: 1.1em;
       margin-left: 20px;
 
@@ -119,7 +117,6 @@ page-register {
     }
   }
 
-
   @media (min-width: 600px){
     .tycs {
       .checkbox-icon {
@@ -127,17 +124,16 @@ page-register {
         height: 40px !important;
       }
       .label {
-      margin-top: 10px;
-      font-size: $title_size;
-    }
-    .checkbox-inner {
-      left: 13px !important;
-      height: 25px !important;
-      width: 10px !important;
-    }
+        margin-top: 10px;
+        font-size: $title_size;
+      }
+      .checkbox-inner {
+        left: 13px !important;
+        height: 25px !important;
+        width: 10px !important;
+      }
     }
   }
- 
 
   #error-icon {
     font-size: 130px !important;
@@ -190,21 +186,21 @@ page-register {
   display:block;
   position: absolute;
   bottom:0;
-  }
+}
 
-  .login-logo{      
-      position: relative;
-      height: 70px;
-      z-index: 20;
-      margin: 0;
-      width: 100%;
-      display: block;
-      background: url(../assets/img/logo.png) center;
-      background-size: contain;
-      background-repeat: no-repeat;
-      margin-bottom: 50px
-  }
-    
+.login-logo{
+  position: relative;
+  height: 70px;
+  z-index: 20;
+  margin: 0;
+  width: 100%;
+  display: block;
+  background: url(../assets/img/logo.png) center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 50px;
+}
+
 /*Terminan cambios look and feel*/
 
 }

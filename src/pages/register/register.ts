@@ -1,24 +1,22 @@
 import { LoginService } from './../../providers/login.service';
 import { NetworkService } from './../../providers/network.service';
-import { Component, ViewChild } from '@angular/core'
-import { NavController, NavParams, MenuController } from 'ionic-angular'
-import { FormGroup, FormControl } from '@angular/forms'
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from "rxjs";
 
 import { LoginPage } from '../login/login';
-import { TycsPage } from '../tycs/tycs'
-import { HomePage } from '../home/home'
+import { TycsPage } from '../tycs/tycs';
+import { HomePage } from '../home/home';
 
-
-import { AuthService } from '../../providers/auth.service'
-import { DataService } from '../../providers/data.service'
-import { Utils } from '../../providers/utils'
-import { Config } from '../../app/config'
-import { NotificationsService } from '../../providers/notifications.service'
+import { AuthService } from '../../providers/auth.service';
+import { DataService } from '../../providers/data.service';
+import { Utils } from '../../providers/utils';
+import { Config } from '../../app/config';
+import { NotificationsService } from '../../providers/notifications.service';
 import { ToastService } from '../../providers/toast.service';
 import { AlertService } from './../../providers/alert.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-
 
 @Component({
     selector: 'page-register',
@@ -39,56 +37,55 @@ export class RegisterPage {
     public telefono: string;
 
     constructor(
-        public navCtrl: NavController,
-        public navParams: NavParams,
-        public auth: AuthService,
-        public dataService: DataService,
-        public utils: Utils,
-        public notiService: NotificationsService,
-        private menu: MenuController,
-        private networkService: NetworkService,
-        private toastService: ToastService,
-        private loginService: LoginService,
-        private alertService : AlertService,
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public auth: AuthService,
+      public dataService: DataService,
+      public utils: Utils,
+      public notiService: NotificationsService,
+      private menu: MenuController,
+      private networkService: NetworkService,
+      private toastService: ToastService,
+      private loginService: LoginService,
+      private alertService : AlertService,
     ) {
-        this.telefono = dataService.getPhoneNumber()
-        this.form = new FormGroup({
-            "pregs": new FormControl({ value: '', disabled: false })
-        });
-
+      this.telefono = dataService.getPhoneNumber()
+      this.form = new FormGroup({
+          "pregs": new FormControl({ value: '', disabled: false })
+      });
     }
 
     ionViewDidEnter() {
-        this.menu.swipeEnable(false);
+      this.menu.swipeEnable(false);
     }
 
     ionViewWillLeave() {
-        this.menu.swipeEnable(true);
+      this.menu.swipeEnable(true);
     }
 
     ionViewDidLoad() {
-        this.resetVariables();
-        this.user.dni = this.navParams.get('dni');
-        const pregs = JSON.parse(this.navParams.get('data').questionList).preguntas;
-        if (pregs && pregs.length) {
-            this.preguntas = this.formatQuestions(pregs);
-            this.nextAnswer();
-        }
-        else {
-            this.alertService.showAlert(Config.TITLE.WARNING_TITLE,'',Config.ALERT_CLASS.ERROR_CSS); 
-        }
+      this.resetVariables();
+      this.user.dni = this.navParams.get('dni');
+      const pregs = JSON.parse(this.navParams.get('data').questionList).preguntas;
+      if (pregs && pregs.length) {
+        this.preguntas = this.formatQuestions(pregs);
+        this.nextAnswer();
+      }
+      else {
+        this.alertService.showAlert(Config.TITLE.WARNING_TITLE,'',Config.ALERT_CLASS.ERROR_CSS);
+      }
     }
 
     nextAnswer() {
-        if (this.last) {
-            this.checkPreguntas();
-            this.mostrarBtnFinalizar = false;
-        }
-        else {
-            this.p = this.preguntas[this.i++];
-            this.last = this.i === this.preguntas.length;
-            this.hasChosen = false;
-        }
+      if (this.last) {
+        this.checkPreguntas();
+        this.mostrarBtnFinalizar = false;
+      }
+      else {
+        this.p = this.preguntas[this.i++];
+        this.last = this.i === this.preguntas.length;
+        this.hasChosen = false;
+      }
     }
 
     resetVariables() {
@@ -99,21 +96,21 @@ export class RegisterPage {
     }
 
     retry() {
-        this.resetVariables();        
-        this.nextAnswer();
+      this.resetVariables();
+      this.nextAnswer();
     }
 
     goToTycs() {
-        this.navCtrl.push(TycsPage)
+      this.navCtrl.push(TycsPage)
     }
 
     getValor(p) {
-        if (!p || !p.opciones) return ''
-        let rta = p.opciones.find(o => o.valor == p.respuesta)
-        return rta ? rta.texto : ''
+      if (!p || !p.opciones) return ''
+      let rta = p.opciones.find(o => o.valor == p.respuesta)
+      return rta ? rta.texto : ''
     }
 
-    checkPreguntas() {       
+    checkPreguntas() {
         console.log('checkPreguntas:', this.preguntas)
         if (this.networkService.isNetworkConnected()) {
             this.auth.checkPreguntas(this.preguntas)
@@ -125,10 +122,10 @@ export class RegisterPage {
                                 .then(data => this.deviceRegistration(data))
                                 .catch(
                                     error => this.throwError(error)
-                                    
+
                                 )
                         },
-                        err => { 
+                        err => {
                              this.throwError(err);
                          })
                 })
@@ -137,57 +134,56 @@ export class RegisterPage {
                     this.p = null
                     this.auth.answer(this.user.dni, false).subscribe(
                         data => {
-                            this.showAnswerError(data);     
+                            this.showAnswerError(data);
                         },
                         err => {
-                            this.showcallUsError(err);     
+                            this.showcallUsError(err);
                         })
                 })
         }
         else {
-            this.toastService.hideToast();
-            this.toastService.showToast(Config.MSG.DISCONNECTED, 0);
+          this.toastService.hideToast();
+          this.toastService.showToast(Config.MSG.DISCONNECTED, 0);
         }
 
     }
 
-    private showcallUsError(err) {      
-        this.navCtrl.setRoot(LoginPage); 
-        let phone = this.dataService.getBlockUserPhoneNumber();
-        let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE,err.text(),Config.ALERT_OPTIONS.CALL_US,Config.ALERT_OPTIONS.CANCELAR,Config.ALERT_CLASS.ERROR_CSS, () => {window.location.href = "tel:" + phone});
-        alert.present();
-    }  
+    private showcallUsError(err) {
+      this.navCtrl.setRoot(LoginPage);
+      let phone = this.dataService.getBlockUserPhoneNumber();
+      let alert = this.alertService.showOptionAlert(Config.TITLE.WARNING_TITLE,err.text(),Config.ALERT_OPTIONS.CALL_US,Config.ALERT_OPTIONS.CANCELAR,Config.ALERT_CLASS.ERROR_CSS, () => {window.location.href = "tel:" + phone});
+      alert.present();
+    }
 
     private showAnswerError(data) {
-        this.preguntas = this.formatQuestions(JSON.parse(data.questionList).preguntas);
-        this.retry();
-        this.alertService.showAlert(data.answerWrong,'',Config.ALERT_CLASS.ERROR_CSS,Config.ALERT_OPTIONS.RETRY); 
-    }   
+      this.preguntas = this.formatQuestions(JSON.parse(data.questionList).preguntas);
+      this.retry();
+      this.alertService.showAlert(data.answerWrong,'',Config.ALERT_CLASS.ERROR_CSS,Config.ALERT_OPTIONS.RETRY);
+    }
 
     private deviceRegistration(data: any) {
-        const deviceId = data.userId // oneSignalPlayerID
-        console.log(`Device ID is [${deviceId}]`)
-        
-        
-        this.dataService.registrarDispositivo(deviceId, this.user.dni).subscribe(
-            dataResponse => {                
-                this.alertService.showAlert(Config.MSG.REGISTER_OK,'',Config.ALERT_CLASS.OK_CSS,Config.ALERT_OPTIONS.CONTINUE);                
-                this.loginService.login(this.user.dni)
-                this.navCtrl.setRoot(HomePage);
-            },
-            err => {
-                console.warn('Could not get device ID:', err)
-                return Observable.throw("Server error");
-            });
+      const deviceId = data.userId // oneSignalPlayerID
+      console.log(`Device ID is [${deviceId}]`)
+
+      this.dataService.registrarDispositivo(deviceId, this.user.dni).subscribe(
+          dataResponse => {
+              this.alertService.showAlert(Config.MSG.REGISTER_OK,'',Config.ALERT_CLASS.OK_CSS,Config.ALERT_OPTIONS.CONTINUE);
+              this.loginService.login(this.user.dni)
+              this.navCtrl.setRoot(HomePage);
+          },
+          err => {
+              console.warn('Could not get device ID:', err)
+              return Observable.throw("Server error");
+          });
     }
 
     private throwError(error: any) {
         {
-            console.log(error); 
+            console.log(error);
         }
     }
 
-    formatQuestions(questions) {        
+    formatQuestions(questions) {
         return questions.map(q => {
             let correcta
             let opciones = []

@@ -6,6 +6,14 @@ page-datos {
 		top:20px;
 	}
 
+	.col-izq{
+		text-align: right;
+	}
+
+	.col-der{
+		text-align: left;
+	}
+
 	ion-toolbar {
 		transition: 0.5s;
 	}
@@ -38,14 +46,7 @@ page-datos {
 	h5 {
 		margin:0;
 	}
-	.tarjeta-plan,
-		.tarjeta-convenio{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		
-	}
-
+	
 	.nro-socio{
 		justify-content: center;
 	}

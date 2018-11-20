@@ -98,19 +98,16 @@ page-register {
   .tycs {
     display: flex;
     padding: 10px;
-    .checkbox{
-      width: 50px;
-    }
+
     .label {
       color: $osde_cyan;      
       font-size: 1.1em;
-      margin-left: 20px;
+      margin-left: 10px;
 
     }
     .checkbox-icon {
       width: 22px !important;
       height: 22px !important;
-      left: 20px;
     }
     .checkbox-inner {
       left: 6px !important;

@@ -1,3 +1,4 @@
+import { Utils } from './../../providers/utils';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Config } from './../../app/config';
 import { AlertService } from './../../providers/alert.service';
@@ -7,7 +8,6 @@ import { NetworkService } from './../../providers/network.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SociosPage } from '../socios/socios';
-import { Utils } from '../../providers/utils'
 import { HomePage } from '../home/home';
 import { DataService } from '../../providers/data.service'
 import { Device } from '@ionic-native/device';
@@ -37,6 +37,8 @@ export class SolicitudVcPage implements Overlay {
     private telefono;
     private email : string;
     private iskeyboardOpen;
+    telFinal:number;
+    prefijoFinal:number;
 
     title = 'Video Consulta';
 
@@ -178,6 +180,28 @@ export class SolicitudVcPage implements Overlay {
             this.previusPage();
         }
      }
+
+     validateTelNumber(number, length){  
+        this.telFinal; 
+         if(number === null || number === undefined) this.tel = undefined;
+         else if(this.utils.validationInputTypeNumber(number,length)){
+             this.telFinal = number;
+         }
+         else{
+             this.tel = this.telFinal;
+         }
+     }
+
+     validatePrefijoNumber(number, length){   
+        this.prefijoFinal;
+        if(number === null || number === undefined) this.prefijo = undefined;
+        else if(this.utils.validationInputTypeNumber(number,length)){
+            this.prefijoFinal = number;
+        }
+        else{
+            this.prefijo = this.prefijoFinal;
+        }
+    }
 
 
 }

@@ -12,6 +12,18 @@ page-datos {
 
 	.col-der{
 		text-align: left;
+		font-size: $title_big_size;
+	}
+	.person-name{
+		font-size:$title_big_size;
+	}
+
+	h3{
+		font-size: $title_size;
+	}
+	h5{
+		margin:0;
+		font-size:$title_big_size;
 	}
 
 	ion-toolbar {
@@ -36,16 +48,8 @@ page-datos {
 
 	h3, h5 {
 		font-weight: bold;
-		font-size:$text_regular_size;
 	}
 
-	h3 ~ div , h5 ~ div {
-		font-size:$text_small_size
-	}
-
-	h5 {
-		margin:0;
-	}
 	
 	.nro-socio{
 		justify-content: center;
@@ -72,6 +76,7 @@ page-datos {
 
 	.personal-data{
 		color: $darkgray;
+		font-size: $title_big_size;
 	}
 	
 	.display-inline{

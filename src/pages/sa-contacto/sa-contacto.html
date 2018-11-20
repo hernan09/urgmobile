@@ -26,7 +26,7 @@
 
           <ion-col col-3>
             <div class="form-control padding">
-                <input value="" type="number"  formControlName="cod" onkeyup="this.setAttribute('value', this.value);" id="cod" class="input-text input-user">
+                <input value="" type="number"  [(ngModel)]="prefijo" formControlName="cod" (keyup)="validatePrefijoNumber(prefijo, 4)" onkeyup="this.setAttribute('value', this.value);" id="cod" class="input-text input-user">
                 <label class="label-text" >Cod</label>
             </div>
           </ion-col>
@@ -37,7 +37,7 @@
 
           <ion-col col-5>
             <div class="form-control padding">
-                <input value="" type="number"  formControlName="tel" onkeyup="this.setAttribute('value', this.value);"  id="tel" class="input-text input-user">
+                <input value="" type="number" [(ngModel)]="tel" formControlName="tel" (keyup)="validateTelNumber(tel, 8)" onkeyup="this.setAttribute('value', this.value);"  id="tel" class="input-text input-user">
                 <label class="label-text" >Tel</label>
             </div>
           </ion-col>

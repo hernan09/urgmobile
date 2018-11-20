@@ -171,16 +171,15 @@ export class LoginPage implements Overlay {
   }
 
   //validation dni
-  validationNumber(DNI) {
-
+  validateDNINumber(number, length){   
     this.dniFinal;
-
-    if(DNI === null || DNI === undefined) this.dni = undefined;
-
-
-    else if(DNI !== null && DNI && DNI.toString().length < 9 )   this.dniFinal = DNI
-
-    else  this.dni = this.dniFinal;
-  }
+    if(number === null || number === undefined) this.dni = undefined;
+    else if(this.utils.validationInputTypeNumber(number,length)){
+        this.dniFinal = number;
+    }
+    else{
+        this.dni = this.dniFinal;
+    }
+}
 
 }

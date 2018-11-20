@@ -1,3 +1,4 @@
+import { Utils } from './../../providers/utils';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SaConsultaPage } from '../sa-consulta/sa-consulta';
@@ -22,6 +23,10 @@ export class SaContactoPage {
   @ViewChild(NavigatorPage) menu : NavigatorPage;
   selectOptions: any;
   location:any;
+  telFinal:number;
+  prefijoFinal:number;
+  private prefijo : number;
+  private tel: number;
 
   profileForm = new FormGroup({
     cod: new FormControl('', Validators.required),
@@ -33,7 +38,7 @@ export class SaContactoPage {
 
   title = 'Solicitud de Atención';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public utils: Utils,) {
 
     this.selectOptions = {
       title: 'Localidad',
@@ -62,5 +67,28 @@ export class SaContactoPage {
   getLocation(){
     this.location = [ 'Córdoba','Santa Fe', 'Rosario', 'Funes',  'Roldan', 'Otra'  ];
   }
+
+  validateTelNumber(number, length){  
+    this.telFinal; 
+     if(number === null || number === undefined) this.tel = undefined;
+     else if(this.utils.validationInputTypeNumber(number,length)){
+         this.telFinal = number;
+     }
+     else{
+         this.tel = this.telFinal;
+     }
+ }
+
+ validatePrefijoNumber(number, length){   
+    this.prefijoFinal;
+    if(number === null || number === undefined) this.prefijo = undefined;
+    else if(this.utils.validationInputTypeNumber(number,length)){
+        this.prefijoFinal = number;
+    }
+    else{
+        this.prefijo = this.prefijoFinal;
+    }
+}
+
 
 }

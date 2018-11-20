@@ -18,6 +18,10 @@ page-solicitud-atencion {
     bottom: -46px;
   }
 
+  h3.title{
+    font-size: $title_big_size;
+  }
+
   ion-list {
 
       ion-list-header {

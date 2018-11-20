@@ -13,21 +13,21 @@
   <div class="centrar-datos">
     <div class="image imgPosition img-url"></div>
     <div>
-      <div>
-        <h3>{{persona.nombre}} {{persona.apellido}}</h3>
-        <div>
-          <h5 class="display-inline nro-socio">Nro. de socio:  </h5> 
-          <div class="personal-data display-inline">{{persona.nroasociado}}</div>        
-        </div>
-        <div class="flex tarjeta-plan">
-          <h5>Plan:  </h5>
-          <div class="personal-data">{{persona.plan}}</div>
-        </div>
-        <div class="flex tarjeta-convenio">
-          <h5>Convenio:  </h5>
-          <div class="personal-data">{{persona.convenio}}</div>
-        </div>
-      </div>
+      <h2 class="person-name">{{persona.nombre}} {{persona.apellido}}</h2>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="col-izq"><h5 class="display-inline nro-socio">Nro. de socio: </h5></ion-col>
+          <ion-col class="col-der">{{persona.nroasociado}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="col-izq"><h5>Plan: </h5></ion-col>
+          <ion-col class="col-der">{{persona.plan}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="col-izq"><h5>Convenio: </h5></ion-col>
+          <ion-col class="col-der">{{persona.convenio}}</ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
 
     <div class="container">

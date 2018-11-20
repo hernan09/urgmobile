@@ -107,7 +107,18 @@ export class Utils {
       default: return true;
     }
   }
+
+  public validationInputTypeNumber(number,length) {
+    if(number !== null && number && number.toString().length <= length){
+      return true
+    }
+    else{
+      return false;
+    }   
+  }
+
 }
+
 
 
 export const DUMMY_NOTIS = [{

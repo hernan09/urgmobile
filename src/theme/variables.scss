@@ -397,3 +397,26 @@ $toolbar-wp-background: #002664;
   background-image: url("../assets/img/logo-urg.png");
 }
 
+.alert-md .alert-head{
+  padding: 20px 24px 10px 20px !important;
+}
+
+.alert-radio-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 0 0 10% !important;
+}
+
+.alert-md .alert-tappable{
+  min-height: auto !important;
+}
+
+.alert-md .alert-radio-label{
+  font-size: $text_extra_big_size;
+}
+
+.alert-wrapper .alert-head h2{
+  font-weight: 500 !important;
+}
+

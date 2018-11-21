@@ -31,11 +31,11 @@ page-credencial {
 		}
 
 		label {
-			font-size: 0.9em;
-			font-weight: 300;
+			font-size: $text_large_size;
+			font-weight: 400;
 		}
 		span {
-			font-size: 1em;
+			font-size: $text_large_size;
 			font-weight: 600;
 		}
 		.tarjeta-name {

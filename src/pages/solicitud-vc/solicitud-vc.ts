@@ -149,12 +149,12 @@ export class SolicitudVcPage implements Overlay {
     }
 
     checkTelLength(){
-      if((this.prefijo+ this.tel).toString().length == 10){
-          return true;
-      }
-      else{
-          return false;
-      }
+        if((this.prefijo.toString() + this.tel.toString()).length == 10){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     validateEmail(email) {

@@ -23,7 +23,7 @@ page-historial-detalle {
 
 	.datosDetail {
 		border-left: 4px solid $osde_lightgreen;
-		font-size:$text_regular_size;
+		font-size:$text_extra_big_size;
 	}
 
 	.noData {
@@ -31,6 +31,7 @@ page-historial-detalle {
 	}
 
 	.info {
+		font-size: $text_extra_big_size;
 		.number {
 			text-align: left;
 			color:$black;

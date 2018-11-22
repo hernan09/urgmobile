@@ -12,18 +12,18 @@ page-datos {
 
 	.col-der{
 		text-align: left;
-		font-size: $title_big_size;
+		font-size: $text_extra_big_size;
 	}
 	.person-name{
-		font-size:$title_big_size;
+		font-size:$text_extra_big_size;
 	}
 
 	h3{
-		font-size: $title_size;
+		font-size: $text_extra_big_size;
 	}
 	h5{
 		margin:0;
-		font-size:$title_big_size;
+		font-size:$text_extra_big_size;
 	}
 
 	ion-toolbar {
@@ -76,7 +76,7 @@ page-datos {
 
 	.personal-data{
 		color: $darkgray;
-		font-size: $title_big_size;
+		font-size: $text_extra_big_size;
 	}
 	
 	.display-inline{

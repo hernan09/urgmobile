@@ -32,7 +32,7 @@ page-historial {
 
 	.historial-atencion h4{
 		font-weight: normal;
-		font-size: $text_regular_size;
+		font-size: $text_extra_big_size;
 	}
 
 	.historial-atencion div.flex > div:first-child{
@@ -56,7 +56,7 @@ page-historial {
 	}
 
 	.historial-atencion div.flex > div:last-child span{
-		font-size:$text_regular_size;
+		font-size:$text_extra_big_size;
 		color:$osde_cyan;
 	}
 

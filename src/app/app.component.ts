@@ -52,11 +52,11 @@ export class MyApp {
       title : 'Solicitar Video Consulta',
       icon : 'ios-videocam-outline'
     },
-    {
-      page : SolicitudAtencionPage,
-      title : 'Solicitud de Atención',
-      icon : 'ios-briefcase-outline'
-    },
+    // {
+    //   page : SolicitudAtencionPage,
+    //   title : 'Solicitud de Atención',
+    //   icon : 'ios-briefcase-outline'
+    // },
     {
       page : LoginPage,
       title : 'Agregar socio',

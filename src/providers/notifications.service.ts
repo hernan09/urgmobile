@@ -328,7 +328,7 @@ export class NotificationsService {
   private fillDoctorData(alerta,step,notification,nNombreMedico,alertaStatus,alertaLabel,alertaHora,alertaOk){
     alerta.estado = {
       status: alertaStatus,
-      label: alertaLabel,
+      label: alertaHora ? alertaLabel : "",
       hora: alertaHora,
       ok: alertaOk
     };

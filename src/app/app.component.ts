@@ -92,7 +92,7 @@ export class MyApp {
 
     platform.ready().then(_ => {
 
-      // splashScreen.hide();
+      splashScreen.hide();
 
       this.initBackButtonAction();
 

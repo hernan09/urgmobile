@@ -129,7 +129,7 @@ export class SolicitudVcPage implements Overlay {
         else {
             this.utils.hideLoader();
             console.log("VCResponse - data.registroVC: ",data.registroVC);
-            this.alertService.showAlert("Video Consulta", data.Mensaje,Config.ALERT_CLASS.OK_CSS);
+            this.alertService.showAlert("Video Consulta", data.Mensaje,Config.ALERT_CLASS.ERROR_CSS);
         }
         this.navCtrl.setRoot(HomePage);
     }

@@ -39,7 +39,7 @@ export class SaServiciosPage {
         type:"Medico a Domicilio",
         description:"",
         time:"01:30 horas",
-        img: './assets/img/ambulancia.jpg'
+        img: './assets/img/ambulancia.png'
       }
     ]
   }

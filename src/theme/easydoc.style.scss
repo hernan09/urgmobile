@@ -86,10 +86,15 @@
   }
 
   .title-01{
-      font-family:'OpenSans-bold';
-      font-size:1.8em;
-      letter-spacing:0.5px;
+    font-family:'OpenSans-bold';
+    font-size:1.8em;
+    letter-spacing:0.5px;
   }
+
+  .sub-title {
+    font-weight: 400 !important;
+  }
+
   .text-01{
       font-family:'OpenSans-light';
       font-size:1.4em;

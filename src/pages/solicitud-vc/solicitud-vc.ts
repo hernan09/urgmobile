@@ -131,7 +131,7 @@ export class SolicitudVcPage implements Overlay {
             console.log("VCResponse - data.registroVC: ",data.registroVC);
             this.alertService.showAlert("Video Consulta", data.Mensaje,Config.ALERT_CLASS.ERROR_CSS);
         }
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(HomePage); 
     }
 
     previusPage() {
@@ -181,8 +181,8 @@ export class SolicitudVcPage implements Overlay {
         }
      }
 
-     validateTelNumber(number, length){  
-        this.telFinal; 
+     validateTelNumber(number, length){
+        this.telFinal;
          if(number === null || number === undefined) this.tel = undefined;
          else if(this.utils.validationInputTypeNumber(number,length)){
              this.telFinal = number;
@@ -192,7 +192,7 @@ export class SolicitudVcPage implements Overlay {
          }
      }
 
-     validatePrefijoNumber(number, length){   
+     validatePrefijoNumber(number, length){
         this.prefijoFinal;
         if(number === null || number === undefined) this.prefijo = undefined;
         else if(this.utils.validationInputTypeNumber(number,length)){

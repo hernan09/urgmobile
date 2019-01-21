@@ -18,27 +18,37 @@ page-historial {
 	}
 
 	.shadow-block{
-		position: relative;
-		padding: 20px 0 20px 0;
+		height: 119px;
 		max-width: 95%;
+		position: relative;
+		color: $black;
+		padding: 20px 0 20px 0;
 		margin: 0px auto 15px auto;
-		color:$black;
+
 	}
+
 	.historial-atencion  div.flex{
 		justify-content: center;
 		align-items:center;
-	}
 
+		.box-information {
+			border-left: 1px solid grey !important;
+	    height: initial;
+	    margin-top: 4%;
+	    padding-left: 3%;
 
-	.historial-atencion h4{
-		font-weight: normal;
-		font-size: $text_extra_big_size;
+			h4 {
+				font-weight: normal;
+				font-size: $text_extra_big_size;
+				margin-top: 0px;
+				padding-top: 0;
+			}
+		}
 	}
 
 	.historial-atencion div.flex > div:first-child{
 		width:28%;
-		margin-right:5%;
-		border-right:1px solid rgba(0,0,0,0.5);
+		margin-right:2%;
 		height:35px;
 		padding-top:10px;
 		text-align:center;
@@ -55,9 +65,12 @@ page-historial {
     padding-right: 2%;
 	}
 
-	.historial-atencion div.flex > div:last-child span{
+	.historial-atencion div.flex > div:last-child div{
 		font-size:$text_extra_big_size;
 		color:$osde_cyan;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		overflow:hidden;
 	}
 
 	.itemsEmpty .shadow-block{

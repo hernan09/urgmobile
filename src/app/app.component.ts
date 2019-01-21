@@ -62,6 +62,11 @@ export class MyApp {
       title : 'Agregar socio',
       icon : 'ios-add-outline',
       params : {newMember: true}
+    },
+    {
+      page : 'logout',
+      title : 'Salir',
+      icon : 'ios-exit-outline'
     }
   ]
 
@@ -128,12 +133,13 @@ export class MyApp {
       })
       dataService.app = this
       this.viewMembers = false;
-
     })
-
   }
 
 private goToPage(page, params?, force?) {
+
+  if(page != 'logout'){
+
     if (!page) return;
     if ( page.pageName && page.pageName == "SociosPage" ){
       console.log(">>> Entra en Page: "+ page.pageName);
@@ -143,7 +149,11 @@ private goToPage(page, params?, force?) {
     }else{
       this.navigatePage(page, params, force);
     }
+
+  } else{
+    this.logout();
   }
+}
 
 
 private isVCAvailable(page,params){

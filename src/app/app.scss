@@ -202,7 +202,7 @@ ion-input {
 
 .urgIcon {
 	color: $white !important;
-	font-size: 1.7em !important;
+	font-size: 2em !important;
 	background-color: inherit;
 }
 
@@ -295,7 +295,8 @@ ion-backdrop{
 		.alert-button-group{
 			.alert-button{
 				&:nth-child(1){
-					@include gradient(-26.12% 50%, 111.52% 50%, rgba(133, 34, 34, 1), rgba( 209, 0, 0, 1 ), #852222, #D10000 );
+					// @include gradient(-26.12% 50%, 111.52% 50%, rgba(133, 34, 34, 1), rgba( 209, 0, 0, 1 ), #852222, #D10000 );
+					  @include gradient(-26.12% 50%, 111.52% 50%, rgba(34, 48, 90, 1), rgba( 34, 58, 133, 1), #22305A, #223A85 );
 				}
 				&:nth-child(2){
 					@include gradient(-6.75% 50%, 107.38% 50%, rgba(90, 90, 90, 1), rgba( 133, 133, 133, 1 ), #5A5A5A, #858585 );

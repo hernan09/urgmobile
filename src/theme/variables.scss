@@ -63,39 +63,39 @@ $lightgray : #ddd;
 /*Tamaño de fuentes*/
 @media screen and (max-width: 319px){
 	html,body,scroll-content,fixed-content,ion-app.md{
-		font-size:9px !important;
+		font-size:10px !important;
 	}
 }
 @media screen and (min-width: 320px) {
   html,body,scroll-content,fixed-content,ion-app.md{
-    font-size:9px!important;
+    font-size:10px!important;
   }
 }
 
 @media screen and (min-width: 360px) {
   html,body,scroll-content,fixed-content,ion-app.md{
-    font-size:9.5px!important;
+    font-size:10.5px!important;
   }
 }
 
 @media screen and (min-width: 480px) {
   html,body,scroll-content,fixed-content,ion-app.md{
-    font-size:10px!important;
+    font-size:11px!important;
   }
 }
 @media screen and (min-width: 600px){
 	html,body,scroll-content,fixed-content,ion-app.md{
-		font-size:11px!important;
+		font-size:12px!important;
 	}
 }
 @media screen and (min-width: 800px){
 	html,body,scroll-content,fixed-content,ion-app.md{
-		font-size:11.5px!important;
+		font-size:12.5px!important;
 	}
 }
 @media screen and (min-width: 1024px){
 	html,body,scroll-content,fixed-content,ion-app.md{
-		font-size:12px!important;
+		font-size:13px!important;
 	}
 }
 
@@ -232,6 +232,11 @@ $toolbar-wp-background: #002664;
       border-radius : 48px;
       -moz-border-radius : 48px;
       -webkit-border-radius : 48px;
+      text-transform: lowercase;
+
+      &:first-letter {
+        text-transform: uppercase;
+      }
 
       &:nth-child(1) {
         @include gradient(-6.75% 50%, -6.75% 50%, rgba( 34, 58, 133, 1 ), rgba( 0, 168, 209, 1 ), #223A85, #00A8D1 );
@@ -375,8 +380,8 @@ $toolbar-wp-background: #002664;
 
 /* imagen */
 .image {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   background-color: white;
   border-radius: 50%;
   border: 5px solid white;

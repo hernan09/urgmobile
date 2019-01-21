@@ -307,11 +307,10 @@ export class HomePage {
 			}
 			else {
 				this.utils.hideLoader();
-				this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje,Config.ALERT_CLASS.OK_CSS);
+				this.alertService.showAlert(Config.TITLE.VIDEO_CALL_TITLE, response.Mensaje,Config.ALERT_CLASS.ERROR_CSS);
 				//Solo muestra ok y vuelve al home
 				this.navCtrl.push(HomePage);
 			}
 		}
-
 
 }

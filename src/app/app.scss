@@ -93,6 +93,8 @@ ion-menu .menu-inner {
 		-ms-flex-direction: column;
 		flex-direction: column;
 		height:54vh;
+		overflow: hidden !important;
+
 		label {
 			padding-left: 10px;
 			font-size: 0.93em;
@@ -202,14 +204,14 @@ ion-input {
 
 .urgIcon {
 	color: $white !important;
-	font-size: 2em !important;
+	font-size: 2.4em !important;
 	background-color: inherit;
 }
-
 
 [class*=urg-button] {
 	height: 45px !important;
 }
+
 .urg-button-blue       { background-color: $osde_blue; }
 .urg-button-lightgreen { background-color: $osde_lightgreen; }
 .urg-button-lightgreen-call {

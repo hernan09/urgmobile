@@ -59,7 +59,6 @@ $darkgray : #606060;
 $lightgray : #ddd;
 
 
-
 /*Tamaño de fuentes*/
 @media screen and (max-width: 319px){
 	html,body,scroll-content,fixed-content,ion-app.md{
@@ -232,11 +231,6 @@ $toolbar-wp-background: #002664;
       border-radius : 48px;
       -moz-border-radius : 48px;
       -webkit-border-radius : 48px;
-      text-transform: lowercase;
-
-      &:first-letter {
-        text-transform: uppercase;
-      }
 
       &:nth-child(1) {
         @include gradient(-6.75% 50%, -6.75% 50%, rgba( 34, 58, 133, 1 ), rgba( 0, 168, 209, 1 ), #223A85, #00A8D1 );
@@ -301,6 +295,7 @@ $toolbar-wp-background: #002664;
   transition:opacity 0.3s;
   cursor:pointer;
   box-sizing:border-box;
+  height: 47px !important;
 }
 
 .btn:disabled{
@@ -390,7 +385,7 @@ $toolbar-wp-background: #002664;
   padding: 10px;
   left: 0;
   right: 0;
-  top: -56px;
+  top: -50px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -424,4 +419,10 @@ $toolbar-wp-background: #002664;
 
 .alert-wrapper .alert-head h2{
   font-weight: 500 !important;
+}
+
+/*loading*/
+
+.loading-wrapper {
+  font-size: $text_big_size;
 }

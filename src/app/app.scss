@@ -93,7 +93,7 @@ ion-menu .menu-inner {
 		-ms-flex-direction: column;
 		flex-direction: column;
 		height:54vh;
-		overflow: hidden !important;
+		overflow-y: scroll !important;
 
 		label {
 			padding-left: 10px;

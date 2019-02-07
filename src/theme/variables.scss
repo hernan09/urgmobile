@@ -426,3 +426,10 @@ $toolbar-wp-background: #002664;
 .loading-wrapper {
   font-size: $text_big_size;
 }
+
+/*ellipsis*/
+.ellipsis-font {
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}

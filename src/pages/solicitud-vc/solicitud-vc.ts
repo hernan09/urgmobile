@@ -103,14 +103,15 @@ export class SolicitudVcPage implements Overlay {
           else if(!this.checkTelLength()){
               this.alertService.showAlert(Config.TITLE.WRONG_NUMBER, Config.MSG.WRONG_NUMBER_ERROR,Config.ALERT_CLASS.ERROR_CSS);
                   console.log("Cantidad de numeros del telefono debe sumar 10");
-              }
-              else{
-                  this.utils.showLoader(false);
-              //llamo al servicio de solicitarVC de mi dataService
-              let requestParam = { "dni": this.dni, "te": this.prefijo + this.tel, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version , "email" : this.email};
-              console.log("sendVCRequest - response:", requestParam);
-              this.dataService.solicitarVC(requestParam).subscribe(this.VCResponse.bind(this));
-              }
+          } else{
+            this.utils.showLoader(false);
+            //llamo al servicio de solicitarVC de mi dataService
+            let telFinal = this.prefijo.toString() + this.tel.toString();
+            let telNumber = parseInt(telFinal);
+            let requestParam = { "dni": this.dni, "te": telNumber, "codigodeSintoma": this.symptom, "versionAndroid" : this.device.version , "email" : this.email};
+            console.log("sendVCRequest - response:", requestParam);
+            this.dataService.solicitarVC(requestParam).subscribe(this.VCResponse.bind(this));
+          }
       }
       else{
           this.toastService.hideToast();
@@ -131,7 +132,7 @@ export class SolicitudVcPage implements Overlay {
             console.log("VCResponse - data.registroVC: ",data.registroVC);
             this.alertService.showAlert("Video Consulta", data.Mensaje,Config.ALERT_CLASS.ERROR_CSS);
         }
-        this.navCtrl.setRoot(HomePage); 
+        this.navCtrl.setRoot(HomePage);
     }
 
     previusPage() {

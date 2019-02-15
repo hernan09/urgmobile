@@ -41,7 +41,7 @@ export class SolicitudAtencionPage {
     }
 
     ionViewCanEnter(){
-      this.menu.setArrowBack(true);      
+      this.menu.setArrowBack(true);
     }
 
     getDataPartner() {

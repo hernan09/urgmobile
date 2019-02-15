@@ -11,7 +11,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-sa-consulta',
   templateUrl: 'sa-consulta.html',

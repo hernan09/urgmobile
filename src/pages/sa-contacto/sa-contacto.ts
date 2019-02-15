@@ -13,7 +13,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-sa-contacto',
   templateUrl: 'sa-contacto.html',
@@ -68,8 +67,8 @@ export class SaContactoPage {
     this.location = [ 'Córdoba','Santa Fe', 'Rosario', 'Funes',  'Roldan', 'Otra'  ];
   }
 
-  validateTelNumber(number, length){  
-    this.telFinal; 
+  validateTelNumber(number, length){
+    this.telFinal;
      if(number === null || number === undefined) this.tel = undefined;
      else if(this.utils.validationInputTypeNumber(number,length)){
          this.telFinal = number;
@@ -79,7 +78,7 @@ export class SaContactoPage {
      }
  }
 
- validatePrefijoNumber(number, length){   
+ validatePrefijoNumber(number, length){
     this.prefijoFinal;
     if(number === null || number === undefined) this.prefijo = undefined;
     else if(this.utils.validationInputTypeNumber(number,length)){

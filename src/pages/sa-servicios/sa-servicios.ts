@@ -9,7 +9,6 @@ import { NavigatorPage } from './../navigator/navigator';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-sa-servicios',
   templateUrl: 'sa-servicios.html',

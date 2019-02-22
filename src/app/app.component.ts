@@ -17,7 +17,6 @@ import { ToastService } from '../providers/toast.service';
 import { SolicitudVcPage } from './../pages/solicitud-vc/solicitud-vc';
 import { SolicitudAtencionPage } from './../pages/solicitud-atencion/solicitud-atencion';
 
-
 @Component({
   templateUrl : 'app.html'
 })
@@ -81,7 +80,6 @@ export class MyApp {
   private disconnected = false;
   private readyToExit = false;
 
-
   constructor(
     private platform :Platform,
     private splashScreen :SplashScreen,
@@ -100,6 +98,8 @@ export class MyApp {
       splashScreen.hide();
 
       this.initBackButtonAction();
+
+      // this.logout();
 
       this.network.onDisconnect().subscribe(_ => {
         //si esta desconectado se muestra una unica vez
@@ -121,8 +121,7 @@ export class MyApp {
         // prior to doing any api requests as well.
         setTimeout(_ => {
 
-
-          console.log('Network type:', this.network.type)
+        console.log('Network type:', this.network.type)
         }, 3000)
       })
 
@@ -133,6 +132,7 @@ export class MyApp {
       })
       dataService.app = this
       this.viewMembers = false;
+
     })
   }
 
@@ -149,14 +149,13 @@ private goToPage(page, params?, force?) {
     }else{
       this.navigatePage(page, params, force);
     }
-
   } else{
     this.logout();
   }
 }
 
 
-private isVCAvailable(page,params){
+  private isVCAvailable(page,params){
     //Un solo socio
     let sociosDNI = this.dataService.restoreUsers();
     if(sociosDNI.length == 1){
@@ -183,16 +182,13 @@ private isVCAvailable(page,params){
         //Solo muestra ok y vuelve al home
         this.navigatePage(HomePage);
     }
-}
-
+  }
 
   private navigatePage(page, params?, force?){
     let activePage = this.nav.getActive().instance;
     if (activePage.constructor == page && !force) return;
     this.nav.push(page, params);
-
   }
-
 
   goAddMember() {
     this.nav.push(LoginPage, {newMember: true})
@@ -211,6 +207,7 @@ private isVCAvailable(page,params){
   }
 
   public logout() {
+    console.log("se deslogeo ****************++***********");
     this.utils.setActiveUser(null)
     this.utils.setItem(Config.KEY.EXPIRES, 0)
     this.nav.setRoot(LoginPage)
@@ -234,8 +231,9 @@ private isVCAvailable(page,params){
 
   initBackButtonAction() {
     this.platform.registerBackButtonAction(() => {
-      if (this.readyToExit)
-        return this.platform.exitApp()
+      if (this.readyToExit){
+        return this.platform.exitApp();
+      }
 
       let activePortal = this.ionicApp._loadingPortal.getActive() ||
         this.ionicApp._modalPortal.getActive() ||
@@ -260,6 +258,7 @@ private isVCAvailable(page,params){
         let whiteListPages = [ LoginPage, HomePage ]
         // if current page is not in whitelistPage then back to login
         if (whiteListPages.indexOf(activePage.constructor) < 0) {
+        console.log("white list pages",whiteListPages.indexOf(activePage.constructor));
           this.nav.setRoot(LoginPage)
         } else {
           this.toastService.showToast(Config.MSG.EXIT, 1500)

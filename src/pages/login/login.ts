@@ -136,7 +136,6 @@ export class LoginPage implements Overlay {
     }
   }
 
-
   checkDNI(dni,newMember){
     this.authService.checkDNI({ dni }).subscribe(
       data => {
@@ -180,6 +179,5 @@ export class LoginPage implements Overlay {
     else{
         this.dni = this.dniFinal;
     }
-}
-
+  }
 }

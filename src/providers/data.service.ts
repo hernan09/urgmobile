@@ -49,7 +49,7 @@ export class DataService {
         private utils: Utils,
         private authService: AuthService,
         private alertService : AlertService,
-    
+
     ) {
         this.authService.auth().subscribe()
         this.restoreTelefonos()
@@ -93,6 +93,7 @@ export class DataService {
         let response = res.json();
         if (response.telefonos.length > 0) {
             this.telefonos = response.telefonos;
+            console.log('handleTelefonos',this.telefonos);
             this.saveTelefonos(response.telefonos, dni);
         }
         return response;
@@ -118,10 +119,10 @@ export class DataService {
                             .map(this.handleMisDatos.bind(this, dni))
                             .catch(err => { return this.showMisDatosError(err,dni); })
                         }
-                        return this.showMisDatosError(err,dni); 
+                        return this.showMisDatosError(err,dni);
                     })
                 }
-                return this.showMisDatosError(err,dni); 
+                return this.showMisDatosError(err,dni);
             })
     }
 
@@ -130,7 +131,6 @@ export class DataService {
         const data = res.json();
         //agrego dni dentro de mis datos
         data.dni = dni;;
-        console.log('getDatosSocio Response:', data);
         this.saveMisDatos(data, dni);
         return data;
     }
@@ -139,7 +139,7 @@ export class DataService {
         return [this.restoreMisDatos(dni)];
     }
 
-  
+
     public getHistorial(dni?): Observable<any> {
         dni = dni || this.utils.getActiveUser()
         console.log('BK: getHistorial Request:', dni);
@@ -177,14 +177,14 @@ export class DataService {
         this.error('historial', err)
         return [this.restoreHistorial(dni)] || []
     }
-    
+
     public getHistorialNotifications(dni?) {
         dni = dni || this.utils.getActiveUser()
         console.log('getHistorial Request:', dni)
         this.restoreHistorial(dni)
     }
 
-    
+
     public registrarDispositivo(idDevice, dni): Observable<Response> {
 
         const datos = { "dni": dni, "deviceId": idDevice };
@@ -255,8 +255,8 @@ export class DataService {
         this.error('sintomas', err);
         return this.restoreSintomas(dni) || []
     }
-    
-    
+
+
 
     public solicitarVC(data): Observable<any> {
         //Se obtiene el token actualizado según auth
@@ -321,10 +321,10 @@ export class DataService {
 
 
     public validarVC(dni:string, soloservicio:string): Observable<any> {
-        
+
         //Se obtiene el token actualizado según auth
         let headers: Headers = this.authService.getActualHeaders();
-        
+
         let params= "?dni="+dni+"&soloservicio="+soloservicio;
         console.log("validarVC Request : " + params);
         //let options = new RequestOptions({headers:myheaders, search:myParams });
@@ -351,7 +351,6 @@ export class DataService {
     //Obtiene la info dentro del response
     public getResponseData(res):any{
         const data = res.json();
-        console.log('Response Data: ', data);
         return data;
     }
 
@@ -378,8 +377,11 @@ export class DataService {
     }
 
     public restoreTelefonos(dni?) {
-        const telefonos = this.getLocalStorage(Config.KEY.TELEFONOS, dni)
-        if (telefonos) this.telefonos = telefonos
+        var telefonos = this.getLocalStorage(Config.KEY.TELEFONOS, dni)
+        if (telefonos){
+          this.telefonos = telefonos;
+        } else{
+        }
     }
     public saveTelefonos(data, dni?) {
         if (!data) return
@@ -393,7 +395,7 @@ export class DataService {
         if (!data) return
         this.utils.setAlert(data)
     }
-    
+
 
     public saveCID(data) {
         if (!data) return
@@ -417,17 +419,17 @@ export class DataService {
         return this.utils.getItem(Config.KEY.VC_STATUS);
       }
 
-      public setVCStatus(data){       
+      public setVCStatus(data){
         this.utils.setItem(Config.KEY.VC_STATUS, data);
-      } 
-      
+      }
+
       public getSurveyStatus(){
         return this.utils.getItem(Config.KEY.SURVEY_STATUS);
       }
 
-      public setSurveyStatus(data){       
+      public setSurveyStatus(data){
         this.utils.setItem(Config.KEY.SURVEY_STATUS, data);
-      }  
+      }
 
 
     public getLocalStorage(prop, dni?) {
@@ -437,7 +439,7 @@ export class DataService {
             return false
         }
         const data = this.utils.getItem(dni)
-        console.log(`Restored [${prop}] from Local Storage`)
+        console.log(`Restored [${prop}] from Local Storage`,data);
         return data && data[prop]
     }
     public setLocalStorage(prop, propdata, dni?) {
@@ -499,7 +501,7 @@ export class DataService {
     public updateUsers(users?) {
         // notify subscribed components
         console.log('Updating users... ', users)
-        this.usersChange.next(this.getUsersData(users))
+        if (users) this.usersChange.next(this.getUsersData(users))
     }
 
 
@@ -538,14 +540,22 @@ export class DataService {
 
 
     public getPhoneNumber() {
-        const tel = this.telefonos[this.indexTelefonos]
+        var tel = this.telefonos[this.indexTelefonos]
+        if(tel == undefined) {
+          tel =  {
+              telefono: 'default',
+              detalle: '0810-333-3511'
+          };
+        }
         return tel && tel.detalle
     }
 
 
     public nextPhoneNumber() {
-        console.log('Switching phone number')
+        console.log('Switching phone number data service',this.indexTelefonos)
+        console.log('this.telefonos.length dataservice',this.telefonos.length)
         this.indexTelefonos++
+        console.log('Switching phone number2 data service',this.indexTelefonos)
         if (this.indexTelefonos === this.telefonos.length) {
             this.indexTelefonos = 0
         }
@@ -566,12 +576,9 @@ export class DataService {
                 this.error('Erro al solicitarVC', err);
                 return Observable.throw(err);
         });
-      
-      
+
       };
 
-      
-      
     error(prop, err) {
         console.error('Could not get [' + prop + ']: ' + (err || 'Server error'))
     }
@@ -581,10 +588,11 @@ export class DataService {
 		console.log("data.services - updateTelefono: get phone numbers from URG if exists, other way get the static phone numbers")
 		this.getTelefonos().subscribe(
 			data => {
+        console.log("Se pudieron obtener los telefonos: ",data);
 				this.saveTelefonos(data);
 			},
 			err => {
-				console.log("No se pudieron obtener los telefonos");
+				console.log("No se pudieron obtener los telefonos: ",err);
 			}
 		)
 	}

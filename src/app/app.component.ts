@@ -100,6 +100,10 @@ export class MyApp {
       this.initBackButtonAction();
 
       // this.logout();
+      this.nav.setRoot(LoginPage)
+      this.utils.setItem(Config.KEY.EXPIRES, 0)
+      this.viewMembers = false;
+      /*----*/
 
       this.network.onDisconnect().subscribe(_ => {
         //si esta desconectado se muestra una unica vez

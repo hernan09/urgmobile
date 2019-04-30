@@ -285,8 +285,6 @@ export class HomePage {
               else{
                 this.navCtrl.push(SociosPage, params);
             }
-
-
 		  }},
 		  err=>{
 				this.utils.hideLoader();
@@ -312,5 +310,4 @@ export class HomePage {
 				this.navCtrl.push(HomePage);
 			}
 		}
-
 }

@@ -171,7 +171,6 @@ private goToPage(page, params?, force?) {
     }
   }
 
-
   validateVCResponse(responseValidateVC,socioActual) {
     //Se muestra un mensaje diferente dependiendo la respuesta del servicio validar VC
     let response = this.dataService.getResponseData(responseValidateVC);

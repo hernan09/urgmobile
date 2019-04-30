@@ -7,9 +7,10 @@
 
 </ion-header>
 
-<ion-content [class.no-header]="show=='video'" [class.padding]="show!='video'">  
-  
+<ion-content [class.no-header]="show=='video'" [class.padding]="show!='video'">
+
   <div *ngIf="show=='unavailable'" class="shadow-block gracias-pop fade">
+
     <div>
       <h1>La video consulta<span class="salto">ha finalizado.</span></h1>
       <h3>Muchas gracias por utilizar<span class="salto">nuestro servicio.</span></h3>
@@ -17,10 +18,8 @@
     <div>
       <img class="logo" src="assets/img/logo.png" alt="URG">
     </div>
-  </div>  
+  </div>
 
-
-  
   <div *ngIf="show=='error'" >
     <h3>No se pudo iniciar la sesión. Puede ser debido a problemas de conectividad, intentaremos recargarla.</h3>
   </div>
@@ -32,9 +31,10 @@
             <img src="assets/img/doctorGif.gif">
             <p class="mensajeTexto">Esperando al médico<span>.</span><span>.</span><span>.</span></p>
         </div>
-    
+
       <div id="fullvideo"></div>
-      <div id="minivideo">      
+
+      <div id="minivideo">
         <div id="local"></div>
       </div>
     </div>

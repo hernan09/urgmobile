@@ -1,15 +1,15 @@
 <div class="loadingContainer" *ngIf="!mostrarBtnFinalizar">
-    <div class="login-logo"></div>      
-    <img class="loading" src="assets/img/loading.gif" alt="loading">  
+    <div class="login-logo"></div>
+    <img class="loading" src="assets/img/loading.gif" alt="loading">
 </div>
 
 <div *ngIf="mostrarBtnFinalizar">
-  <div class="header-circle-container" *ngIf=p> 
-       <div class="div-inner"><p class="text-01">{{ p.texto }}</p></div> 
-  </div>      
+  <div class="header-circle-container" *ngIf=p>
+       <div class="div-inner"><p class="text-01">{{ p.texto }}</p></div>
+  </div>
 </div>
 
-<ion-content padding *ngIf="mostrarBtnFinalizar">   
+<ion-content padding *ngIf="mostrarBtnFinalizar">
 
 	   <ion-list *ngIf=p radio-group [(ngModel)]="p.respuesta">
 
@@ -17,18 +17,19 @@
 	      <ion-label>{{ o.texto }}</ion-label>
 	      <ion-radio [value]="o.valor" (click)="hasChosen = true"></ion-radio>
       </ion-item>
-        
+
       <div *ngIf=last class="tycs" >
         <ion-checkbox [(ngModel)]="tycs"></ion-checkbox>
         <div class="label" (click)="goToTycs()" >Al registrarme declaro que leí y acepté los <strong>Términos y Condiciones de URG</strong>.</div>
       </div>
-      
+
       </ion-list>
 
 </ion-content>
 
 <ion-footer id="homeFooter" bottom *ngIf="mostrarBtnFinalizar">
   <hr class="soft-line soft-line-black">
+
   <button (click)="nextAnswer()" [disabled]="!hasChosen || (last && !tycs)"
     class="btn btn-light" >
     {{ last ? 'Finalizar' : 'Continuar' }}
@@ -40,4 +41,3 @@
         <span class="border-rounded"></span>
     </div>
 </ion-footer>
-  
